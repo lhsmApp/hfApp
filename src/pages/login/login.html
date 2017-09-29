@@ -22,12 +22,16 @@
       </ion-item>
       <div *ngIf="!loginForm.controls.password.valid" class="validation-failed">请输入密码</div>
 
+      <!-- <ion-item no-lines>
+        <label item-right>记住密码</label>
+        <ion-toggle></ion-toggle>
+      </ion-item> -->
     </ion-list>
     <div padding-horizontal>
       <button ion-button block type="submit" [disabled]="!loginForm.valid||submitted">登　录</button>
     </div>
   </form>
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
       <ion-col text-center tappable (click)="findPassword()">
         <button ion-button small clear color="primary">找回密码</button>
@@ -36,5 +40,5 @@
         <button ion-button small clear color="primary">注　册</button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>
