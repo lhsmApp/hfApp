@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the AcceptapplyPage page.
+ * Generated class for the ScheduleManageItemPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-acceptapply',
-  templateUrl: 'acceptapply.html',
+  selector: 'page-schedule-manage-item',
+  templateUrl: 'schedule-manage-item.html',
 })
-export class AcceptapplyPage {
+export class ScheduleManageItemPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AcceptapplyPage');
+    console.log('ionViewDidLoad ScheduleManageItemPage');
   }
 
 }

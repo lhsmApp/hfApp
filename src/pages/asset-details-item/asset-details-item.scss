@@ -1,31 +1,21 @@
 page-asset-details-item {
-    .cards-div-whole {
+    .cards-list-whole {
         margin: 0px 9px 0px 15px;
     }
 
-    .cards-div-line {
-        display: inline;
-        margin: 0px 0px 0px 1px;
-        vertical-align: central;
-        left: 0px;
+    .cards-item-line {
         background-color: white;
     }
 
-    .cards-lable-feild {
-        width: 49px;
+    .cards-lable-feild{
+        width:90px;
     }
 
-    .cards-input-feild {
-        height: 23px;
+    .cards-input-feild{
+        border: solid 1px black;
     }
-
-    .cards-input-able {
-    }
-
-    .cards-input-disable {
-    }
-
-    .button-class {
+    .cards-select-feild{
+        width:100%;
     }
 }
 

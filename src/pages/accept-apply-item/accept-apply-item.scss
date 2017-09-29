@@ -1,12 +1,19 @@
 page-accept-apply-item {
-    .lable-feild{
+    .cards-list-whole {
+        margin: 0px 9px 0px 9px;
+    }
+
+    .cards-item-line {
+        background-color: white;
+    }
+    .cards-lable-feild{
         width:100px;
     }
 
-    .input-feild{
+    .cards-input-feild{
         border: solid 1px black;
     }
-.select-feild{
-width:100%;
-}
+    .cards-select-feild{
+        width:100%;
+    }
 }

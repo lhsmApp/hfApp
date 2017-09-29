@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Storage} from '@ionic/storage';
 import {IonicPage, NavController, NavParams, AlertController, ViewController} from 'ionic-angular';
-import {AcceptApplyInfo} from '../../model/AcceptApplyInfo.d';
+import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
 
 /**
  * Generated class for the AcceptApplyItemPage page.

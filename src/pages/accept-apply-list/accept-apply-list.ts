@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {NavController, NavParams, ViewController,IonicPage} from 'ionic-angular';
-import {AcceptApplyInfo} from '../../model/AcceptApplyInfo.d';
+import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
 
 /**
  * Generated class for the AcceptApplyListPage page.
@@ -9,6 +9,14 @@ import {AcceptApplyInfo} from '../../model/AcceptApplyInfo.d';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
+  const listGet:AcceptApplyInfo[] = [
+        { codeAcceptApply: 'XMDY0001', stateAcceptApply: '新增', contractCodeAcceptApply: '',contractNameAcceptApply: '',projTypeAcceptApply: '',projPartNameAcceptApply: '',applyDepartAcceptApply: '',applyTimeAcceptApply: '',applyAcceptApply: '' },
+        { codeAcceptApply: 'XMDY0002', stateAcceptApply: '退回', contractCodeAcceptApply: '',contractNameAcceptApply: '',projTypeAcceptApply: '',projPartNameAcceptApply: '',applyDepartAcceptApply: '',applyTimeAcceptApply: '',applyAcceptApply: '' },
+        { codeAcceptApply: 'XMDY0003', stateAcceptApply: '退回', contractCodeAcceptApply: '',contractNameAcceptApply: '',projTypeAcceptApply: '',projPartNameAcceptApply: '',applyDepartAcceptApply: '',applyTimeAcceptApply: '',applyAcceptApply: '' },
+        { codeAcceptApply: 'XMDY0004', stateAcceptApply: '退回', contractCodeAcceptApply: '',contractNameAcceptApply: '',projTypeAcceptApply: '',projPartNameAcceptApply: '',applyDepartAcceptApply: '',applyTimeAcceptApply: '',applyAcceptApply: '' },
+    ];
+
 @IonicPage()
 @Component({
   selector: 'page-accept-apply-list',
@@ -18,21 +26,51 @@ export class AcceptApplyListPage {
 
     sreachValue: string;
     selectItem:AcceptApplyInfo;
-    list:AcceptApplyInfo[] = [
-        { codeAcceptApply: 'XMDY0001', stateAcceptApply: '新增', contractCodeAcceptApply: '',contractNameAcceptApply: '',projTypeAcceptApply: '',projPartNameAcceptApply: '',applyDepartAcceptApply: '',applyTimeAcceptApply: '',applyAcceptApply: '' },
-        { codeAcceptApply: 'XMDY0002', stateAcceptApply: '退回', contractCodeAcceptApply: '',contractNameAcceptApply: '',projTypeAcceptApply: '',projPartNameAcceptApply: '',applyDepartAcceptApply: '',applyTimeAcceptApply: '',applyAcceptApply: '' },
-        { codeAcceptApply: 'XMDY0003', stateAcceptApply: '退回', contractCodeAcceptApply: '',contractNameAcceptApply: '',projTypeAcceptApply: '',projPartNameAcceptApply: '',applyDepartAcceptApply: '',applyTimeAcceptApply: '',applyAcceptApply: '' },
-        { codeAcceptApply: 'XMDY0004', stateAcceptApply: '退回', contractCodeAcceptApply: '',contractNameAcceptApply: '',projTypeAcceptApply: '',projPartNameAcceptApply: '',applyDepartAcceptApply: '',applyTimeAcceptApply: '',applyAcceptApply: '' },
-    ];
+    list:AcceptApplyInfo[];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private storage: Storage, 
               private viewCtrl: ViewController) {
+    this.list = listGet;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AcceptApplyListPage');
+  }
+
+  //上拉刷新
+  doRefresh(refresher) {
+    /*this.params.page = 1;
+    setTimeout(() => {
+      this.topicService.getTopics(this.params).subscribe(
+        data => {
+          this.advancePaymentList = data.data;
+          refresher.complete();
+        }
+        );
+    }, 2000);*/
+
+    this.list = listGet;
+    refresher.complete();
+  }
+
+  //下拉加载
+  doInfinite(infiniteScroll) {
+    /*this.params.page++;
+    setTimeout(() => {
+      this.topicService.getTopics(this.params).subscribe(
+        data => {
+          if (data) {
+            this.topics.push(...data.data);
+            infiniteScroll.complete();
+          }
+          else {
+            infiniteScroll.enable(false);
+          }
+        }
+        );
+    }, 500);*/
   }
 
     setSelectedItem(item: AcceptApplyInfo) {
@@ -50,7 +88,7 @@ export class AcceptApplyListPage {
         this.navCtrl.push("AcceptApplyItemPage", {'itemTranfer': null,'oper':'添加'});
     }
     edit(item: AcceptApplyInfo){
-        
+        this.navCtrl.push("AcceptApplyItemPage", {'itemTranfer': item,'oper':'编辑'});
     }
     delete(item: AcceptApplyInfo){
         
