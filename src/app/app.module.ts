@@ -43,6 +43,8 @@ import {Logger} from "../providers/Logger";
 import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLeave} from "./modal-transitions";
 import {Diagnostic} from "@ionic-native/diagnostic";
 
+//指令
+import { TabDirective } from "../directive/";
 
 @NgModule({
   declarations: [
@@ -53,6 +55,9 @@ import {Diagnostic} from "@ionic-native/diagnostic";
     HomePage,
     //MinePage,
     TabsPage
+
+    //指令
+    //TabDirective
   ],
   imports: [
     BrowserModule,
