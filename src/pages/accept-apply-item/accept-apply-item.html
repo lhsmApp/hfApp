@@ -1,0 +1,60 @@
+<!--
+  Generated template for the AcceptApplyItemPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  	<ion-buttons start>
+  		<button ion-button (click)="dismiss()">返回</button>
+  	</ion-buttons>
+    <ion-title>验收申请</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="content-background">
+	<from >
+		<ion-list>
+            <ion-item>
+                <ion-label class="lable-feild">合同流水号</label>
+                <ion-input class="input-feild" [(ngModel)]="itemShow.contractCodeAcceptApply" placeholder="选择" />
+            </ion-item>
+            <ion-item>
+                <ion-label class="lable-feild">合同名称</label>
+                <ion-input class="input-feild" [(ngModel)]="itemShow.contractNameAcceptApply" placeholder="自动带出"/>
+            </ion-item>
+            <ion-item>
+                <ion-label class="lable-feild">项目性质</label>
+                <ion-input class="input-feild" [(ngModel)]="itemShow.projTypeAcceptApply" placeholder="自动带出"/>
+            </ion-item>
+            <ion-item>
+                <ion-label class="lable-feild">项目单元名称</label>
+                <ion-input class="input-feild" [(ngModel)]="itemShow.projPartNameAcceptApply" placeholder="自动带出"/>
+            </ion-item>
+            <ion-item>
+                <ion-label class="lable-feild">申请单位</label>
+                <ion-select [(ngModel)]="itemShow.applyDepartAcceptApply">
+                    <ion-option value="1">单位1</ion-option>
+                    <ion-option value="2">单位2</ion-option>
+                    <ion-option value="3">单位3</ion-option>
+                    <ion-option value="4">单位4</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label class="lable-feild">申请时间</label>
+                <ion-input class="input-feild" [(ngModel)]="itemShow.applyTimeAcceptApply"/>
+            </ion-item>
+            <ion-item>
+                <ion-label class="lable-feild">申请人</label>
+                <ion-input class="input-feild" [(ngModel)]="itemShow.applyAcceptApply"/>
+            </ion-item>
+		</ion-list>
+    
+
+    <button class="button-class">保存</button>
+	</from>
+</ion-content>
