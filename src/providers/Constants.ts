@@ -24,5 +24,10 @@ export const APP_DOWNLOAD = 'http://omzo595hi.bkt.clouddn.com/download.html';//a
 
 
 
+export const DEFAULT_YS = './assets/img/yanshoushenpi@2x.png';//验收
+export const DEFAULT_YFK = './assets/img/fukuanshenpi@2x.png';//预付款
+export const DEFAULT_HT = './assets/img/hetongshenpi@2x.png';//合同
+export const DEFAULT_ZZ = './assets/img/zhuanzi@2x.png';//转资
+export const DEFAULT_ZZTZ = './assets/img/zhuanzitiaozhengshenpi@2x.png';//转资调整
 
 

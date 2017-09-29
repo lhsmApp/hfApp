@@ -1,17 +1,57 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>首页</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+  <ion-list>
+    <ion-list-header text-center>
+    <h2>通知公告</h2><ion-icon name="more" item-end></ion-icon>
+   </ion-list-header>
+    <button ion-item *ngFor="let item of notices" (click)="itemSelected(item)">
+      {{ item.name }}
+    </button>  
+  </ion-list>
+  <p style="background: #B9BECB;"><br/></p>
+  <ion-list>
+    <ion-list-header text-center>
+      <h2>代办事项</h2>
+    </ion-list-header>
+      <ion-row>
+        <ion-col col-4 (click)="openPage('collects')">
+          <div text-center>
+            <img color="secondary" class='imgSize' src='{{htPath}}'/>
+            <p>合同审批</p>
+          </div>
+        </ion-col>
+        <ion-col col-4 (click)="openPage('messages')">
+          <div text-center>
+            <img color="secondary" class='imgSize' src='{{yfkPath}}'/>
+            <p>付款审批</p>
+            <ion-badge *ngIf="messageCount" color="danger" class="brage">{{messageCount}}</ion-badge>
+          </div>
+      </ion-col>
+        <ion-col col-4 (click)="openPage('topics')" >
+          <div text-center>
+            <img color="primary"  class='imgSize' src='{{ysPath}}'/>
+            <p>验收审批</p>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4 (click)="openPage('topics')">
+          <div text-center>
+            <img color="danger"  class='imgSize' src='{{zzPath}}'/>
+            <p>转资审批</p>
+          </div>
+        </ion-col>
+        <ion-col col-4 (click)="openPage('topics')" >
+          <div text-center>
+            <img color="secondary"  class='imgSize' src='{{zztzPath}}'/>
+            <p>转资调整审批</p>
+          </div>
+        </ion-col>
+      </ion-row>
+  </ion-list>
 </ion-content>

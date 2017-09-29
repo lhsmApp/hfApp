@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ModalController, ViewController, Platform, AlertController, Events} from 'ionic-angular';
+import {ModalController,NavController, ViewController, Platform, AlertController, Events} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {FormBuilder, Validators} from '@angular/forms';
 
@@ -7,6 +7,8 @@ import {LoginService} from './LoginService';
 
 import {FindPasswordPage} from './find-password/find-password';
 import {RegisterPage} from './register/register';
+import { TabsPage } from '../../pages/tabs/tabs';
+
 import {UserInfo, LoginInfo} from "../../model/UserInfo";
 import {GlobalData} from "../../providers/GlobalData";
 import {Utils} from "../../providers/Utils";
@@ -22,7 +24,8 @@ export class LoginPage {
   canLeave: boolean = false;
   loginForm: any;
 
-  constructor(private viewCtrl: ViewController,
+  constructor(public navCtrl:NavController,
+              private viewCtrl: ViewController,
               private formBuilder: FormBuilder,
               private storage: Storage,
               private globalData: GlobalData,
@@ -32,7 +35,7 @@ export class LoginPage {
               private events: Events,
               private loginService: LoginService) {
     this.loginForm = this.formBuilder.group({
-      username: ['yanxiaojun617', [Validators.required, Validators.minLength(4)]],// 第一个参数是默认值
+      username: ['jiachao', [Validators.required, Validators.minLength(4)]],// 第一个参数是默认值
       password: ['123456', [Validators.required, Validators.minLength(4)]]
     });
   }
@@ -73,7 +76,8 @@ export class LoginPage {
         this.globalData.token = loginInfo.access_token;
         this.submitted = false;
         this.userInfo = loginInfo.user;
-        this.events.publish('user:login', loginInfo);
+        this.navCtrl.push(TabsPage,{"loginInfo":loginInfo});
+        //this.events.publish('user:login');
         this.viewCtrl.dismiss(loginInfo.user);
       }, () => {
         this.submitted = false;

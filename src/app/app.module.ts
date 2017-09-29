@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler,Config } from 'ionic-angular';
 import {IonicStorageModule} from "@ionic/storage";
 
 //Modules
@@ -8,12 +8,15 @@ import {MineModule} from "../pages/mine/mine.module";
 
 //Pages
 import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { LoginPage } from '../pages/login/login';
+
+import { ApplyPage } from '../pages/apply/apply';
+import { QueryPage } from '../pages/query/query';
 import { HomePage } from '../pages/home/home';
 //import { MinePage } from '../pages/mine/mine';
 import { TabsPage } from '../pages/tabs/tabs';
 
+//Native Part
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
@@ -25,8 +28,6 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {ImagePicker} from "@ionic-native/image-picker";
 import {Network} from "@ionic-native/network";
 import {AppMinimize} from "@ionic-native/app-minimize";
-
-//Native Part
 import {JPush} from "../../typings/modules/jpush/index";
 
 //Service Part
@@ -46,8 +47,9 @@ import {Diagnostic} from "@ionic-native/diagnostic";
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    LoginPage,
+    ApplyPage,
+    QueryPage,
     HomePage,
     //MinePage,
     TabsPage
@@ -68,8 +70,9 @@ import {Diagnostic} from "@ionic-native/diagnostic";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    LoginPage,
+    ApplyPage,
+    QueryPage,
    ///MinePage,
     HomePage,
     TabsPage
@@ -101,4 +104,16 @@ import {Diagnostic} from "@ionic-native/diagnostic";
     Logger
   ]
 })
-export class AppModule {}
+export class AppModule {
+
+  constructor(public config: Config) {
+    this.setCustomTransitions();
+  }
+
+  private setCustomTransitions() {
+    this.config.setTransition('modal-from-right-enter', ModalFromRightEnter);
+    this.config.setTransition('modal-from-right-leave', ModalFromRightLeave);
+    this.config.setTransition('modal-scale-enter', ModalScaleEnter);
+    this.config.setTransition('modal-scale-leave', ModalScaleLeave);
+  }
+}

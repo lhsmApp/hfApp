@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      业务功能
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item (click)="queryProjectUnit()">
+      <ion-icon name="search" item-start color="secondary"></ion-icon>
+        项目单元查询
+      <ion-icon name="arrow-forward" item-end></ion-icon>
+    </ion-item>
+    <ion-item (click)="queryContract()">
+      <ion-icon name="search" item-start color="secondary"></ion-icon>
+        合同信息查询
+      <ion-icon name="arrow-forward" item-end></ion-icon>
+    </ion-item>
+    <ion-item (click)="queryPayment()">
+      <ion-icon name="search" item-start color="secondary"></ion-icon>
+        付款信息查询
+      <ion-icon name="arrow-forward" item-end></ion-icon>
+    </ion-item>
+    <ion-item (click)="queryYs()">
+      <ion-icon name="search" item-start color="secondary"></ion-icon>
+        验收信息查询
+      <ion-icon name="arrow-forward" item-end></ion-icon>
+    </ion-item>
+    <ion-item (click)="queryZz()">
+      <ion-icon name="search" item-start color="secondary"></ion-icon>
+        转资信息查询
+      <ion-icon name="arrow-forward" item-end></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
