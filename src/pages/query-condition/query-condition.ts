@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Utils } from '../../providers/Utils';
+
 
 /**
  * Generated class for the QueryConditionPage page.
@@ -15,11 +17,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class QueryConditionPage {
 
+  startDate:string;
+  endDate:string;
+  relationship:string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad QueryConditionPage');
+    this.relationship="1";
+    this.startDate=Utils.dateFormat(new Date());
+    this.endDate=(new Date()).toISOString();
+    console.log(this.endDate);
   }
 
   openQuery(){

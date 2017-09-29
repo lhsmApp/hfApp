@@ -14,5 +14,20 @@
 
 
 <ion-content padding>
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list class="list-avatar-page">
+    <ion-item *ngFor="let item of workList;trackBy:item?.sequence">
+      <h2>序号：{{item.sequence}}</h2>
+      <h3 item-end>{{item.payCode}}</h3>
+      <p> {{item.listNumber}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.listName}}</p>
+      
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
