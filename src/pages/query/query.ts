@@ -24,7 +24,7 @@ export class QueryPage {
 
   //付款信息查询
   queryPayment() {
-    this.navCtrl.push('TestPage');
+    this.navCtrl.push('QueryConditionPage');
   }
 
   //验收信息查询
