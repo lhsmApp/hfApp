@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {NavController, NavParams, ViewController,IonicPage} from 'ionic-angular';
 import {AcceptApplyInfo} from '../../model/AcceptApplyInfo.d';
-import {AcceptApplyItemPage} from '../accept-apply-item/accept-apply-item';
 
 /**
  * Generated class for the AcceptApplyListPage page.
@@ -22,6 +21,8 @@ export class AcceptApplyListPage {
     list:AcceptApplyInfo[] = [
         { codeAcceptApply: 'XMDY0001', stateAcceptApply: '新增', contractCodeAcceptApply: '',contractNameAcceptApply: '',projTypeAcceptApply: '',projPartNameAcceptApply: '',applyDepartAcceptApply: '',applyTimeAcceptApply: '',applyAcceptApply: '' },
         { codeAcceptApply: 'XMDY0002', stateAcceptApply: '退回', contractCodeAcceptApply: '',contractNameAcceptApply: '',projTypeAcceptApply: '',projPartNameAcceptApply: '',applyDepartAcceptApply: '',applyTimeAcceptApply: '',applyAcceptApply: '' },
+        { codeAcceptApply: 'XMDY0003', stateAcceptApply: '退回', contractCodeAcceptApply: '',contractNameAcceptApply: '',projTypeAcceptApply: '',projPartNameAcceptApply: '',applyDepartAcceptApply: '',applyTimeAcceptApply: '',applyAcceptApply: '' },
+        { codeAcceptApply: 'XMDY0004', stateAcceptApply: '退回', contractCodeAcceptApply: '',contractNameAcceptApply: '',projTypeAcceptApply: '',projPartNameAcceptApply: '',applyDepartAcceptApply: '',applyTimeAcceptApply: '',applyAcceptApply: '' },
     ];
 
   constructor(public navCtrl: NavController,
@@ -37,19 +38,21 @@ export class AcceptApplyListPage {
     setSelectedItem(item: AcceptApplyInfo) {
       this.selectItem=item;
     }
-    toDetail() {
-        this.navCtrl.push(AcceptApplyItemPage, {'itemTranfer': this.selectItem,'oper':'编辑'});
+
+    toDetail(item: AcceptApplyInfo) {
+        this.navCtrl.push("AcceptApplyItemPage", {'itemTranfer': item,'oper':'编辑'});
     }
     toChecked() {
 
     }
 
     add(){
-        this.navCtrl.push(AcceptApplyItemPage, {'itemTranfer': null,'oper':'添加'});
+        this.navCtrl.push("AcceptApplyItemPage", {'itemTranfer': null,'oper':'添加'});
     }
-
-    dismiss() {
-      this.viewCtrl.dismiss();
+    edit(item: AcceptApplyInfo){
+        
     }
-
+    delete(item: AcceptApplyInfo){
+        
+    }
 }

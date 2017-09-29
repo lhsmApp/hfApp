@@ -19,7 +19,7 @@ export class ApplyPage {
 
   //验收申请
   ysApply() {
-    this.navCtrl.push('TestPage');
+    this.navCtrl.push('AcceptApplyListPage');
   }
 
   //进度管理
