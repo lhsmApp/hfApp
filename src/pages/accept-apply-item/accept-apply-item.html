@@ -14,39 +14,40 @@
 
 
 <ion-content class="content-background">
-	<from [fromGroup]="applyFrom" (ngSumbit)="onSubmit()">
+	<form [formGroup]="applyFrom" (ngSumbit)="onSubmit()">
 		<ion-list>
             <ion-item>
-                <ion-label floating>合同流水号</ion-label>
-                <ion-input type="text" formControlName="contractCodeAcceptApply" placeholder="选择" />
+                <ion-label class="lable-feild">合同流水号</ion-label>
+                <ion-input class="input-feild" type="text" formControlName="contractCodeAcceptApply" placeholder="选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.contractCodeAcceptApply.errorMsg" class="validation-failed">
                  {{verifyMessages.contractCodeAcceptApply.errorMsg}}
              </div>
             <ion-item>
-                <ion-label floating>合同名称</ion-label>
-                <ion-input type="text" formControlName="contractNameAcceptApply" placeholder="自动带出"/>
+                <ion-label class="lable-feild">合同名称</ion-label>
+                <ion-input class="input-feild" type="text" formControlName="contractNameAcceptApply" placeholder="自动带出"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.contractNameAcceptApply.errorMsg" class="validation-failed">
                 {{verifyMessages.contractNameAcceptApply.errorMsg}}
             </div>
             <ion-item>
-                <ion-label floating>项目性质</ion-label>
-                <ion-input type="text" formControlName="projTypeAcceptApply" placeholder="自动带出"/>
+                <ion-label class="lable-feild">项目性质</ion-label>
+                <ion-input class="input-feild" type="text" formControlName="projTypeAcceptApply" placeholder="自动带出"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.projTypeAcceptApply.errorMsg" class="validation-failed">
                 {{verifyMessages.projTypeAcceptApply.errorMsg}}
             </div>
             <ion-item>
-                <ion-label floating>项目单元名称</ion-label>
-                <ion-input type="text" formControlName="projPartNameAcceptApply" placeholder="自动带出"/>
+                <ion-label class="lable-feild">项目单元名称</ion-label>
+                <ion-input class="input-feild" type="text" formControlName="projPartNameAcceptApply" 
+                    placeholder="自动带出"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.projPartNameAcceptApply.errorMsg" class="validation-failed">
                 {{verifyMessages.projPartNameAcceptApply.errorMsg}}
             </div>
             <ion-item>
-                <ion-label floating>申请单位</ion-label>
-                <ion-select formControlName="applyDepartAcceptApply">
+                <ion-label class="lable-feild">申请单位</ion-label>
+                <ion-select class="input-feild select-feild" formControlName="applyDepartAcceptApply">
                     <ion-option value="1">单位1</ion-option>
                     <ion-option value="2">单位2</ion-option>
                     <ion-option value="3">单位3</ion-option>
@@ -57,15 +58,15 @@
                 {{verifyMessages.applyDepartAcceptApply.errorMsg}}
             </div>
             <ion-item>
-                <ion-label floating>申请时间</ion-label>
-                <ion-input type="text" formControlName="applyTimeAcceptApply"/>
+                <ion-label class="lable-feild">申请时间</ion-label>
+                <ion-input class="input-feild" type="text" formControlName="applyTimeAcceptApply"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.applyTimeAcceptApply.errorMsg" class="validation-failed">
                 {{verifyMessages.applyTimeAcceptApply.errorMsg}}
             </div>
             <ion-item>
-                <ion-label floating>申请人</ion-label>
-                <ion-input type="text" formControlName="applyAcceptApply"/>
+                <ion-label class="lable-feild">申请人</ion-label>
+                <ion-input class="input-feild" type="text" formControlName="applyAcceptApply"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.applyAcceptApply.errorMsg" class="validation-failed">
                 {{verifyMessages.applyAcceptApply.errorMsg}}
@@ -79,5 +80,5 @@
         <div padding-horizontal>
             <button ion-button block type="submit" [disabled]="!applyFrom.valid">保 存</button>
         </div>
-	</from>
+	</form>
 </ion-content>
