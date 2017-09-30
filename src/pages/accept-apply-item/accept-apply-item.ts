@@ -18,7 +18,6 @@ import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
 export class AcceptApplyItemPage {
   oper:string;
   itemTranfer:AcceptApplyInfo;
-  itemShow:AcceptApplyInfo;
   applyFrom:any;
   verifyMessages = {
     'contractCodeAcceptApply': {
@@ -93,5 +92,12 @@ export class AcceptApplyItemPage {
     //this.viewCtrl.dismiss(this.userInfo);
   }
 
+  toChecked(){
+
+  }
+  
+  toAssetDetail(){
+    this.navCtrl.push("AssetDetailsListPage", {'itemTranfer': this.itemTranfer});
+  }
 
 }

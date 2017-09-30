@@ -25,7 +25,6 @@ import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
 export class AcceptApplyListPage {
 
     sreachValue: string;
-    selectItem:AcceptApplyInfo;
     list:AcceptApplyInfo[];
 
   constructor(public navCtrl: NavController,
@@ -73,22 +72,12 @@ export class AcceptApplyListPage {
     }, 500);*/
   }
 
-    setSelectedItem(item: AcceptApplyInfo) {
-      this.selectItem=item;
-    }
-
     toDetail(item: AcceptApplyInfo) {
         this.navCtrl.push("AcceptApplyItemPage", {'itemTranfer': item,'oper':'编辑'});
     }
-    toChecked() {
-
-    }
 
     add(){
-        this.navCtrl.push("AcceptApplyItemPage", {'itemTranfer': null,'oper':'添加'});
-    }
-    edit(item: AcceptApplyInfo){
-        this.navCtrl.push("AcceptApplyItemPage", {'itemTranfer': item,'oper':'编辑'});
+        this.navCtrl.push("AcceptApplyItemPage", {'itemTranfer': [],'oper':'添加'});
     }
     delete(item: AcceptApplyInfo){
         

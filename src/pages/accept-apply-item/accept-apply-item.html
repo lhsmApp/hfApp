@@ -8,6 +8,9 @@
 
   <ion-navbar>
     <ion-title>验收申请</ion-title>
+    <ion-buttons end>
+        <button ion-botton (click)="toChecked()">送审</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -73,24 +76,15 @@
                 {{verifyMessages.applyAcceptApply.errorMsg}}
             </div>
 		</ion-list>
+        
+        <!-- 资产明细 -->
+        <ion-item>
+            <ion-label>资产明细</ion-label>
+            <ion-icon name="arrow-forward" item-end (click)="toAssetDetail()"></ion-icon>
+        </ion-item>
 
         <div padding-horizontal>
             <button ion-button block type="submit" [disabled]="!applyFrom.valid">保 存</button>
         </div>
 	</form>
-
-        <!-- 资产明细 -->
-        <!--<ion-grid>
-            <ion-row>
-              <ion-col col-0>资产编码</ion-col>
-              <ion-col col-1>资产编码</ion-col>
-              <ion-col col-2>资产编码</ion-col>
-              <ion-col col-3>资产编码</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-0>资产编码</ion-col>
-              <ion-col col-1>资产编码</ion-col>
-              <ion-col col-2>资产编码</ion-col>
-              <ion-col col-3>资产编码</ion-col>
-        </ion-grid>-->
 </ion-content>

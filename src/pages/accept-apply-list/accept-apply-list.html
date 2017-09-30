@@ -22,18 +22,14 @@
     </ion-refresher-content>
   </ion-refresher>
 <ion-list>
-  <ion-item-sliding *ngFor="let item of list" [class.selected]="item===selectItem">
-    <ion-item (click)="setSelectedItem(item)">
+  <ion-item-sliding *ngFor="let item of list" (click)="toDetail(item)">
+    <ion-item>
         <p>验收单编码：{{item.codeAcceptApply}}</p>
         <p>验收单状态：{{item.stateAcceptApply}}</p>
-        <ion-icon name="arrow-forward" item-end (click)="toDetail(item)"></ion-icon>
+        <!--<ion-icon name="arrow-forward" item-end (click)="toDetail(item)"></ion-icon>-->
     </ion-item>
 
     <ion-item-options side="right">
-      <button ion-button color="primary" (click)="edit(item)">
-        <ion-icon name="edit"></ion-icon>
-        编辑
-      </button>
       <button ion-button color="secondary" (click)="delete(item)">
         <ion-icon name="delete"></ion-icon>
         删除
@@ -48,7 +44,7 @@
 
 
     <!--送审按钮-->
-    <div padding-horizontal>
+    <!--<div padding-horizontal>
         <button ion-button block color="dark" outline (click)="toChecked()">送审</button>
-    </div>
+    </div>-->
 </ion-content>
