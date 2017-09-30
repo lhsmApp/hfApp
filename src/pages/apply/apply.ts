@@ -14,7 +14,7 @@ export class ApplyPage {
 
   //预付款申请
   yukApply() {
-    this.navCtrl.push("AdvancePaymentPage");
+    this.navCtrl.push("AdvancePaymentApplyListPage");
   }
 
   //验收申请

@@ -1,0 +1,61 @@
+<!--
+  Generated template for the AdvancePaymentApplyListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>预付款申请</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="add()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="请输入付款单号"></ion-searchbar>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list class="list-avatar-page">
+  	<ion-item-sliding *ngFor="let item of advancePaymentList;trackBy:item?.payCode" (click)="openPage(item.payCode)">
+	    <ion-item >
+	      <h2>{{item.payCode}}</h2>
+	      <h3 item-end><span [tab]="item"></span></h3>
+	      <p> {{item.payDigest}} </p>
+	      <p> {{item.requireUser}} &nbsp;&nbsp;<ion-note>{{item.requireUser}}</ion-note></p>
+	    </ion-item>
+	    <ion-item-options side="right">
+	      <button ion-button color="primary" (click)="edit(item.payCode)">
+	        <ion-icon name="create"></ion-icon>
+	        编辑
+	      </button>
+	      <button ion-button color="danger" (click)="delete(item.payCode)">
+	        <ion-icon name="close"></ion-icon>
+	        删除
+	      </button>
+	    </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+ </ion-content>
+<!-- <ion-footer>
+  <ion-toolbar>
+    <p>选择付款单</p>
+    <ion-buttons end>
+      <button ion-button icon-right color="primary">
+        送审
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer> -->
