@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the InvoiceInfoPage page.
+ * Generated class for the AttachmentPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,21 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-invoice-info',
-  templateUrl: 'invoice-info.html',
+  selector: 'page-attachment',
+  templateUrl: 'attachment.html',
 })
-export class InvoiceInfoPage {
+export class AttachmentPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InvoiceInfoPage');
-  }
-
-  //附件
-  attachment(){
-  	this.navCtrl.push("AttachmentPage");
+    console.log('ionViewDidLoad AttachmentPage');
   }
 
 }
