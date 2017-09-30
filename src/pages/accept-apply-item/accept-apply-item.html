@@ -8,46 +8,50 @@
 
   <ion-navbar>
     <ion-title>验收申请</ion-title>
+    <ion-buttons end>
+        <button ion-botton (click)="toChecked()">送审</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content class="content-background">
+<ion-content >
 	<form [formGroup]="applyFrom" (ngSumbit)="onSubmit()">
-		<ion-list>
-            <ion-item>
-                <ion-label class="lable-feild">合同流水号</ion-label>
-                <ion-input class="input-feild" type="text" formControlName="contractCodeAcceptApply" placeholder="选择"></ion-input>
+		<ion-list >
+            <ion-item >
+                <ion-label fixed>合同流水号</ion-label>
+                <ion-input type="text" ReadOnly formControlName="contractCodeAcceptApply" 
+                           placeholder="选择" (click)="choiceContract()"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.contractCodeAcceptApply.errorMsg" class="validation-failed">
                  {{verifyMessages.contractCodeAcceptApply.errorMsg}}
              </div>
-            <ion-item>
-                <ion-label class="lable-feild">合同名称</ion-label>
-                <ion-input class="input-feild" type="text" formControlName="contractNameAcceptApply" placeholder="自动带出"></ion-input>
+            <ion-item >
+                <ion-label fixed>合同名称</ion-label>
+                <ion-input type="text" formControlName="contractNameAcceptApply" placeholder="自动带出"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.contractNameAcceptApply.errorMsg" class="validation-failed">
                 {{verifyMessages.contractNameAcceptApply.errorMsg}}
             </div>
-            <ion-item>
-                <ion-label class="lable-feild">项目性质</ion-label>
-                <ion-input class="input-feild" type="text" formControlName="projTypeAcceptApply" placeholder="自动带出"></ion-input>
+            <ion-item >
+                <ion-label fixed>项目性质</ion-label>
+                <ion-input type="text" formControlName="projTypeAcceptApply" placeholder="自动带出"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.projTypeAcceptApply.errorMsg" class="validation-failed">
                 {{verifyMessages.projTypeAcceptApply.errorMsg}}
             </div>
-            <ion-item>
-                <ion-label class="lable-feild">项目单元名称</ion-label>
-                <ion-input class="input-feild" type="text" formControlName="projPartNameAcceptApply" 
+            <ion-item >
+                <ion-label fixed>项目单元名称</ion-label>
+                <ion-input type="text" formControlName="projPartNameAcceptApply" 
                     placeholder="自动带出"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.projPartNameAcceptApply.errorMsg" class="validation-failed">
                 {{verifyMessages.projPartNameAcceptApply.errorMsg}}
             </div>
-            <ion-item>
-                <ion-label class="lable-feild">申请单位</ion-label>
-                <ion-select class="input-feild select-feild" formControlName="applyDepartAcceptApply">
+            <ion-item >
+                <ion-label fixed>申请单位</ion-label>
+                <ion-select formControlName="applyDepartAcceptApply">
                     <ion-option value="1">单位1</ion-option>
                     <ion-option value="2">单位2</ion-option>
                     <ion-option value="3">单位3</ion-option>
@@ -57,25 +61,27 @@
             <div *ngIf="verifyMessages.applyDepartAcceptApply.errorMsg" class="validation-failed">
                 {{verifyMessages.applyDepartAcceptApply.errorMsg}}
             </div>
-            <ion-item>
-                <ion-label class="lable-feild">申请时间</ion-label>
-                <ion-input class="input-feild" type="text" formControlName="applyTimeAcceptApply"></ion-input>
+            <ion-item >
+                <ion-label fixed>申请时间</ion-label>
+                <ion-input type="text" formControlName="applyTimeAcceptApply"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.applyTimeAcceptApply.errorMsg" class="validation-failed">
                 {{verifyMessages.applyTimeAcceptApply.errorMsg}}
             </div>
-            <ion-item>
-                <ion-label class="lable-feild">申请人</ion-label>
-                <ion-input class="input-feild" type="text" formControlName="applyAcceptApply"></ion-input>
+            <ion-item >
+                <ion-label fixed>申请人</ion-label>
+                <ion-input type="text" formControlName="applyAcceptApply"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.applyAcceptApply.errorMsg" class="validation-failed">
                 {{verifyMessages.applyAcceptApply.errorMsg}}
             </div>
 		</ion-list>
-
+        
         <!-- 资产明细 -->
-
-
+        <ion-item>
+            <ion-label>资产明细</ion-label>
+            <ion-icon name="arrow-forward" item-end (click)="toAssetDetail()"></ion-icon>
+        </ion-item>
 
         <div padding-horizontal>
             <button ion-button block type="submit" [disabled]="!applyFrom.valid">保 存</button>

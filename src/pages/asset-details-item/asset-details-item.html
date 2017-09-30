@@ -13,119 +13,202 @@
 </ion-header>
 
 
-<ion-content class="content-background">
-	<from >
+<ion-content>
+	<form [formGroup]="assetFrom" (ngSumbit)="onSubmit()">
 		<ion-list>
-            <ion-item>
-                <ion-label class="cards-lable-feild">序号</label>
-                <ion-input class="cards-input-feild" placeholder="自动填写" />
+            <ion-item >
+                <ion-label fixed>序号</ion-label>
+                <ion-input formControlName="orderAsset" placeholder="自动填写"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">资产类型</label>
-                <ion-input class="cards-input-feild" placeholder="自动填写，禁止调整" />
+            <div *ngIf="verifyMessages.orderAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.orderAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>资产类型</ion-label>
+                <ion-input formControlName="typeAsset" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">资产类别</label>
-                <ion-input class="cards-input-feild" placeholder="手工选择" />
+            <div *ngIf="verifyMessages.typeAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.typeAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>资产类别</ion-label>
+                <ion-input formControlName="categoryAsset" placeholder="手工选择"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">资产编码</label>
-                <ion-input class="cards-input-feild" placeholder="自动填写，禁止调整" />
+            <div *ngIf="verifyMessages.categoryAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.categoryAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>资产编码</ion-label>
+                <ion-input formControlName="codeAsset" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">资产名称</label>
-                <ion-input class="cards-input-feild" placeholder="自动填写" />
+            <div *ngIf="verifyMessages.codeAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.codeAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>资产名称</ion-label>
+                <ion-input formControlName="nameAsset" placeholder="自动填写"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">所属单位</label>
-                <ion-input class="cards-input-feild" placeholder="手工选择" />
+            <div *ngIf="verifyMessages.nameAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.nameAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>所属单位</ion-label>
+                <ion-input formControlName="depaetAsset" placeholder="手工选择"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">所属资产组</label>
-                <ion-input class="cards-input-feild" placeholder="手工选择" />
+            <div *ngIf="verifyMessages.depaetAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.depaetAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>所属资产组</ion-label>
+                <ion-input formControlName="groupAsset" placeholder="手工选择"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">规格型号</label>
-                <ion-input class="cards-input-feild" placeholder="手工输入" />
+            <div *ngIf="verifyMessages.groupAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.groupAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>规格型号</ion-label>
+                <ion-input formControlName="xhAsset" placeholder="手工输入"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">车牌井号</label>
-                <ion-input class="cards-input-feild" placeholder="手工输入" />
+            <div *ngIf="verifyMessages.xhAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.xhAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>车牌井号</ion-label>
+                <ion-input formControlName="carAsset" placeholder="手工输入"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">计量单位</label>
-                <ion-input class="cards-input-feild" placeholder="手工选择" />
+            <div *ngIf="verifyMessages.carAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.carAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>计量单位</ion-label>
+                <ion-input formControlName="unitAsset" placeholder="手工选择"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">制作厂家</label>
-                <ion-input class="cards-input-feild" placeholder="手工输入" />
+            <div *ngIf="verifyMessages.unitAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.unitAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>制作厂家</ion-label>
+                <ion-input formControlName="venderAsset" placeholder="手工输入"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">出厂编号</label>
-                <ion-input class="cards-input-feild" placeholder="手工输入" />
+            <div *ngIf="verifyMessages.venderAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.venderAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>出厂编号</ion-label>
+                <ion-input formControlName="numberAsset" placeholder="手工输入"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">出厂日期</label>
-                <ion-input class="cards-input-feild" placeholder="手工选择" />
+            <div *ngIf="verifyMessages.numberAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.numberAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>出厂日期</ion-label>
+                <ion-input formControlName="productDateAsset" placeholder="手工选择"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">投产日期</label>
-                <ion-input class="cards-input-feild" placeholder="手工选择" />
+            <div *ngIf="verifyMessages.productDateAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.productDateAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>投产日期</ion-label>
+                <ion-input formControlName="useDateAsset" placeholder="手工选择"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">使用方向</label>
-                <ion-input class="cards-input-feild" placeholder="手工选择" />
+            <div *ngIf="verifyMessages.useDateAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.useDateAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>使用方向</ion-label>
+                <ion-input formControlName="useDirectionAsset" placeholder="手工选择"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">合同编号</label>
-                <ion-input class="cards-input-feild" placeholder="自动填写" />
+            <div *ngIf="verifyMessages.useDirectionAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.useDirectionAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>合同编号</ion-label>
+                <ion-input formControlName="contractCodeAsset" placeholder="自动填写"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">取得方式</label>
-                <ion-input class="cards-input-feild" placeholder="手工选择" />
+            <div *ngIf="verifyMessages.contractCodeAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.contractCodeAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>取得方式</ion-label>
+                <ion-input formControlName="getModelAsset" placeholder="手工选择"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">保修截止日期</label>
-                <ion-input class="cards-input-feild" placeholder="手工输入" />
+            <div *ngIf="verifyMessages.getModelAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.getModelAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>保修截止日期</ion-label>
+                <ion-input formControlName="repairEndDateAsset" placeholder="手工输入"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">预计使用年限</label>
-                <ion-input class="cards-input-feild" placeholder="自动填写" />
+            <div *ngIf="verifyMessages.repairEndDateAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.repairEndDateAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>预计使用年限</ion-label>
+                <ion-input formControlName="perUseLifeAsset" placeholder="自动填写"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">使用状态</label>
-                <ion-input class="cards-input-feild" placeholder="手工选择" />
+            <div *ngIf="verifyMessages.perUseLifeAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.perUseLifeAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>使用状态</ion-label>
+                <ion-input formControlName="stateAsset" placeholder="手工选择"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">存放地点</label>
-                <ion-input class="cards-input-feild" placeholder="手工选择" />
+            <div *ngIf="verifyMessages.stateAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.stateAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>存放地点</ion-label>
+                <ion-input formControlName="storePlaceAsset" placeholder="手工选择"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">保管人</label>
-                <ion-input class="cards-input-feild" placeholder="手工选择" />
+            <div *ngIf="verifyMessages.storePlaceAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.storePlaceAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>保管人</ion-label>
+                <ion-input formControlName="custodianAsset" placeholder="手工选择"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">技术部门</label>
-                <ion-input class="cards-input-feild" placeholder="手工选择" />
+            <div *ngIf="verifyMessages.custodianAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.custodianAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>技术部门</ion-label>
+                <ion-input formControlName="technicalDepartAsset" placeholder="手工选择"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">原值</label>
-                <ion-input class="cards-input-feild" placeholder="自动填写，禁止调整" />
+            <div *ngIf="verifyMessages.technicalDepartAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.technicalDepartAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>原值</ion-label>
+                <ion-input formControlName="oldValueAsset" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">净值</label>
-                <ion-input class="cards-input-feild" placeholder="自动填写，禁止调整" />
+            <div *ngIf="verifyMessages.oldValueAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.oldValueAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>净值</ion-label>
+                <ion-input formControlName="netWorthAsset" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">累计折旧</label>
-                <ion-input class="cards-input-feild" placeholder="自动填写，禁止调整" />
+            <div *ngIf="verifyMessages.netWorthAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.netWorthAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>累计折旧</ion-label>
+                <ion-input formControlName="depreciationAsset" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
-            <ion-item>
-                <ion-label class="cards-lable-feild">减值准备</label>
-                <ion-input class="cards-input-feild" placeholder="自动填写，禁止调整" />
+            <div *ngIf="verifyMessages.depreciationAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.depreciationAsset.errorMsg}}
+             </div>
+            <ion-item >
+                <ion-label fixed>减值准备</ion-label>
+                <ion-input formControlName="impairmentProvisionAsset" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
+            <div *ngIf="verifyMessages.impairmentProvisionAsset.errorMsg" class="validation-failed">
+                 {{verifyMessages.impairmentProvisionAsset.errorMsg}}
+             </div>
 		</ion-list>
-        <button class="button-class">保存</button>
-	</from>
+        <div padding-horizontal>
+            <button ion-button block type="submit" [disabled]="!assetFrom.valid">保 存</button>
+        </div>
+	</form>
 
 </ion-content>
