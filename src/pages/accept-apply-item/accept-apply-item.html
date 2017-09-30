@@ -21,8 +21,8 @@
 		<ion-list >
             <ion-item >
                 <ion-label fixed>合同流水号</ion-label>
-                <!--<button ion-button block outline formControlName="contractCodeAcceptApply">选择</button>-->
-                <ion-input type="text" formControlName="contractCodeAcceptApply" placeholder="选择"></ion-input>
+                <ion-input type="text" ReadOnly formControlName="contractCodeAcceptApply" 
+                           placeholder="选择" (click)="choiceContract()"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.contractCodeAcceptApply.errorMsg" class="validation-failed">
                  {{verifyMessages.contractCodeAcceptApply.errorMsg}}

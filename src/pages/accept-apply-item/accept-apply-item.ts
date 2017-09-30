@@ -100,4 +100,9 @@ export class AcceptApplyItemPage {
     this.navCtrl.push("AssetDetailsListPage", {'itemTranfer': this.itemTranfer});
   }
 
+//选择合同
+  choiceContract(){
+
+  }
+
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AssetInfo} from '../../model/asset-info.d';
 
 /**
  * Generated class for the AssetDetailsItemPage page.
@@ -15,20 +16,73 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'asset-details-item.html',
 })
 export class AssetDetailsItemPage {
-
+  itemTranfer:AssetInfo;
   assetFrom:any;
   verifyMessages = {
-    'name': {
+    'codeAsset': {
       'errorMsg': '',
-      'required': '合同流水号为必填项',
+      'required': '资产编码为必填项',
     },
+    'nameAsset': { 'errorMsg': '', 'required': '', },
+    'xhAsset': { 'errorMsg': '', 'required': '', },
+    'oldValueAsset': { 'errorMsg': '', 'required': '', },
+    'orderAsset': { 'errorMsg': '', 'required': '', },
+    'typeAsset': { 'errorMsg': '', 'required': '', },
+    'categoryAsset': { 'errorMsg': '', 'required': '', },
+    'depaetAsset': { 'errorMsg': '', 'required': '', },
+    'groupAsset': { 'errorMsg': '', 'required': '', },
+    'carAsset': { 'errorMsg': '', 'required': '', },
+    'unitAsset': { 'errorMsg': '', 'required': '', },
+    'venderAsset': { 'errorMsg': '', 'required': '', },
+    'numberAsset': { 'errorMsg': '', 'required': '', },
+    'productDateAsset': { 'errorMsg': '', 'required': '', },
+    'useDateAsset': { 'errorMsg': '', 'required': '', },
+    'useDirectionAsset': { 'errorMsg': '', 'required': '', },
+    'contractCodeAsset': { 'errorMsg': '', 'required': '', },
+    'getModelAsset': { 'errorMsg': '', 'required': '', },
+    'repairEndDateAsset': { 'errorMsg': '', 'required': '', },
+    'perUseLifeAsset': { 'errorMsg': '', 'required': '', },
+    'stateAsset': { 'errorMsg': '', 'required': '', },
+    'storePlaceAsset': { 'errorMsg': '', 'required': '', },
+    'custodianAsset': { 'errorMsg': '', 'required': '', },
+    'technicalDepartAsset': { 'errorMsg': '', 'required': '', },
+    'netWorthAsset': { 'errorMsg': '', 'required': '', },
+    'depreciationAsset': { 'errorMsg': '', 'required': '', },
+    'impairmentProvisionAsset': { 'errorMsg': '', 'required': '', },
   };
 
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams,
   	          public formBuilder: FormBuilder) {
+    this.itemTranfer = this.navParams.get("itemTranfer");
   	this.assetFrom = formBuilder.group({
-      //name: [this.itemTranfer.name, [Validators.required]],
+      codeAsset: [this.itemTranfer.codeAsset, [Validators.required]],
+      nameAsset: [this.itemTranfer.nameAsset],
+      xhAsset: [this.itemTranfer.xhAsset],
+      oldValueAsset: [this.itemTranfer.oldValueAsset],
+      orderAsset: [this.itemTranfer.orderAsset],
+      typeAsset: [this.itemTranfer.typeAsset],
+      categoryAsset: [this.itemTranfer.categoryAsset],
+      depaetAsset: [this.itemTranfer.depaetAsset],
+      groupAsset: [this.itemTranfer.groupAsset],
+      carAsset: [this.itemTranfer.carAsset],
+      unitAsset: [this.itemTranfer.unitAsset],
+      venderAsset: [this.itemTranfer.venderAsset],
+      numberAsset: [this.itemTranfer.numberAsset],
+      productDateAsset: [this.itemTranfer.productDateAsset],
+      useDateAsset: [this.itemTranfer.useDateAsset],
+      useDirectionAsset: [this.itemTranfer.useDirectionAsset],
+      contractCodeAsset: [this.itemTranfer.contractCodeAsset],
+      getModelAsset: [this.itemTranfer.getModelAsset],
+      repairEndDateAsset: [this.itemTranfer.repairEndDateAsset],
+      perUseLifeAsset: [this.itemTranfer.perUseLifeAsset],
+      stateAsset: [this.itemTranfer.stateAsset],
+      storePlaceAsset: [this.itemTranfer.storePlaceAsset],
+      custodianAsset: [this.itemTranfer.custodianAsset],
+      technicalDepartAsset: [this.itemTranfer.technicalDepartAsset],
+      netWorthAsset: [this.itemTranfer.netWorthAsset],
+      depreciationAsset: [this.itemTranfer.depreciationAsset],
+      impairmentProvisionAsset: [this.itemTranfer.impairmentProvisionAsset],
   	});
     this.assetFrom.valueChanges
       .subscribe(data => {
