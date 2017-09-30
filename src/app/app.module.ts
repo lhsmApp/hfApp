@@ -9,6 +9,7 @@ import {MineModule} from "../pages/mine/mine.module";
 //Pages
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/login/register/register';
 
 import { ApplyPage } from '../pages/apply/apply';
 import { QueryPage } from '../pages/query/query';
@@ -50,6 +51,7 @@ import { TabDirective } from "../directive/";
   declarations: [
     MyApp,
     LoginPage,
+    RegisterPage,
     ApplyPage,
     QueryPage,
     HomePage,
@@ -76,6 +78,7 @@ import { TabDirective } from "../directive/";
   entryComponents: [
     MyApp,
     LoginPage,
+    RegisterPage,
     ApplyPage,
     QueryPage,
    ///MinePage,
