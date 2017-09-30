@@ -13,194 +13,194 @@
 </ion-header>
 
 
-<ion-content class="content-background">
+<ion-content>
 	<form [formGroup]="assetFrom" (ngSumbit)="onSubmit()">
-		<ion-list class="cards-list-whole">
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">序号</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="自动填写"></ion-input>
+		<ion-list>
+            <ion-item >
+                <ion-label fixed>序号</label>
+                <ion-input formControlName="" placeholder="自动填写"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">资产类型</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="自动填写，禁止调整"></ion-input>
+            <ion-item >
+                <ion-label fixed>资产类型</label>
+                <ion-input formControlName="" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">资产类别</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工选择"></ion-input>
+            <ion-item >
+                <ion-label fixed>资产类别</label>
+                <ion-input formControlName="" placeholder="手工选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">资产编码</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="自动填写，禁止调整"></ion-input>
+            <ion-item >
+                <ion-label fixed>资产编码</label>
+                <ion-input formControlName="" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">资产名称</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="自动填写"></ion-input>
+            <ion-item >
+                <ion-label fixed>资产名称</label>
+                <ion-input formControlName="" placeholder="自动填写"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">所属单位</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工选择"></ion-input>
+            <ion-item >
+                <ion-label fixed>所属单位</label>
+                <ion-input formControlName="" placeholder="手工选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">所属资产组</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工选择"></ion-input>
+            <ion-item >
+                <ion-label fixed>所属资产组</label>
+                <ion-input formControlName="" placeholder="手工选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">规格型号</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工输入"></ion-input>
+            <ion-item >
+                <ion-label fixed>规格型号</label>
+                <ion-input formControlName="" placeholder="手工输入"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">车牌井号</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工输入"></ion-input>
+            <ion-item >
+                <ion-label fixed>车牌井号</label>
+                <ion-input formControlName="" placeholder="手工输入"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">计量单位</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工选择"></ion-input>
+            <ion-item >
+                <ion-label fixed>计量单位</label>
+                <ion-input formControlName="" placeholder="手工选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">制作厂家</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工输入"></ion-input>
+            <ion-item >
+                <ion-label fixed>制作厂家</label>
+                <ion-input formControlName="" placeholder="手工输入"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">出厂编号</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工输入"></ion-input>
+            <ion-item >
+                <ion-label fixed>出厂编号</label>
+                <ion-input formControlName="" placeholder="手工输入"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">出厂日期</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工选择"></ion-input>
+            <ion-item >
+                <ion-label fixed>出厂日期</label>
+                <ion-input formControlName="" placeholder="手工选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">投产日期</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工选择"></ion-input>
+            <ion-item >
+                <ion-label fixed>投产日期</label>
+                <ion-input formControlName="" placeholder="手工选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">使用方向</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工选择"></ion-input>
+            <ion-item >
+                <ion-label fixed>使用方向</label>
+                <ion-input formControlName="" placeholder="手工选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">合同编号</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="自动填写"></ion-input>
+            <ion-item >
+                <ion-label fixed>合同编号</label>
+                <ion-input formControlName="" placeholder="自动填写"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">取得方式</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工选择"></ion-input>
+            <ion-item >
+                <ion-label fixed>取得方式</label>
+                <ion-input formControlName="" placeholder="手工选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">保修截止日期</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工输入"></ion-input>
+            <ion-item >
+                <ion-label fixed>保修截止日期</label>
+                <ion-input formControlName="" placeholder="手工输入"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">预计使用年限</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="自动填写"></ion-input>
+            <ion-item >
+                <ion-label fixed>预计使用年限</label>
+                <ion-input formControlName="" placeholder="自动填写"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">使用状态</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工选择"></ion-input>
+            <ion-item >
+                <ion-label fixed>使用状态</label>
+                <ion-input formControlName="" placeholder="手工选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">存放地点</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工选择"></ion-input>
+            <ion-item >
+                <ion-label fixed>存放地点</label>
+                <ion-input formControlName="" placeholder="手工选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">保管人</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工选择"></ion-input>
+            <ion-item >
+                <ion-label fixed>保管人</label>
+                <ion-input formControlName="" placeholder="手工选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">技术部门</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="手工选择"></ion-input>
+            <ion-item >
+                <ion-label fixed>技术部门</label>
+                <ion-input formControlName="" placeholder="手工选择"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">原值</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="自动填写，禁止调整"></ion-input>
+            <ion-item >
+                <ion-label fixed>原值</label>
+                <ion-input formControlName="" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">净值</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="自动填写，禁止调整"></ion-input>
+            <ion-item >
+                <ion-label fixed>净值</label>
+                <ion-input formControlName="" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">累计折旧</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="自动填写，禁止调整"></ion-input>
+            <ion-item >
+                <ion-label fixed>累计折旧</label>
+                <ion-input formControlName="" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
              </div>
-            <ion-item class="cards-item-line">
-                <ion-label class="cards-lable-feild">减值准备</label>
-                <ion-input class="cards-input-feild" formControlName="" placeholder="自动填写，禁止调整"></ion-input>
+            <ion-item >
+                <ion-label fixed>减值准备</label>
+                <ion-input formControlName="" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
             <div *ngIf="verifyMessages.name.errorMsg" class="validation-failed">
                  {{verifyMessages.name.errorMsg}}
