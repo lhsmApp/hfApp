@@ -8,14 +8,19 @@
 
   <ion-navbar color='dark'>
     <ion-title>预付款申请</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-right (click)="send()">
+      	送审
+        <ion-icon name="paper-plane"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
 	<form [formGroup]="paymentForm" (ngSubmit)="(save())">
-    <ion-list>
+    <ion-item-group>
       <ion-item>
         <ion-label fixed>付款单号</ion-label>
         <ion-input type="text" readonly formControlName="payCode"></ion-input>
@@ -79,7 +84,7 @@
       </span>
       <ion-item>
         <ion-label fixed>付款单位</ion-label>
-        <ion-select [(ngModel)]="paymentCode" formControlName="paymentCode" item-end>
+        <ion-select [(ngModel)]="paymentCode" formControlName="paymentCode">
 	      <ion-option value="nes">NES</ion-option>
 	      <ion-option value="n64">Nintendo64</ion-option>
 	      <ion-option value="ps">PlayStation</ion-option>
@@ -93,7 +98,7 @@
       </span>
       <ion-item>
         <ion-label fixed>往来单位</ion-label>
-        <ion-select [(ngModel)]="intercourseCode" formControlName="intercourseCode">
+        <ion-select [(ngModel)]="intercourseCode" formControlName="intercourseCode" style="left:0;">
 	      <ion-option value="nes">NES</ion-option>
 	      <ion-option value="n64">Nintendo64</ion-option>
 	      <ion-option value="ps">PlayStation</ion-option>
@@ -113,9 +118,14 @@
         <ion-label fixed>申请人</ion-label>
         <ion-input type="text" readonly formControlName="requireUser"></ion-input>
       </ion-item>
-    </ion-list>
+      <ion-item-divider color="light"></ion-item-divider>
+	    <ion-item (click)='invoice(item)'>发票 <ion-icon name="more" item-end></ion-icon></ion-item>
+	    <ion-item-divider color="light"></ion-item-divider>
+	    <ion-item (click)='billOfGcl(item)'>工程量清单 <ion-icon name="more" item-end></ion-icon></ion-item>
+	    <ion-item-divider color="light"></ion-item-divider>
+    </ion-item-group>
     <div padding-horizontal>
-      <button ion-button color="primary" block type="submit" [disabled]="!paymentForm.valid">保 存</button>
+      <button ion-button color="danger" block type="submit" [disabled]="!paymentForm.valid">保 存</button>
     </div>
   </form>
 </ion-content>

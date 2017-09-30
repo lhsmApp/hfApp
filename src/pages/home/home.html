@@ -1,23 +1,29 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color='dark'>
     <ion-title>首页</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header text-center>
-    <h2>通知公告</h2><ion-icon name="more" item-end></ion-icon>
-   </ion-list-header>
-    <button ion-item *ngFor="let item of notices" (click)="itemSelected(item)">
-      {{ item.name }}
-    </button>  
-  </ion-list>
-  <p style="background: #B9BECB;"><br/></p>
-  <ion-list>
-    <ion-list-header text-center>
+    <ion-list>
+      <ion-list-header text-center>
+      <h2>通知公告</h2><ion-icon name="more" item-end></ion-icon>
+     </ion-list-header>
+      <!-- <button ion-item *ngFor="let item of notices" (click)="itemSelected(item)">
+        {{ item.name }}
+      </button>  -->
+      <ion-item *ngFor="let item of notices" (click)="itemSelected(item)">
+          <ion-icon item-start name="notifications" color='danger'></ion-icon>
+          {{ item.name }}
+      </ion-item> 
+      <ion-item-divider color="light"></ion-item-divider>
+    </ion-list>
+  <!-- <p style="background: #B9BECB;"><br/></p> -->
+  
+  <ion-list padding-vertical>
+    <!-- <ion-list-header text-center>
       <h2>代办事项</h2>
-    </ion-list-header>
+    </ion-list-header> -->
       <ion-row>
         <ion-col col-4 (click)="openPage('collects')">
           <div text-center>

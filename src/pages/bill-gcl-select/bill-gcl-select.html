@@ -1,0 +1,47 @@
+<!--
+  Generated template for the BillGclSelectPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='dark'>
+    <ion-title>工程量清单</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list class="list-avatar-page">
+    <ion-item *ngFor="let item of workList;trackBy:item?.sequence">
+      <ion-label>
+	      <h2>序号：{{item.sequence}}</h2>
+	      <h3 item-end>{{item.payCode}}</h3>
+	      <p> {{item.listNumber}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.listName}}</p>
+      </ion-label>
+  	  <ion-checkbox color="dark" checked="true"></ion-checkbox>
+  	  <button ion-button color="secondary" clear item-end (click)='viewDetail()'>查看明细</button>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+  	<ion-title>
+  		<button ion-button block ion-left (click)="confirm()">
+  			<!-- <ion-icon name="search"></ion-icon> -->
+  			确定
+  		</button>
+  	</ion-title>
+    
+  </ion-toolbar>
+</ion-footer>

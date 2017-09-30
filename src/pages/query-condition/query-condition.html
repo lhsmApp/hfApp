@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color='dark'>
     <ion-title>筛选</ion-title>
   </ion-navbar>
 
@@ -14,46 +14,49 @@
 
 
 <ion-content padding>
-	<ion-searchbar></ion-searchbar>
+	<ion-card>
+		<ion-searchbar></ion-searchbar>
 
-	<ion-item-group>
-	    <ion-item-divider color="light">单据申请期间</ion-item-divider>
-	    <ion-item>
-	    	<ion-label>开始日期</ion-label>
-			<ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY MM DD" [(ngModel)]="startDate"></ion-datetime>
-	    </ion-item>
-	    <ion-item>
-	    	<ion-label>结束日期</ion-label>
-			<ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY MM DD" [(ngModel)]="endDate"></ion-datetime>
-	    </ion-item>
-	    
-	    <ion-item-divider color="light">单据状态</ion-item-divider>
-	    <ion-item no-lines>
-	    	<!-- Segment buttons with text -->
-	    	<ion-segment [(ngModel)]="relationship" color="primary">
-			    <ion-segment-button value="1">
-			      <button ion-button color="secondary" outline small>新增</button>
-			    </ion-segment-button>
-			    <ion-segment-button value="2">
-			      <button ion-button color="orange" outline small>待审批</button>
-			    </ion-segment-button>
-			    <ion-segment-button value="3">
-			      <button ion-button color="primary" outline small>已审批</button>
-			    </ion-segment-button>
-			    <ion-segment-button value="4">
-			      <button ion-button color="danger" outline small>退回</button>
-			    </ion-segment-button>
-		  	</ion-segment>
-	    </ion-item>
-  </ion-item-group>
+		<ion-item-group>
+		    <ion-item-divider color="light">单据申请期间</ion-item-divider>
+		    <ion-item>
+		    	<ion-label>开始日期</ion-label>
+				<ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY MM DD" [(ngModel)]="startDate"></ion-datetime>
+		    </ion-item>
+		    <ion-item>
+		    	<ion-label>结束日期</ion-label>
+				<ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY MM DD" [(ngModel)]="endDate"></ion-datetime>
+		    </ion-item>
+		    
+		    <ion-item-divider color="light">单据状态</ion-item-divider>
+		    <ion-item no-lines>
+		    	<!-- Segment buttons with text -->
+		    	<ion-segment [(ngModel)]="relationship" color="primary">
+				    <ion-segment-button value="1">
+				      <button ion-button color="secondary" outline small>新增</button>
+				    </ion-segment-button>
+				    <ion-segment-button value="2">
+				      <button ion-button color="orange" outline small>待审批</button>
+				    </ion-segment-button>
+				    <ion-segment-button value="3">
+				      <button ion-button color="primary" outline small>已审批</button>
+				    </ion-segment-button>
+				    <ion-segment-button value="4">
+				      <button ion-button color="danger" outline small>退回</button>
+				    </ion-segment-button>
+			  	</ion-segment>
+		    </ion-item>
+	  </ion-item-group>
+	</ion-card>
 </ion-content>
-<ion-footer>
+ <ion-footer>
   <ion-toolbar>
-    <ion-buttons end>
-      <button ion-button icon-right color="royal" (click)="openQuery()">
-        查询
-        <ion-icon name="send"></ion-icon>
-      </button>
-    </ion-buttons>
+  	<ion-title>
+  		<button ion-button block ion-left (click)="openQuery()">
+  			<!-- <ion-icon name="search"></ion-icon> -->
+  			查询
+  		</button>
+  	</ion-title>
+    
   </ion-toolbar>
 </ion-footer>

@@ -107,6 +107,12 @@ export class AdvancePaymentApplyListPage {
 
   //删除
   delete(payCode:string){
-  	
+
   }
+
+  //送审
+  send(){
+
+  }
+
 }

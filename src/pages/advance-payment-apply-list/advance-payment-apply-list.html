@@ -27,7 +27,7 @@
   	<ion-item-sliding *ngFor="let item of advancePaymentList;trackBy:item?.payCode" (click)="openPage(item.payCode)">
 	    <ion-item >
 	      <h2>{{item.payCode}}</h2>
-	      <h3 item-end><span [tab]="item"></span></h3>
+	      <h3 item-end><span  item-end [tab]="item"></span></h3>
 	      <p> {{item.payDigest}} </p>
 	      <p> {{item.requireUser}} &nbsp;&nbsp;<ion-note>{{item.requireUser}}</ion-note></p>
 	    </ion-item>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 import {FormBuilder, Validators} from '@angular/forms';
+import { AdvancePaymentDetail} from '../../model/advance-payment-detail';
 
 /**
  * Generated class for the AdvancePaymentApplyPage page.
@@ -16,6 +17,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 })
 export class AdvancePaymentApplyPage {
   paymentForm: any;
+  paymentDetail:AdvancePaymentDetail;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private viewCtrl: ViewController,
@@ -56,6 +58,20 @@ export class AdvancePaymentApplyPage {
   //保存
   save(){
 
+  }
+
+  //发票
+  invoice(paymentDetail:AdvancePaymentDetail){
+  	//let payCode=paymentDetail.payCode;
+  	//let contractCode=paymentDetail.contractCode;
+    this.navCtrl.push("InvoiceApplyPage");
+  }
+
+  //工程量清单
+  billOfGcl(paymentDetail:AdvancePaymentDetail){
+	  //let payCode=paymentDetail.payCode;
+  	//let contractCode=paymentDetail.contractCode;
+    this.navCtrl.push("BillGclSelectPage");
   }
 
 }

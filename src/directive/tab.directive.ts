@@ -34,6 +34,10 @@ export class TabDirective {
   private setStyle(topic) {
     if (topic) {
       this.el.style.borderRadius = '3px';
+      this.el.style.paddingLeft='7px';
+      this.el.style.paddingRight='7px';
+      this.el.style.paddingTop='4px';
+      this.el.style.paddingBottom='4px';
       if (topic.reviewStatus=='1') {
         this.el.textContent = '新增';
         this.el.style.background = '#32DB64';
