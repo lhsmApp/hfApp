@@ -30,19 +30,15 @@ export class HomePage {
   }
 
   openPage(cate: string) {
-    if (cate === 'collects') {
+    if (cate === 'ht') {
       this.navCtrl.push("TestPage");
-    }
-    else if (cate === 'messages') {
-      this.navCtrl.push("TestPage");
-    }
-    else if (cate === 'topics1') {
+    }else if (cate === 'yfk') {
+      this.navCtrl.push("AdvancePaymentApprovalPage");
+    }else if(cate === 'ys'){
       this.navCtrl.push("AcceptApprovalListPage");
-    }
-    else if (cate === 'topics2') {
+    }else if(cate === 'zz'){
       this.navCtrl.push("TransferFundsApprovalListPage");
-    }
-    else if (cate === 'topics3') {
+    }else if(cate === 'zztz'){
       this.navCtrl.push("TransferAdjustApprovalListPage");
     }
   }

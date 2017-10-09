@@ -28,23 +28,28 @@
     </button>
     <button ion-item (click)="map()">
       <ion-icon name="map" item-left color="bright"></ion-icon>
-      工作地图
+      数据字典刷新
     </button>
   </ion-list>
-  <ion-list>
-    <button ion-item (click)="exitSoftware()" hideWhen="ios" detail-none>
-      <ion-icon name="log-out" item-left color="danger"></ion-icon>
-      退出软件
-    </button>
-    <button ion-item (click)="loginOut()" detail-none>
-      <ion-icon name="log-in" item-left color="danger"></ion-icon>
-      重新登录
-    </button>
-  </ion-list>
+  
   <ion-list>
     <button ion-item (click)="about()">
       <ion-icon name="information-circle" item-left color="secondary"></ion-icon>
       关于
+    </button>
+    <button ion-item (click)="changeUnit()">
+      <ion-icon name="information-circle" item-left color="secondary"></ion-icon>
+      切换单位
+    </button>
+  </ion-list>
+  <ion-list>
+    <button ion-item (click)="loginOut()" detail-none>
+      <ion-icon name="log-in" item-left color="danger"></ion-icon>
+      重新登录
+    </button>
+    <button ion-item (click)="exitSoftware()" hideWhen="ios" detail-none>
+      <ion-icon name="log-out" item-left color="danger"></ion-icon>
+      退出软件
     </button>
   </ion-list>
 </ion-content>
