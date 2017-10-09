@@ -1,3 +1,19 @@
 page-advance-payment-info {
+	.alert-button-group-vertical{
+		flex-direction: row;
+	}
 
+
+	.alertButtionNo {
+	    background-color: color($colors, danger) !important;
+	    color: #fff !important;
+	}
+	.alertButtionYes {
+	    background-color: color($colors, secondary) !important;
+	    color: #fff !important;
+	}
+	.alertButtionCancel {
+	    background-color: color($colors, primary) !important;
+	    color: #fff !important;
+	}
 }

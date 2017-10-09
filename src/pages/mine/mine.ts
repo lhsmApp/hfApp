@@ -50,6 +50,11 @@ export class MinePage {
     //this.navCtrl.push('TestPage');
   }
 
+  //切换单位
+  changeUnit(){
+    
+  }
+
   loginOut() {
     this.alertCtrl.create({
       title: '确认重新登录？',

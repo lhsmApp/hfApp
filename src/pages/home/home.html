@@ -25,20 +25,20 @@
       <h2>代办事项</h2>
     </ion-list-header> -->
       <ion-row>
-        <ion-col col-4 (click)="openPage('collects')">
+        <ion-col col-4 (click)="openPage('ht')">
           <div text-center>
             <img color="secondary" class='imgSize' src='{{htPath}}'/>
             <p>合同审批</p>
           </div>
         </ion-col>
-        <ion-col col-4 (click)="openPage('messages')">
+        <ion-col col-4 (click)="openPage('yfk')">
           <div text-center>
             <img color="secondary" class='imgSize' src='{{yfkPath}}'/>
             <p>付款审批</p>
             <ion-badge *ngIf="messageCount" color="danger" class="brage">{{messageCount}}</ion-badge>
           </div>
       </ion-col>
-        <ion-col col-4 (click)="openPage('topics')" >
+        <ion-col col-4 (click)="openPage('ys')" >
           <div text-center>
             <img color="primary"  class='imgSize' src='{{ysPath}}'/>
             <p>验收审批</p>
@@ -46,13 +46,13 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-4 (click)="openPage('topics')">
+        <ion-col col-4 (click)="openPage('zz')">
           <div text-center>
             <img color="danger"  class='imgSize' src='{{zzPath}}'/>
             <p>转资审批</p>
           </div>
         </ion-col>
-        <ion-col col-4 (click)="openPage('topics')" >
+        <ion-col col-4 (click)="openPage('zztz')" >
           <div text-center>
             <img color="secondary"  class='imgSize' src='{{zztzPath}}'/>
             <p>转资调整审批</p>

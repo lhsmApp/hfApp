@@ -64,7 +64,7 @@ export class AdvancePaymentApplyPage {
   invoice(paymentDetail:AdvancePaymentDetail){
   	//let payCode=paymentDetail.payCode;
   	//let contractCode=paymentDetail.contractCode;
-    this.navCtrl.push("InvoiceApplyPage");
+    this.navCtrl.push("InvoiceApplyListPage");
   }
 
   //工程量清单

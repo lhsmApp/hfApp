@@ -6,13 +6,33 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>advance-payment-approval</ion-title>
+  <ion-navbar color='dark'>
+    <ion-title>预付款审批</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="请输入付款单号"></ion-searchbar>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list class="list-avatar-page">
+    <ion-item *ngFor="let item of advancePaymentList;trackBy:item?.payCode" (click)="openPage(item.payCode)">
+      <!-- <ion-avatar item-start (click)="openUserPage(item.author.loginname, $event)">
+        <img src="{{item.author.avatar_url}}" />
+      </ion-avatar> -->
+      <h2>{{item.payCode}}</h2>
+      <h3 item-end><span [yfktype]="item"></span></h3>
+      <p> {{item.payDigest}} </p>
+      <p> {{item.requireUser}} &nbsp;&nbsp;<ion-note>{{item.requireUser}}</ion-note></p>
+      
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

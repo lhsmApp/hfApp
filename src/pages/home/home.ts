@@ -30,14 +30,16 @@ export class HomePage {
   }
 
   openPage(cate: string) {
-    if (cate === 'collects') {
+    if (cate === 'ht') {
       this.navCtrl.push("TestPage");
-    }
-    else if (cate === 'messages') {
-      this.navCtrl.push("TestPage");
-    }
-    else {
-      this.navCtrl.push("TestPage");
+    }else if (cate === 'yfk') {
+      this.navCtrl.push("AdvancePaymentApprovalPage");
+    }else if(cate === 'ys'){
+      this.navCtrl.push("ysPath");
+    }else if(cate === 'zz'){
+      this.navCtrl.push("ysPath");
+    }else if(cate === 'zztz'){
+      this.navCtrl.push("ysPath");
     }
   }
 }
