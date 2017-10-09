@@ -20,11 +20,11 @@
     </ion-refresher-content>
   </ion-refresher>
 <ion-list class="list-avatar-page">
-  <ion-item-sliding *ngFor="let item of list;trackBy:item?.codeTransferFunds" (click)="toDetail(item)">
+  <ion-item *ngFor="let item of list;trackBy:item?.codeTransferFunds" (click)="toDetail(item)">
         <p>验收单号：{{item.codeTransferFunds}}</p>
         <p>申请日期：{{item.applyTimeTransferFunds}}</p>
         <p>转资说明：{{item.smTransferFunds}}</p>
-  </ion-item-sliding>
+  </ion-item>
 </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">

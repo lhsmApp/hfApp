@@ -63,7 +63,7 @@ export class ScheduleApprovalListPage {
   }
 
     toDetail(item: ScheduleManageInfo) {
-        this.navCtrl.push("ScheduleApplyInfoPage", {'itemTranfer': item,'oper':'查看', 'title': '进度管理'});
+        this.navCtrl.push("ScheduleApplyInfoPage", {'itemTranfer': item,'oper':'审批', 'title': '进度管理'});
     }
 
   ionViewDidLoad() {

@@ -92,7 +92,7 @@ export class AcceptApprovalListPage {
   }
 
     toDetail(item: AcceptApplyInfo) {
-        this.navCtrl.push("AcceptApplyInfoPage", {'itemTranfer': item,'oper':'查看','title':'验收审批'});
+        this.navCtrl.push("AcceptApplyInfoPage", {'itemTranfer': item,'oper':'审批','title':'验收审批'});
     }
 
 }

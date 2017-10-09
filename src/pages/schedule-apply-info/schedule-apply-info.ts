@@ -29,6 +29,8 @@ export class ScheduleApplyInfoPage {
   	this.itemTranfer = this.navParams.get("itemTranfer");
     this.getShowItem();
 
+    //,'oper':'审批'
+
     this.applyFrom = this.formBuilder.group({
         progressOverviewScheduleManage: [this.itemTranfer.progressOverviewScheduleManage], 
         completePercentageScheduleManage: [this.itemTranfer.completePercentageScheduleManage], 

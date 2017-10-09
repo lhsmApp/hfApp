@@ -29,6 +29,8 @@ export class AcceptApplyInfoPage {
   	this.itemShow = this.navParams.get("itemTranfer");
     this.getShowItem();
 
+    //,'oper':'审批'
+
     this.applyFrom = this.formBuilder.group({
       codeAcceptApply: [this.itemShow.codeAcceptApply],
       contractCodeAcceptApply: [this.itemShow.contractCodeAcceptApply],

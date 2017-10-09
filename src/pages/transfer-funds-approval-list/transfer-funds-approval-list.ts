@@ -91,7 +91,7 @@ export class TransferFundsApprovalListPage {
   }
 
     toDetail(item: TransferFundsInfo) {
-        this.navCtrl.push("TransferFundsApprovalItemPage", {'itemTranfer': item,'oper':'查看'});
+        this.navCtrl.push("TransferFundsInfoPage", {'itemTranfer': item,'oper':'审批','title':'转资审批'});
     }
 
 

@@ -1,0 +1,71 @@
+<!--
+  Generated template for the TransferFundsInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-right (click)="check()">
+        审批
+        <ion-icon name="paper-plane"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <form [formGroup]="applyFrom">
+        <ion-item-group>
+            <ion-item >
+                <ion-label fixed>单据状态</ion-label>
+                <ion-input type="text" readonly formControlName="stateTransferFunds"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>单据编号</ion-label>
+                <ion-input type="text" readonly formControlName="codeTransferFunds"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>转资类型</ion-label>
+                <ion-input type="text" readonly formControlName="typeTransferFunds"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>项目单元编码</ion-label>
+                <ion-input type="text" readonly formControlName="projPartCodeTransferFunds"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>项目单元名称</ion-label>
+                <ion-input type="text" readonly formControlName="projPartNameTransferFunds"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>预达转资时间</ion-label>
+                <ion-input type="text" readonly formControlName="perTimeTransferFunds"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>转资说明</ion-label>
+                <ion-input type="text" readonly formControlName="smTransferFunds"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label fixed>转资金额</ion-label>
+                <ion-input type="text" readonly formControlName="jeTransferFunds"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>申请时间</ion-label>
+                <ion-input type="text" readonly formControlName="applyTimeTransferFunds"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>申请人</ion-label>
+                <ion-input type="text" readonly formControlName="applyTransferFunds"></ion-input>
+            </ion-item>
+            <!-- 资产明细 -->
+            <ion-item-divider color="light"></ion-item-divider>
+            <ion-item (click)='toAssetDetail()'>资产明细 <ion-icon name="more" item-end></ion-icon></ion-item>
+            <ion-item-divider color="light"></ion-item-divider>
+        </ion-item-group>
+    </form>
+</ion-content>
