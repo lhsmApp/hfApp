@@ -16,8 +16,6 @@ import { IonicPage, NavController, NavParams,AlertController  } from 'ionic-angu
 export class AdvancePaymentInfoPage {
   payCode:string;
   isapproval:boolean;
-  testRadioOpen:boolean;
-  testRadioResult :any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
 
@@ -61,8 +59,6 @@ export class AdvancePaymentInfoPage {
       text: '通过',
       cssClass:'alertButtionYes',
       handler: data => {
-        this.testRadioOpen = false;
-        this.testRadioResult = data;
       }
     });
     prompt.present();
