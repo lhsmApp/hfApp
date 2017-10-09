@@ -67,11 +67,14 @@ export class ScheduleManageListPage {
   }
 
     toDetail(item: ScheduleManageInfo) {
-        this.navCtrl.push("ScheduleManageItemPage", {'itemTranfer': item,'oper':'编辑'});
+        this.navCtrl.push("ScheduleManageInfoPage", {'itemTranfer': item,'oper':'查看'});
     }
 
     add(){
         this.navCtrl.push("ScheduleManageItemPage", {'itemTranfer': [],'oper':'添加'});
+    }
+    edit(item: ScheduleManageInfo){
+        this.navCtrl.push("ScheduleManageItemPage", {'itemTranfer': item,'oper':'编辑'});
     }
     delete(item: ScheduleManageInfo){
         

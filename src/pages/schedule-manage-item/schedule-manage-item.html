@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>进度管理</ion-title>
   </ion-navbar>
 
@@ -14,128 +14,97 @@
 
 
 <ion-content>
-	<form [formGroup]="applyFrom" (ngSumbit)="onSubmit()">
-		<ion-list>
+	<form [formGroup]="applyFrom" (ngSumbit)="(save())">
+		<ion-item-group>
             <ion-item >
                 <ion-label fixed>进展概述</ion-label>
                 <ion-input type="text" formControlName="progressOverviewScheduleManage" 
                     placeholder="手工输入">
                 </ion-input>
             </ion-item>
-            <div *ngIf="verifyMessages.progressOverviewScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.progressOverviewScheduleManage.errorMsg}}
-             </div>
             <ion-item >
                 <ion-label fixed>完工百分比</ion-label>
                 <ion-input type="text" formControlName="completePercentageScheduleManage" 
                     placeholder="手工输入，只能输入数字">
                 </ion-input>
             </ion-item>
-            <div *ngIf="verifyMessages.completePercentageScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.completePercentageScheduleManage.errorMsg}}
-             </div>
             <ion-item >
                 <ion-label fixed>设计完成时间</ion-label>
                 <ion-input type="text" formControlName="designCompletedDateScheduleManage" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
-            <div *ngIf="verifyMessages.designCompletedDateScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.designCompletedDateScheduleManage.errorMsg}}
-             </div>
             <ion-item >
                 <ion-label fixed>施工图完成时间</ion-label>
                 <ion-input type="text" formControlName="drawCompletedDateScheduleManage" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
-            <div *ngIf="verifyMessages.drawCompletedDateScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.drawCompletedDateScheduleManage.errorMsg}}
-             </div>
             <ion-item >
                 <ion-label fixed>计划完工时间</ion-label>
                 <ion-input type="text" formControlName="planCompletionDateScheduleManage" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
-            <div *ngIf="verifyMessages.planCompletionDateScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.planCompletionDateScheduleManage.errorMsg}}
-             </div>
             <ion-item >
                 <ion-label fixed>实际开工时间</ion-label>
                 <ion-input type="text" formControlName="actualStartDateScheduleManage" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
-            <div *ngIf="verifyMessages.actualStartDateScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.actualStartDateScheduleManage.errorMsg}}
-             </div>
             <ion-item >
                 <ion-label fixed>计划开工时间</ion-label>
                 <ion-input type="text" formControlName="planStartDateScheduleManage" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
-            <div *ngIf="verifyMessages.planStartDateScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.planStartDateScheduleManage.errorMsg}}
-             </div>
             <ion-item >
                 <ion-label fixed>实际完工时间</ion-label>
                 <ion-input type="text" formControlName="practicalCompletionDateScheduleManage"           placeholder="选择日期">
                 </ion-input>
             </ion-item>
-            <div *ngIf="verifyMessages.practicalCompletionDateScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.practicalCompletionDateScheduleManage.errorMsg}}
-             </div>
             <ion-item >
                 <ion-label fixed>竣工验收时间</ion-label>
                 <ion-input type="text" formControlName="finalAcceptanceDateScheduleManage" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
-            <div *ngIf="verifyMessages.finalAcceptanceDateScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.finalAcceptanceDateScheduleManage.errorMsg}}
-             </div>
             <ion-item >
                 <ion-label fixed>预达转资时间</ion-label>
                 <ion-input type="text" formControlName="preTransferDateScheduleManage" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
-            <div *ngIf="verifyMessages.preTransferDateScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.preTransferDateScheduleManage.errorMsg}}
-             </div>
             <ion-item >
                 <ion-label fixed>审计报告日期</ion-label>
                 <ion-input type="text" formControlName="auditReportDateScheduleManage" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
-            <div *ngIf="verifyMessages.auditReportDateScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.auditReportDateScheduleManage.errorMsg}}
-             </div>
             <ion-item >
                 <ion-label fixed>填报日期</ion-label>
                 <ion-input type="text" formControlName="applyDateScheduleManage" 
                     placeholder="自动填写">
                 </ion-input>
+                <span *ngIf="!applyFrom.controls.applyDateScheduleManage.valid && applyFrom.controls.applyDateScheduleManage.touched"
+                    class="validation-failed">
+                    填报日期不能为空
+                </span>
             </ion-item>
-            <div *ngIf="verifyMessages.applyDateScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.applyDateScheduleManage.errorMsg}}
-             </div>
             <ion-item >
                 <ion-label fixed>填报人</ion-label>
                 <ion-input type="text" formControlName="applyUserScheduleManage" 
                     placeholder="自动填写">
                 </ion-input>
+                <span *ngIf="!applyFrom.controls.applyUserScheduleManage.valid && applyFrom.controls.applyUserScheduleManage.touched"
+                    class="validation-failed">
+                    填报人不能为空
+                </span>
             </ion-item>
-            <div *ngIf="verifyMessages.applyUserScheduleManage.errorMsg" class="validation-failed">
-                 {{verifyMessages.applyUserScheduleManage.errorMsg}}
-             </div>
 
-		</ion-list>
+		</ion-item-group>
 		<div padding-horizontal>
-            <button ion-button block type="submit" [disabled]="!applyFrom.valid">保 存</button>
+            <button ion-button color="danger" block type="submit" [disabled]="!applyFrom.valid">保 存</button>
 		</div>
 	</form>
 

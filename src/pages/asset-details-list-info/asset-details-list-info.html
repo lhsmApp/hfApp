@@ -1,0 +1,25 @@
+<!--
+  Generated template for the AssetDetailsListInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>资产明细</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<ion-list>
+	    <ion-item *ngFor="let item of list" (click)="toDetail(item)">
+			      <p>资产编码：{{item.codeAsset}}</p>
+			      <p>资产名称：{{item.nameAsset}}</p>
+			      <p>规格型号：{{item.xhAsset}}</p>
+			      <p>原值：{{item.oldValueAsset}}</p>
+		</ion-item>
+	</ion-list>
+</ion-content>

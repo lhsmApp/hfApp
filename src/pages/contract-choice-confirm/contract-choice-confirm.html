@@ -6,13 +6,33 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>contract-choice-confirm</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>合同选择确认</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-right (click)="ok()">
+        确认
+        <ion-icon name="paper-plane"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <ion-item>
+    	<p>合同流水号：{{itemTranfer.codeContract}}</p>
+    	<p>合同名称：{{itemTranfer.nameContract}}</p>
+    	<p>项目性质：{{itemTranfer.projTypeContract}}</p>
+    	<p>项目单元名称：{{itemTranfer.projPartNameContract}}</p>
+    	<p>项目核算类别：{{itemTranfer.projSettTypeContract}}</p>
+    	<p>付款原因：{{itemTranfer.paySeasonContract}}</p>
+    	<p>合同标的（审计）额：{{itemTranfer.jeContract}}</p>
+    	<p>已付款额度：{{itemTranfer.readyPayContract}}</p>
+    	<p>本次申请金额：{{itemTranfer.nowApplyContract}}</p>
+    	<p>付款单位名称：{{itemTranfer.payDeptContract}}</p>
+    	<p>收款单位名称：{{itemTranfer.getDeptContract}}</p>
+    	<p>申请时间：{{itemTranfer.applyTimeContract}}</p>
+    	<p>申请人：{{itemTranfer.applyContract}}</p>
+    </ion-item>
 </ion-content>

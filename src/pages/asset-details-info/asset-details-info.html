@@ -1,5 +1,5 @@
 <!--
-  Generated template for the AssetDetailsItemPage page.
+  Generated template for the AssetDetailsInfoPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -14,7 +14,7 @@
 
 
 <ion-content>
-	<form [formGroup]="assetFrom" (ngSumbit)="(save())">
+	<form [formGroup]="assetFrom">
         <ion-item-group>
             <ion-item >
                 <ion-label fixed>序号</ion-label>
@@ -26,7 +26,7 @@
             </ion-item>
             <ion-item >
                 <ion-label fixed>资产类别</ion-label>
-                <ion-input formControlName="categoryAsset" placeholder="手工选择"></ion-input>
+                <ion-input readonly formControlName="categoryAsset" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>资产编码</ion-label>
@@ -38,68 +38,55 @@
             </ion-item>
             <ion-item >
                 <ion-label fixed>所属单位</ion-label>
-                <ion-select formControlName="depaetAsset">
-                    <ion-option value="1">单位1</ion-option>
-                    <ion-option value="2">单位2</ion-option>
-                    <ion-option value="3">单位3</ion-option>
-                    <ion-option value="4">单位4</ion-option>
-                </ion-select>
-                <span *ngIf="!assetFrom.controls.depaetAsset.valid && assetFrom.controls.depaetAsset.touched"
-                       class="validation-failed">
-                    请选择所属单位
-                </span>
+                <ion-input readonly formControlName="depaetAsset"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>所属资产组</ion-label>
-                <ion-input formControlName="groupAsset" placeholder="手工选择"></ion-input>
+                <ion-input readonly formControlName="groupAsset" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>规格型号</ion-label>
-                <ion-input formControlName="xhAsset" placeholder="手工输入"></ion-input>
+                <ion-input readonly formControlName="xhAsset" placeholder="手工输入"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>车牌井号</ion-label>
-                <ion-input formControlName="carAsset" placeholder="手工输入"></ion-input>
+                <ion-input readonly formControlName="carAsset" placeholder="手工输入"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>计量单位</ion-label>
-                <ion-input formControlName="unitAsset" placeholder="手工选择"></ion-input>
+                <ion-input readonly formControlName="unitAsset" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>制作厂家</ion-label>
-                <ion-input formControlName="venderAsset" placeholder="手工输入"></ion-input>
+                <ion-input readonly formControlName="venderAsset" placeholder="手工输入"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>出厂编号</ion-label>
-                <ion-input formControlName="numberAsset" placeholder="手工输入"></ion-input>
+                <ion-input readonly formControlName="numberAsset" placeholder="手工输入"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>出厂日期</ion-label>
-                <ion-input formControlName="productDateAsset" placeholder="手工选择"></ion-input>
+                <ion-input readonly formControlName="productDateAsset" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>投产日期</ion-label>
-                <ion-input formControlName="useDateAsset" placeholder="手工选择"></ion-input>
+                <ion-input readonly formControlName="useDateAsset" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>使用方向</ion-label>
-                <ion-input formControlName="useDirectionAsset" placeholder="手工选择"></ion-input>
+                <ion-input readonly formControlName="useDirectionAsset" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>合同编号</ion-label>
-                <ion-input readonly formControlName="contractCodeAsset" placeholder="自动填写"></ion-input>
+                <ion-input readonly readonly formControlName="contractCodeAsset" placeholder="自动填写"></ion-input>
             </ion-item>
-            <span *ngIf="!assetFrom.controls.contractCodeAsset.valid && assetFrom.controls.contractCodeAsset.touched"
-                  class="validation-failed">
-                合同编号不能为空
-            </span>
             <ion-item >
                 <ion-label fixed>取得方式</ion-label>
-                <ion-input formControlName="getModelAsset" placeholder="手工选择"></ion-input>
+                <ion-input readonly formControlName="getModelAsset" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>保修截止日期</ion-label>
-                <ion-input formControlName="repairEndDateAsset" placeholder="手工输入"></ion-input>
+                <ion-input readonly formControlName="repairEndDateAsset" placeholder="手工输入"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>预计使用年限</ion-label>
@@ -107,19 +94,19 @@
             </ion-item>
             <ion-item >
                 <ion-label fixed>使用状态</ion-label>
-                <ion-input formControlName="stateAsset" placeholder="手工选择"></ion-input>
+                <ion-input readonly formControlName="stateAsset" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>存放地点</ion-label>
-                <ion-input formControlName="storePlaceAsset" placeholder="手工选择"></ion-input>
+                <ion-input readonly formControlName="storePlaceAsset" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>保管人</ion-label>
-                <ion-input formControlName="custodianAsset" placeholder="手工选择"></ion-input>
+                <ion-input readonly formControlName="custodianAsset" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>技术部门</ion-label>
-                <ion-input formControlName="technicalDepartAsset" placeholder="手工选择"></ion-input>
+                <ion-input readonly formControlName="technicalDepartAsset" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>原值</ion-label>
@@ -138,9 +125,6 @@
                 <ion-input readonly formControlName="impairmentProvisionAsset" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
 		</ion-item-group>
-        <div padding-horizontal>
-            <button ion-button color="danger" block type="submit" [disabled]="!assetFrom.valid">保 存</button>
-        </div>
 	</form>
 
 </ion-content>

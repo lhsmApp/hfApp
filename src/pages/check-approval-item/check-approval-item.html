@@ -6,13 +6,58 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>check-approval-item</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>验收审批</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-right (click)="check()">
+        审批
+        <ion-icon name="paper-plane"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+        <ion-list>
+            <ion-item >
+                <ion-label fixed>验收单号</ion-label>
+                <ion-input type="text" readonly formControlName="codeAcceptApply"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>合同流水号</ion-label>
+                <ion-input type="text" readonly formControlName="contractCodeAcceptApply" 
+                           placeholder="选择"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>合同名称</ion-label>
+                <ion-input type="text" readonly formControlName="contractNameAcceptApply" placeholder="自动带出"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>项目性质</ion-label>
+                <ion-input type="text" readonly formControlName="projTypeAcceptApply" placeholder="自动带出"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>项目单元名称</ion-label>
+                <ion-input type="text" readonly formControlName="projPartNameAcceptApply" 
+                    placeholder="自动带出"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label fixed>申请单位</ion-label>
+                <ion-input type="text" readonly formControlName="applyDepartAcceptApply"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>申请时间</ion-label>
+                <ion-input type="text" readonly formControlName="applyTimeAcceptApply"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>申请人</ion-label>
+                <ion-input type="text" readonly formControlName="applyAcceptApply"></ion-input>
+            </ion-item>
+            <!-- 资产明细 -->
+            <ion-item-divider color="light"></ion-item-divider>
+            <ion-item (click)='toAssetDetail()'>资产明细 <ion-icon name="more" item-end></ion-icon></ion-item>
+            <ion-item-divider color="light"></ion-item-divider>
+        </ion-list>
 </ion-content>

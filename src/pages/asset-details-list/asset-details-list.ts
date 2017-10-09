@@ -33,10 +33,13 @@ export class AssetDetailsListPage {
   }
 
   add(){
-  	this.navCtrl.push("AssetDetailsItemPage", {"itemTranfer": []});
+  	this.navCtrl.push("AssetDetailsAddPage", {"itemTranfer": [],'oper':'添加'});
+  }
+  edit(item: AssetInfo){
+    this.navCtrl.push("AssetDetailsItemPage", {"itemTranfer": item,'oper':'编辑'});
   }
   toDetail(item: AssetInfo){
-  	this.navCtrl.push("AssetDetailsItemPage", {"itemTranfer": item});
+  	this.navCtrl.push("AssetDetailsInfoPage", {"itemTranfer": item,'oper':'查看'});
   }
   delete(item: AssetInfo){
     

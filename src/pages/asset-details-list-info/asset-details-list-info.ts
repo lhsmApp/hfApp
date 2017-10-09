@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AssetInfo} from '../../model/asset-info.d';
 
 /**
- * Generated class for the AssetDetailsAddPage page.
+ * Generated class for the AssetDetailsListInfoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -17,26 +17,22 @@ import {AssetInfo} from '../../model/asset-info.d';
 
 @IonicPage()
 @Component({
-  selector: 'page-asset-details-add',
-  templateUrl: 'asset-details-add.html',
+  selector: 'page-asset-details-list-info',
+  templateUrl: 'asset-details-list-info.html',
 })
-export class AssetDetailsAddPage {
+export class AssetDetailsListInfoPage {
 	list:AssetInfo[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	this.list=listGet;
   }
+  
+  toDetail(item: AssetInfo){
+  	this.navCtrl.push("AssetDetailsInfoPage", {"itemTranfer": item,'oper':'查看'});
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AssetDetailsAddPage');
-  }
-
-  add(){
-  	
-  }
-
-  toDetail(item: AssetInfo){
-  	this.navCtrl.push("AssetDetailsItemPage", {"itemTranfer": item,'oper':'添加'});
+    console.log('ionViewDidLoad AssetDetailsListInfoPage');
   }
 
 }

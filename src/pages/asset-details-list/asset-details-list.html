@@ -6,12 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>资产明细</ion-title>
     <ion-buttons end>
-    	<button ion-button (click)="add()">
-          <ion-icon name="add"></ion-icon>
-        </button>
+      <button ion-button icon-only (click)="add()">
+        <ion-icon name="add"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 
@@ -20,25 +20,23 @@
 
 <ion-content>
 	<ion-list>
-	    <ion-item>
-		    <ion-label class="frist-col">资产编码</ion-label>
-		    <ion-label class="sencond-col">资产名称</ion-label>
-		    <ion-label class="three-col">规格型号</ion-label>
-		    <ion-label class="fouth-col">原值</ion-label>
-	    </ion-item>
-	    <ion-item-sliding *ngFor="let item of list" (click)="toDetail(item)">
-		      <ion-item>
-			      <ion-label class="frist-col">{{item.codeAsset}}</ion-label>
-			      <ion-label class="sencond-col">{{item.nameAsset}}</ion-label>
-			      <ion-label class="three-col">{{item.xhAsset}}</ion-label>
-			      <ion-label class="fouth-col">{{item.oldValueAsset}}</ion-label>
+	    <ion-item-sliding *ngFor="let item of list">
+		      <ion-item (click)="toDetail(item)">
+			      <p>资产编码：{{item.codeAsset}}</p>
+			      <p>资产名称：{{item.nameAsset}}</p>
+			      <p>规格型号：{{item.xhAsset}}</p>
+			      <p>原值：{{item.oldValueAsset}}</p>
 		      </ion-item>
           <ion-item-options side="right">
-            <button ion-button color="secondary" (click)="delete(item)">
-              <ion-icon name="delete"></ion-icon>
-              删除
-            </button>
-          </ion-item-options>
-		</ion-item-sliding>
+              <button ion-button color="primary" (click)="edit(item)">
+                <ion-icon name="create"></ion-icon>
+                编辑
+              </button>
+              <button ion-button color="danger" (click)="delete(item)">
+                <ion-icon name="close"></ion-icon>
+                删除
+              </button>
+            </ion-item-options>
+		  </ion-item-sliding>
 	</ion-list>
 </ion-content>
