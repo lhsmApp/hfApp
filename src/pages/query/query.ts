@@ -14,7 +14,7 @@ export class QueryPage {
 
   //项目单元查询
   queryProjectUnit() {
-    this.navCtrl.push("AdvancePaymentPage");
+    this.navCtrl.push("ProjQueryListPage");
   }
 
   //合同信息查询

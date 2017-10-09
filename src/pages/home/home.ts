@@ -25,8 +25,12 @@ export class HomePage {
     this.messageCount="2";
   }
 
-  itemSelected(notice:Notice){
+  toNoticeList(){
+      this.navCtrl.push("NoticeQueryListPage");
+  }
 
+  itemSelected(notice:Notice){
+      this.navCtrl.push("NoticeInfoPage",{'itemTranfer': notice});
   }
 
   openPage(cate: string) {
