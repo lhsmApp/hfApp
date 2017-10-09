@@ -55,4 +55,8 @@ export class ScheduleApplyInfoPage {
     console.log('ionViewDidLoad ScheduleApplyInfoPage');
   }
 
+  check(){
+
+  }
+
 }
