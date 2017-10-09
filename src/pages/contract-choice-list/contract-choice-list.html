@@ -21,7 +21,7 @@
     </ion-refresher-content>
   </ion-refresher>
 <ion-list class="list-avatar-page">
-  <ion-item *ngFor="let item of list;trackBy:item?.codeContract" (click)="toDetail(item.codeContract)">
+  <ion-item *ngFor="let item of list;trackBy:item?.codeContract" (click)="toDetail(item)">
         <p>合同编号：{{item.codeContract}}</p>
         <p>合同名称：{{item.nameContract}}</p>
         <p>合同标的额：{{item.jeContract}}万元</p>
