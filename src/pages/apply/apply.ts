@@ -24,7 +24,7 @@ export class ApplyPage {
 
   //进度管理
   jdApply() {
-    this.navCtrl.push('ScheduleManageListPage');
+    this.navCtrl.push('ScheduleApplyListPage');
   }
 
 }

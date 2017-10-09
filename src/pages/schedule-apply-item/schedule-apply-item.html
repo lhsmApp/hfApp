@@ -1,5 +1,5 @@
 <!--
-  Generated template for the ScheduleManageItemPage page.
+  Generated template for the ScheduleApplyItemPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -83,7 +83,7 @@
             </ion-item>
             <ion-item >
                 <ion-label fixed>填报日期</ion-label>
-                <ion-input type="text" formControlName="applyDateScheduleManage" 
+                <ion-input readonly type="text" formControlName="applyDateScheduleManage" 
                     placeholder="自动填写">
                 </ion-input>
                 <span *ngIf="!applyFrom.controls.applyDateScheduleManage.valid && applyFrom.controls.applyDateScheduleManage.touched"
@@ -93,7 +93,7 @@
             </ion-item>
             <ion-item >
                 <ion-label fixed>填报人</ion-label>
-                <ion-input type="text" formControlName="applyUserScheduleManage" 
+                <ion-input readonly type="text" formControlName="applyUserScheduleManage" 
                     placeholder="自动填写">
                 </ion-input>
                 <span *ngIf="!applyFrom.controls.applyUserScheduleManage.valid && applyFrom.controls.applyUserScheduleManage.touched"

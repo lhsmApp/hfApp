@@ -1,4 +1,4 @@
-export interface AssetInfo {
+export interface AcceptAssetInfo {
   codeAsset: string;//资产编码
   nameAsset: string;//资产名称
   xhAsset: string;//规格型号

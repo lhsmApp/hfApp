@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ScheduleManageInfo} from '../../model/schedule-manage-info.d';
 
 /**
- * Generated class for the ScheduleManageItemPage page.
+ * Generated class for the ScheduleApplyInfoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,18 +12,19 @@ import {ScheduleManageInfo} from '../../model/schedule-manage-info.d';
 
 @IonicPage()
 @Component({
-  selector: 'page-schedule-manage-item',
-  templateUrl: 'schedule-manage-item.html',
+  selector: 'page-schedule-apply-info',
+  templateUrl: 'schedule-apply-info.html',
 })
-export class ScheduleManageItemPage {
+export class ScheduleApplyInfoPage {
+  title:string;
     oper:string;
 	  itemTranfer:ScheduleManageInfo;
     applyFrom:any;
   itemShow:ScheduleManageInfo;
- 
-  constructor(public navCtrl: NavController, 
-  	          public navParams: NavParams,
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
               public formBuilder: FormBuilder) {
+    this.title = this.navParams.get("title");
   	this.oper = this.navParams.get("oper");
   	this.itemTranfer = this.navParams.get("itemTranfer");
     this.getShowItem();
@@ -45,21 +46,13 @@ export class ScheduleManageItemPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ScheduleManageItemPage');
-  }
-
   getShowItem(){
     //this.itemTranfer.codeAcceptApply
     //this.itemShow
   }
 
-  //保存
-  save(){
-    //Object.assign(this.userInfo, this.userForm.value);
-    //this.storage.set('UserInfo', this.userInfo);
-    //this.nativeService.showToast('保存成功');
-    //this.viewCtrl.dismiss(this.userInfo);
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ScheduleApplyInfoPage');
   }
 
 }

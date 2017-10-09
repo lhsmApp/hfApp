@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {AssetInfo} from '../../model/asset-info.d';
+import {AcceptAssetInfo} from '../../model/accept-asset-info.d';
 
 /**
  * Generated class for the AssetDetailsInfoPage page.
@@ -17,7 +17,7 @@ import {AssetInfo} from '../../model/asset-info.d';
 })
 export class AssetDetailsInfoPage {
   oper:string;
-  itemTranfer:AssetInfo;
+  itemTranfer:AcceptAssetInfo;
   assetFrom:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,

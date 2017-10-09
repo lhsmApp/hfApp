@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {AssetInfo} from '../../model/asset-info.d';
+import {AcceptAssetInfo} from '../../model/accept-asset-info.d';
 
 /**
  * Generated class for the AssetDetailsListPage page.
@@ -9,7 +9,7 @@ import {AssetInfo} from '../../model/asset-info.d';
  * Ionic pages and navigation.
  */
 
- const listGet:AssetInfo[]=[
+ const listGet:AcceptAssetInfo[]=[
      {codeAsset: '0001', nameAsset: 'nsdfds', xhAsset: 'xdsc', oldValueAsset: '100.00', orderAsset: '', typeAsset: '',categoryAsset: '',depaetAsset: '',groupAsset: '',carAsset: '',unitAsset: '',venderAsset: '',numberAsset: '',productDateAsset: '',useDateAsset: '',useDirectionAsset: '',contractCodeAsset: '',getModelAsset: '',repairEndDateAsset: '',perUseLifeAsset: '',stateAsset: '',storePlaceAsset: '',custodianAsset: '',technicalDepartAsset: '',netWorthAsset: '',depreciationAsset: '',impairmentProvisionAsset: ''},
      {codeAsset: '0002', nameAsset: 'ncds', xhAsset: 'xjt', oldValueAsset: '100.00', orderAsset: '', typeAsset: '',categoryAsset: '',depaetAsset: '',groupAsset: '',carAsset: '',unitAsset: '',venderAsset: '',numberAsset: '',productDateAsset: '',useDateAsset: '',useDirectionAsset: '',contractCodeAsset: '',getModelAsset: '',repairEndDateAsset: '',perUseLifeAsset: '',stateAsset: '',storePlaceAsset: '',custodianAsset: '',technicalDepartAsset: '',netWorthAsset: '',depreciationAsset: '',impairmentProvisionAsset: ''},
      {codeAsset: '0003', nameAsset: 'nffs', xhAsset: 'xxs', oldValueAsset: '100.00', orderAsset: '', typeAsset: '',categoryAsset: '',depaetAsset: '',groupAsset: '',carAsset: '',unitAsset: '',venderAsset: '',numberAsset: '',productDateAsset: '',useDateAsset: '',useDirectionAsset: '',contractCodeAsset: '',getModelAsset: '',repairEndDateAsset: '',perUseLifeAsset: '',stateAsset: '',storePlaceAsset: '',custodianAsset: '',technicalDepartAsset: '',netWorthAsset: '',depreciationAsset: '',impairmentProvisionAsset: ''},
@@ -21,7 +21,7 @@ import {AssetInfo} from '../../model/asset-info.d';
   templateUrl: 'asset-details-list.html',
 })
 export class AssetDetailsListPage {
-	list:AssetInfo[];
+	list:AcceptAssetInfo[];
 
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams) {
@@ -35,13 +35,13 @@ export class AssetDetailsListPage {
   add(){
   	this.navCtrl.push("AssetDetailsAddPage", {"itemTranfer": [],'oper':'添加'});
   }
-  edit(item: AssetInfo){
+  edit(item: AcceptAssetInfo){
     this.navCtrl.push("AssetDetailsItemPage", {"itemTranfer": item,'oper':'编辑'});
   }
-  toDetail(item: AssetInfo){
+  toDetail(item: AcceptAssetInfo){
   	this.navCtrl.push("AssetDetailsInfoPage", {"itemTranfer": item,'oper':'查看'});
   }
-  delete(item: AssetInfo){
+  delete(item: AcceptAssetInfo){
     
   }
 }

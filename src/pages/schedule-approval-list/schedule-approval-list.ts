@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ScheduleManageInfo} from '../../model/schedule-manage-info.d'
 
 /**
- * Generated class for the ScheduleManageListPage page.
+ * Generated class for the ScheduleApprovalListPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -17,19 +17,15 @@ import {ScheduleManageInfo} from '../../model/schedule-manage-info.d'
 
 @IonicPage()
 @Component({
-  selector: 'page-schedule-manage-list',
-  templateUrl: 'schedule-manage-list.html',
+  selector: 'page-schedule-approval-list',
+  templateUrl: 'schedule-approval-list.html',
 })
-export class ScheduleManageListPage {
+export class ScheduleApprovalListPage {
 	list:ScheduleManageInfo[];
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams) {
   	this.list = listGet;
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ScheduleManageListPage');
   }
 
   //上拉刷新
@@ -67,16 +63,11 @@ export class ScheduleManageListPage {
   }
 
     toDetail(item: ScheduleManageInfo) {
-        this.navCtrl.push("ScheduleManageInfoPage", {'itemTranfer': item,'oper':'查看'});
+        this.navCtrl.push("ScheduleApplyInfoPage", {'itemTranfer': item,'oper':'查看', 'title': '进度管理'});
     }
 
-    add(){
-        this.navCtrl.push("ScheduleManageItemPage", {'itemTranfer': [],'oper':'添加'});
-    }
-    edit(item: ScheduleManageInfo){
-        this.navCtrl.push("ScheduleManageItemPage", {'itemTranfer': item,'oper':'编辑'});
-    }
-    delete(item: ScheduleManageInfo){
-        
-    }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ScheduleApprovalListPage');
+  }
+
 }
