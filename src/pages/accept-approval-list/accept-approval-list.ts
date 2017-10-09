@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
 
 /**
- * Generated class for the CheckApprovalListPage page.
+ * Generated class for the AcceptApprovalListPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -18,10 +18,10 @@ import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
 
 @IonicPage()
 @Component({
-  selector: 'page-check-approval-list',
-  templateUrl: 'check-approval-list.html',
+  selector: 'page-accept-approval-list',
+  templateUrl: 'accept-approval-list.html',
 })
-export class CheckApprovalListPage {
+export class AcceptApprovalListPage {
     list:AcceptApplyInfo[];
 
   constructor(public navCtrl: NavController,
@@ -54,7 +54,7 @@ export class CheckApprovalListPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CheckApprovalListPage');
+    console.log('ionViewDidLoad AcceptApprovalListPage');
   }
 
   //上拉刷新
@@ -92,7 +92,7 @@ export class CheckApprovalListPage {
   }
 
     toDetail(item: AcceptApplyInfo) {
-        this.navCtrl.push("CheckApprovalItemPage", {'itemTranfer': item,'oper':'查看'});
+        this.navCtrl.push("AcceptApplyInfoPage", {'itemTranfer': item,'oper':'查看','title':'验收审批'});
     }
 
 }

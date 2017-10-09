@@ -16,16 +16,21 @@ import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
   templateUrl: 'accept-apply-info.html',
 })
 export class AcceptApplyInfoPage {
+  title:string;
+  oper:string;
   itemTranfer:AcceptApplyInfo;
   applyFrom:any;
   itemShow:AcceptApplyInfo;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private formBuilder: FormBuilder) {
+    this.title = this.navParams.get("title");
+    this.oper = this.navParams.get("oper");
   	this.itemShow = this.navParams.get("itemTranfer");
     this.getShowItem();
 
     this.applyFrom = this.formBuilder.group({
+      codeAcceptApply: [this.itemShow.codeAcceptApply],
       contractCodeAcceptApply: [this.itemShow.contractCodeAcceptApply],
       contractNameAcceptApply: [this.itemShow.contractNameAcceptApply],
       projTypeAcceptApply: [this.itemShow.projTypeAcceptApply],
@@ -49,6 +54,10 @@ export class AcceptApplyInfoPage {
   //资产明细
   toAssetDetail(){
     this.navCtrl.push("AssetDetailsListInfoPage", {'itemTranfer': this.itemShow});
+  }
+
+  check(){
+
   }
 
 }

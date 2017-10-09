@@ -138,9 +138,14 @@
                 <ion-input readonly formControlName="impairmentProvisionAsset" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
 		</ion-item-group>
-        <div padding-horizontal>
-            <button ion-button color="danger" block type="submit" [disabled]="!assetFrom.valid">保 存</button>
-        </div>
 	</form>
 
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <div padding-horizontal>
+            <button ion-button color="danger" block type="submit" [disabled]="!assetFrom.valid">保 存</button>
+        </div>
+    </ion-toolbar>
+</ion-footer>

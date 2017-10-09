@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
 
 /**
- * Generated class for the AcceptApplyQueryPage page.
+ * Generated class for the AcceptQueryListPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -18,10 +18,10 @@ import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
 
 @IonicPage()
 @Component({
-  selector: 'page-accept-apply-query',
-  templateUrl: 'accept-apply-query.html',
+  selector: 'page-accept-query-list',
+  templateUrl: 'accept-query-list.html',
 })
-export class AcceptApplyQueryPage {
+export class AcceptQueryListPage {
     list:AcceptApplyInfo[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -37,7 +37,7 @@ export class AcceptApplyQueryPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AcceptApplyQueryPage');
+    console.log('ionViewDidLoad AcceptQueryListPage');
   }
 
   //上拉刷新
@@ -75,7 +75,7 @@ export class AcceptApplyQueryPage {
   }
 
     toDetail(item: AcceptApplyInfo) {
-        this.navCtrl.push("AcceptApplyInfoPage", {'itemTranfer': item,'oper':'查看'});
+        this.navCtrl.push("AcceptApplyInfoPage", {'itemTranfer': item,'oper':'查看','title':'验收查询'});
     }
 
 }

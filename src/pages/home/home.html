@@ -38,7 +38,7 @@
             <ion-badge *ngIf="messageCount" color="danger" class="brage">{{messageCount}}</ion-badge>
           </div>
       </ion-col>
-        <ion-col col-4 (click)="openPage('topics')" >
+        <ion-col col-4 (click)="openPage('topics1')" >
           <div text-center>
             <img color="primary"  class='imgSize' src='{{ysPath}}'/>
             <p>验收审批</p>
@@ -46,13 +46,13 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-4 (click)="openPage('topics')">
+        <ion-col col-4 (click)="openPage('topics2')">
           <div text-center>
             <img color="danger"  class='imgSize' src='{{zzPath}}'/>
             <p>转资审批</p>
           </div>
         </ion-col>
-        <ion-col col-4 (click)="openPage('topics')" >
+        <ion-col col-4 (click)="openPage('topics3')" >
           <div text-center>
             <img color="secondary"  class='imgSize' src='{{zztzPath}}'/>
             <p>转资调整审批</p>

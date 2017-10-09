@@ -36,8 +36,14 @@ export class HomePage {
     else if (cate === 'messages') {
       this.navCtrl.push("TestPage");
     }
-    else {
-      this.navCtrl.push("TestPage");
+    else if (cate === 'topics1') {
+      this.navCtrl.push("AcceptApprovalListPage");
+    }
+    else if (cate === 'topics2') {
+      this.navCtrl.push("TransferFundsApprovalListPage");
+    }
+    else if (cate === 'topics3') {
+      this.navCtrl.push("TransferAdjustApprovalListPage");
     }
   }
 }

@@ -16,13 +16,13 @@ import { Utils } from '../../providers/Utils';
   templateUrl: 'query-condition.html',
 })
 export class QueryConditionPage {
-
+  oper:string;
   startDate:string;
   endDate:string;
   relationship:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
+      this.oper = this.navParams.get("oper");
   }
 
   ionViewDidLoad() {
@@ -34,6 +34,21 @@ export class QueryConditionPage {
   }
 
   openQuery(){
-  	this.navCtrl.push("AdvancePaymentQueryPage");
+    if (this.oper === 'collects') {
+        //合同信息查询
+    }
+    else if (this.oper === 'messages') {
+        //付款信息查询
+        this.navCtrl.push("AdvancePaymentQueryPage");
+    }
+    else if (this.oper === 'topics1') {
+        //验收信息查询
+        this.navCtrl.push("AcceptQueryListPage");
+    }
+    else if (this.oper === 'topics2') {
+        //转资信息查询
+        this.navCtrl.push("TransferFundsQueryListPage");
+    }
+
   }
 }

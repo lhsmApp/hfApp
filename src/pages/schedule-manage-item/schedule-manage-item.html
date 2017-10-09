@@ -101,11 +101,15 @@
                     填报人不能为空
                 </span>
             </ion-item>
-
 		</ion-item-group>
-		<div padding-horizontal>
-            <button ion-button color="danger" block type="submit" [disabled]="!applyFrom.valid">保 存</button>
-		</div>
 	</form>
 
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <div padding-horizontal>
+            <button ion-button color="danger" block type="submit" [disabled]="!applyFrom.valid">保 存</button>
+        </div>
+    </ion-toolbar>
+</ion-footer>

@@ -19,21 +19,21 @@ export class QueryPage {
 
   //合同信息查询
   queryContract() {
-    this.navCtrl.push('TestPage');
+    this.navCtrl.push('QueryConditionPage', {'oper': 'collects'});
   }
 
   //付款信息查询
   queryPayment() {
-    this.navCtrl.push('QueryConditionPage');
+    this.navCtrl.push('QueryConditionPage', {'oper': 'messages'});
   }
 
   //验收信息查询
   queryYs() {
-    this.navCtrl.push('TestPage');
+    this.navCtrl.push('QueryConditionPage', {'oper': 'topics1'});
   }
 
   //转资信息查询
   queryZz() {
-    this.navCtrl.push('TestPage');
+    this.navCtrl.push('QueryConditionPage', {'oper': 'topics2'});
   }
 }

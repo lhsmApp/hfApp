@@ -7,7 +7,13 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>验收明细</ion-title>
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons end >
+      <button ion-button icon-right (click)="check()">
+        审批
+        <ion-icon name="paper-plane"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -17,22 +23,24 @@
 	<form [formGroup]="applyFrom">
         <ion-item-group>
             <ion-item >
+                <ion-label fixed>验收单号</ion-label>
+                <ion-input type="text" readonly formControlName="codeAcceptApply"></ion-input>
+            </ion-item>
+            <ion-item >
                 <ion-label fixed>合同流水号</ion-label>
-                <ion-input type="text" readonly formControlName="contractCodeAcceptApply" 
-                           placeholder="选择"></ion-input>
+                <ion-input type="text" readonly formControlName="contractCodeAcceptApply"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>合同名称</ion-label>
-                <ion-input type="text" readonly formControlName="contractNameAcceptApply" placeholder="自动带出"></ion-input>
+                <ion-input type="text" readonly formControlName="contractNameAcceptApply"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>项目性质</ion-label>
-                <ion-input type="text" readonly formControlName="projTypeAcceptApply" placeholder="自动带出"></ion-input>
+                <ion-input type="text" readonly formControlName="projTypeAcceptApply"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>项目单元名称</ion-label>
-                <ion-input type="text" readonly formControlName="projPartNameAcceptApply" 
-                    placeholder="自动带出"></ion-input>
+                <ion-input type="text" readonly formControlName="projPartNameAcceptApply"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label fixed>申请单位</ion-label>
