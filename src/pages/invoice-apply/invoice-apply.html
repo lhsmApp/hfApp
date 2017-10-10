@@ -18,9 +18,9 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 	<form [formGroup]="invoiceForm" (ngSubmit)="(save())">
-    <ion-item-group>
+    <ion-item-group inset>
       <ion-item>
         <ion-label fixed>序号</ion-label>
         <ion-input type="text" readonly formControlName="sequence"></ion-input>
@@ -115,7 +115,7 @@
 	   
     </ion-item-group>
     <div padding-horizontal>
-      <button ion-button color="danger" block type="submit" [disabled]="!invoiceForm.valid">保 存</button>
+      <button ion-button color="danger" full type="submit" [disabled]="!invoiceForm.valid">保 存</button>
     </div>
   </form>
 </ion-content>
