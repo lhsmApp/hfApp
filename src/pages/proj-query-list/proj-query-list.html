@@ -6,13 +6,29 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>proj-query-list</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>项目单元查询</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="输入名称或编号模糊搜索"></ion-searchbar>
+    
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
+    </ion-refresher-content>
+  </ion-refresher>
+<ion-list class="list-avatar-page">
+  <ion-item *ngFor="let item of list;trackBy:item?.codeContract" (click)="toDetail(item)">
+        <p>项目单元编号：{{item.codeContract}}</p>
+        <p>项目单元名称：{{item.nameContract}}</p>
+        <p>项目性质：{{item.jeContract}}</p>
+  </ion-item>
+</ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

@@ -6,13 +6,30 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>notice-query-list</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>通知公告</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="模糊搜索"></ion-searchbar>
+    
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
+    </ion-refresher-content>
+  </ion-refresher>
+<ion-list class="list-avatar-page">
+  <ion-item *ngFor="let item of list;trackBy:item?.id" (click)="toDetail(item)">
+        <p>通知：{{item.name}}</p>
+        <p>发布日期：{{item.}}</p>
+        <p>发布人：{{item.}}</p>
+  </ion-item>
+</ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
+

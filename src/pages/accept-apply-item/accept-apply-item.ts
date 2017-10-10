@@ -75,7 +75,11 @@ export class AcceptApplyItemPage {
   
   //资产明细
   toAssetDetail(){
-    this.navCtrl.push("AssetDetailsListPage", {'itemTranfer': this.itemShow});
+    if(this.oper==="添加"){
+        this.navCtrl.push("AssetDetailsAddPage", {'itemTranfer': this.itemShow});
+    } else if(this.oper==="编辑"){
+        this.navCtrl.push("AssetDetailsListPage", {'itemTranfer': this.itemShow});
+    } 
   }
 
 //选择合同

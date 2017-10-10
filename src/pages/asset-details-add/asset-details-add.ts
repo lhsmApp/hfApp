@@ -23,6 +23,7 @@ import {AssetInfo} from '../../model/asset-detail-info.d';
 })
 export class AssetDetailsAddPage {
 	list:AssetInfo[];
+  transferItem:AcceptAssetInfo;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	this.list=listGet;
@@ -37,7 +38,11 @@ export class AssetDetailsAddPage {
   }
 
   toDetail(item: AssetInfo){
-  	this.navCtrl.push("AssetDetailsItemPage", {"itemTranfer": item,'oper':'添加'});
+    this.transferItem.codeAsset = item.codeAsset;
+    this.transferItem.nameAsset = item.nameAsset;//资产名称
+    this.transferItem.xhAsset = item.xhAsset;//规格型号
+    this.transferItem.oldValueAsset = item.oldValueAsset;//原值
+  	this.navCtrl.push("AssetDetailsItemPage", {"itemTranfer": this.transferItem,'oper':'添加'});
   }
 
 }
