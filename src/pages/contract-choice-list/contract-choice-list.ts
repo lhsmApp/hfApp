@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {ContractInfo} from '../../model/contract-info.d';
+import {ContractMain} from '../../model/contract-main';
 
 /**
  * Generated class for the ContractChoiceListPage page.
@@ -9,11 +9,11 @@ import {ContractInfo} from '../../model/contract-info.d';
  * Ionic pages and navigation.
  */
 
-  const listGet:ContractInfo[] = [
-        { codeContract: 'HT201800001', nameContract: 'XXXXXXXX', jeContract: 'XXXXX', projTypeContract: '', projPartNameContract: '', projSettTypeContract: '', paySeasonContract: '', readyPayContract: '', nowApplyContract: '', payDeptContract: '', getDeptContract: '', applyTimeContract: '', applyContract: ''},
-        { codeContract: 'HT201800002', nameContract: 'XXXXXXXX', jeContract: 'XXXXX', projTypeContract: '', projPartNameContract: '', projSettTypeContract: '', paySeasonContract: '', readyPayContract: '', nowApplyContract: '', payDeptContract: '', getDeptContract: '', applyTimeContract: '', applyContract: ''},
-        { codeContract: 'HT201800003', nameContract: 'XXXXXXXX', jeContract: 'XXXXX', projTypeContract: '', projPartNameContract: '', projSettTypeContract: '', paySeasonContract: '', readyPayContract: '', nowApplyContract: '', payDeptContract: '', getDeptContract: '', applyTimeContract: '', applyContract: ''},
-        { codeContract: 'HT201800004', nameContract: 'XXXXXXXX', jeContract: 'XXXXX', projTypeContract: '', projPartNameContract: '', projSettTypeContract: '', paySeasonContract: '', readyPayContract: '', nowApplyContract: '', payDeptContract: '', getDeptContract: '', applyTimeContract: '', applyContract: ''},
+  const listGet:ContractMain[] = [
+        { contractCode: 'HT201800001', contractName: 'XXXXXXXX', requireUser: 'XXXXX', checkResult: '1'},
+        { contractCode: 'HT201800002', contractName: 'XXXXXXXX', requireUser: 'XXXXX', checkResult: '2'},
+        { contractCode: 'HT201800003', contractName: 'XXXXXXXX', requireUser: 'XXXXX', checkResult: '3'},
+        { contractCode: 'HT201800004', contractName: 'XXXXXXXX', requireUser: 'XXXXX', checkResult: '2'},
     ];
 
 @IonicPage()
@@ -22,7 +22,7 @@ import {ContractInfo} from '../../model/contract-info.d';
   templateUrl: 'contract-choice-list.html',
 })
 export class ContractChoiceListPage {
-    list:ContractInfo[];
+    list:ContractMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.getList();
@@ -47,7 +47,7 @@ export class ContractChoiceListPage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.list = this.list.filter((item) => {
-        return (item.codeContract.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.contractCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
@@ -90,8 +90,8 @@ export class ContractChoiceListPage {
     }, 500);*/
   }
 
-    toDetail(item: ContractInfo) {
-        this.navCtrl.push("ContractChoiceConfirmPage", {'itemTranfer': item});
+    toDetail(contractCode: string) {
+        this.navCtrl.push("ContractChoiceConfirmPage", {'CodeTranfer': contractCode});
     }
 
 }

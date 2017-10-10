@@ -38,6 +38,7 @@ export class AssetDetailsAddPage {
   }
 
   toDetail(item: AssetInfo){
+    this.transferItem = {codeAsset: item.codeAsset, nameAsset: item.nameAsset, xhAsset: item.xhAsset, oldValueAsset: item.oldValueAsset, orderAsset: '', typeAsset: '',categoryAsset: '',depaetAsset: '',groupAsset: '',carAsset: '',unitAsset: '',venderAsset: '',numberAsset: '',productDateAsset: '',useDateAsset: '',useDirectionAsset: '',contractCodeAsset: '',getModelAsset: '',repairEndDateAsset: '',perUseLifeAsset: '',stateAsset: '',storePlaceAsset: '',custodianAsset: '',technicalDepartAsset: '',netWorthAsset: '',depreciationAsset: '',impairmentProvisionAsset: ''};
     this.transferItem.codeAsset = item.codeAsset;
     this.transferItem.nameAsset = item.nameAsset;//资产名称
     this.transferItem.xhAsset = item.xhAsset;//规格型号

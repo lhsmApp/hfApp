@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
+import {AcceptApplyDetail} from '../../model/accept-apply-detail';
 
 /**
  * Generated class for the AcceptApplyInfoPage page.
@@ -18,29 +17,16 @@ import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
 export class AcceptApplyInfoPage {
   title:string;
   oper:string;
-  itemTranfer:AcceptApplyInfo;
-  applyFrom:any;
-  itemShow:AcceptApplyInfo;
+  billNumber:string;
+  itemShow:AcceptApplyDetail;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.title = this.navParams.get("title");
     this.oper = this.navParams.get("oper");
-  	this.itemShow = this.navParams.get("itemTranfer");
+  	this.billNumber = this.navParams.get("CodeTranfer");
     this.getShowItem();
 
     //,'oper':'审批'
-
-    this.applyFrom = this.formBuilder.group({
-      codeAcceptApply: [this.itemShow.codeAcceptApply],
-      contractCodeAcceptApply: [this.itemShow.contractCodeAcceptApply],
-      contractNameAcceptApply: [this.itemShow.contractNameAcceptApply],
-      projTypeAcceptApply: [this.itemShow.projTypeAcceptApply],
-      projPartNameAcceptApply: [this.itemShow.projPartNameAcceptApply],
-      applyDepartAcceptApply: [this.itemShow.applyDepartAcceptApply],
-      applyTimeAcceptApply: [this.itemShow.applyTimeAcceptApply],
-      applyAcceptApply: [this.itemShow.applyAcceptApply]
-    });
   }
 
   ionViewDidLoad() {
@@ -48,14 +34,14 @@ export class AcceptApplyInfoPage {
   }
 
   getShowItem(){
-    //this.itemTranfer.codeAcceptApply
-    //this.itemShow
-    //this.itemShow = this.itemTranfer；
+    //this.CodeTranfer
+    this.itemShow = new AcceptApplyDetail();
+    this.itemShow.billNumber = this.billNumber;
   }
   
   //资产明细
   toAssetDetail(){
-    this.navCtrl.push("AssetDetailsListInfoPage", {'itemTranfer': this.itemShow});
+    this.navCtrl.push("AssetDetailsListInfoPage", {'CodeTranfer': this.billNumber});
   }
 
   check(){

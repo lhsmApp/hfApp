@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {TransferFundsInfo} from '../../model/transfer-funds-info.d';
+import {TransferFundsMain} from '../../model/transfer-funds-main';
 
 /**
  * Generated class for the TransferFundsQueryListPage page.
@@ -9,11 +9,11 @@ import {TransferFundsInfo} from '../../model/transfer-funds-info.d';
  * Ionic pages and navigation.
  */
 
-  const listGet:TransferFundsInfo[] = [
-        { codeTransferFunds: 'ZZ0001', applyTimeTransferFunds: '2017-09-01', smTransferFunds: 'XXXXXX', stateTransferFunds: '', typeTransferFunds: '', projPartCodeTransferFunds: '', projPartNameTransferFunds: '', perTimeTransferFunds: '', jeTransferFunds: '', applyTransferFunds: ''},
-        { codeTransferFunds: 'ZZ0002', applyTimeTransferFunds: '2017-09-01', smTransferFunds: 'XXXXX', stateTransferFunds: '', typeTransferFunds: '', projPartCodeTransferFunds: '', projPartNameTransferFunds: '', perTimeTransferFunds: '', jeTransferFunds: '', applyTransferFunds: ''},
-        { codeTransferFunds: 'ZZ0003', applyTimeTransferFunds: '2017-09-01', smTransferFunds: 'XXXXXX', stateTransferFunds: '', typeTransferFunds: '', projPartCodeTransferFunds: '', projPartNameTransferFunds: '', perTimeTransferFunds: '', jeTransferFunds: '', applyTransferFunds: ''},
-        { codeTransferFunds: 'ZZ0004', applyTimeTransferFunds: '2017-09-01', smTransferFunds: 'XXXXXX', stateTransferFunds: '', typeTransferFunds: '', projPartCodeTransferFunds: '', projPartNameTransferFunds: '', perTimeTransferFunds: '', jeTransferFunds: '', applyTransferFunds: ''},
+  const listGet:TransferFundsMain[] = [
+        { translateCode: 'ZZ0001', costTotal: 2017, elementName: 'XXXXXX', reviewStatus: '1'},
+        { translateCode: 'ZZ0002', costTotal: 209, elementName: 'XXXXX', reviewStatus: '2'},
+        { translateCode: 'ZZ0003', costTotal: 1701, elementName: 'XXXXXX', reviewStatus: '2'},
+        { translateCode: 'ZZ0004', costTotal: 7091, elementName: 'XXXXXX', reviewStatus: '3'},
     ];
 
 @IonicPage()
@@ -22,7 +22,7 @@ import {TransferFundsInfo} from '../../model/transfer-funds-info.d';
   templateUrl: 'transfer-funds-query-list.html',
 })
 export class TransferFundsQueryListPage {
-    list:TransferFundsInfo[];
+    list:TransferFundsMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.getList();
@@ -74,8 +74,8 @@ export class TransferFundsQueryListPage {
     }, 500);*/
   }
 
-    toDetail(item: TransferFundsInfo) {
-        this.navCtrl.push("TransferFundsInfoPage", {'itemTranfer': item,'oper':'查看','title':'转资查询'});
+    toDetail(translateCode: string) {
+        this.navCtrl.push("TransferFundsInfoPage", {'CodeTranfer': translateCode,'oper':'查看','title':'转资查询'});
     }
 
 }

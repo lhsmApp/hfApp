@@ -25,6 +25,7 @@ export class AssetDetailsListPage {
 
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams) {
+    //CodeTranfer
   	this.list=listGet;
   }
 

@@ -19,11 +19,12 @@
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
     </ion-refresher-content>
   </ion-refresher>
-<ion-list class="list-avatar-page">
-  <ion-item *ngFor="let item of list;trackBy:item?.codeTransferFunds" (click)="toDetail(item)">
-        <p>验收单号：{{item.codeTransferFunds}}</p>
-        <p>申请日期：{{item.applyTimeTransferFunds}}</p>
-        <p>转资说明：{{item.smTransferFunds}}</p>
+<ion-list>
+  <ion-item *ngFor="let item of list;trackBy:item?.translateCode" (click)="toDetail(item.translateCode)">
+        <h2>{{item.translateCode}}</h2><!--单据编号-->
+        <p>{{item.elementName}}</p><!--项目单元名称-->
+        <p>{{item.costTotal}}</p><!--转资金额-->
+        <h3>{{item.reviewStatus}}</h3><!--单据状态-->
   </ion-item>
 </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

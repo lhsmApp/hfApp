@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {ContractInfo} from '../../model/contract-info.d';
+import {ContractDetail} from '../../model/contract-detail';
 
 /**
  * Generated class for the ContractChoiceConfirmPage page.
@@ -15,10 +15,17 @@ import {ContractInfo} from '../../model/contract-info.d';
   templateUrl: 'contract-choice-confirm.html',
 })
 export class ContractChoiceConfirmPage {
-  itemTranfer:ContractInfo;
+  contractCode:string;
+  itemShow:ContractDetail;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	this.itemTranfer = this.navParams.get("itemTranfer");
+  	this.contractCode = this.navParams.get("CodeTranfer");
+    this.getShowItem();
+  }
+
+  getShowItem(){
+    this.itemShow = new ContractDetail();
+    this.itemShow.contractCode = this.contractCode;
   }
 
   ionViewDidLoad() {

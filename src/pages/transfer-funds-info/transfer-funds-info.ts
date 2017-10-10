@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {TransferFundsInfo} from '../../model/transfer-funds-info.d';
+import {TransferFundsDetail} from '../../model/transfer-funds-detail';
 
 /**
  * Generated class for the TransferFundsInfoPage page.
@@ -18,37 +18,22 @@ import {TransferFundsInfo} from '../../model/transfer-funds-info.d';
 export class TransferFundsInfoPage {
   title:string;
   oper:string;
-  itemTranfer:TransferFundsInfo;
-  itemShow:TransferFundsInfo;
-  applyFrom:any;
+  translateCode:string;
+  itemShow:TransferFundsDetail;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private formBuilder: FormBuilder) {
     this.title = this.navParams.get("title");
   	this.oper = this.navParams.get("oper");
-  	this.itemShow = this.navParams.get("itemTranfer");
-    this.itemShow.stateTransferFunds = "sdsd";
+  	this.translateCode = this.navParams.get("CodeTranfer");
     this.getShowItem();
 
     //,'oper':'审批'
-
-    this.applyFrom = this.formBuilder.group({
-      codeTransferFunds: [this.itemShow.codeTransferFunds],
-      applyTimeTransferFunds: [this.itemShow.applyTimeTransferFunds],
-      smTransferFunds: [this.itemShow.smTransferFunds],
-      stateTransferFunds: [this.itemShow.stateTransferFunds],
-      typeTransferFunds: [this.itemShow.typeTransferFunds],
-      projPartCodeTransferFunds: [this.itemShow.projPartCodeTransferFunds],
-      projPartNameTransferFunds: [this.itemShow.projPartNameTransferFunds],
-      perTimeTransferFunds: [this.itemShow.perTimeTransferFunds],
-      jeTransferFunds: [this.itemShow.jeTransferFunds],
-      applyTransferFunds: [this.itemShow.applyTransferFunds]
-    });
   }
 
   getShowItem(){
-    //this.itemTranfer.codeAcceptApply
-    //this.itemShow
+    this.itemShow = new TransferFundsDetail();
+    this.itemShow.translateCode = this.translateCode;
   }
   
   //资产明细

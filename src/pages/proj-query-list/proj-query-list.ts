@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {ContractInfo} from '../../model/contract-info.d';
+import {ProjectUnitMain} from '../../model/project-unit-main';
 
 /**
  * Generated class for the ProjQueryListPage page.
@@ -9,11 +9,11 @@ import {ContractInfo} from '../../model/contract-info.d';
  * Ionic pages and navigation.
  */
 
-  const listGet:ContractInfo[] = [
-        { codeContract: 'HT201800001', nameContract: 'XXXXXXXX', jeContract: 'XXXXX', projTypeContract: '', projPartNameContract: '', projSettTypeContract: '', paySeasonContract: '', readyPayContract: '', nowApplyContract: '', payDeptContract: '', getDeptContract: '', applyTimeContract: '', applyContract: ''},
-        { codeContract: 'HT201800002', nameContract: 'XXXXXXXX', jeContract: 'XXXXX', projTypeContract: '', projPartNameContract: '', projSettTypeContract: '', paySeasonContract: '', readyPayContract: '', nowApplyContract: '', payDeptContract: '', getDeptContract: '', applyTimeContract: '', applyContract: ''},
-        { codeContract: 'HT201800003', nameContract: 'XXXXXXXX', jeContract: 'XXXXX', projTypeContract: '', projPartNameContract: '', projSettTypeContract: '', paySeasonContract: '', readyPayContract: '', nowApplyContract: '', payDeptContract: '', getDeptContract: '', applyTimeContract: '', applyContract: ''},
-        { codeContract: 'HT201800004', nameContract: 'XXXXXXXX', jeContract: 'XXXXX', projTypeContract: '', projPartNameContract: '', projSettTypeContract: '', paySeasonContract: '', readyPayContract: '', nowApplyContract: '', payDeptContract: '', getDeptContract: '', applyTimeContract: '', applyContract: ''},
+  const listGet:ProjectUnitMain[] = [
+        { elementCode: 'HT201800001', elementName: 'XXXXXXXX', elementType: '项目单元类别', sgsx: '施工属性'},
+        { elementCode: 'HT201800002', elementName: 'XXXXXXXX', elementType: '项目单元类别', sgsx: '施工属性'},
+        { elementCode: 'HT201800003', elementName: 'XXXXXXXX', elementType: '项目单元类别', sgsx: '施工属性'},
+        { elementCode: 'HT201800004', elementName: 'XXXXXXXX', elementType: '项目单元类别', sgsx: '施工属性'},
     ];
 
 @IonicPage()
@@ -22,7 +22,7 @@ import {ContractInfo} from '../../model/contract-info.d';
   templateUrl: 'proj-query-list.html',
 })
 export class ProjQueryListPage {
-    list:ContractInfo[];
+    list:ProjectUnitMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.getList();
@@ -47,7 +47,7 @@ export class ProjQueryListPage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.list = this.list.filter((item) => {
-        return (item.codeContract.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.elementCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
@@ -86,8 +86,8 @@ export class ProjQueryListPage {
     }, 500);*/
   }
 
-    toDetail(item: ContractInfo) {
-        this.navCtrl.push("ProjInfoPage", {'itemTranfer': item});
+    toDetail(elementCode: string) {
+        this.navCtrl.push("ProjInfoPage", {'CodeTranfer': elementCode});
     }
 
   ionViewDidLoad() {

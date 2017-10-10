@@ -22,7 +22,7 @@
   </ion-refresher>
 <ion-list class="list-avatar-page">
   <ion-item *ngFor="let item of list;trackBy:item?.id" (click)="toDetail(item)">
-        <p>通知：{{item.name}}</p>
+        <h2>通知：{{item.name}}</h2>
         <p>发布日期：{{item.}}</p>
         <p>发布人：{{item.}}</p>
   </ion-item>

@@ -20,13 +20,14 @@
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
     </ion-refresher-content>
   </ion-refresher>
-<ion-list class="list-avatar-page">
-  <ion-item *ngFor="let item of list;trackBy:item?.codeContract" (click)="toDetail(item)">
-        <p>合同编号：{{item.codeContract}}</p>
-        <p>合同名称：{{item.nameContract}}</p>
-        <p>合同标的额：{{item.jeContract}}万元</p>
-  </ion-item>
-</ion-list>
+  <ion-list>
+    <ion-item *ngFor="let item of list;trackBy:item?.contractCode" (click)="toDetail(item.contractCode)">
+        <h2>{{item.contractCode}}</h2><!--合同编号：-->
+        <p>{{item.contractName}}</p><!--合同名称：-->
+        <p>{{item.requireUser}}</p><!--申请人：-->
+        <!--<h3 item-end><span  item-end [tab]="item"></span></h3>--><!--单据状态：reviewStatus-->
+    </ion-item>
+  </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
     </ion-infinite-scroll-content>

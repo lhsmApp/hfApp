@@ -20,10 +20,11 @@
     </ion-refresher-content>
   </ion-refresher>
 <ion-list class="list-avatar-page">
-  <ion-item *ngFor="let item of list;trackBy:item?.codeAcceptApply" (click)="toDetail(item)">
-        <p>验收单号：{{item.codeAcceptApply}}</p>
-        <p>合同名称：{{item.contractNameAcceptApply}}</p>
-        <p>申请人：{{item.applyAcceptApply}}</p>
+  <ion-item *ngFor="let item of list;trackBy:item?.billNumber" (click)="toDetail(item.billNumber)">
+        <h2>{{item.billNumber}}</h2><!--验收单号：-->
+        <p>{{item.requireDate}}</p><!--申请日期：-->
+        <p>{{item.requireUser}}</p><!--申请人：-->
+        <!--<h3 item-end><span  item-end [tab]="item"></span></h3>--><!--单据状态：reviewStatus-->
   </ion-item>
 </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

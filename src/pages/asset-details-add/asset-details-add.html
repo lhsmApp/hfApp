@@ -20,12 +20,14 @@
 
 <ion-content>
 	<ion-list>
-		<ion-item *ngFor="let item of list" (click)="toDetail(item)">
-      <ion-checkbox color="dark" [(ngModel)]="isCheck"></ion-checkbox>
-			<p>资产编码：{{item.codeAsset}}</p>
-			<p>资产名称：{{item.nameAsset}}</p>
-			<p>规格型号：{{item.xhAsset}}</p>
-			<p>原值：{{item.oldValueAsset}}</p>
+		<ion-item *ngFor="let item of list">
+      <ion-checkbox color="dark" [(ngModel)]="item.isCheck"></ion-checkbox>
+      <ion-label (click)="toDetail(item)">
+		  	  <p>资产编码：{{item.codeAsset}}</p>
+			    <p>资产名称：{{item.nameAsset}}</p>
+			    <p>规格型号：{{item.xhAsset}}</p>
+			    <p>原值：{{item.oldValueAsset}}</p>
+      </ion-label>
 		</ion-item>
 	</ion-list>
 </ion-content>

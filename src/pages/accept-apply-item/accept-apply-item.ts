@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Storage} from '@ionic/storage';
 import {IonicPage, NavController, NavParams, AlertController, ViewController} from 'ionic-angular';
-import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
+import {AcceptApplyDetail} from '../../model/accept-apply-detail';
 import {DepartInfo} from '../../model/depart-info.d';
 
 /**
@@ -12,7 +12,7 @@ import {DepartInfo} from '../../model/depart-info.d';
  * Ionic pages and navigation.
  */
 
-  const listDept: DepartInfo[]=[
+  const listDeptGet: DepartInfo[]=[
       {codeDept:'1',nameDept:'单位1'},
       {codeDept:'2',nameDept:'单位2'},
       {codeDept:'3',nameDept:'单位3'},
@@ -26,9 +26,10 @@ import {DepartInfo} from '../../model/depart-info.d';
 })
 export class AcceptApplyItemPage {
   oper:string;
-  itemTranfer:AcceptApplyInfo;
+  billNumber:string;
   applyFrom:any;
-  itemShow:AcceptApplyInfo;
+  itemShow:AcceptApplyDetail;
+  listDept: DepartInfo[];
 
   constructor(public navCtrl: NavController,
               public params: NavParams,
@@ -37,18 +38,9 @@ export class AcceptApplyItemPage {
               private alertCtrl: AlertController, 
               private viewCtrl: ViewController) {
   	this.oper = this.params.get("oper");
-  	this.itemShow = this.params.get("itemTranfer");
+  	this.billNumber = this.params.get("CodeTranfer");
+    this.listDept = listDeptGet;
     this.getShowItem();
-
-    this.applyFrom = this.formBuilder.group({
-      contractCodeAcceptApply: [this.itemShow.contractCodeAcceptApply, [Validators.required]],
-      contractNameAcceptApply: [this.itemShow.contractNameAcceptApply],
-      projTypeAcceptApply: [this.itemShow.projTypeAcceptApply],
-      projPartNameAcceptApply: [this.itemShow.projPartNameAcceptApply],
-      applyDepartAcceptApply: [this.itemShow.applyDepartAcceptApply, [Validators.required]],
-      applyTimeAcceptApply: [this.itemShow.applyTimeAcceptApply, [Validators.required]],
-      applyAcceptApply: [this.itemShow.applyAcceptApply, [Validators.required]]
-    });
   }
 
   ionViewDidLoad() {
@@ -56,8 +48,18 @@ export class AcceptApplyItemPage {
   }
 
   getShowItem(){
-    //this.itemTranfer.codeAcceptApply
-    //this.itemShow
+    //this.CodeTranfer
+    this.itemShow = new AcceptApplyDetail();
+
+    this.applyFrom = this.formBuilder.group({
+      contractCode: [this.itemShow.contractCode, [Validators.required]],
+      contractName: [this.itemShow.contractName],
+      elementCode: [this.itemShow.elementCode],
+      elementName: [this.itemShow.elementName],
+      departCode: [this.itemShow.departCode, [Validators.required]],
+      requireDate: [this.itemShow.requireDate, [Validators.required]],
+      requireUser: [this.itemShow.requireUser, [Validators.required]]
+    });
   }
 
   //保存
@@ -76,9 +78,9 @@ export class AcceptApplyItemPage {
   //资产明细
   toAssetDetail(){
     if(this.oper==="添加"){
-        this.navCtrl.push("AssetDetailsAddPage", {'itemTranfer': this.itemShow});
+        this.navCtrl.push("AssetDetailsAddPage", {'CodeTranfer': this.billNumber});
     } else if(this.oper==="编辑"){
-        this.navCtrl.push("AssetDetailsListPage", {'itemTranfer': this.itemShow});
+        this.navCtrl.push("AssetDetailsListPage", {'CodeTranfer': this.billNumber});
     } 
   }
 

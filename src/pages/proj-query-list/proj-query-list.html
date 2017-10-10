@@ -21,10 +21,11 @@
     </ion-refresher-content>
   </ion-refresher>
 <ion-list class="list-avatar-page">
-  <ion-item *ngFor="let item of list;trackBy:item?.codeContract" (click)="toDetail(item)">
-        <p>项目单元编号：{{item.codeContract}}</p>
-        <p>项目单元名称：{{item.nameContract}}</p>
-        <p>项目性质：{{item.jeContract}}</p>
+  <ion-item *ngFor="let item of list;trackBy:item?.elementCode" (click)="toDetail(item.elementCode)">
+        <h2>{{item.elementCode}}</h2><!--项目单元编号：-->
+        <p>{{item.elementName}}</p><!--项目单元名称：-->
+        <p>{{item.elementType}}</p><!--项目单元类别：-->
+        <h3>{{item.sgsx}}</h3><!--施工属性：-->
   </ion-item>
 </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

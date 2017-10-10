@@ -22,18 +22,20 @@
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
     </ion-refresher-content>
   </ion-refresher>
-<ion-list class="list-avatar-page">
-  <ion-item-sliding *ngFor="let item of list;trackBy:item?.codeAcceptApply">
-    <ion-item (click)="toDetail(item)">
-        <p>验收单编码：{{item.codeAcceptApply}}</p>
-        <p>验收单状态：{{item.stateAcceptApply}}</p>
+<ion-list>
+  <ion-item-sliding *ngFor="let item of list;trackBy:item?.billNumber">
+    <ion-item (click)="toDetail(item.billNumber)">
+        <h2>{{item.billNumber}}</h2><!--验收单号：-->
+        <p>{{item.requireDate}}</p><!--申请日期：-->
+        <p>{{item.requireUser}}</p><!--申请人：-->
+        <!--<h3 item-end><span  item-end [tab]="item"></span></h3>--><!--单据状态：reviewStatus-->
     </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary" (click)="edit(item)">
+        <button ion-button color="primary" (click)="edit(item.billNumber)">
           <ion-icon name="create"></ion-icon>
           编辑
         </button>
-        <button ion-button color="danger" (click)="delete(item)">
+        <button ion-button color="danger" (click)="delete(item.billNumber)">
           <ion-icon name="close"></ion-icon>
           删除
         </button>

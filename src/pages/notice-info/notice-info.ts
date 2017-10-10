@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Notice} from '../../model/notice';
 
 /**
  * Generated class for the NoticeInfoPage page.

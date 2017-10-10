@@ -24,52 +24,50 @@
         <ion-item-group>
             <ion-item >
                 <ion-label fixed>合同流水号</ion-label>
-                <ion-input type="text" readonly formControlName="contractCodeAcceptApply" 
+                <ion-input type="text" readonly formControlName="contractCode" 
                            placeholder="选择" (click)="choiceContract()"></ion-input>
             </ion-item>
-            <span *ngIf="!applyFrom.controls.contractCodeAcceptApply.valid && applyFrom.controls.contractCodeAcceptApply.touched"
+            <span *ngIf="!applyFrom.controls.contractCode.valid && applyFrom.controls.contractCode.touched"
                   class="validation-failed">
                 请选择合同流水号
             </span>
             <ion-item >
                 <ion-label fixed>合同名称</ion-label>
-                <ion-input type="text" readonly formControlName="contractNameAcceptApply" placeholder="自动带出"></ion-input>
+                <ion-input type="text" readonly formControlName="contractName" placeholder="自动带出"></ion-input>
             </ion-item>
-            <ion-item >
+            <!--<ion-item >
                 <ion-label fixed>项目性质</ion-label>
-                <ion-input type="text" readonly formControlName="projTypeAcceptApply" placeholder="自动带出"></ion-input>
-            </ion-item>
+                <ion-input type="text" readonly formControlName="elementCode" placeholder="自动带出"></ion-input>
+            </ion-item>-->
             <ion-item >
                 <ion-label fixed>项目单元名称</ion-label>
-                <ion-input type="text" readonly formControlName="projPartNameAcceptApply" 
+                <ion-input type="text" readonly formControlName="elementName" 
                     placeholder="自动带出"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label fixed>申请单位</ion-label>
-                <ion-select formControlName="applyDepartAcceptApply">
-                    <ion-option value="1">单位1</ion-option>
-                    <ion-option value="2">单位2</ion-option>
-                    <ion-option value="3">单位3</ion-option>
-                    <ion-option value="4">单位4</ion-option>
+                <ion-select type="text" [(ngModel)]="departCode" formControlName="departCode">
+                    <ion-option *ngFor="let dept of listDept" value="{{dept.codeDept}}">{{dept.nameDept}}</ion-option>
+                    <ion-option value=""></ion-option>
                 </ion-select>
             </ion-item>
-            <span *ngIf="!applyFrom.controls.applyDepartAcceptApply.valid && applyFrom.controls.applyDepartAcceptApply.touched"
+            <span *ngIf="!applyFrom.controls.departCode.valid && applyFrom.controls.departCode.touched"
                   class="validation-failed">
                 请选择申请单位
             </span>
             <ion-item >
                 <ion-label fixed>申请时间</ion-label>
-                <ion-input type="text" readonly formControlName="applyTimeAcceptApply"></ion-input>
+                <ion-input type="text" readonly formControlName="requireDate"></ion-input>
             </ion-item>
-            <span *ngIf="!applyFrom.controls.applyTimeAcceptApply.valid && applyFrom.controls.applyTimeAcceptApply.touched"
+            <span *ngIf="!applyFrom.controls.requireDate.valid && applyFrom.controls.requireDate.touched"
                   class="validation-failed">
                 申请时间不能为空
             </span>
             <ion-item >
                 <ion-label fixed>申请人</ion-label>
-                <ion-input type="text" readonly formControlName="applyAcceptApply"></ion-input>
+                <ion-input type="text" readonly formControlName="requireUser"></ion-input>
             </ion-item>
-            <span *ngIf="!applyFrom.controls.applyAcceptApply.valid && applyFrom.controls.applyAcceptApply.touched"
+            <span *ngIf="!applyFrom.controls.requireUser.valid && applyFrom.controls.requireUser.touched"
                   class="validation-failed">
                 申请人不能为空
             </span>

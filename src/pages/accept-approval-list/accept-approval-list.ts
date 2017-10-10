@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
+import {AcceptApplyMain} from '../../model/accept-apply-main';
 
 /**
  * Generated class for the AcceptApprovalListPage page.
@@ -9,11 +9,11 @@ import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
  * Ionic pages and navigation.
  */
 
-  const listGet:AcceptApplyInfo[] = [
-        { codeAcceptApply: 'XMDY0001', stateAcceptApply: '新增', contractCodeAcceptApply: '', contractNameAcceptApply: '', projTypeAcceptApply: '', projPartNameAcceptApply: '', applyDepartAcceptApply: '', applyTimeAcceptApply: '', applyAcceptApply: ''},
-        { codeAcceptApply: 'XMDY0002', stateAcceptApply: '退回', contractCodeAcceptApply: '', contractNameAcceptApply: '', projTypeAcceptApply: '', projPartNameAcceptApply: '', applyDepartAcceptApply: '', applyTimeAcceptApply: '', applyAcceptApply: ''},
-        { codeAcceptApply: 'XMDY0003', stateAcceptApply: '退回', contractCodeAcceptApply: '', contractNameAcceptApply: '', projTypeAcceptApply: '', projPartNameAcceptApply: '', applyDepartAcceptApply: '', applyTimeAcceptApply: '', applyAcceptApply: ''},
-        { codeAcceptApply: 'XMDY0004', stateAcceptApply: '退回', contractCodeAcceptApply: '', contractNameAcceptApply: '', projTypeAcceptApply: '', projPartNameAcceptApply: '', applyDepartAcceptApply: '', applyTimeAcceptApply: '', applyAcceptApply: ''},
+  const listGet:AcceptApplyMain[] = [
+        { billNumber: 'XMDY0001', reviewStatus: '新增', requireDate: '2017-09-25', requireUser: '申请人'},
+        { billNumber: 'XMDY0002', reviewStatus: '退回', requireDate: '2017-09-25', requireUser: '申请人'},
+        { billNumber: 'XMDY0003', reviewStatus: '退回', requireDate: '2017-09-25', requireUser: '申请人'},
+        { billNumber: 'XMDY0004', reviewStatus: '退回', requireDate: '2017-09-25', requireUser: '申请人'},
     ];
 
 @IonicPage()
@@ -22,7 +22,7 @@ import {AcceptApplyInfo} from '../../model/accept-apply-info.d';
   templateUrl: 'accept-approval-list.html',
 })
 export class AcceptApprovalListPage {
-    list:AcceptApplyInfo[];
+    list:AcceptApplyMain[];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams) {
@@ -48,7 +48,7 @@ export class AcceptApprovalListPage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.list = this.list.filter((item) => {
-        return (item.codeAcceptApply.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.billNumber.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
@@ -91,8 +91,8 @@ export class AcceptApprovalListPage {
     }, 500);*/
   }
 
-    toDetail(item: AcceptApplyInfo) {
-        this.navCtrl.push("AcceptApplyInfoPage", {'itemTranfer': item,'oper':'审批','title':'验收审批'});
+    toDetail(billNumber: string) {
+        this.navCtrl.push("AcceptApplyInfoPage", {'CodeTranfer': billNumber,'oper':'审批','title':'验收审批'});
     }
 
 }

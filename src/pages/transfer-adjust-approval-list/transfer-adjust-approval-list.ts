@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {TransferAdjustInfo} from '../../model/transfer-adjust-info.d';
+import {TransferAdjustMain} from '../../model/transfer-adjust-main';
 
 /**
  * Generated class for the TransferAdjustApprovalListPage page.
@@ -9,11 +9,11 @@ import {TransferAdjustInfo} from '../../model/transfer-adjust-info.d';
  * Ionic pages and navigation.
  */
 
-  const listGet:TransferAdjustInfo[] = [
-        { codeTransferFunds: 'ZZ0001', applyTimeTransferFunds: '2017-09-01', smTransferFunds: 'XXXXXX', stateTransferFunds: '', typeTransferFunds: '', projPartCodeTransferFunds: '', projPartNameTransferFunds: '', perTimeTransferFunds: '', jeTransferFunds: '', applyTransferFunds: ''},
-        { codeTransferFunds: 'ZZ0002', applyTimeTransferFunds: '2017-09-01', smTransferFunds: 'XXXXX', stateTransferFunds: '', typeTransferFunds: '', projPartCodeTransferFunds: '', projPartNameTransferFunds: '', perTimeTransferFunds: '', jeTransferFunds: '', applyTransferFunds: ''},
-        { codeTransferFunds: 'ZZ0003', applyTimeTransferFunds: '2017-09-01', smTransferFunds: 'XXXXXX', stateTransferFunds: '', typeTransferFunds: '', projPartCodeTransferFunds: '', projPartNameTransferFunds: '', perTimeTransferFunds: '', jeTransferFunds: '', applyTransferFunds: ''},
-        { codeTransferFunds: 'ZZ0004', applyTimeTransferFunds: '2017-09-01', smTransferFunds: 'XXXXXX', stateTransferFunds: '', typeTransferFunds: '', projPartCodeTransferFunds: '', projPartNameTransferFunds: '', perTimeTransferFunds: '', jeTransferFunds: '', applyTransferFunds: ''},
+  const listGet:TransferAdjustMain[] = [
+        { assetsCode: 'ZZ0001', assetsName: '2017-09-01', departCode: 'XXXXXX', keyCode: ''},
+        { assetsCode: 'ZZ0002', assetsName: '2017-09-01', departCode: 'XXXXX', keyCode: ''},
+        { assetsCode: 'ZZ0003', assetsName: '2017-09-01', departCode: 'XXXXXX', keyCode: ''},
+        { assetsCode: 'ZZ0004', assetsName: '2017-09-01', departCode: 'XXXXXX', keyCode: ''},
     ];
 
 @IonicPage()
@@ -22,7 +22,7 @@ import {TransferAdjustInfo} from '../../model/transfer-adjust-info.d';
   templateUrl: 'transfer-adjust-approval-list.html',
 })
 export class TransferAdjustApprovalListPage {
-    list:TransferAdjustInfo[];
+    list:TransferAdjustMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.getList();
@@ -47,7 +47,7 @@ export class TransferAdjustApprovalListPage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.list = this.list.filter((item) => {
-        return (item.codeTransferFunds.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.assetsCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
@@ -86,7 +86,7 @@ export class TransferAdjustApprovalListPage {
     }, 500);*/
   }
 
-    toDetail(item: TransferAdjustInfo) {
+    toDetail(item: TransferAdjustMain) {
         this.navCtrl.push("TransferAdjustInfoPage", {'itemTranfer': item,'oper':'审批','title':'转资调整审批'});
     }
 
