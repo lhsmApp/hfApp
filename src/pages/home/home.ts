@@ -35,7 +35,7 @@ export class HomePage {
 
   openPage(cate: string) {
     if (cate === 'ht') {
-      this.navCtrl.push("TestPage");
+      this.navCtrl.push("ContractApprovalPage");
     }else if (cate === 'yfk') {
       this.navCtrl.push("AdvancePaymentApprovalPage");
     }else if(cate === 'ys'){

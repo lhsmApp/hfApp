@@ -73,6 +73,7 @@ export class LoginPage {
     this.submitted = true;
     this.loginService.login(user)
       .subscribe(loginInfo => {
+        console.log(loginInfo);
         this.storage.clear();//清除缓存
         Utils.sessionStorageClear();//清除缓存
         this.globalData.token = loginInfo.access_token;

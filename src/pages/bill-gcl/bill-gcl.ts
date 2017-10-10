@@ -79,4 +79,9 @@ export class BillGclPage {
   	}, 500);*/
   }
 
+  //查看明细
+  openPage(id: string){
+    this.navCtrl.push("BillGclDetailPage",{id:id});
+  }
+
 }
