@@ -12,6 +12,7 @@ import { TabsPage } from '../../pages/tabs/tabs';
 import {UserInfo, LoginInfo} from "../../model/UserInfo";
 import {GlobalData} from "../../providers/GlobalData";
 import {Utils} from "../../providers/Utils";
+import {DEFAULT_LOGIN_BG} from "../../providers/Constants";
 
 @Component({
   selector: 'page-login',
@@ -23,6 +24,7 @@ export class LoginPage {
   submitted: boolean = false;
   canLeave: boolean = false;
   loginForm: any;
+  loginBg:string=DEFAULT_LOGIN_BG;
 
   constructor(public navCtrl:NavController,
               private viewCtrl: ViewController,
@@ -71,6 +73,7 @@ export class LoginPage {
     this.submitted = true;
     this.loginService.login(user)
       .subscribe(loginInfo => {
+        console.log(loginInfo);
         this.storage.clear();//清除缓存
         Utils.sessionStorageClear();//清除缓存
         this.globalData.token = loginInfo.access_token;

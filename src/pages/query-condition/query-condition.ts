@@ -34,10 +34,11 @@ export class QueryConditionPage {
   }
 
   openQuery(){
-    if (this.oper === 'collects') {
+    if (this.oper === 'ht') {
         //合同信息查询
+        this.navCtrl.push("ContractQueryPage");
     }
-    else if (this.oper === 'messages') {
+    else if (this.oper === 'yfk') {
         //付款信息查询
         this.navCtrl.push("AdvancePaymentQueryPage");
     }

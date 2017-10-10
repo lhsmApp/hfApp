@@ -19,12 +19,12 @@ export class QueryPage {
 
   //合同信息查询
   queryContract() {
-    this.navCtrl.push('QueryConditionPage', {'oper': 'collects'});
+    this.navCtrl.push('QueryConditionPage', {'oper': 'ht'});
   }
 
   //付款信息查询
   queryPayment() {
-    this.navCtrl.push('QueryConditionPage', {'oper': 'messages'});
+    this.navCtrl.push('QueryConditionPage', {'oper': 'yfk'});
   }
 
   //验收信息查询

@@ -1,5 +1,6 @@
 /*----------------------------------------后台Api地址----------------------------------------*/
-export const APP_SERVE_URL = 'http://88.128.18.144:8081/api/';
+//export const APP_SERVE_URL = 'http://88.128.18.144:8081/api/';
+export const APP_SERVE_URL = 'http://192.168.10.186:9080/';
 
 /*----------------------------------------文件服务器地址----------------------------------------*/
 export const FILE_SERVE_URL = 'http://172.16.19.86/kit_file_server/';//文件服务:测试环境
@@ -29,5 +30,7 @@ export const DEFAULT_YFK = './assets/img/fukuanshenpi@2x.png';//预付款
 export const DEFAULT_HT = './assets/img/hetongshenpi@2x.png';//合同
 export const DEFAULT_ZZ = './assets/img/zhuanzi@2x.png';//转资
 export const DEFAULT_ZZTZ = './assets/img/zhuanzitiaozhengshenpi@2x.png';//转资调整
+export const DEFAULT_LOGIN_BG = './assets/img/LoginBg.png';//登录背景
+
 
 
