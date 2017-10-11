@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ProjectUnitMain} from '../../model/project-unit-main';
 
+import {Page_ProjInfoPage} from '../../providers/TransferFeildName';
+import {BillElementCode} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the ProjQueryListPage page.
  *
@@ -87,7 +90,7 @@ export class ProjQueryListPage {
   }
 
     toDetail(elementCode: string) {
-        this.navCtrl.push("ProjInfoPage", {'CodeTranfer': elementCode});
+        this.navCtrl.push(Page_ProjInfoPage, {BillElementCode: elementCode});
     }
 
   ionViewDidLoad() {

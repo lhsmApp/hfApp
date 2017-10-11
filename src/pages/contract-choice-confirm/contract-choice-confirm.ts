@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ContractDetail} from '../../model/contract-detail';
 
+import {BillContractCode} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the ContractChoiceConfirmPage page.
  *
@@ -16,10 +18,12 @@ import {ContractDetail} from '../../model/contract-detail';
 })
 export class ContractChoiceConfirmPage {
   contractCode:string;
+
   itemShow:ContractDetail;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	this.contractCode = this.navParams.get("CodeTranfer");
+  	this.contractCode = this.navParams.get(BillContractCode);
+    
     this.getShowItem();
   }
 

@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AcceptApplyMain} from '../../model/accept-apply-main';
 
+import {Page_AcceptApplyInfoPage} from '../../providers/TransferFeildName';
+import {Oper,Oper_Look} from '../../providers/TransferFeildName';
+import {Title} from '../../providers/TransferFeildName';
+import {BillNumberCode} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the AcceptQueryListPage page.
  *
@@ -75,7 +80,7 @@ export class AcceptQueryListPage {
   }
 
     toDetail(billNumber: string) {
-        this.navCtrl.push("AcceptApplyInfoPage", {'CodeTranfer': billNumber,'oper':'查看','title':'验收查询'});
+        this.navCtrl.push(Page_AcceptApplyInfoPage, {BillNumberCode: billNumber,Oper:Oper_Look,Title:'验收查询'});
     }
 
 }

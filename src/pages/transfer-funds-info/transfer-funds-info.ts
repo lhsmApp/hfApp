@@ -3,6 +3,13 @@ import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TransferFundsDetail} from '../../model/transfer-funds-detail';
 
+import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
+import {Title} from '../../providers/TransferFeildName';
+import {BillNumberCode} from '../../providers/TransferFeildName';
+
+import {Page_AssetDetailsListInfoPage} from '../../providers/TransferFeildName';
+import {TypeGetAsset,TypeGetAsset_TransferFunds} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the TransferFundsInfoPage page.
  *
@@ -19,16 +26,18 @@ export class TransferFundsInfoPage {
   title:string;
   oper:string;
   translateCode:string;
+
   itemShow:TransferFundsDetail;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private formBuilder: FormBuilder) {
-    this.title = this.navParams.get("title");
-  	this.oper = this.navParams.get("oper");
-  	this.translateCode = this.navParams.get("CodeTranfer");
+    this.title = this.navParams.get(Title);
+  	this.oper = this.navParams.get(Oper);
+  	this.translateCode = this.navParams.get(BillNumberCode);
+
     this.getShowItem();
 
-    //,'oper':'审批'
+    //this.oper === Oper_Approval
   }
 
   getShowItem(){
@@ -38,7 +47,7 @@ export class TransferFundsInfoPage {
   
   //资产明细
   toAssetDetail(){
-    this.navCtrl.push("AssetDetailsListInfoPage", {'itemTranfer': this.itemShow});
+    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.translateCode, BillContractCode:'', TypeGetAsset:TypeGetAsset_TransferFunds});
   }
 
   check(){

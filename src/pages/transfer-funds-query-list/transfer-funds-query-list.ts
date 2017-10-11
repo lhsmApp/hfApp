@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TransferFundsMain} from '../../model/transfer-funds-main';
 
+import {Page_TransferFundsInfoPage} from '../../providers/TransferFeildName';
+import {Oper,Oper_Look} from '../../providers/TransferFeildName';
+import {Title} from '../../providers/TransferFeildName';
+import {BillNumberCode} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the TransferFundsQueryListPage page.
  *
@@ -75,7 +80,7 @@ export class TransferFundsQueryListPage {
   }
 
     toDetail(translateCode: string) {
-        this.navCtrl.push("TransferFundsInfoPage", {'CodeTranfer': translateCode,'oper':'查看','title':'转资查询'});
+        this.navCtrl.push(Page_TransferFundsInfoPage, {Oper:Oper_Look,Title:'转资查询',BillNumberCode: translateCode});
     }
 
 }

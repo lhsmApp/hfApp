@@ -1,6 +1,15 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {AcceptAssetInfo} from '../../model/accept-asset-info.d';
+import {AcceptAssetMain} from '../../model/accept-asset-main';
+
+import {BillNumberCode} from '../../providers/TransferFeildName';
+import {BillContractCode} from '../../providers/TransferFeildName';
+import {TypeGetAsset,TypeGetAsset_AcceptApply,TypeGetAsset_TransferFunds,TypeGetAsset_TransferAdjust} from '../../providers/TransferFeildName';
+
+import {Page_AssetDetailsInfoPage} from '../../providers/TransferFeildName';
+//import {BillNumberCode} from '../../providers/TransferFeildName';
+//import {BillContractCode} from '../../providers/TransferFeildName';
+import {BillKeyCode} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AssetDetailsListInfoPage page.
@@ -9,10 +18,10 @@ import {AcceptAssetInfo} from '../../model/accept-asset-info.d';
  * Ionic pages and navigation.
  */
 
- const listGet:AcceptAssetInfo[]=[
-     {codeAsset: '0001', nameAsset: 'nsdfds', xhAsset: 'xdsc', oldValueAsset: '100.00', orderAsset: '', typeAsset: '',categoryAsset: '',depaetAsset: '',groupAsset: '',carAsset: '',unitAsset: '',venderAsset: '',numberAsset: '',productDateAsset: '',useDateAsset: '',useDirectionAsset: '',contractCodeAsset: '',getModelAsset: '',repairEndDateAsset: '',perUseLifeAsset: '',stateAsset: '',storePlaceAsset: '',custodianAsset: '',technicalDepartAsset: '',netWorthAsset: '',depreciationAsset: '',impairmentProvisionAsset: ''},
-     {codeAsset: '0002', nameAsset: 'ncds', xhAsset: 'xjt', oldValueAsset: '100.00', orderAsset: '', typeAsset: '',categoryAsset: '',depaetAsset: '',groupAsset: '',carAsset: '',unitAsset: '',venderAsset: '',numberAsset: '',productDateAsset: '',useDateAsset: '',useDirectionAsset: '',contractCodeAsset: '',getModelAsset: '',repairEndDateAsset: '',perUseLifeAsset: '',stateAsset: '',storePlaceAsset: '',custodianAsset: '',technicalDepartAsset: '',netWorthAsset: '',depreciationAsset: '',impairmentProvisionAsset: ''},
-     {codeAsset: '0003', nameAsset: 'nffs', xhAsset: 'xxs', oldValueAsset: '100.00', orderAsset: '', typeAsset: '',categoryAsset: '',depaetAsset: '',groupAsset: '',carAsset: '',unitAsset: '',venderAsset: '',numberAsset: '',productDateAsset: '',useDateAsset: '',useDirectionAsset: '',contractCodeAsset: '',getModelAsset: '',repairEndDateAsset: '',perUseLifeAsset: '',stateAsset: '',storePlaceAsset: '',custodianAsset: '',technicalDepartAsset: '',netWorthAsset: '',depreciationAsset: '',impairmentProvisionAsset: ''},
+ const listGet:AcceptAssetMain[]=[
+     {assetsCode: '0001', assetsName: 'nsdfds', departCode: 'xdsc', keyCode: '100'},
+     {assetsCode: '0002', assetsName: 'ncds', departCode: 'xjt', keyCode: '100'},
+     {assetsCode: '0003', assetsName: 'nffs', departCode: 'xxs', keyCode: '100'},
  ];
 
 @IonicPage()
@@ -21,14 +30,30 @@ import {AcceptAssetInfo} from '../../model/accept-asset-info.d';
   templateUrl: 'asset-details-list-info.html',
 })
 export class AssetDetailsListInfoPage {
-	list:AcceptAssetInfo[];
+  billNumber:string;
+  contractCode:string;
+  acceptanceFlag:string;
+
+	list:AcceptAssetMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	this.list=listGet;
+    this.billNumber = this.navParams.get(BillNumberCode);
+    this.contractCode = this.navParams.get(BillContractCode);
+    this.acceptanceFlag = this.navParams.get(TypeGetAsset);
+
+    this.getList();
+  }
+
+  //获取列表信息
+  getList() {
+    /*this.topicService.getTopics(this.params).subscribe(
+      data => this.topics = data.data
+      );*/
+    this.list = listGet;
   }
   
-  toDetail(item: AcceptAssetInfo){
-  	this.navCtrl.push("AssetDetailsInfoPage", {"itemTranfer": item,'oper':'查看'});
+  toDetail(item: AcceptAssetMain){
+  	this.navCtrl.push(Page_AssetDetailsInfoPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode});
   }
 
   ionViewDidLoad() {

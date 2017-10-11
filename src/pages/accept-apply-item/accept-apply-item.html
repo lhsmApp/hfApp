@@ -35,10 +35,10 @@
                 <ion-label fixed>合同名称</ion-label>
                 <ion-input type="text" readonly formControlName="contractName" placeholder="自动带出"></ion-input>
             </ion-item>
-            <!--<ion-item >
-                <ion-label fixed>项目性质</ion-label>
+            <ion-item >
+                <ion-label fixed>项目单元编码</ion-label>
                 <ion-input type="text" readonly formControlName="elementCode" placeholder="自动带出"></ion-input>
-            </ion-item>-->
+            </ion-item>
             <ion-item >
                 <ion-label fixed>项目单元名称</ion-label>
                 <ion-input type="text" readonly formControlName="elementName" 
@@ -47,7 +47,7 @@
             <ion-item>
                 <ion-label fixed>申请单位</ion-label>
                 <ion-select type="text" [(ngModel)]="departCode" formControlName="departCode">
-                    <ion-option *ngFor="let dept of listDept" value="{{dept.codeDept}}">{{dept.nameDept}}</ion-option>
+                    <ion-option *ngFor="let dept of listDept" value="{{dept.departCode}}">{{dept.departName}}</ion-option>
                     <ion-option value=""></ion-option>
                 </ion-select>
             </ion-item>

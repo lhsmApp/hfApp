@@ -19,38 +19,20 @@ export class ScheduleApplyInfoPage {
   title:string;
     oper:string;
 	  itemTranfer:ScheduleManageInfo;
-    applyFrom:any;
   itemShow:ScheduleManageInfo;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public formBuilder: FormBuilder) {
     this.title = this.navParams.get("title");
   	this.oper = this.navParams.get("oper");
-  	this.itemTranfer = this.navParams.get("itemTranfer");
+  	this.itemShow = this.navParams.get("itemTranfer");
     this.getShowItem();
 
     //,'oper':'审批'
-
-    this.applyFrom = this.formBuilder.group({
-        progressOverviewScheduleManage: [this.itemTranfer.progressOverviewScheduleManage], 
-        completePercentageScheduleManage: [this.itemTranfer.completePercentageScheduleManage], 
-        designCompletedDateScheduleManage: [this.itemTranfer.designCompletedDateScheduleManage], 
-        drawCompletedDateScheduleManage: [this.itemTranfer.drawCompletedDateScheduleManage], 
-        planCompletionDateScheduleManage: [this.itemTranfer.planCompletionDateScheduleManage], 
-        actualStartDateScheduleManage: [this.itemTranfer.actualStartDateScheduleManage], 
-        planStartDateScheduleManage: [this.itemTranfer.planStartDateScheduleManage], 
-        practicalCompletionDateScheduleManage: [this.itemTranfer.practicalCompletionDateScheduleManage], 
-        finalAcceptanceDateScheduleManage: [this.itemTranfer.finalAcceptanceDateScheduleManage], 
-        preTransferDateScheduleManage: [this.itemTranfer.preTransferDateScheduleManage], 
-        auditReportDateScheduleManage: [this.itemTranfer.auditReportDateScheduleManage], 
-        applyDateScheduleManage: [this.itemTranfer.applyDateScheduleManage], 
-        applyUserScheduleManage: [this.itemTranfer.applyUserScheduleManage]
-    });
   }
 
   getShowItem(){
-    //this.itemTranfer.codeAcceptApply
-    //this.itemShow
+    //this.itemShow = new ScheduleManageInfo();
   }
 
   ionViewDidLoad() {

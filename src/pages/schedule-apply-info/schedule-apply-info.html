@@ -20,61 +20,84 @@
 
 
 <ion-content>
-	<form [formGroup]="applyFrom">
-		<ion-item-group>
-            <ion-item >
-                <ion-label fixed>进展概述</ion-label>
-                <ion-input readonly type="text" formControlName="progressOverviewScheduleManage"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>完工百分比</ion-label>
-                <ion-input readonly type="text" formControlName="completePercentageScheduleManage"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>设计完成时间</ion-label>
-                <ion-input readonly type="text" formControlName="designCompletedDateScheduleManage"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>施工图完成时间</ion-label>
-                <ion-input readonly type="text" formControlName="drawCompletedDateScheduleManage"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>计划完工时间</ion-label>
-                <ion-input readonly type="text" formControlName="planCompletionDateScheduleManage"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>实际开工时间</ion-label>
-                <ion-input readonly type="text" formControlName="actualStartDateScheduleManage"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>计划开工时间</ion-label>
-                <ion-input readonly type="text" formControlName="planStartDateScheduleManage"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>实际完工时间</ion-label>
-                <ion-input readonly type="text" formControlName="practicalCompletionDateScheduleManage"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>竣工验收时间</ion-label>
-                <ion-input readonly type="text" formControlName="finalAcceptanceDateScheduleManage"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>预达转资时间</ion-label>
-                <ion-input readonly type="text" formControlName="preTransferDateScheduleManage"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>审计报告日期</ion-label>
-                <ion-input readonly type="text" formControlName="auditReportDateScheduleManage"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>填报日期</ion-label>
-                <ion-input readonly type="text" formControlName="applyDateScheduleManage"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>填报人</ion-label>
-                <ion-input readonly type="text" formControlName="applyUserScheduleManage"></ion-input>
-            </ion-item>
-		</ion-item-group>
-	</form>
-
+	<ion-item-group insert>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>进展概述：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.progressOverviewScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>完工百分比：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.completePercentageScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>设计完成时间：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.designCompletedDateScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>施工图完成时间：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.drawCompletedDateScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>计划完工时间：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.planCompletionDateScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>实际开工时间：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.actualStartDateScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>计划开工时间：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.planStartDateScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>实际完工时间：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.practicalCompletionDateScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>竣工验收时间：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.finalAcceptanceDateScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>预达转资时间：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.preTransferDateScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>审计报告日期：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.auditReportDateScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>填报日期：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.applyDateScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>填报人：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.applyUserScheduleManage}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+	</ion-item-group>
 </ion-content>

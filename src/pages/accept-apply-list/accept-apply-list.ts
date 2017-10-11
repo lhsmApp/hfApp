@@ -3,6 +3,12 @@ import {Storage} from '@ionic/storage';
 import {NavController, NavParams, ViewController,IonicPage} from 'ionic-angular';
 import {AcceptApplyMain} from '../../model/accept-apply-main';
 
+import {Page_AcceptApplyInfoPage,Page_AcceptApplyItemPage} from '../../providers/TransferFeildName';
+import {Oper,Oper_Look,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
+import {Title} from '../../providers/TransferFeildName';
+import {BillNumberCode} from '../../providers/TransferFeildName';
+
+
 /**
  * Generated class for the AcceptApplyListPage page.
  *
@@ -93,17 +99,17 @@ export class AcceptApplyListPage {
   }
 
     toDetail(billNumber: string) {
-        this.navCtrl.push("AcceptApplyInfoPage", {'CodeTranfer': billNumber,'oper':'查看','title':'验收申请'});
+        this.navCtrl.push(Page_AcceptApplyInfoPage, {BillNumberCode: billNumber,Oper:Oper_Look,Title:'验收申请'});
     }
 
   //增加
     add(){
-        this.navCtrl.push("AcceptApplyItemPage", {'CodeTranfer': '','oper':'添加'});
+        this.navCtrl.push(Page_AcceptApplyItemPage, {BillNumberCode: '',Oper:Oper_Add});
     }
 
   //编辑
   edit(billNumber: string){
-        this.navCtrl.push("AcceptApplyItemPage", {'CodeTranfer': billNumber,'oper':'编辑'});
+        this.navCtrl.push(Page_AcceptApplyItemPage, {BillNumberCode: billNumber,Oper:Oper_Edit});
   }
 
   //删除

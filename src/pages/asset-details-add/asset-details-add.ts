@@ -1,7 +1,17 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {AcceptAssetInfo} from '../../model/accept-asset-info.d';
-import {AssetInfo} from '../../model/asset-detail-info.d';
+import {AcceptAssetDetail} from '../../model/accept-asset-detail';
+import {DicAsset} from '../../model/dic-asset';
+
+import {BillNumberCode} from '../../providers/TransferFeildName';
+import {BillContractCode} from '../../providers/TransferFeildName';
+
+import {Page_AssetDetailsItemPage} from '../../providers/TransferFeildName';
+import {Oper,Oper_Add} from '../../providers/TransferFeildName';
+//import {BillNumberCode} from '../../providers/TransferFeildName';
+//import {BillContractCode} from '../../providers/TransferFeildName';
+import {BillKeyCode} from '../../providers/TransferFeildName';
+import {ItemTranfer} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AssetDetailsAddPage page.
@@ -10,10 +20,10 @@ import {AssetInfo} from '../../model/asset-detail-info.d';
  * Ionic pages and navigation.
  */
 
- const listGet:AssetInfo[]=[
-     {isCheck: false, codeAsset: '0001', nameAsset: 'nsdfds', xhAsset: 'xdsc', oldValueAsset: '100.00'},
-     {isCheck: false, codeAsset: '0002', nameAsset: 'ncds', xhAsset: 'xjt', oldValueAsset: '100.00'},
-     {isCheck: false, codeAsset: '0003', nameAsset: 'nffs', xhAsset: 'xxs', oldValueAsset: '100.00'},
+ const listGet:DicAsset[]=[
+     {isCheck: false, assetsCode: '0001', assetsName: 'nsdfds', assetsStandard: 'xdsc', unitCode:'',scrapValue: '100.00',markTail:'',depreciateYear:8},
+     {isCheck: false, assetsCode: '0002', assetsName: 'ncds', assetsStandard: 'xjt', unitCode:'',scrapValue: '100.00',markTail:'',depreciateYear:7},
+     {isCheck: false, assetsCode: '0003', assetsName: 'nffs', assetsStandard: 'xxs', unitCode:'',scrapValue: '100.00',markTail:'',depreciateYear:5},
  ];
 
 @IonicPage()
@@ -22,8 +32,11 @@ import {AssetInfo} from '../../model/asset-detail-info.d';
   templateUrl: 'asset-details-add.html',
 })
 export class AssetDetailsAddPage {
-	list:AssetInfo[];
-  transferItem:AcceptAssetInfo;
+  billNumber:string;
+  contractCode:string;
+
+	list:DicAsset[];
+  transferItem:AcceptAssetDetail;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	this.list=listGet;
@@ -37,13 +50,22 @@ export class AssetDetailsAddPage {
   	
   }
 
-  toDetail(item: AssetInfo){
-    this.transferItem = {codeAsset: item.codeAsset, nameAsset: item.nameAsset, xhAsset: item.xhAsset, oldValueAsset: item.oldValueAsset, orderAsset: '', typeAsset: '',categoryAsset: '',depaetAsset: '',groupAsset: '',carAsset: '',unitAsset: '',venderAsset: '',numberAsset: '',productDateAsset: '',useDateAsset: '',useDirectionAsset: '',contractCodeAsset: '',getModelAsset: '',repairEndDateAsset: '',perUseLifeAsset: '',stateAsset: '',storePlaceAsset: '',custodianAsset: '',technicalDepartAsset: '',netWorthAsset: '',depreciationAsset: '',impairmentProvisionAsset: ''};
-    this.transferItem.codeAsset = item.codeAsset;
-    this.transferItem.nameAsset = item.nameAsset;//资产名称
-    this.transferItem.xhAsset = item.xhAsset;//规格型号
-    this.transferItem.oldValueAsset = item.oldValueAsset;//原值
-  	this.navCtrl.push("AssetDetailsItemPage", {"itemTranfer": this.transferItem,'oper':'添加'});
+  toDetail(item: DicAsset){
+    this.transferItem = new AcceptAssetDetail();
+    this.transferItem.assetsCode = item.assetsCode;//资产编码
+    this.transferItem.assetsName = item.assetsName;//资产名称
+    this.transferItem.assetsStandard = item.assetsStandard;//规格型号
+    this.transferItem.unitCode = item.unitCode;//计量单位
+    this.transferItem.contractCode = this.contractCode;//合同编号
+    this.transferItem.depreciateYear = item.depreciateYear;//预计使用年限
+    //this.transferItem.assetsType//资产类型
+    //this.transferItem.originalValue//原值
+    //this.transferItem.nowValue//净值
+    //this.transferItem.addDepreciate//累计折旧
+    //this.transferItem.devalueValue//减值准备
+    //this.transferItem.xh: string;//序号"
+    //this.transferItem.keyCode: string;//资产键码
+    this.navCtrl.push(Page_AssetDetailsItemPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: '',ItemTranfer: this.transferItem,Oper:Oper_Add});
   }
 
 }

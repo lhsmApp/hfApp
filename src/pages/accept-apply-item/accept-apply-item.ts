@@ -3,7 +3,13 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {Storage} from '@ionic/storage';
 import {IonicPage, NavController, NavParams, AlertController, ViewController} from 'ionic-angular';
 import {AcceptApplyDetail} from '../../model/accept-apply-detail';
-import {DepartInfo} from '../../model/depart-info.d';
+import {DicDepart} from '../../model/dic-depart';
+
+import {Oper,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
+import {BillNumberCode} from '../../providers/TransferFeildName';
+
+import {Page_ContractChoiceListPage,Page_AssetDetailsListPage} from '../../providers/TransferFeildName';
+import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AcceptApplyItemPage page.
@@ -12,11 +18,11 @@ import {DepartInfo} from '../../model/depart-info.d';
  * Ionic pages and navigation.
  */
 
-  const listDeptGet: DepartInfo[]=[
-      {codeDept:'1',nameDept:'单位1'},
-      {codeDept:'2',nameDept:'单位2'},
-      {codeDept:'3',nameDept:'单位3'},
-      {codeDept:'4',nameDept:'单位4'},
+  const listDeptGet: DicDepart[]=[
+      {departCode:'1',departName:'单位1',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
+      {departCode:'2',departName:'单位2',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
+      {departCode:'3',departName:'单位3',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
+      {departCode:'4',departName:'单位4',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
   ]
 
 @IonicPage()
@@ -27,9 +33,10 @@ import {DepartInfo} from '../../model/depart-info.d';
 export class AcceptApplyItemPage {
   oper:string;
   billNumber:string;
+
   applyFrom:any;
   itemShow:AcceptApplyDetail;
-  listDept: DepartInfo[];
+  listDept: DicDepart[];
 
   constructor(public navCtrl: NavController,
               public params: NavParams,
@@ -37,8 +44,8 @@ export class AcceptApplyItemPage {
               private storage: Storage,
               private alertCtrl: AlertController, 
               private viewCtrl: ViewController) {
-  	this.oper = this.params.get("oper");
-  	this.billNumber = this.params.get("CodeTranfer");
+  	this.oper = this.params.get(Oper);
+  	this.billNumber = this.params.get(BillNumberCode);
     this.listDept = listDeptGet;
     this.getShowItem();
   }
@@ -48,8 +55,8 @@ export class AcceptApplyItemPage {
   }
 
   getShowItem(){
-    //this.CodeTranfer
     this.itemShow = new AcceptApplyDetail();
+    this.itemShow.billNumber = this.billNumber;
 
     this.applyFrom = this.formBuilder.group({
       contractCode: [this.itemShow.contractCode, [Validators.required]],
@@ -68,6 +75,9 @@ export class AcceptApplyItemPage {
     //this.storage.set('UserInfo', this.userInfo);
     //this.nativeService.showToast('保存成功');
     //this.viewCtrl.dismiss(this.userInfo);
+
+
+    //保存后设置this.billNumber
   }
 
 //送审
@@ -77,16 +87,21 @@ export class AcceptApplyItemPage {
   
   //资产明细
   toAssetDetail(){
-    if(this.oper==="添加"){
-        this.navCtrl.push("AssetDetailsAddPage", {'CodeTranfer': this.billNumber});
-    } else if(this.oper==="编辑"){
-        this.navCtrl.push("AssetDetailsListPage", {'CodeTranfer': this.billNumber});
-    } 
+    if(this.billNumber!=null&&this.billNumber.trim()!=""){
+        this.navCtrl.push(Page_AssetDetailsListPage,  {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, TypeGetAsset:TypeGetAsset_AcceptApply});
+    } else {
+      //提示单号为空，请先保存
+    }
+    //if(this.oper==="添加"){
+    //    this.navCtrl.push("AssetDetailsAddPage", {'CodeTranfer': this.billNumber});
+    //} else if(this.oper==="编辑"){
+    //    this.navCtrl.push("AssetDetailsListPage", {'CodeTranfer': this.billNumber});
+    //} 
   }
 
 //选择合同
   choiceContract(){
-    this.navCtrl.push("ContractChoiceListPage");
+    this.navCtrl.push(Page_ContractChoiceListPage);
   }
 
 }

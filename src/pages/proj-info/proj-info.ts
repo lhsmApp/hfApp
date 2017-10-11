@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ProjectUnitDetail} from '../../model/project-unit-detail';
 
+import {BillElementCode} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the ProjInfoPage page.
  *
@@ -19,12 +21,12 @@ export class ProjInfoPage {
   itemShow:ProjectUnitDetail;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	this.elementCode = this.navParams.get("CodeTranfer");
+  	this.elementCode = this.navParams.get(BillElementCode);
+
     this.getShowItem();
   }
 
   getShowItem(){
-    //this.CodeTranfer
     this.itemShow = new ProjectUnitDetail();
     this.itemShow.elementCode = this.elementCode;
   }

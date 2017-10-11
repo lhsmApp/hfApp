@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ContractMain} from '../../model/contract-main';
 
+import {Page_ContractChoiceConfirmPage} from '../../providers/TransferFeildName';
+import {BillContractCode} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the ContractChoiceListPage page.
  *
@@ -91,7 +94,7 @@ export class ContractChoiceListPage {
   }
 
     toDetail(contractCode: string) {
-        this.navCtrl.push("ContractChoiceConfirmPage", {'CodeTranfer': contractCode});
+        this.navCtrl.push(Page_ContractChoiceConfirmPage, {BillContractCode: contractCode});
     }
 
 }

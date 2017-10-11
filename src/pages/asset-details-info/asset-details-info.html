@@ -14,117 +14,168 @@
 
 
 <ion-content>
-	<form [formGroup]="assetFrom">
-        <ion-item-group>
-            <ion-item >
-                <ion-label fixed>序号</ion-label>
-                <ion-input readonly formControlName="orderAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>资产类型</ion-label>
-                <ion-input readonly formControlName="typeAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>资产类别</ion-label>
-                <ion-input readonly formControlName="categoryAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>资产编码</ion-label>
-                <ion-input readonly formControlName="codeAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>资产名称</ion-label>
-                <ion-input readonly formControlName="nameAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>所属单位</ion-label>
-                <ion-input readonly formControlName="depaetAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>所属资产组</ion-label>
-                <ion-input readonly formControlName="groupAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>规格型号</ion-label>
-                <ion-input readonly formControlName="xhAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>车牌井号</ion-label>
-                <ion-input readonly formControlName="carAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>计量单位</ion-label>
-                <ion-input readonly formControlName="unitAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>制作厂家</ion-label>
-                <ion-input readonly formControlName="venderAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>出厂编号</ion-label>
-                <ion-input readonly formControlName="numberAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>出厂日期</ion-label>
-                <ion-input readonly formControlName="productDateAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>投产日期</ion-label>
-                <ion-input readonly formControlName="useDateAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>使用方向</ion-label>
-                <ion-input readonly formControlName="useDirectionAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>合同编号</ion-label>
-                <ion-input readonly readonly formControlName="contractCodeAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>取得方式</ion-label>
-                <ion-input readonly formControlName="getModelAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>保修截止日期</ion-label>
-                <ion-input readonly formControlName="repairEndDateAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>预计使用年限</ion-label>
-                <ion-input readonly formControlName="perUseLifeAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>使用状态</ion-label>
-                <ion-input readonly formControlName="stateAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>存放地点</ion-label>
-                <ion-input readonly formControlName="storePlaceAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>保管人</ion-label>
-                <ion-input readonly formControlName="custodianAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>技术部门</ion-label>
-                <ion-input readonly formControlName="technicalDepartAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>原值</ion-label>
-                <ion-input readonly formControlName="oldValueAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>净值</ion-label>
-                <ion-input readonly formControlName="netWorthAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>累计折旧</ion-label>
-                <ion-input readonly formControlName="depreciationAsset"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>减值准备</ion-label>
-                <ion-input readonly formControlName="impairmentProvisionAsset"></ion-input>
-            </ion-item>
+        <ion-item-group inset>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>序号：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.xh}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>资产类型：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.assetsType}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>资产类别：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.assetsCodeType}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>资产编码：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.assetsCode}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>资产名称：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.assetsName}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>所属单位：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.departCode}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>所属资产组：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.entityCode}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>规格型号：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.assetsStandard}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>车牌井号：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.licenceNumber}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>计量单位：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.unitCode}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>制作厂家：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.makeFactory}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>出厂编号：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.factoryNumber}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>出厂日期：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.productDate}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>投产日期：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.operateDate}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>使用方向：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.usedAspect}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>合同编号：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.contractCode}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>取得方式：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.applyCode}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>保修截止日期：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.guaDate}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>预计使用年限：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.depreciateYear}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>使用状态：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.usedState}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>存放地点：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.storePlace}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>保管人：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.userPerson}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>技术部门：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.specialLine}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>原值：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.originalValue}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>净值：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.nowValue}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>累计折旧：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.addDepreciate}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>减值准备：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.devalueValue}}</span></ion-col>
+            </ion-row>
+        </ion-item>
 		</ion-item-group>
-	</form>
-
 </ion-content>
