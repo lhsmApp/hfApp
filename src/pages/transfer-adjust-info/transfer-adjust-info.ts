@@ -4,6 +4,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TransferAdjustMain} from '../../model/transfer-adjust-main';
 import {TransferAdjustDetail} from '../../model/transfer-adjust-detail';
 
+import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
+import {Title} from '../../providers/TransferFeildName';
+import {BillNumberCode} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the TransferAdjustInfoPage page.
  *
@@ -17,6 +21,7 @@ import {TransferAdjustDetail} from '../../model/transfer-adjust-detail';
   templateUrl: 'transfer-adjust-info.html',
 })
 export class TransferAdjustInfoPage {
+  isShow:boolean;
   title:string;
   oper:string;
   itemTranfer:TransferAdjustMain;
@@ -24,8 +29,12 @@ export class TransferAdjustInfoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private formBuilder: FormBuilder) {
+    this.isShow = false;
     this.title = this.navParams.get("title");
   	this.oper = this.navParams.get("oper");
+    if(this.oper === Oper_Approval){
+        this.isShow = true;
+    }
   	this.itemTranfer = this.navParams.get("itemTranfer");
     this.getShowItem();
 

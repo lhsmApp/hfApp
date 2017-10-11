@@ -23,6 +23,7 @@ import {TypeGetAsset,TypeGetAsset_TransferFunds} from '../../providers/TransferF
   templateUrl: 'transfer-funds-info.html',
 })
 export class TransferFundsInfoPage {
+  isShow:boolean;
   title:string;
   oper:string;
   translateCode:string;
@@ -31,8 +32,12 @@ export class TransferFundsInfoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private formBuilder: FormBuilder) {
+    this.isShow = false;
     this.title = this.navParams.get(Title);
   	this.oper = this.navParams.get(Oper);
+    if(this.oper === Oper_Approval){
+        this.isShow = true;
+    }
   	this.translateCode = this.navParams.get(BillNumberCode);
 
     this.getShowItem();

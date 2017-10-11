@@ -3,6 +3,10 @@ import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ScheduleManageInfo} from '../../model/schedule-manage-info.d';
 
+import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
+import {Title} from '../../providers/TransferFeildName';
+import {BillNumberCode} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the ScheduleApplyInfoPage page.
  *
@@ -16,6 +20,7 @@ import {ScheduleManageInfo} from '../../model/schedule-manage-info.d';
   templateUrl: 'schedule-apply-info.html',
 })
 export class ScheduleApplyInfoPage {
+  isShow:boolean;
   title:string;
     oper:string;
 	  itemTranfer:ScheduleManageInfo;
@@ -23,8 +28,12 @@ export class ScheduleApplyInfoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public formBuilder: FormBuilder) {
+    this.isShow = false;
     this.title = this.navParams.get("title");
   	this.oper = this.navParams.get("oper");
+    if(this.oper === Oper_Approval){
+        this.isShow = true;
+    }
   	this.itemShow = this.navParams.get("itemTranfer");
     this.getShowItem();
 

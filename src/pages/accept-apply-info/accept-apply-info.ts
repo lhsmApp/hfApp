@@ -22,6 +22,7 @@ import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFei
   templateUrl: 'accept-apply-info.html',
 })
 export class AcceptApplyInfoPage {
+  isShow:boolean;
   title:string;
   oper:string;
   billNumber:string;
@@ -29,12 +30,15 @@ export class AcceptApplyInfoPage {
   itemShow:AcceptApplyDetail;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.isShow = false;
     this.title = this.navParams.get(Title);
     this.oper = this.navParams.get(Oper);
+    if(this.oper === Oper_Approval){
+        this.isShow = true;
+    }
   	this.billNumber = this.navParams.get(BillNumberCode);
     this.getShowItem();
 
-    //this.oper === Oper_Approval
   }
 
   ionViewDidLoad() {
