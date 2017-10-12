@@ -12,6 +12,7 @@ import {Oper,Oper_Add} from '../../providers/TransferFeildName';
 //import {BillContractCode} from '../../providers/TransferFeildName';
 import {BillKeyCode} from '../../providers/TransferFeildName';
 import {ItemTranfer} from '../../providers/TransferFeildName';
+import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AssetDetailsAddPage page.
@@ -34,11 +35,16 @@ import {ItemTranfer} from '../../providers/TransferFeildName';
 export class AssetDetailsAddPage {
   billNumber:string;
   contractCode:string;
+  acceptanceFlag:string;
 
 	list:DicAsset[];
   transferItem:AcceptAssetDetail;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.billNumber = this.navParams.get(BillNumberCode);
+    this.contractCode = this.navParams.get(BillContractCode);
+    this.acceptanceFlag = this.navParams.get(TypeGetAsset);
+    
   	this.list=listGet;
   }
 
@@ -48,6 +54,10 @@ export class AssetDetailsAddPage {
 
   add(){
   	
+  }
+
+  viewDetail(){
+    
   }
 
   toDetail(item: DicAsset){

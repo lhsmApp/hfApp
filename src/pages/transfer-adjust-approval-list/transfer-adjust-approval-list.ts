@@ -10,10 +10,10 @@ import {TransferAdjustMain} from '../../model/transfer-adjust-main';
  */
 
   const listGet:TransferAdjustMain[] = [
-        { assetsCode: 'ZZ0001', assetsName: '2017-09-01', departCode: 'XXXXXX', keyCode: ''},
-        { assetsCode: 'ZZ0002', assetsName: '2017-09-01', departCode: 'XXXXX', keyCode: ''},
-        { assetsCode: 'ZZ0003', assetsName: '2017-09-01', departCode: 'XXXXXX', keyCode: ''},
-        { assetsCode: 'ZZ0004', assetsName: '2017-09-01', departCode: 'XXXXXX', keyCode: ''},
+        { assetsCode: 'ZZ0001', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
+        { assetsCode: 'ZZ0002', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
+        { assetsCode: 'ZZ0003', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
+        { assetsCode: 'ZZ0004', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
     ];
 
 @IonicPage()

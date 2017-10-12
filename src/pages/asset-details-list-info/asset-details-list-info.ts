@@ -19,9 +19,9 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
  */
 
  const listGet:AcceptAssetMain[]=[
-     {assetsCode: '0001', assetsName: 'nsdfds', departCode: 'xdsc', keyCode: '100'},
-     {assetsCode: '0002', assetsName: 'ncds', departCode: 'xjt', keyCode: '100'},
-     {assetsCode: '0003', assetsName: 'nffs', departCode: 'xxs', keyCode: '100'},
+     {assetsCode: '0001', assetsName: '资产名称', departCode: '单位', keyCode: '100'},
+     {assetsCode: '0002', assetsName: '资产名称', departCode: '单位', keyCode: '100'},
+     {assetsCode: '0003', assetsName: '资产名称', departCode: '单位', keyCode: '100'},
  ];
 
 @IonicPage()

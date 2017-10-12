@@ -4,8 +4,8 @@ import {Notice} from '../../model/notice';
 import {DEFAULT_YS,DEFAULT_YFK,DEFAULT_HT,DEFAULT_ZZ,DEFAULT_ZZTZ} from "../../providers/Constants";
 
 const NOTICES: Notice[] = [
-      { id: 11, name: 'Mr. Nice',isRead:false },
-      { id: 12, name: 'Narco',isRead:true  }
+      { id: 11, name: 'Mr. Nice',isRead:false ,messageContent:'消息内容', publishDate:'2016-01-06', userCode:'用户编码',username:'用户名称'},
+      { id: 12, name: 'Narco',isRead:true  ,messageContent:'消息内容', publishDate:'2016-01-06', userCode:'用户编码',username:'用户名称'}
     ];
 
 @Component({

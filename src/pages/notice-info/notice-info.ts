@@ -15,8 +15,11 @@ import {Notice} from '../../model/notice';
   templateUrl: 'notice-info.html',
 })
 export class NoticeInfoPage {
+  itemShow:Notice;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.itemShow = this.navParams.get("itemTranfer");
+
   }
 
   ionViewDidLoad() {

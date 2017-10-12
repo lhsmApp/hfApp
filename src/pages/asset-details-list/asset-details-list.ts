@@ -6,12 +6,13 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
 import {TypeGetAsset,TypeGetAsset_AcceptApply,TypeGetAsset_TransferFunds,TypeGetAsset_TransferAdjust} from '../../providers/TransferFeildName';
 
-import {Page_AssetDetailsInfoPage,Page_AssetDetailsAddPage,Page_AssetDetailsItemPage} from '../../providers/TransferFeildName';
+import {Page_AssetDetailsInfoPage,Page_AssetDetailsItemPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
 //import {BillNumberCode} from '../../providers/TransferFeildName';
 //import {BillContractCode} from '../../providers/TransferFeildName';
 import {BillKeyCode} from '../../providers/TransferFeildName';
 import {ItemTranfer} from '../../providers/TransferFeildName';
+//import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AssetDetailsListPage page.
@@ -21,9 +22,9 @@ import {ItemTranfer} from '../../providers/TransferFeildName';
  */
 
  const listGet:AcceptAssetMain[]=[
-     {assetsCode: '0001', assetsName: 'nsdfds', departCode: 'xdsc', keyCode: '100'},
-     {assetsCode: '0002', assetsName: 'ncds', departCode: 'xjt', keyCode: '100'},
-     {assetsCode: '0003', assetsName: 'nffs', departCode: 'xxs', keyCode: '100'},
+     {assetsCode: '0001', assetsName: '资产名称', departCode: '单位', keyCode: '100'},
+     {assetsCode: '0002', assetsName: '资产名称', departCode: '单位', keyCode: '100'},
+     {assetsCode: '0003', assetsName: '资产名称', departCode: '单位', keyCode: '100'},
  ];
 
 @IonicPage()
@@ -59,15 +60,15 @@ export class AssetDetailsListPage {
     console.log('ionViewDidLoad AssetDetailsListPage');
   }
 
-  add(){
-  	this.navCtrl.push(Page_AssetDetailsAddPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode,});
-  }
+  //add(){
+  //	this.navCtrl.push(Page_AssetDetailsAddPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, TypeGetAsset:TypeGetAsset_AcceptApply});
+  //}
   edit(item: AcceptAssetMain){
     this.navCtrl.push(Page_AssetDetailsItemPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode,ItemTranfer:[],Oper:Oper_Edit});
   }
-  toDetail(item: AcceptAssetMain){
-  	this.navCtrl.push(Page_AssetDetailsInfoPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode});
-  }
+  //toDetail(item: AcceptAssetMain){
+  //	this.navCtrl.push(Page_AssetDetailsInfoPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode});
+  //}
   delete(item: AcceptAssetMain){
     
   }

@@ -15,10 +15,10 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
  */
 
   const listGet:TransferFundsMain[] = [
-        { translateCode: 'ZZ0001', costTotal: 2017, elementName: 'XXXXXX', reviewStatus: '1'},
-        { translateCode: 'ZZ0002', costTotal: 209, elementName: 'XXXXX', reviewStatus: '2'},
-        { translateCode: 'ZZ0003', costTotal: 1701, elementName: 'XXXXXX', reviewStatus: '2'},
-        { translateCode: 'ZZ0004', costTotal: 7091, elementName: 'XXXXXX', reviewStatus: '3'},
+        { translateCode: 'ZZ0001', costTotal: 2017, elementName: '合同名称', reviewStatus: '1'},
+        { translateCode: 'ZZ0002', costTotal: 209, elementName: '合同名称', reviewStatus: '2'},
+        { translateCode: 'ZZ0003', costTotal: 1701, elementName: '合同名称', reviewStatus: '2'},
+        { translateCode: 'ZZ0004', costTotal: 7091, elementName: '合同名称', reviewStatus: '3'},
     ];
 
 @IonicPage()

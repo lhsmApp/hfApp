@@ -8,11 +8,11 @@
 
   <ion-navbar color="dark">
     <ion-title>资产明细</ion-title>
-    <ion-buttons end>
+    <!--<ion-buttons end>
       <button ion-button icon-only (click)="add()">
         <ion-icon name="add"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons>-->
   </ion-navbar>
 
 </ion-header>
@@ -20,14 +20,14 @@
 
 <ion-content>
 	<ion-list>
-	    <ion-item-sliding *ngFor="let item of list">
-		      <ion-item (click)="toDetail(item)">
+	    <!--<ion-item-sliding *ngFor="let item of list">-->
+		      <ion-item *ngFor="let item of list" (click)="edit(item)">
             <h2>{{item.assetsCode}}</h2><!--资产编码：-->
             <p>{{item.assetsName}}</p><!--资产名称：-->
             <p>{{item.departCode}}</p><!--所属单位-->
             <p item-end color="green">{{item.keyCode}}</p><!--资产键码-->
 		      </ion-item>
-          <ion-item-options side="right">
+          <!--<ion-item-options side="right">
               <button ion-button color="primary" (click)="edit(item)">
                 <ion-icon name="create"></ion-icon>
                 编辑
@@ -37,6 +37,6 @@
                 删除
               </button>
             </ion-item-options>
-		  </ion-item-sliding>
+		  </ion-item-sliding>-->
 	</ion-list>
 </ion-content>

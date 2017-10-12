@@ -42,15 +42,15 @@ export const Page_AssetDetailsListInfoPage = 'AssetDetailsListInfoPage';
 export const Page_AssetDetailsListPage = 'AssetDetailsListPage';
 //资产详情查看： BillNumberCode BillContractCode BillKeyCode
 export const Page_AssetDetailsInfoPage = 'AssetDetailsInfoPage';
-//资产详情添加： BillNumberCode BillContractCode
-export const Page_AssetDetailsAddPage = 'AssetDetailsAddPage';
+//资产详情添加： BillNumberCode BillContractCode TypeGetAsset
+//export const Page_AssetDetailsAddPage = 'AssetDetailsAddPage';
 //资产详情编辑： BillNumberCode BillContractCode BillKeyCode Oper:Oper_Add、Oper_Edit ItemTranfer
 export const Page_AssetDetailsItemPage = 'AssetDetailsItemPage';
 
 //项目单元详情查看： BillElementCode
 export const Page_ProjInfoPage = 'ProjInfoPage';
 
-//转资审批：Oper,Oper_Look Title BillNumberCode TypeGetAsset:TypeGetAsset_TransferFunds
+//转资审批：Oper,Oper_Look、Oper_Approval Title BillNumberCode TypeGetAsset:TypeGetAsset_TransferFunds
 export const Page_TransferFundsInfoPage = 'TransferFundsInfoPage';
 
 //公告

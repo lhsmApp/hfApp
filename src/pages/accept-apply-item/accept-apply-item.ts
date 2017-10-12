@@ -87,15 +87,16 @@ export class AcceptApplyItemPage {
   
   //资产明细
   toAssetDetail(){
-    if(this.billNumber!=null&&this.billNumber.trim()!=""){
-        this.navCtrl.push(Page_AssetDetailsListPage,  {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, TypeGetAsset:TypeGetAsset_AcceptApply});
-    } else {
-      //提示单号为空，请先保存
-    }
+      this.navCtrl.push(Page_AssetDetailsListPage,  {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, TypeGetAsset:TypeGetAsset_AcceptApply});
+    //if(this.billNumber!=null&&this.billNumber.trim()!=""){
+    //    this.navCtrl.push(Page_AssetDetailsListPage,  {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, TypeGetAsset:TypeGetAsset_AcceptApply});
+    //} else {
+    //  //提示单号为空，请先保存
+    //}
     //if(this.oper==="添加"){
-    //    this.navCtrl.push("AssetDetailsAddPage", {'CodeTranfer': this.billNumber});
+    //    this.navCtrl.push(Page_AssetDetailsAddPage, {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, TypeGetAsset:TypeGetAsset_AcceptApply});
     //} else if(this.oper==="编辑"){
-    //    this.navCtrl.push("AssetDetailsListPage", {'CodeTranfer': this.billNumber});
+    //    this.navCtrl.push(Page_AssetDetailsListPage,  {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, TypeGetAsset:TypeGetAsset_AcceptApply});
     //} 
   }
 
