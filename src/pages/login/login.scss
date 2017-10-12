@@ -5,6 +5,14 @@ page-login {
 
 	  position: relative;
 	  text-align: center;
+	  height: 100%;width: 100%;margin:0;padding:0;
+	  overflow:hidden;
+
+	  .loginContent {
+	    position: relative;
+	    text-align: center;
+	    background:white;
+	  }
 
 	  ion-card {
 	    position: relative;
@@ -23,7 +31,7 @@ page-login {
 
 	  .card-form{
 	    position: absolute;
-	    top: 30%;
+	    top: 28%;
 	    width: 100%;
 	  }
 

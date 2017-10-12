@@ -44,6 +44,10 @@ import {Logger} from "../providers/Logger";
 import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLeave} from "./modal-transitions";
 import {Diagnostic} from "@ionic-native/diagnostic";
 
+//Business Service
+import {LoginService} from '../services/LoginService';
+import {PaymentService} from '../services/paymentService';
+
 //指令
 import { TabDirective } from "../directive/";
 
@@ -109,7 +113,11 @@ import { TabDirective } from "../directive/";
     Helper,
     Utils,
     GlobalData,
-    Logger
+    Logger,
+
+    //service
+    LoginService,
+    PaymentService
   ]
 })
 export class AppModule {

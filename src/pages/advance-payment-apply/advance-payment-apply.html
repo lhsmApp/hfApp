@@ -20,22 +20,28 @@
 
 <ion-content>
 	<form [formGroup]="paymentForm" (ngSubmit)="(save())">
-    <ion-item-group inset>
+    <ion-item-group >
       <ion-item>
         <ion-label fixed>付款单号</ion-label>
-        <ion-input type="text" readonly formControlName="payCode"></ion-input>
+        <ion-input type="text" readonly formControlName="payCode" placeholder="保存后自动生成"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label fixed><span class="danger">*</span>款项类别</ion-label>
-        <ion-input type="text" formControlName="clauseType"></ion-input>
+        <ion-label fixed>款项类别<span class="danger">*</span></ion-label>
+        <!-- <ion-input type="text" formControlName="clauseType" placeholder="选择"></ion-input> -->
+        <ion-select [(ngModel)]="intercourseCode" formControlName="clauseType" style="left:0;" placeholder="选择">
+          <ion-option value="1">进度款</ion-option>
+          <ion-option value="2">预付款</ion-option>
+          <ion-option value="3">质保金</ion-option>
+          <ion-option value="4">验收款</ion-option>
+        </ion-select>
       </ion-item>
       <span *ngIf="!paymentForm.controls.clauseType.valid && paymentForm.controls.clauseType.touched"
             class="validation-failed">
           请选择款项类别
       </span>
       <ion-item>
-        <ion-label fixed><span class="danger">*</span>合同流水号</ion-label>
-        <ion-input type="text" readonly formControlName="contractCode"></ion-input>
+        <ion-label fixed>合同流水号<span class="danger">*</span></ion-label>
+        <ion-input type="text" readonly formControlName="contractCode" placeholder="选择" (focus)="choiceContract()"></ion-input>
       </ion-item>
       <span *ngIf="!paymentForm.controls.contractCode.valid && paymentForm.controls.contractCode.touched"
             class="validation-failed">
@@ -43,48 +49,48 @@
       </span>
       <ion-item>
         <ion-label fixed>合同名称</ion-label>
-        <ion-input type="text" readonly formControlName="contractName"></ion-input>
+        <ion-input type="text" readonly formControlName="contractName" placeholder="自动带出"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label fixed>项目性质</ion-label>
         
-        <ion-input type="text" readonly formControlName="elementType"></ion-input>
+        <ion-input type="text" readonly formControlName="elementType" placeholder="自动带出"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label fixed>项目单元名称</ion-label>
         
-        <ion-input type="text" readonly formControlName="elementName"></ion-input>
+        <ion-input type="text" readonly formControlName="elementName" placeholder="自动带出"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label fixed>项目核算类别</ion-label>
         
-        <ion-input type="text" readonly formControlName="planType"></ion-input>
+        <ion-input type="text" readonly formControlName="planType" placeholder="自动带出"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label fixed>合同标的额</ion-label>
-        <ion-input type="number" readonly formControlName="costMoney"></ion-input>
+        <ion-input type="number" readonly formControlName="costMoney" placeholder="自动带出"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label fixed>已付款额度</ion-label>
-        <ion-input type="number" readonly formControlName="taxMoney"></ion-input>
+        <ion-input type="number" readonly formControlName="taxMoney" placeholder="自动带出"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label fixed><span class="danger">*</span>付款原因</ion-label>
-        <ion-input type="text" formControlName="payDigest"></ion-input>
+        <ion-label fixed>付款原因<span class="danger">*</span></ion-label>
+        <ion-input type="text" formControlName="payDigest" placeholder="手工输入"></ion-input>
       </ion-item>
       <span *ngIf="!paymentForm.controls.payDigest.valid && paymentForm.controls.payDigest.touched"
             class="validation-failed">请输入付款原因
       </span>
       <ion-item>
-        <ion-label fixed><span class="danger">*</span>本次申请金额</ion-label>
-        <ion-input type="number" formControlName="payMoney"></ion-input>
+        <ion-label fixed>本次申请金额<span class="danger">*</span></ion-label>
+        <ion-input type="number" formControlName="payMoney" placeholder="手工输入"></ion-input>
       </ion-item>
       <span *ngIf="!paymentForm.controls.payMoney.valid && paymentForm.controls.payMoney.touched"
             class="validation-failed">请输入本次申请金额
       </span>
       <ion-item>
-        <ion-label fixed><span class="danger">*</span>付款单位</ion-label>
-        <ion-select [(ngModel)]="paymentCode" formControlName="paymentCode">
+        <ion-label fixed>付款单位<span class="danger">*</span></ion-label>
+        <ion-select [(ngModel)]="paymentCode" formControlName="paymentCode" placeholder="选择">
 	      <ion-option value="nes">NES</ion-option>
 	      <ion-option value="n64">Nintendo64</ion-option>
 	      <ion-option value="ps">PlayStation</ion-option>
@@ -97,8 +103,8 @@
             class="validation-failed">请选择付款单位
       </span>
       <ion-item>
-        <ion-label fixed><span class="danger">*</span>往来单位</ion-label>
-        <ion-select [(ngModel)]="intercourseCode" formControlName="intercourseCode" style="left:0;">
+        <ion-label fixed>往来单位<span class="danger">*</span></ion-label>
+        <ion-select [(ngModel)]="intercourseCode" formControlName="intercourseCode" style="left:0;" placeholder="选择">
 	      <ion-option value="nes">NES</ion-option>
 	      <ion-option value="n64">Nintendo64</ion-option>
 	      <ion-option value="ps">PlayStation</ion-option>
@@ -112,11 +118,11 @@
       </span>
       <ion-item>
         <ion-label fixed>申请时间</ion-label>
-        <ion-input type="text" readonly formControlName="requireDate"></ion-input>
+        <ion-input type="text" readonly formControlName="requireDate" placeholder="自动填写"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label fixed>申请人</ion-label>
-        <ion-input type="text" readonly formControlName="requireUser"></ion-input>
+        <ion-input type="text" readonly formControlName="requireUser" placeholder="自动填写"></ion-input>
       </ion-item>
       <ion-item-divider color="light"></ion-item-divider>
 	    <ion-item (click)='invoice(item)'>发票 <ion-icon name="more" item-end></ion-icon></ion-item>

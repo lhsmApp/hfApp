@@ -28,20 +28,19 @@ export class TabsPage implements OnInit {
    ngOnInit(): void {
      //this.userInfo = this.params.get('userInfo');
     //this.avatarPath = this.params.get('avatarPath');
-    let loginInfo=this.navParams.get('loginInfo');
-    let userInfo = loginInfo.user;
-    console.log(userInfo);
-    this.globalData.userId = userInfo.id;
-      this.globalData.username = userInfo.username;
-      this.globalData.fullName = userInfo.fullName;
-      if (!userInfo.avatarPath) {
-        this.helper.loadAvatarPath(userInfo.avatarId).subscribe(avatarPath => {
-          userInfo.avatarPath = avatarPath;
-          this.storage.set('LoginInfo', loginInfo);
-        });
-      }
-      this.helper.setTags();
-      this.helper.setAlias(userInfo.id);
+    let userinfo=this.navParams.get('userinfo');
+    console.log(userinfo);
+    this.globalData.userCode = userinfo.userCode;
+    this.globalData.userName = userinfo.userName;
+    this.globalData.sessionId=userinfo.sessionId;
+    if (!userinfo.avatarPath) {
+      this.helper.loadAvatarPath(userinfo.avatarId).subscribe(avatarPath => {
+        userinfo.avatarPath = avatarPath;
+        this.storage.set('userinfo', userinfo);
+      });
+    }
+    //this.helper.setTags();
+    //this.helper.setAlias(userinfo.userCode);
   }
 
   /*ionViewWillEnter() {

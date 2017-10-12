@@ -1,35 +1,34 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Attachment} from '../../model/attachment';
 
-
 /**
- * Generated class for the AttachmentPage page.
+ * Generated class for the AttachmentInfoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
  const  ATTACHMENT_LIST: Attachment []= [  
  { attachmentCode: 'FKD2017080001', attachmentName: '办公发票', attachmentPath: 'http://102.'},
  { attachmentCode: 'FKD2017080004', attachmentName: '旅游发票' ,attachmentPath: 'http://102.'}
  ];
 
-
 @IonicPage()
 @Component({
-  selector: 'page-attachment',
-  templateUrl: 'attachment.html',
+  selector: 'page-attachment-info',
+  templateUrl: 'attachment-info.html',
 })
-export class AttachmentPage {
+export class AttachmentInfoPage {
 
   attachmentList:Attachment[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   	this.attachmentList=ATTACHMENT_LIST;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InvoiceApplyListPage');
+    //this.getList();
   }
 
   //获取发票列表信息
@@ -60,19 +59,4 @@ export class AttachmentPage {
   	this.attachmentList = ATTACHMENT_LIST;
   	refresher.complete();
   }
-
-  //增加
-  add(){
-    let modal = this.modalCtrl.create('AttachmentAddPage', {invoiceCode: '001'});
-    modal.present();
-    /*modal.onDidDismiss(data => {
-      data && (this.invoiceCode = data.invoiceCode)
-    });*/
-  }
-
-  //上传
-  upload(){
-
-  }
-
 }

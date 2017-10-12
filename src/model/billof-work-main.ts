@@ -11,4 +11,6 @@ export class BillOfWorkMain{
 	listNumber:string;//清单项目编号
 
 	listName :string;//清单项目名称
+
+	//checked:boolean;//是否选中
 }

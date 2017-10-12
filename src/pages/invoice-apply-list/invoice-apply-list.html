@@ -24,8 +24,8 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-list class="list-avatar-page">
-  	<ion-item-sliding *ngFor="let item of invoiceList" (click)="openPage(item.chalanNumber)">
-	    <ion-item>
+  	<ion-item-sliding *ngFor="let item of invoiceList" >
+	    <ion-item (click)="openPage(item.chalanNumber)">
 	      <h2>{{item.chalanNumber}}&nbsp;&nbsp;&nbsp;&nbsp;<button ion-button color="danger" outline>{{item.chalanMoney|number}}</button></h2>
 	      <!-- <h3 item-end>{{item.chalanMoney}}</h3> -->
 	      <p> {{item.chalanContent}} </p>

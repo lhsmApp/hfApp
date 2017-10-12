@@ -13,12 +13,12 @@
 
 <ion-content class="content-background">
   <ion-list class="mine-header">
-    <button ion-item (click)="edit()">
-      <ion-thumbnail item-left (click)="viewAvatar();$event.stopPropagation()">
+    <button ion-item ><!-- (click)="edit()" -->
+      <ion-thumbnail item-left ><!-- (click)="viewAvatar();$event.stopPropagation()" -->
         <img src="{{avatarPath}}">
       </ion-thumbnail>
-      <div>{{userInfo?.fullName}}</div>
-      <div class="description">{{userInfo?.description}}</div>
+      <h2>{{userInfo?.userName}}</h2>
+      <p class="description">{{userInfo?.departName}}</p>
     </button>
   </ion-list>
   <ion-list>
@@ -38,7 +38,7 @@
       关于
     </button>
     <button ion-item (click)="changeUnit()">
-      <ion-icon name="information-circle" item-left color="secondary"></ion-icon>
+      <ion-icon name="person" item-left color="orange"></ion-icon>
       切换单位
     </button>
   </ion-list>

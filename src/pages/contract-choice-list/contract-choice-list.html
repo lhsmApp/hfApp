@@ -21,10 +21,11 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-list>
-    <ion-item *ngFor="let item of list;trackBy:item?.contractCode" (click)="toDetail(item.contractCode)">
+    <ion-item *ngFor="let item of list;trackBy:item?.contractCode" (click)="selectContract(item)">
         <h2>{{item.contractCode}}</h2><!--合同编号：-->
         <p>{{item.contractName}}</p><!--合同名称：-->
         <p>{{item.requireUser}}</p><!--申请人：-->
+        <button ion-button color="secondary" clear item-end (click)='toDetail(item.contractCode)'>合同明细</button>
         <!--<h3 item-end><span  item-end [tab]="item"></span></h3>--><!--单据状态：checkResult -->
     </ion-item>
   </ion-list>

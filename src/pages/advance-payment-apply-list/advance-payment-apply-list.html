@@ -24,19 +24,19 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-list class="list-avatar-page">
-  	<ion-item-sliding *ngFor="let item of advancePaymentList;trackBy:item?.payCode" (click)="openPage(item.payCode)">
-	    <ion-item >
+  	<ion-item-sliding *ngFor="let item of advancePaymentList;trackBy:item?.payCode" >
+	    <ion-item (click)="openPage(item.payCode)">
 	      <h2>{{item.payCode}}</h2>
 	      <h3 item-end><span  item-end [tab]="item"></span></h3>
 	      <p> {{item.payDigest}} </p>
 	      <p> {{item.requireUser}} &nbsp;&nbsp;<ion-note>{{item.requireUser}}</ion-note></p>
 	    </ion-item>
 	    <ion-item-options side="right">
-	      <button ion-button color="primary" (click)="edit(item.payCode)">
+	      <button ion-button color="primary" (click)="edit(item.payCode);$event.stopPropagation()">
 	        <ion-icon name="create"></ion-icon>
 	        编辑
 	      </button>
-	      <button ion-button color="danger" (click)="delete(item.payCode)">
+	      <button ion-button color="danger" (click)="delete(item.payCode);$event.stopPropagation()">
 	        <ion-icon name="close"></ion-icon>
 	        删除
 	      </button>

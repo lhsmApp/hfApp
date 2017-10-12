@@ -36,8 +36,8 @@ export class ContractChoiceConfirmPage {
     console.log('ionViewDidLoad ContractChoiceConfirmPage');
   }
 
-  ok(){
+  /*ok(){
 
-  }
+  }*/
 
 }
