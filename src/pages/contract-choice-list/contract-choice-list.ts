@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 import {ContractMain} from '../../model/contract-main';
 
 import {Page_ContractChoiceConfirmPage} from '../../providers/TransferFeildName';
@@ -27,7 +27,7 @@ import {BillContractCode} from '../../providers/TransferFeildName';
 export class ContractChoiceListPage {
     list:ContractMain[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private viewCtrl: ViewController) {
     this.getList();
   }
 
@@ -97,4 +97,9 @@ export class ContractChoiceListPage {
         this.navCtrl.push(Page_ContractChoiceConfirmPage, {BillContractCode: contractCode});
     }
 
+  //选择合同
+  selectContract(selectItem){
+    this.viewCtrl.dismiss(selectItem);
+    //this.navCtrl.pop();
+  }
 }

@@ -31,11 +31,10 @@ export class MinePage {
   }
 
   ionViewWillEnter() {
-    this.storage.get('LoginInfo').then(loginInfo => {
-      let userInfo = loginInfo.user;
-      if (userInfo) {
-        this.userInfo = userInfo;
-        this.avatarPath = userInfo.avatarPath;
+    this.storage.get('userinfo').then(userinfo => {
+      if (userinfo) {
+        this.userInfo = userinfo;
+        this.avatarPath = userinfo.avatarPath;
       }
     });
   }
@@ -80,7 +79,7 @@ export class MinePage {
 
   //工作地图
   map() {
-    this.navCtrl.push(WorkMapPage);
+    //this.navCtrl.push(WorkMapPage);
   }
 
 

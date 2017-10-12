@@ -1,15 +1,16 @@
 import {Component} from '@angular/core';
-import {ModalController,NavController, ViewController, Platform, AlertController, Events} from 'ionic-angular';
+import {ModalController,NavController, ViewController, Platform, AlertController, Events,ToastController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {FormBuilder, Validators} from '@angular/forms';
 
-import {LoginService} from './LoginService';
+import {LoginService} from '../../services/LoginService';
 
 import {FindPasswordPage} from './find-password/find-password';
 import {RegisterPage} from './register/register';
 import { TabsPage } from '../../pages/tabs/tabs';
 
-import {UserInfo, LoginInfo} from "../../model/UserInfo";
+import {UserInfo, LoginInfo} from "../../model/userinfo";
+import {ResultBase} from "../../model/result-base";
 import {GlobalData} from "../../providers/GlobalData";
 import {Utils} from "../../providers/Utils";
 import {DEFAULT_LOGIN_BG} from "../../providers/Constants";
@@ -17,7 +18,7 @@ import {DEFAULT_LOGIN_BG} from "../../providers/Constants";
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  providers: [LoginService]
+  
 })
 export class LoginPage {
   userInfo: UserInfo;
@@ -27,6 +28,7 @@ export class LoginPage {
   loginBg:string=DEFAULT_LOGIN_BG;
 
   constructor(public navCtrl:NavController,
+              public toastCtrl: ToastController,
               private viewCtrl: ViewController,
               private formBuilder: FormBuilder,
               private storage: Storage,
@@ -37,8 +39,9 @@ export class LoginPage {
               private events: Events,
               private loginService: LoginService) {
     this.loginForm = this.formBuilder.group({
-      username: ['jiachao', [Validators.required, Validators.minLength(4)]],// 第一个参数是默认值
-      password: ['123456', [Validators.required, Validators.minLength(4)]]
+      username: ['gdliyh', [Validators.required, Validators.minLength(4)]],// 第一个参数是默认值
+      password: ['78005250', [Validators.required, Validators.minLength(4)]],
+      departCode:['',[Validators.required]]
     });
   }
 
@@ -47,6 +50,76 @@ export class LoginPage {
     this.storage.get('LoginInfo').then((loginInfo: LoginInfo) => {
       this.userInfo = loginInfo && loginInfo.user ? loginInfo.user : null;
     });
+  }
+
+  login(user) {
+    this.submitted = true;
+    this.loginService.login(user)
+      .subscribe(loginInfo => {
+        let resultBase:ResultBase=loginInfo[0] as ResultBase;
+        if(resultBase.result=='true'){
+          //console.log(this.loginInfo[2]);
+          this.storage.clear();//清除缓存
+          Utils.sessionStorageClear();//清除缓存
+          //this.globalData.token = loginInfo.access_token;
+          //this.globalData.sessionId = loginInfo.access_token;
+          this.submitted = false;
+          this.userInfo = loginInfo[1] as UserInfo;
+          this.userInfo.departCode=this.globalData.departCode;
+          this.userInfo.departName=this.globalData.departName;
+          this.navCtrl.push(TabsPage,{"userinfo":this.userInfo});
+          //this.events.publish('user:login');
+          //this.viewCtrl.dismiss(loginInfo.user);
+        }else{
+            console.log('fa');
+            let alert = this.alertCtrl.create({
+            title: '提示信息',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
+
+          /*let toast = this.toastCtrl.create({
+            message: resultBase.message,
+            duration: 3000
+          });
+          toast.present();*/
+          this.submitted = false;
+        }
+        
+      }, () => {
+        this.submitted = false;
+      });
+  }
+
+  //选择单位
+  selectDepart(){
+    console.log("select");
+    let modal = this.modalCtrl.create('DepartSelectPage',{'userinfo':this.loginForm.value});
+    modal.present();
+    modal.onDidDismiss(departInfo => {
+      if(departInfo){
+        let departCodeAndName:string[]=departInfo.split('|');
+        this.loginForm.patchValue({
+          departCode:departCodeAndName[1]
+        });
+        this.globalData.departCode = departCodeAndName[0];
+        this.globalData.departName=departCodeAndName[1];
+      }
+    });
+  }
+
+
+  /*toRegister() {
+    this.canLeave = true;
+    let modal = this.modalCtrl.create(RegisterPage);
+    modal.present();
+  }
+
+  findPassword() {
+    this.canLeave = true;
+    let modal = this.modalCtrl.create(FindPasswordPage);
+    modal.present();
   }
 
   ionViewCanLeave(): boolean {
@@ -67,37 +140,5 @@ export class LoginPage {
       }).present();
       return false;
     }
-  }
-
-  login(user) {
-    this.submitted = true;
-    this.loginService.login(user)
-      .subscribe(loginInfo => {
-        console.log(loginInfo);
-        this.storage.clear();//清除缓存
-        Utils.sessionStorageClear();//清除缓存
-        this.globalData.token = loginInfo.access_token;
-        this.submitted = false;
-        this.userInfo = loginInfo.user;
-        this.navCtrl.push(TabsPage,{"loginInfo":loginInfo});
-        //this.events.publish('user:login');
-        this.viewCtrl.dismiss(loginInfo.user);
-      }, () => {
-        this.submitted = false;
-      });
-  }
-
-
-  toRegister() {
-    this.canLeave = true;
-    let modal = this.modalCtrl.create(RegisterPage);
-    modal.present();
-  }
-
-  findPassword() {
-    this.canLeave = true;
-    let modal = this.modalCtrl.create(FindPasswordPage);
-    modal.present();
-  }
-
+  }*/
 }

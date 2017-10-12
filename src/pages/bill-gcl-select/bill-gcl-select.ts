@@ -28,9 +28,13 @@ const  WORK_LIST: BillOfWorkMain []= [
 export class BillGclSelectPage {
 
   workList:BillOfWorkMain[];
+  callback:any;
+  payCode:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-	this.workList=WORK_LIST;
+	  this.workList=WORK_LIST;
+    this.callback    = this.navParams.get('callback');
+    this.payCode=this.navParams.get('payCode');
   }
 
 
@@ -81,7 +85,8 @@ export class BillGclSelectPage {
 
   //确定选择
   confirm(){
-  	this.navCtrl.pop();
+    this.callback(this.workList).then(()=>{ this.navCtrl.pop() });
+  	//this.navCtrl.pop();
   }
 
   //查看明细

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController,ModalController } from 'ionic-angular';
 import {FormBuilder, Validators} from '@angular/forms';
 import { AdvancePaymentDetail} from '../../model/advance-payment-detail';
+import {Page_ContractChoiceListPage} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AdvancePaymentApplyPage page.
@@ -21,7 +22,7 @@ export class AdvancePaymentApplyPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private viewCtrl: ViewController,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,private modalCtrl: ModalController) {
   	/*this.paymentForm = this.formBuilder.group({
       username: [, [Validators.required, Validators.pattern('[(\u4e00-\u9fa5)0-9a-zA-Z\_\s@]+')]],
       verificationCode: [, [Validators.required, Validators.minLength(6), Validators.pattern('1[0-9]{6}')]],
@@ -55,6 +56,24 @@ export class AdvancePaymentApplyPage {
     
   }
 
+  //选择合同
+  choiceContract(){
+    //this.navCtrl.push(Page_ContractChoiceListPage);
+    let modal = this.modalCtrl.create(Page_ContractChoiceListPage);
+    modal.present();
+    modal.onDidDismiss(contractInfo => {
+      console.log(contractInfo);
+      if(contractInfo){
+        this.paymentForm.patchValue({
+          contractCode:contractInfo.contractCode,
+          contractName:contractInfo.contractName,
+          /*elementType:contractInfo.elementType,
+          elementName:contractInfo.elementName*/
+        });
+      }
+    });
+  }
+
   //保存
   save(){
 
@@ -64,8 +83,20 @@ export class AdvancePaymentApplyPage {
   invoice(paymentDetail:AdvancePaymentDetail){
   	//let payCode=paymentDetail.payCode;
   	//let contractCode=paymentDetail.contractCode;
-    this.navCtrl.push("InvoiceApplyListPage");
+    this.navCtrl.push("InvoiceApplyListPage",{payCode:paymentDetail.payCode,callback:this.getData});
   }
+
+  //回调获取选择的工程量清单
+  getData = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      /*for (let order of orders) {
+        this.data = data;
+      }*/
+      console.log(data);
+      resolve();
+    });
+  };
 
   //工程量清单
   billOfGcl(paymentDetail:AdvancePaymentDetail){
@@ -74,4 +105,8 @@ export class AdvancePaymentApplyPage {
     this.navCtrl.push("BillGclSelectPage");
   }
 
+  //送审
+  send(){
+
+  }
 }

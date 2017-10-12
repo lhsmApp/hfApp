@@ -6,10 +6,13 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class GlobalData {
 
-  private _userId: string;//用户id
-  private _username: string;//用户名
-  private _fullName: string;//姓名
-  private _token: string;//token
+  private _userCode: string;//用户编码
+  private _userName: string;//用户名
+  /*private _fullName: string;//姓名
+  private _token: string;//token*/
+  private _sessionId:string;//sessionID
+  private _departCode:string;//当前登录部门
+  private _departName:string;//当前登录部门名称
 
   //设置http请求是否显示loading,注意:设置为true,接下来的请求会不显示loading,请求执行完成会自动设置为false
   private _showLoading: boolean = true;
@@ -17,23 +20,47 @@ export class GlobalData {
   //app更新进度.默认为0,在app升级过程中会改变
   private _updateProgress: number = -1;
 
-  get userId(): string {
-    return this._userId;
+  get sessionId(): string {
+    return this._sessionId;
   }
 
-  set userId(value: string) {
-    this._userId = value;
+  set sessionId(value: string) {
+    this._sessionId = value;
   }
 
-  get username(): string {
-    return this._username;
+  get userCode(): string {
+    return this._userCode;
   }
 
-  set username(value: string) {
-    this._username = value;
+  set userCode(value: string) {
+    this._userCode = value;
   }
 
-  get fullName(): string {
+  get userName(): string {
+    return this._userName;
+  }
+
+  set userName(value: string) {
+    this._userName = value;
+  }
+
+  get departCode(): string {
+    return this._departCode;
+  }
+
+  set departCode(value: string) {
+    this._departCode = value;
+  }
+
+  get departName(): string {
+    return this._departName;
+  }
+
+  set departName(value: string) {
+    this._departName = value;
+  }
+
+  /*get fullName(): string {
     return this._fullName;
   }
 
@@ -47,7 +74,7 @@ export class GlobalData {
 
   set token(value: string) {
     this._token = value;
-  }
+  }*/
 
   get showLoading(): boolean {
     return this._showLoading;

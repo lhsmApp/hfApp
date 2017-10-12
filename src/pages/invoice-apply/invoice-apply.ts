@@ -40,4 +40,8 @@ export class InvoiceApplyPage {
     console.log('ionViewDidLoad InvoiceApplyPage');
   }
 
+  //附件列表
+  attachment(item){
+    this.navCtrl.push("AttachmentPage");
+  }
 }
