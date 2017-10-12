@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ScheduleManageInfo} from '../../model/schedule-manage-info.d'
 
+import {Page_ScheduleApplyInfoPage} from '../../providers/TransferFeildName';
+import {Oper,Oper_Approval} from '../../providers/TransferFeildName';
+import {Title} from '../../providers/TransferFeildName';
+import {ItemTranfer} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the ScheduleApprovalListPage page.
  *
@@ -63,7 +68,7 @@ export class ScheduleApprovalListPage {
   }
 
     toDetail(item: ScheduleManageInfo) {
-        this.navCtrl.push("ScheduleApplyInfoPage", {'itemTranfer': item,'oper':'审批', 'title': '进度管理'});
+        this.navCtrl.push(Page_ScheduleApplyInfoPage, {ItemTranfer: item,Oper:Oper_Approval, Title: '进度管理'});
     }
 
   ionViewDidLoad() {

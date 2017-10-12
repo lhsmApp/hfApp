@@ -3,6 +3,9 @@ import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ScheduleManageInfo} from '../../model/schedule-manage-info.d';
 
+import {Oper,Oper_Edit,Oper_Add} from '../../providers/TransferFeildName';
+import {ItemTranfer} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the ScheduleApplyItemPage page.
  *
@@ -24,8 +27,8 @@ export class ScheduleApplyItemPage {
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams,
               public formBuilder: FormBuilder) {
-  	this.oper = this.navParams.get("oper");
-  	this.itemTranfer = this.navParams.get("itemTranfer");
+  	this.oper = this.navParams.get(Oper);
+  	this.itemTranfer = this.navParams.get(ItemTranfer);
     this.getShowItem();
 
     this.applyFrom = this.formBuilder.group({

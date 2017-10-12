@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {TransferAdjustMain} from '../../model/transfer-adjust-main';
 import {TransferAdjustDetail} from '../../model/transfer-adjust-detail';
 
@@ -27,8 +27,10 @@ export class TransferAdjustInfoPage {
   itemTranfer:TransferAdjustMain;
   itemShow:TransferAdjustDetail;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private formBuilder: FormBuilder,
+              public alertCtrl: AlertController) {
     this.isShow = false;
     this.title = this.navParams.get("title");
   	this.oper = this.navParams.get("oper");
@@ -52,7 +54,40 @@ export class TransferAdjustInfoPage {
   }
 
   check(){
+    let prompt = this.alertCtrl.create({
+      title: '审批',
+      message: "请输入审批意见",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: '请输入审批意见'
+        },
+      ],
+      
+    });
 
+    prompt.addButton({
+        text: '取消',
+        cssClass:'alertButtionCancel',
+        role: 'cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      });
+    prompt.addButton({
+        text: '不通过',
+        cssClass:'alertButtionNo',
+        handler: data => {
+          console.log(data);
+        }
+      });
+    prompt.addButton({
+      text: '通过',
+      cssClass:'alertButtionYes',
+      handler: data => {
+      }
+    });
+    prompt.present();
   }
 
   ionViewDidLoad() {

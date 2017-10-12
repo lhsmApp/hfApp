@@ -4,7 +4,7 @@ import {NavController, NavParams, ViewController,IonicPage} from 'ionic-angular'
 import {AcceptApplyMain} from '../../model/accept-apply-main';
 
 import {Page_AcceptApplyInfoPage,Page_AcceptApplyItemPage} from '../../providers/TransferFeildName';
-import {Oper,Oper_Look,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
+import {Oper,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
 
@@ -17,10 +17,10 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
  */
 
   const listGet:AcceptApplyMain[] = [
-        { billNumber: 'XMDY0001', reviewStatus: '新增', requireDate: '2017-09-25', requireUser: '申请人'},
-        { billNumber: 'XMDY0002', reviewStatus: '退回', requireDate: '2017-09-25', requireUser: '申请人'},
-        { billNumber: 'XMDY0003', reviewStatus: '退回', requireDate: '2017-09-25', requireUser: '申请人'},
-        { billNumber: 'XMDY0004', reviewStatus: '退回', requireDate: '2017-09-25', requireUser: '申请人'},
+        { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人'},
+        { billNumber: 'XMDY0002', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人'},
+        { billNumber: 'XMDY0003', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
+        { billNumber: 'XMDY0004', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
     ];
 
 @IonicPage()
@@ -99,7 +99,7 @@ export class AcceptApplyListPage {
   }
 
     toDetail(billNumber: string) {
-        this.navCtrl.push(Page_AcceptApplyInfoPage, {BillNumberCode: billNumber,Oper:Oper_Look,Title:'验收申请'});
+        this.navCtrl.push(Page_AcceptApplyInfoPage, {BillNumberCode: billNumber,Oper:Oper_Edit,Title:'验收申请'});
     }
 
   //增加

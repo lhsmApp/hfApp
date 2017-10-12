@@ -16,10 +16,10 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
  */
 
   const listGet:AcceptApplyMain[] = [
-        { billNumber: 'XMDY0001', reviewStatus: '新增', requireDate: '2017-09-25', requireUser: '申请人'},
-        { billNumber: 'XMDY0002', reviewStatus: '退回', requireDate: '2017-09-25', requireUser: '申请人'},
-        { billNumber: 'XMDY0003', reviewStatus: '退回', requireDate: '2017-09-25', requireUser: '申请人'},
-        { billNumber: 'XMDY0004', reviewStatus: '退回', requireDate: '2017-09-25', requireUser: '申请人'},
+        { billNumber: 'XMDY0001', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
+        { billNumber: 'XMDY0002', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
+        { billNumber: 'XMDY0003', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
+        { billNumber: 'XMDY0004', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
     ];
 
 @IonicPage()

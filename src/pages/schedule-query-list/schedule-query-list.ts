@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ScheduleManageInfo} from '../../model/schedule-manage-info.d'
 
+import {Page_ScheduleApplyInfoPage} from '../../providers/TransferFeildName';
+import {Oper,Oper_Look} from '../../providers/TransferFeildName';
+import {Title} from '../../providers/TransferFeildName';
+import {ItemTranfer} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the ScheduleQueryListPage page.
  *
@@ -63,7 +68,7 @@ export class ScheduleQueryListPage {
   }
 
     toDetail(item: ScheduleManageInfo) {
-        this.navCtrl.push("ScheduleApplyInfoPage", {'itemTranfer': item,'oper':'查看', 'title': '进度管理'});
+        this.navCtrl.push(Page_ScheduleApplyInfoPage, {ItemTranfer: item,Oper:Oper_Look, Title: '进度管理'});
     }
 
   ionViewDidLoad() {

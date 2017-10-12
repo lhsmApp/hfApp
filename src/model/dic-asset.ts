@@ -1,5 +1,7 @@
 export class DicAsset {
   isCheck: boolean;
+
+  
   assetsCode: string;//资产编码", 
 assetsName: string;//资产名称", 
 assetsStandard: string;//规格型号",

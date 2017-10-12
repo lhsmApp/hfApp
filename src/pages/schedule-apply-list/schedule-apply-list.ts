@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ScheduleManageInfo} from '../../model/schedule-manage-info.d'
 
+import {Page_ScheduleApplyInfoPage,Page_ScheduleApplyItemPage} from '../../providers/TransferFeildName';
+import {Oper,Oper_Edit,Oper_Add} from '../../providers/TransferFeildName';
+import {Title} from '../../providers/TransferFeildName';
+import {ItemTranfer} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the ScheduleApplyListPage page.
  *
@@ -63,14 +68,14 @@ export class ScheduleApplyListPage {
   }
 
     toDetail(item: ScheduleManageInfo) {
-        this.navCtrl.push("ScheduleApplyInfoPage", {'itemTranfer': item,'oper':'查看', 'title': '进度管理'});
+        this.navCtrl.push(Page_ScheduleApplyInfoPage, {ItemTranfer: item,Oper:Oper_Edit, Title: '进度管理'});
     }
 
     add(){
-        this.navCtrl.push("ScheduleApplyItemPage", {'itemTranfer': [],'oper':'添加'});
+        this.navCtrl.push(Page_ScheduleApplyItemPage, {ItemTranfer: [],Oper:Oper_Add});
     }
     edit(item: ScheduleManageInfo){
-        this.navCtrl.push("ScheduleApplyItemPage", {'itemTranfer': item,'oper':'编辑'});
+        this.navCtrl.push(Page_ScheduleApplyItemPage, {ItemTranfer: item,Oper:Oper_Edit});
     }
     delete(item: ScheduleManageInfo){
         

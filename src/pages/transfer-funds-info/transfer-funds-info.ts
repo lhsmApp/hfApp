@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {TransferFundsDetail} from '../../model/transfer-funds-detail';
 
 import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
@@ -30,8 +30,10 @@ export class TransferFundsInfoPage {
 
   itemShow:TransferFundsDetail;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private formBuilder: FormBuilder,
+              public alertCtrl: AlertController) {
     this.isShow = false;
     this.title = this.navParams.get(Title);
   	this.oper = this.navParams.get(Oper);
@@ -56,7 +58,40 @@ export class TransferFundsInfoPage {
   }
 
   check(){
+    let prompt = this.alertCtrl.create({
+      title: '审批',
+      message: "请输入审批意见",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: '请输入审批意见'
+        },
+      ],
+      
+    });
 
+    prompt.addButton({
+        text: '取消',
+        cssClass:'alertButtionCancel',
+        role: 'cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      });
+    prompt.addButton({
+        text: '不通过',
+        cssClass:'alertButtionNo',
+        handler: data => {
+          console.log(data);
+        }
+      });
+    prompt.addButton({
+      text: '通过',
+      cssClass:'alertButtionYes',
+      handler: data => {
+      }
+    });
+    prompt.present();
   }
 
   ionViewDidLoad() {
