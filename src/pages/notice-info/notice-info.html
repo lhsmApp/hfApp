@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content padding>
         <ion-row row-2 text-center>
             <ion-col><span text-center><h2>{{itemShow.name}}</h2></span></ion-col>
         </ion-row>
@@ -27,12 +27,11 @@
               {{itemShow.publishDate}}
           </ion-col>
         </ion-row>
-        <ion-row>
+       <!--  <ion-row>
             <ion-col>
-            	<!--<ion-label background-color="green" margin="10px 10px" padding="0px 4px 0px 0px" border="1px black solid"
-            	           type="textarea">
-            	    {{itemShow.messageContent}}
-            	</ion-label>-->
+            	<ion-input type="textarea" [(ngModel)]="itemShow.messageContent">
+            	</ion-input>
             </ion-col>
-        </ion-row>
+        </ion-row> -->
+        <p>{{itemShow.messageContent}}</p>
 </ion-content>

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Storage} from '@ionic/storage';
-import {IonicPage, NavController, NavParams, AlertController, ViewController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ViewController,ModalController} from 'ionic-angular';
 import {AcceptApplyDetail} from '../../model/accept-apply-detail';
 import {DicDepart} from '../../model/dic-depart';
 
@@ -41,8 +41,7 @@ export class AcceptApplyItemPage {
   constructor(public navCtrl: NavController,
               public params: NavParams,
               private formBuilder: FormBuilder,
-              private storage: Storage,
-              private alertCtrl: AlertController, 
+              private modalCtrl: ModalController,
               private viewCtrl: ViewController) {
   	this.oper = this.params.get(Oper);
   	this.billNumber = this.params.get(BillNumberCode);
@@ -102,7 +101,16 @@ export class AcceptApplyItemPage {
 
 //选择合同
   choiceContract(){
-    this.navCtrl.push(Page_ContractChoiceListPage);
+    //this.navCtrl.push(Page_ContractChoiceListPage);
+    let modal = this.modalCtrl.create(Page_ContractChoiceListPage);
+    modal.present();
+    modal.onDidDismiss(contractInfo => {
+      console.log(contractInfo);
+      if(contractInfo){
+          this.itemShow.contractName = contractInfo.contractCode;
+          this.itemShow.contractName = contractInfo.contractName;
+      }
+    });
   }
 
 }

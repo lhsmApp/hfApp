@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 import {ReviewProcessMain} from '../../model/review-process-main';
 import {ReviewProcessDetail} from '../../model/review-process-detail';
 
@@ -32,7 +32,8 @@ export class ChoiceApproversPage {
   billNumber:string;
   list: ReviewProcessMain[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private viewCtrl: ViewController) {
   	this.billNumber = this.navParams.get(BillNumberCode);
 
   	this.list = mainList;
@@ -40,6 +41,14 @@ export class ChoiceApproversPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChoiceApproversPage');
+  }
+
+  ok(){
+    if(this.list!=null && this.list.length>0){
+        //this.viewCtrl.dismiss(this.list);
+        //this.viewCtrl.pop();
+        this.navCtrl.pop();
+    }
   }
 
 }
