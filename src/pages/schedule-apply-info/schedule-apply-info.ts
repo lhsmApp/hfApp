@@ -7,6 +7,8 @@ import {Oper,Oper_Look,Oper_Edit,Oper_Add,Oper_Approval} from '../../providers/T
 import {Title} from '../../providers/TransferFeildName';
 import {ItemTranfer} from '../../providers/TransferFeildName';
 
+import {Page_ChoiceApproversPage} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the ScheduleApplyInfoPage page.
  *
@@ -92,7 +94,7 @@ export class ScheduleApplyInfoPage {
   }
 
   send(){
-    
+      this.navCtrl.push(Page_ChoiceApproversPage, {BillNumberCode: this.itemShow.codeScheduleManage});
   }
 
 }

@@ -9,6 +9,7 @@ import {Oper,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
 
 import {Page_ContractChoiceListPage,Page_AssetDetailsListPage} from '../../providers/TransferFeildName';
+import {Page_ChoiceApproversPage} from '../../providers/TransferFeildName';
 import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFeildName';
 
 /**
@@ -81,7 +82,7 @@ export class AcceptApplyItemPage {
 
 //送审
   send(){
-
+      this.navCtrl.push(Page_ChoiceApproversPage, {BillNumberCode: this.billNumber});
   }
   
   //资产明细

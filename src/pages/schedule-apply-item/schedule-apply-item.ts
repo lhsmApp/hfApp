@@ -6,6 +6,8 @@ import {ScheduleManageInfo} from '../../model/schedule-manage-info.d';
 import {Oper,Oper_Edit,Oper_Add} from '../../providers/TransferFeildName';
 import {ItemTranfer} from '../../providers/TransferFeildName';
 
+import {Page_ChoiceApproversPage} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the ScheduleApplyItemPage page.
  *
@@ -59,6 +61,11 @@ export class ScheduleApplyItemPage {
     //this.storage.set('UserInfo', this.userInfo);
     //this.nativeService.showToast('保存成功');
     //this.viewCtrl.dismiss(this.userInfo);
+  }
+
+//送审
+  send(){
+      this.navCtrl.push(Page_ChoiceApproversPage, {BillNumberCode: this.itemTranfer.codeScheduleManage});
   }
 
   ionViewDidLoad() {
