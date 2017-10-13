@@ -19,6 +19,8 @@ import {Page_ContractChoiceListPage} from '../../providers/TransferFeildName';
 export class AdvancePaymentApplyPage {
   paymentForm: any;
   paymentDetail:AdvancePaymentDetail;
+  //回调获取选择的工程量清单
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private viewCtrl: ViewController,
@@ -79,34 +81,42 @@ export class AdvancePaymentApplyPage {
 
   }
 
-  //发票
-  invoice(paymentDetail:AdvancePaymentDetail){
-  	//let payCode=paymentDetail.payCode;
-  	//let contractCode=paymentDetail.contractCode;
-    this.navCtrl.push("InvoiceApplyListPage",{payCode:paymentDetail.payCode,callback:this.getData});
-  }
+  /*getData = function(data){
+    return new Promise((resolve, reject) => {
+      for (let order of orders) {
+        this.data = data;
+      }
+      console.log(data);
+      resolve();
+    });
+  };*/
 
-  //回调获取选择的工程量清单
   getData = (data) =>
   {
     return new Promise((resolve, reject) => {
-      /*for (let order of orders) {
-        this.data = data;
-      }*/
       console.log(data);
       resolve();
     });
   };
 
+  //发票
+  invoice(paymentDetail:AdvancePaymentDetail){
+  	//let payCode=paymentDetail.payCode;
+  	//let contractCode=paymentDetail.contractCode;
+    this.navCtrl.push("InvoiceApplyListPage");
+  }
+
+  
+
   //工程量清单
   billOfGcl(paymentDetail:AdvancePaymentDetail){
 	  //let payCode=paymentDetail.payCode;
   	//let contractCode=paymentDetail.contractCode;
-    this.navCtrl.push("BillGclSelectPage");
+    this.navCtrl.push("BillGclSelectPage",{'payCode':'001',callback:this.getData});
   }
 
   //送审
   send(){
-
+    this.navCtrl.push('ChoiceApproversPage');
   }
 }

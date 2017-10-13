@@ -59,7 +59,7 @@ export class ContractApprovalPage {
   //打开详情页
   openPage(id: string) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("ContractInfoPage",{id:id});
+  	this.navCtrl.push("ContractInfoPage",{id:id,approval:true});
   }
 
   //上拉刷新

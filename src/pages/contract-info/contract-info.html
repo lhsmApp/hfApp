@@ -8,6 +8,11 @@
 
   <ion-navbar color='dark'>
     <ion-title>合同明细</ion-title>
+    <ion-buttons end *ngIf="isapproval">
+      <button ion-button icon-only (click)="approval()">
+        <ion-icon name="document"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

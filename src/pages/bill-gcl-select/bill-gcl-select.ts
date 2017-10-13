@@ -28,13 +28,13 @@ const  WORK_LIST: BillOfWorkMain []= [
 export class BillGclSelectPage {
 
   workList:BillOfWorkMain[];
-  callback:any;
+  callback :any;
   payCode:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 	  this.workList=WORK_LIST;
+    this.payCode= this.navParams.get('payCode');
     this.callback    = this.navParams.get('callback');
-    this.payCode=this.navParams.get('payCode');
   }
 
 
