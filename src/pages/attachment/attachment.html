@@ -20,7 +20,7 @@
   <ion-list *ngFor="let item of attachmentList" (click)="openPage(item.attachmentCode)">
   	<ion-item>
 	    <ion-thumbnail item-start>
-	      <img src="../../assets/img/fukuanshenpi@2x.png">
+	      <img src="{{item.attachmentPath}}">
 	    </ion-thumbnail>
 	    <h2>{{item.attachmentName}}</h2>
 	    <p>{{item.attachmentCode}}</p>

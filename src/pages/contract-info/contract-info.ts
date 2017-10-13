@@ -75,7 +75,7 @@ export class ContractInfoPage {
 
   //附件
   attachment(){
-  	this.navCtrl.push("AttachmentPage");
+  	this.navCtrl.push("AttachmentInfoPage");
   }
 
 }

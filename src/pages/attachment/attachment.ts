@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
 import { Attachment} from '../../model/attachment';
-
+import {DEFAULT_INVOICE} from "../../providers/Constants";
 
 /**
  * Generated class for the AttachmentPage page.
@@ -10,8 +10,8 @@ import { Attachment} from '../../model/attachment';
  * Ionic pages and navigation.
  */
  const  ATTACHMENT_LIST: Attachment []= [  
- { attachmentCode: 'FKD2017080001', attachmentName: '办公发票', attachmentPath: 'http://102.'},
- { attachmentCode: 'FKD2017080004', attachmentName: '旅游发票' ,attachmentPath: 'http://102.'}
+ { attachmentCode: 'FKD2017080001', attachmentName: '办公发票', attachmentPath: DEFAULT_INVOICE},
+ { attachmentCode: 'FKD2017080004', attachmentName: '旅游发票' ,attachmentPath: DEFAULT_INVOICE}
  ];
 
 
