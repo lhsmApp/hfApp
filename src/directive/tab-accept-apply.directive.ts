@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({ selector: '[tab]' })
-export class TabAcceptDirective {
+export class TabAcceptApplyDirective {
   @Input('tab') set topic(topic: any) {
     this.setStyle(topic);
   }

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { AcceptApplyListPage } from './accept-apply-list';
-//import { TabAcceptDirective } from "../../directive/";
+import { TabAcceptApplyDirective } from "../../directive/";
 
 @NgModule({
   declarations: [
     AcceptApplyListPage,
-    //TabAcceptDirective
+    TabAcceptApplyDirective
   ],
   imports: [
     IonicPageModule.forChild(AcceptApplyListPage),
