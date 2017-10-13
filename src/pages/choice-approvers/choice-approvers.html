@@ -17,10 +17,9 @@
   <ion-item-group *ngFor="let mainItem of list" radio-group>
     <ion-item-divider color="light">
     	<!-- 审批序号 岗位编号 岗位名称 -->
-        <ion-label>
             <h2>审批序号:{{mainItem.sequence}}</h2>
-            <p>{{mainItem.dutyId}} {{mainItem.dutyName}}</p>
-        </ion-label>
+            <!-- <p>{{mainItem.dutyId}} {{mainItem.dutyName}}</p> -->
+            <p item-end>{{mainItem.dutyName}}</p>
     </ion-item-divider>
     <ion-item *ngFor="let detailItem of mainItem.reveiwPersonlist">
         <ion-radio color="dark" item-start ng-model="detailItem.isCheck">
