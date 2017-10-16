@@ -24,7 +24,7 @@ export class HttpService {
 
   public request(url: string, options: RequestOptionsArgs): Observable<Response> {
     url = Utils.formatUrl(url.startsWith('http') ? url : APP_SERVE_URL + url);
-    //this.optionsAddToken(options);
+    this.optionsAddToken(options);
     return Observable.create(observer => {
       this.nativeService.showLoading();
       console.log('%c 请求前 %c', 'color:blue', '', 'url', url, 'options', options);
@@ -172,5 +172,17 @@ export class HttpService {
         'Authorization': 'Bearer ' + token
       });
     }*/
+
+    let token = this.globalData.sessionId;
+    console.log(token);
+    if (options.headers) {
+      console.log('aaaaaa');
+      options.headers.append('Authorization', token);
+    } else {
+      console.log('ccccc');
+      options.headers = new Headers({
+        'Authorization': token
+      });
+    }
   }
 }
