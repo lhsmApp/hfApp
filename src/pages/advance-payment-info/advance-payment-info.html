@@ -12,6 +12,12 @@
       <button ion-button icon-only (click)="approval()">
         <ion-icon name="document"></ion-icon>
       </button>
+
+    </ion-buttons>
+    <ion-buttons end *ngIf="!isapproval">
+    	<button ion-button icon-only (click)="send()">
+        <ion-icon name="paper-plane"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 

@@ -74,4 +74,8 @@ export class AdvancePaymentInfoPage {
 	this.navCtrl.push("BillGclPage");
   }
 
+  //送审
+  send(){
+    this.navCtrl.push('ChoiceApproversPage');
+  }
 }

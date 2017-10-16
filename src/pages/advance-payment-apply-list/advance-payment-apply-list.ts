@@ -26,12 +26,12 @@ export class AdvancePaymentApplyListPage {
   advancePaymentList:AdvancePaymentMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
-  	this.advancePaymentList=ADVANTAGE_LIST;
+  	//this.advancePaymentList=ADVANTAGE_LIST;
   }
   
   //初始化View
   ionViewDidLoad() {
-    //this.getList();
+    this.getList();
   }
 
   //获取付款单列表信息
@@ -116,11 +116,6 @@ export class AdvancePaymentApplyListPage {
 
   //删除
   delete(payCode:string){
-
-  }
-
-  //送审
-  send(){
 
   }
 
