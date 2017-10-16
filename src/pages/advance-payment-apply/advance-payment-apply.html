@@ -28,11 +28,12 @@
       <ion-item>
         <ion-label fixed>款项类别<span class="danger">*</span></ion-label>
         <!-- <ion-input type="text" formControlName="clauseType" placeholder="选择"></ion-input> -->
-        <ion-select [(ngModel)]="intercourseCode" formControlName="clauseType" style="left:0;" placeholder="选择">
-          <ion-option value="1">进度款</ion-option>
+        <ion-select [(ngModel)]="intercourseCode" formControlName="clauseType" style="left:0;" placeholder="选择" cancelText="取消" okText="确定" multiple="true">
+          <!-- <ion-option value="1">进度款</ion-option>
           <ion-option value="2">预付款</ion-option>
           <ion-option value="3">质保金</ion-option>
-          <ion-option value="4">验收款</ion-option>
+          <ion-option value="4">验收款</ion-option> -->
+          <ion-option *ngFor="let category of paymentCategory" [value]="category.code">{{category.name}}</ion-option>
         </ion-select>
       </ion-item>
       <span *ngIf="!paymentForm.controls.clauseType.valid && paymentForm.controls.clauseType.touched"

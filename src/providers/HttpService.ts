@@ -24,7 +24,7 @@ export class HttpService {
 
   public request(url: string, options: RequestOptionsArgs): Observable<Response> {
     url = Utils.formatUrl(url.startsWith('http') ? url : APP_SERVE_URL + url);
-    this.optionsAddToken(options);
+    //this.optionsAddToken(options);
     return Observable.create(observer => {
       this.nativeService.showLoading();
       console.log('%c 请求前 %c', 'color:blue', '', 'url', url, 'options', options);
@@ -45,6 +45,7 @@ export class HttpService {
   public get(url: string, paramMap: any = null): Observable<Response> {
     return this.request(url, new RequestOptions({
       method: RequestMethod.Get,
+      withCredentials:true,
       search: HttpService.buildURLSearchParams(paramMap)
     }));
   }
@@ -52,6 +53,7 @@ export class HttpService {
   public post(url: string, body: any = {}): Observable<Response> {
     return this.request(url, new RequestOptions({
       method: RequestMethod.Post,
+      withCredentials:true,
       body: body,
       headers: new Headers({
         'Content-Type': 'application/json; charset=UTF-8'

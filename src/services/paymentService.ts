@@ -23,6 +23,6 @@ export class PaymentService {
      'endDate':'',
      'type':'1'
      };
-     return this.httpService.post('phonePaymentRequest.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phonePaymentRequest.do', param).map((res: Response) => res.json());
   }
 }
