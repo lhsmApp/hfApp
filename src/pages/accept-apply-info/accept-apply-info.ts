@@ -18,6 +18,9 @@ import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFei
  * Ionic pages and navigation.
  */
 
+  const item: AcceptApplyDetail = { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人', contractCode:'HT0001', 
+          contractName:'合同名称', elementCode:'XMDY0045', elementName:'项目单元名称', departCode:'3'};
+
 @IonicPage()
 @Component({
   selector: 'page-accept-apply-info',
@@ -34,6 +37,7 @@ export class AcceptApplyInfoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
               public acceptService:AcceptService) {
+    this.itemShow = new AcceptApplyDetail();
     this.isShowCheck = false;
     this.isShowSend = false;
     this.title = this.navParams.get(Title);
@@ -54,18 +58,17 @@ export class AcceptApplyInfoPage {
   }
 
   getShowItem(){
-    this.acceptService.getAcceptDetailItem(this.billNumber).subscribe(
-      object => {
-        let resultBase:ResultBase=object[0] as ResultBase;
-        if(resultBase.result=='true'){
-          //this.itemShow = object[1] as AcceptApplyDetail;
-        }
-      }, () => {
-  
-      });
-    
     this.itemShow = new AcceptApplyDetail();
-    this.itemShow.billNumber = this.billNumber;
+    //this.acceptService.getAcceptDetailItem(this.billNumber).subscribe(
+    //  object => {
+    //    let resultBase:ResultBase=object[0] as ResultBase;
+    //    if(resultBase.result=='true'){
+    //      //this.itemShow = object[1] as AcceptApplyDetail;
+    //    }
+    //  }, () => {
+    //
+    //  });
+    this.itemShow = item;
   }
   
   //资产明细

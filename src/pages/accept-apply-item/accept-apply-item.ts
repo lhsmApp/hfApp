@@ -27,6 +27,8 @@ import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFei
       {departCode:'3',departName:'单位3',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
       {departCode:'4',departName:'单位4',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
   ]
+  const item: AcceptApplyDetail = { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人', contractCode:'HT0001', 
+          contractName:'合同名称', elementCode:'XMDY0045', elementName:'项目单元名称', departCode:'3'};
 
 @IonicPage()
 @Component({
@@ -47,6 +49,7 @@ export class AcceptApplyItemPage {
               private modalCtrl: ModalController,
               private viewCtrl: ViewController,
               public acceptService:AcceptService) {
+    this.itemShow = new AcceptApplyDetail();
   	this.oper = this.params.get(Oper);
   	this.billNumber = this.params.get(BillNumberCode);
     this.listDept = listDeptGet;
@@ -58,23 +61,21 @@ export class AcceptApplyItemPage {
   }
 
   getShowItem(){
-    if(this.oper === Oper_Edit){
-        this.acceptService.getAcceptDetailItem(this.billNumber).subscribe(
-          object => {
-            let resultBase:ResultBase=object[0] as ResultBase;
-            if(resultBase.result=='true'){
-              //this.itemShow = object[1] as AcceptApplyDetail;
-            }
-          }, () => {
-
-          });
-    }
-    if(this.oper === Oper_Edit){
-        this.itemShow = new AcceptApplyDetail();
-        this.itemShow.billNumber = this.billNumber;
-    }
     this.itemShow = new AcceptApplyDetail();
-    this.itemShow.billNumber = this.billNumber;
+    if(this.oper === Oper_Edit){
+        //if(this.oper === Oper_Edit){
+        //    this.acceptService.getAcceptDetailItem(this.billNumber).subscribe(
+        //      object => {
+        //        let resultBase:ResultBase=object[0] as ResultBase;
+        //        if(resultBase.result=='true'){
+        //          //this.itemShow = object[1] as AcceptApplyDetail;
+        //        }
+        //      }, () => {
+        //
+        //      });
+        //}
+        this.itemShow = item;
+    }
 
     this.applyFrom = this.formBuilder.group({
       contractCode: [this.itemShow.contractCode, [Validators.required]],
@@ -126,8 +127,10 @@ export class AcceptApplyItemPage {
     modal.onDidDismiss(contractInfo => {
       console.log(contractInfo);
       if(contractInfo){
-          this.itemShow.contractName = contractInfo.contractCode;
+          this.itemShow.contractCode = contractInfo.contractCode;
           this.itemShow.contractName = contractInfo.contractName;
+          //this.itemShow.elementCode = contractInfo.elementCode;
+          //this.itemShow.elementName = contractInfo.elementName;
       }
     });
   }

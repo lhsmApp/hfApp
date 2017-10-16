@@ -50,6 +50,7 @@ import {PaymentService} from '../services/paymentService';
 import {AcceptService} from '../services/acceptService';
 import {TranslateVoucherService} from '../services/translateVoucherService';
 import {TzCostService} from '../services/tzCostService';
+import {ContractService} from '../services/contractService';
 
 //指令
 import { TabDirective } from "../directive/";
@@ -123,7 +124,8 @@ import { TabDirective } from "../directive/";
     PaymentService,
     AcceptService,
     TranslateVoucherService,
-    TzCostService
+    TzCostService,
+    ContractService
   ]
 })
 export class AppModule {

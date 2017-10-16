@@ -40,15 +40,15 @@ export class AcceptQueryListPage {
   getList() {
     //1.申请 2.查询 3.审批
     //0新增（新增）、99待审批（待审批）、1 审批成功（已审批）、2审批失败 （退回）
-    this.acceptService.getAcceptMainList('2', '', '', '', '').subscribe(
-      object => {
-        let resultBase:ResultBase=object[0] as ResultBase;
-        if(resultBase.result=='true'){
-          //this.list = object[1] as AcceptApplyMain[];
-        }
-      }, () => {
-  
-      });
+    //this.acceptService.getAcceptMainList('2', '', '', '', '').subscribe(
+    //  object => {
+    //    let resultBase:ResultBase=object[0] as ResultBase;
+    //    if(resultBase.result=='true'){
+    //      //this.list = object[1] as AcceptApplyMain[];
+    //    }
+    //  }, () => {
+    //
+    //  });
     this.list = listGet;
   }
 

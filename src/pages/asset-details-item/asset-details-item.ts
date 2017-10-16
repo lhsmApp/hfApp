@@ -3,6 +3,8 @@ import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AcceptAssetDetail} from '../../model/accept-asset-detail';
 import {DicDepart} from '../../model/dic-depart';
+import {ContractService} from '../../services/contractService';
+import {ResultBase} from "../../model/result-base";
 
 import {Oper,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
@@ -24,6 +26,35 @@ import {ItemTranfer} from '../../providers/TransferFeildName';
       {departCode:'4',departName:'单位4',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
   ]
 
+ const item: AcceptAssetDetail = {xh: '24',
+    assetsType: '资产类型',
+    assetsCodeType: '资产类别',
+    assetsCode: '资产编码',
+    assetsName: '资产名称',
+    departCode: '单位',
+    entityCode: '所属资产组',
+    assetsStandard: '规格型号',
+    licenceNumber: '车牌井号',
+    unitCode: '计量单位',
+    makeFactory: '制造厂家',
+    factoryNumber: '出厂编号',
+    productDate: '出厂日期',
+    operateDate: '投产日期',
+    usedAspect: '使用方向',
+    contractCode: '合同编号',
+    applyCode: '取得方式',
+    guaDate: '保修截止日期',
+    depreciateYear: 3,
+    usedState: '使用状况',
+    storePlace: '存放地点',
+    userPerson: '保管人',
+    specialLine: '技术鉴定部门',
+    originalValue: 34,
+    nowValue: 54,
+    addDepreciate: 4,
+    devalueValue: 34,
+    keyCode: '资产键码'};
+
 @IonicPage()
 @Component({
   selector: 'page-asset-details-item',
@@ -41,7 +72,9 @@ export class AssetDetailsItemPage {
 
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams,
-  	          public formBuilder: FormBuilder) {
+  	          public formBuilder: FormBuilder,
+              public contractService:ContractService) {
+    this.itemShow = new AcceptAssetDetail();
     this.oper = this.navParams.get(Oper);
     this.billNumber = this.navParams.get(BillNumberCode);
     this.contractCode = this.navParams.get(BillContractCode);

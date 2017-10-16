@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AcceptAssetDetail} from '../../model/accept-asset-detail';
 import {DicAsset} from '../../model/dic-asset';
+import {ContractService} from '../../services/contractService';
+import {ResultBase} from "../../model/result-base";
 
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
@@ -40,7 +42,8 @@ export class AssetDetailsAddPage {
 	list:DicAsset[];
   transferItem:AcceptAssetDetail;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public contractService:ContractService) {
     this.billNumber = this.navParams.get(BillNumberCode);
     this.contractCode = this.navParams.get(BillContractCode);
     this.acceptanceFlag = this.navParams.get(TypeGetAsset);

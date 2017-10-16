@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AcceptAssetMain} from '../../model/accept-asset-main';
+import {ContractService} from '../../services/contractService';
+import {ResultBase} from "../../model/result-base";
 
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
@@ -40,7 +42,9 @@ export class AssetDetailsListPage {
 	list:AcceptAssetMain[];
 
   constructor(public navCtrl: NavController, 
-  	          public navParams: NavParams) {
+  	          public navParams: NavParams,
+              public contractService:ContractService) {
+    this.list = [];
     this.billNumber = this.navParams.get(BillNumberCode);
     this.contractCode = this.navParams.get(BillContractCode);
     this.acceptanceFlag = this.navParams.get(TypeGetAsset);
@@ -50,9 +54,17 @@ export class AssetDetailsListPage {
 
   //获取列表信息
   getList() {
-    /*this.topicService.getTopics(this.params).subscribe(
-      data => this.topics = data.data
-      );*/
+    this.list = [];
+    /*//是否已验收0为未验收1为验收 0未验收 1已复核 2已验收未复核（如果是验收单据查询，则需要查询未验收的0，如果是转资单据查询，则需要传验收1，如果是合同查询则不用传参）
+    this.contractService.getAssetDetailList(this.contractCode, this.billNumber, this.acceptanceFlag).subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          //this.list = object[1] as AcceptAssetMain[];
+        }
+      }, () => {
+    
+      });*/
     this.list = listGet;
   }
 
@@ -69,7 +81,7 @@ export class AssetDetailsListPage {
   //toDetail(item: AcceptAssetMain){
   //	this.navCtrl.push(Page_AssetDetailsInfoPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode});
   //}
-  delete(item: AcceptAssetMain){
-    
-  }
+  //delete(item: AcceptAssetMain){
+  //  
+  //}
 }
