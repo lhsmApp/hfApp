@@ -15,6 +15,35 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
+ const item: AcceptAssetDetail = {xh: '24',
+    assetsType: '资产类型',
+    assetsCodeType: '资产类别',
+    assetsCode: '资产编码',
+    assetsName: '资产名称',
+    departCode: '单位',
+    entityCode: '所属资产组',
+    assetsStandard: '规格型号',
+    licenceNumber: '车牌井号',
+    unitCode: '计量单位',
+    makeFactory: '制造厂家',
+    factoryNumber: '出厂编号',
+    productDate: '出厂日期',
+    operateDate: '投产日期',
+    usedAspect: '使用方向',
+    contractCode: '合同编号',
+    applyCode: '取得方式',
+    guaDate: '保修截止日期',
+    depreciateYear: 3,
+    usedState: '使用状况',
+    storePlace: '存放地点',
+    userPerson: '保管人',
+    specialLine: '技术鉴定部门',
+    originalValue: 34,
+    nowValue: 54,
+    addDepreciate: 4,
+    devalueValue: 34,
+    keyCode: '资产键码'};
+
 @IonicPage()
 @Component({
   selector: 'page-asset-details-info',

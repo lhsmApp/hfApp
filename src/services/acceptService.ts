@@ -19,7 +19,7 @@ export class AcceptService {
     let param = {
      'action': 'queryListAssetsAcceptanceApply',
      'sessionid': this.globalData.sessionId,
-     'type': reviewStatus,//1.申请 2.查询 3.审批
+     'type': type,//1.申请 2.查询 3.审批
      'reviewStatus': reviewStatus,//0新增（新增）、99待审批（待审批）、1 审批成功（已审批）、2审批失败 （退回）
      'billNumber': billNumber,//"验收编号"(模糊查询)
      'startDate': startDate,//"开始日期"(对应   requireDate:"申请时间")

@@ -36,22 +36,28 @@ export class AcceptApplyListPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public acceptService:AcceptService) {
+    this.list = [];
+  }
+
+  ionViewDidLoad() {
+    this.list = [];
     this.getList();
   }
 
   //获取列表信息
   getList() {
+    this.list = [];
     //1.申请 2.查询 3.审批
     //0新增（新增）、99待审批（待审批）、1 审批成功（已审批）、2审批失败 （退回）
-    //this.acceptService.getAcceptMainList('1', '', '', '', '').subscribe(
-    //  object => {
-    //    let resultBase:ResultBase=object[0] as ResultBase;
-    //    if(resultBase.result=='true'){
-    //      //this.list = object[1] as AcceptApplyMain[];
-    //    }
-    //  }, () => {
-    //
-    //  });
+    this.acceptService.getAcceptMainList('1', '', '', '', '').subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.list = object[1] as AcceptApplyMain[];
+        }
+      }, () => {
+    
+      });
     this.list = listGet;
   }
 
@@ -69,10 +75,6 @@ export class AcceptApplyListPage {
         return (item.billNumber.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AcceptApplyListPage');
   }
 
   //上拉刷新
