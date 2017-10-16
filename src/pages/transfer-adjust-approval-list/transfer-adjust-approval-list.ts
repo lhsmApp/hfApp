@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TransferAdjustMain} from '../../model/transfer-adjust-main';
-import {TzCostService} from '../../services/tzCostService';
+import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
 
 /**
@@ -27,7 +27,7 @@ export class TransferAdjustApprovalListPage {
     list:TransferAdjustMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public tzCostService:TzCostService) {
+              public tzCostService:AcceptService) {
     this.getList();
   }
 

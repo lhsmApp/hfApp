@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TransferFundsMain} from '../../model/transfer-funds-main';
-import {TranslateVoucherService} from '../../services/translateVoucherService';
+import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
 
 import {Page_TransferFundsInfoPage} from '../../providers/TransferFeildName';
@@ -32,7 +32,7 @@ export class TransferFundsQueryListPage {
     list:TransferFundsMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public translateVoucherService:TranslateVoucherService) {
+              public translateVoucherService:AcceptService) {
     this.getList();
   }
 

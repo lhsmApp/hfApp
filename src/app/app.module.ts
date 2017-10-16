@@ -48,8 +48,6 @@ import {Diagnostic} from "@ionic-native/diagnostic";
 import {LoginService} from '../services/LoginService';
 import {PaymentService} from '../services/paymentService';
 import {AcceptService} from '../services/acceptService';
-import {TranslateVoucherService} from '../services/translateVoucherService';
-import {TzCostService} from '../services/tzCostService';
 import {ContractService} from '../services/contractService';
 import {ProjectElementService} from '../services/projectElementService';
 
@@ -124,8 +122,6 @@ import { TabDirective } from "../directive/";
     LoginService,
     PaymentService,
     AcceptService,
-    TranslateVoucherService,
-    TzCostService,
     ContractService,
     ProjectElementService
   ]
