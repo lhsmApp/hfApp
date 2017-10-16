@@ -49,9 +49,9 @@ export class AdvancePaymentApplyListPage {
 
 
   //打开详情页
-  openPage(id: string) {
+  openPage(item: AdvancePaymentMain) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("AdvancePaymentInfoPage",{id:id});
+  	this.navCtrl.push("AdvancePaymentInfoPage",{"paymentItem":item});
   }
 
   //上拉刷新
@@ -110,8 +110,8 @@ export class AdvancePaymentApplyListPage {
   }
 
   //编辑
-  edit(payCode:string){
-	this.navCtrl.push("AdvancePaymentApplyPage");
+  edit(item: AdvancePaymentMain){
+	this.navCtrl.push("AdvancePaymentApplyPage",{"paymentItem":item});
   }
 
   //删除

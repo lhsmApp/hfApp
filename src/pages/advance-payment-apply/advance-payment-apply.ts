@@ -2,8 +2,12 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController,ModalController } from 'ionic-angular';
 import {FormBuilder, Validators} from '@angular/forms';
 import { AdvancePaymentDetail} from '../../model/advance-payment-detail';
+import { AdvancePaymentMain} from '../../model/advance-payment-main';
 import { PAYMENT_CATEGORY} from '../../enums/enums';
 import {Page_ContractChoiceListPage} from '../../providers/TransferFeildName';
+import { PaymentService} from '../../services/paymentService';
+import {ResultBase} from "../../model/result-base";
+import {DictBase} from "../../model/dict-base";
 
 /**
  * Generated class for the AdvancePaymentApplyPage page.
@@ -11,6 +15,20 @@ import {Page_ContractChoiceListPage} from '../../providers/TransferFeildName';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
+ const listPayDept: DictBase[]=[
+      {code:'1',name:'单位1'},
+      {code:'2',name:'单位2'},
+      {code:'3',name:'单位3'},
+      {code:'4',name:'单位4'},
+  ]
+
+  const listIntercourse: DictBase[]=[
+      {code:'1',name:'单位1'},
+      {code:'2',name:'单位2'},
+      {code:'3',name:'单位3'},
+      {code:'4',name:'单位4'},
+  ]
 
 @IonicPage()
 @Component({
@@ -20,13 +38,14 @@ import {Page_ContractChoiceListPage} from '../../providers/TransferFeildName';
 export class AdvancePaymentApplyPage {
   paymentForm: any;
   paymentDetail:AdvancePaymentDetail;
+  paymentMain:AdvancePaymentMain;
   paymentCategory=PAYMENT_CATEGORY;
-  
-  
+  listPayDept = listPayDept;
+  listIntercourse = listIntercourse;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private viewCtrl: ViewController,
-              private formBuilder: FormBuilder,private modalCtrl: ModalController) {
+              private formBuilder: FormBuilder,private modalCtrl: ModalController,private paymentService:PaymentService) {
   	/*this.paymentForm = this.formBuilder.group({
       username: [, [Validators.required, Validators.pattern('[(\u4e00-\u9fa5)0-9a-zA-Z\_\s@]+')]],
       verificationCode: [, [Validators.required, Validators.minLength(6), Validators.pattern('1[0-9]{6}')]],
@@ -34,6 +53,7 @@ export class AdvancePaymentApplyPage {
       password: [, [Validators.required]]
     })*/
 
+    this.paymentMain=this.navParams.get("paymentItem");
     this.paymentForm = this.formBuilder.group({
       payCode: [,[]],//付款单号，保存后自动生成
       clauseType: [, [Validators.required]],//款项类别，选择
@@ -59,25 +79,33 @@ export class AdvancePaymentApplyPage {
 
   //初始化数据
   initData(){
-    let paymentInfo=new AdvancePaymentDetail();
-    this.paymentForm.patchValue({
-          payCode:paymentInfo.payCode,
-          clauseType:paymentInfo.clauseType,
-          contractCode:paymentInfo.contractCode,
-          contractName:paymentInfo.contractName,
-          elementType:paymentInfo.elementType,
-          elementName:paymentInfo.elementName,
-          planType:paymentInfo.planType,
-          payDigest:paymentInfo.payDigest,
-          costMoney:paymentInfo.costMoney,
-          taxMoney:paymentInfo.taxMoney,
-          payMoney:paymentInfo.payMoney,
-          paymentCode:paymentInfo.paymentCode,
-          intercourseCode:paymentInfo.intercourseCode,
-          requireDate:paymentInfo.requireDate,
-          requireUser:paymentInfo.requireUser
+    this.paymentService.getPaymentDetail(this.paymentMain.payCode)
+      .subscribe(object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          console.log(object[1][0]);
+          this.paymentDetail = object[1][0] as AdvancePaymentDetail;
+          this.paymentForm.patchValue({
+          payCode:this.paymentDetail.payCode,
+          clauseType:this.paymentDetail.clauseType,
+          contractCode:this.paymentDetail.contractCode,
+          contractName:this.paymentDetail.contractName,
+          elementType:this.paymentDetail.elementType,
+          elementName:this.paymentDetail.elementName,
+          planType:this.paymentDetail.planType,
+          payDigest:this.paymentDetail.payDigest,
+          costMoney:this.paymentDetail.costMoney,
+          taxMoney:this.paymentDetail.taxMoney,
+          payMoney:this.paymentDetail.payMoney,
+          paymentCode:this.paymentDetail.paymentCode,
+          intercourseCode:this.paymentDetail.intercourseCode,
+          requireDate:this.paymentDetail.requireDate,
+          requireUser:this.paymentDetail.requireUser
         });
-
+        }
+      }, () => {
+        
+      });
   }
 
   ionViewDidLoad() {
@@ -87,6 +115,7 @@ export class AdvancePaymentApplyPage {
 
   //选择合同
   choiceContract(){
+    console.log(this.paymentForm.get('paymentCode'));
     //this.navCtrl.push(Page_ContractChoiceListPage);
     let modal = this.modalCtrl.create(Page_ContractChoiceListPage);
     modal.present();

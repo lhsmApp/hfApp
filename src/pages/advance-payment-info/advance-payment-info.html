@@ -26,7 +26,7 @@
 
 <ion-content>	
 	<ion-item-group inset>
-		<ion-item>
+		<!-- <ion-item>
 			<ion-row>
 				<ion-col col-4>
 		   			<span class='color-label'>单据状态：</span>
@@ -36,7 +36,7 @@
 	       			<span text-left>已审批</span>
 	       		</ion-col>
        		</ion-row>
-	    </ion-item>
+	    </ion-item> -->
 	    <ion-item>
 			<ion-row>
 				<ion-col col-4>
@@ -44,7 +44,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>FKD2017080001</span>
+	       			<span text-left>{{paymentDetail?.payCode}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -55,7 +55,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>进度款</span>
+	       			<span text-left>{{paymentDetail?.clauseType}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -66,7 +66,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>HT2017090001</span>
+	       			<span text-left>{{paymentDetail?.contractCode}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -77,7 +77,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>航发</span>
+	       			<span text-left>{{paymentDetail?.contractName}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -88,7 +88,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>私营运维</span>
+	       			<span text-left>{{paymentDetail?.elementType}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -99,7 +99,18 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>FKD2017080001</span>
+	       			<span text-left>{{paymentDetail?.elementName}}</span>
+	       		</ion-col>
+       		</ion-row>
+	    </ion-item>
+	    <ion-item>
+			<ion-row>
+				<ion-col col-4>
+		   			<span class='color-label'>项目核算类别：</span>
+	       		
+	       		</ion-col>
+	       		<ion-col col-8>
+	       			<span text-left>{{paymentDetail?.planType}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -110,7 +121,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>FKD2017080001</span>
+	       			<span text-left>{{paymentDetail?.payDigest}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -121,7 +132,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>FKD2017080001</span>
+	       			<span text-left>{{paymentDetail?.costMoney|number}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -132,7 +143,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>FKD2017080001</span>
+	       			<span text-left>{{paymentDetail?.taxMoney}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -143,7 +154,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>FKD2017080001</span>
+	       			<span text-left>{{paymentDetail?.payMoney}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -154,7 +165,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>FKD2017080001</span>
+	       			<span text-left>{{paymentDetail?.payDepart}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -165,7 +176,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>FKD2017080001</span>
+	       			<span text-left>{{paymentDetail?.intercourseName}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -176,7 +187,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>FKD2017080001</span>
+	       			<span text-left>{{paymentDetail?.requireUser}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -187,7 +198,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>FKD2017080001</span>
+	       			<span text-left>{{paymentDetail?.requireDate}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>

@@ -27,8 +27,7 @@
       </ion-item>
       <ion-item>
         <ion-label fixed>款项类别<span class="danger">*</span></ion-label>
-        <!-- <ion-input type="text" formControlName="clauseType" placeholder="选择"></ion-input> -->
-        <ion-select [(ngModel)]="intercourseCode" formControlName="clauseType" style="left:0;" placeholder="选择" cancelText="取消" okText="确定" multiple="true">
+        <ion-select [(ngModel)]="clauseType" formControlName="clauseType" style="left:0;" placeholder="选择" cancelText="取消" okText="确定">
           <!-- <ion-option value="1">进度款</ion-option>
           <ion-option value="2">预付款</ion-option>
           <ion-option value="3">质保金</ion-option>
@@ -92,13 +91,8 @@
       <ion-item>
         <ion-label fixed>付款单位<span class="danger">*</span></ion-label>
         <ion-select [(ngModel)]="paymentCode" formControlName="paymentCode" placeholder="选择">
-	      <ion-option value="nes">NES</ion-option>
-	      <ion-option value="n64">Nintendo64</ion-option>
-	      <ion-option value="ps">PlayStation</ion-option>
-	      <ion-option value="genesis">Sega Genesis</ion-option>
-	      <ion-option value="saturn">Sega Saturn</ion-option>
-	      <ion-option value="snes">SNES</ion-option>
-	    </ion-select>
+  	      <ion-option *ngFor="let payDept of listPayDept" [value]="payDept.code">{{payDept.name}}</ion-option>
+	      </ion-select>
       </ion-item>
       <span *ngIf="!paymentForm.controls.paymentCode.valid && paymentForm.controls.paymentCode.touched"
             class="validation-failed">请选择付款单位
@@ -106,13 +100,8 @@
       <ion-item>
         <ion-label fixed>往来单位<span class="danger">*</span></ion-label>
         <ion-select [(ngModel)]="intercourseCode" formControlName="intercourseCode" style="left:0;" placeholder="选择">
-	      <ion-option value="nes">NES</ion-option>
-	      <ion-option value="n64">Nintendo64</ion-option>
-	      <ion-option value="ps">PlayStation</ion-option>
-	      <ion-option value="genesis">Sega Genesis</ion-option>
-	      <ion-option value="saturn">Sega Saturn</ion-option>
-	      <ion-option value="snes">SNES</ion-option>
-	    </ion-select>
+	         <ion-option *ngFor="let intercourse of listIntercourse" [value]="intercourse.code">{{intercourse.name}}</ion-option>
+	      </ion-select>
       </ion-item>
       <span *ngIf="!paymentForm.controls.intercourseCode.valid && paymentForm.controls.intercourseCode.touched"
             class="validation-failed">请选择往来单位
