@@ -18,8 +18,8 @@ import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFei
  * Ionic pages and navigation.
  */
 
-  const item: AcceptApplyDetail = { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人', contractCode:'HT0001', 
-          contractName:'合同名称', elementCode:'XMDY0045', elementName:'项目单元名称', departCode:'3'};
+  /*const item: AcceptApplyDetail = { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人', contractCode:'HT0001', 
+          contractName:'合同名称', elementCode:'XMDY0045', elementName:'项目单元名称', departCode:'3'};*/
 
 @IonicPage()
 @Component({
@@ -33,6 +33,7 @@ export class AcceptApplyInfoPage {
   oper:string;
   billNumber:string;
 
+  list: AcceptApplyDetail[];
   itemShow:AcceptApplyDetail;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
@@ -49,26 +50,28 @@ export class AcceptApplyInfoPage {
         this.isShowSend = true;
     }
   	this.billNumber = this.navParams.get(BillNumberCode);
-    this.getShowItem();
-
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AcceptApplyInfoPage');
+    this.itemShow = new AcceptApplyDetail();
+    this.getShowItem();
   }
 
   getShowItem(){
     this.itemShow = new AcceptApplyDetail();
-    //this.acceptService.getAcceptDetailItem(this.billNumber).subscribe(
-    //  object => {
-    //    let resultBase:ResultBase=object[0] as ResultBase;
-    //    if(resultBase.result=='true'){
-    //      //this.itemShow = object[1] as AcceptApplyDetail;
-    //    }
-    //  }, () => {
-    //
-    //  });
-    this.itemShow = item;
+    this.acceptService.getAcceptDetailItem(this.billNumber).subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.list = object[1] as AcceptApplyDetail[];
+          if(this.list && this.list.length > 0){
+              this.itemShow = this.list[0];
+          }
+        }
+      }, () => {
+    
+      });
+    //this.itemShow = item;
   }
   
   //资产明细
@@ -86,7 +89,6 @@ export class AcceptApplyInfoPage {
           placeholder: '请输入审批意见'
         },
       ],
-      
     });
 
     prompt.addButton({

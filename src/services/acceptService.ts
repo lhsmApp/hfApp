@@ -25,7 +25,7 @@ export class AcceptService {
      'startDate': startDate,//"开始日期"(对应   requireDate:"申请时间")
      'endDate': endDate,//"结束日期"(对应   requireDate:"申请时间")
      };
-     return this.httpService.post('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
   }
 
   //验收申请单据详情---basic_assets_accept_apply  验收单据表
@@ -36,7 +36,7 @@ export class AcceptService {
         'sessionid': this.globalData.sessionId,
         'billNumber': billNumber,//"验收编号"
     };
-    return this.httpService.post('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
+    return this.httpService.get('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
   }
 
   //验收申请主页面保存---basic_assets_accept_apply  验收单据表

@@ -32,7 +32,7 @@ export class ProjectElementService {
           //4审批中(待审批) 
           //10待审批(待审批)
      };
-     return this.httpService.post('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
   }
 
   //项目单元详细-----basic_project_element  项目单元表

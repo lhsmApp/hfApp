@@ -18,12 +18,12 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
-  const listGet:AcceptApplyMain[] = [
+  /*const listGet:AcceptApplyMain[] = [
         { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人'},
         { billNumber: 'XMDY0002', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人'},
         { billNumber: 'XMDY0003', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
         { billNumber: 'XMDY0004', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
-    ];
+    ];*/
 
 @IonicPage()
 @Component({
@@ -31,21 +31,25 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
   templateUrl: 'accept-apply-list.html',
 })
 export class AcceptApplyListPage {
+    listAll:AcceptApplyMain[] = [];
     list:AcceptApplyMain[];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public acceptService:AcceptService) {
+    this.listAll = [];
     this.list = [];
   }
 
   ionViewDidLoad() {
+    this.listAll = [];
     this.list = [];
     this.getList();
   }
 
   //获取列表信息
   getList() {
+    this.listAll = [];
     this.list = [];
     //1.申请 2.查询 3.审批
     //0新增（新增）、99待审批（待审批）、1 审批成功（已审批）、2审批失败 （退回）
@@ -53,12 +57,13 @@ export class AcceptApplyListPage {
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
+          this.listAll = object[1] as AcceptApplyMain[];
           this.list = object[1] as AcceptApplyMain[];
         }
       }, () => {
     
       });
-    this.list = listGet;
+    //this.list = listGet;
   }
 
   //模糊查询
@@ -71,7 +76,7 @@ export class AcceptApplyListPage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.list = this.list.filter((item) => {
+      this.list = this.listAll.filter((item) => {
         return (item.billNumber.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
@@ -89,7 +94,7 @@ export class AcceptApplyListPage {
         );
     }, 2000);*/
 
-    this.list = listGet;
+    this.list = this.listAll;
     refresher.complete();
   }
 

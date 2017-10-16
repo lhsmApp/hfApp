@@ -16,12 +16,12 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
-  const listGet:AcceptApplyMain[] = [
+  /*const listGet:AcceptApplyMain[] = [
         { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人'},
         { billNumber: 'XMDY0002', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
         { billNumber: 'XMDY0003', reviewStatus: '1', requireDate: '2017-09-25', requireUser: '申请人'},
         { billNumber: 'XMDY0004', reviewStatus: '2', requireDate: '2017-09-25', requireUser: '申请人'},
-    ];
+    ];*/
 
 @IonicPage()
 @Component({
@@ -29,31 +29,39 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
   templateUrl: 'accept-query-list.html',
 })
 export class AcceptQueryListPage {
+    listAll:AcceptApplyMain[] = [];
     list:AcceptApplyMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public acceptService:AcceptService) {
+    this.listAll = [];
+    this.list = [];
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad AcceptQueryListPage');
+    this.listAll = [];
+    this.list = [];
     this.getList();
   }
 
   //获取列表信息
   getList() {
+    this.listAll = [];
+    this.list = [];
     //1.申请 2.查询 3.审批
     //0新增（新增）、99待审批（待审批）、1 审批成功（已审批）、2审批失败 （退回）
-    //this.acceptService.getAcceptMainList('2', '', '', '', '').subscribe(
-    //  object => {
-    //    let resultBase:ResultBase=object[0] as ResultBase;
-    //    if(resultBase.result=='true'){
-    //      //this.list = object[1] as AcceptApplyMain[];
-    //    }
-    //  }, () => {
-    //
-    //  });
-    this.list = listGet;
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AcceptQueryListPage');
+    this.acceptService.getAcceptMainList('2', '', '', '', '').subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.listAll = object[1] as AcceptApplyMain[];
+          this.list = object[1] as AcceptApplyMain[];
+        }
+      }, () => {
+    
+      });
+    //this.list = listGet;
   }
 
   //上拉刷新
@@ -68,7 +76,7 @@ export class AcceptQueryListPage {
         );
     }, 2000);*/
 
-    this.list = listGet;
+    this.list = this.listAll;
     refresher.complete();
   }
 
