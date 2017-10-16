@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {AcceptApplyDetail} from '../../model/accept-apply-detail';
+import {AcceptService} from '../../services/acceptService';
+import {ResultBase} from "../../model/result-base";
 
 import {Oper,Oper_Look,Oper_Edit,Oper_Add,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
@@ -30,7 +32,8 @@ export class AcceptApplyInfoPage {
 
   itemShow:AcceptApplyDetail;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
+              public acceptService:AcceptService) {
     this.isShowCheck = false;
     this.isShowSend = false;
     this.title = this.navParams.get(Title);
@@ -51,7 +54,16 @@ export class AcceptApplyInfoPage {
   }
 
   getShowItem(){
-    //this.billNumber
+    this.acceptService.getAcceptDetailItem(this.billNumber).subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          //this.itemShow = object[1] as AcceptApplyDetail;
+        }
+      }, () => {
+  
+      });
+    
     this.itemShow = new AcceptApplyDetail();
     this.itemShow.billNumber = this.billNumber;
   }

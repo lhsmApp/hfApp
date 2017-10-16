@@ -4,6 +4,8 @@ import {Storage} from '@ionic/storage';
 import {IonicPage, NavController, NavParams, ViewController,ModalController} from 'ionic-angular';
 import {AcceptApplyDetail} from '../../model/accept-apply-detail';
 import {DicDepart} from '../../model/dic-depart';
+import {AcceptService} from '../../services/acceptService';
+import {ResultBase} from "../../model/result-base";
 
 import {Oper,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
@@ -43,7 +45,8 @@ export class AcceptApplyItemPage {
               public params: NavParams,
               private formBuilder: FormBuilder,
               private modalCtrl: ModalController,
-              private viewCtrl: ViewController) {
+              private viewCtrl: ViewController,
+              public acceptService:AcceptService) {
   	this.oper = this.params.get(Oper);
   	this.billNumber = this.params.get(BillNumberCode);
     this.listDept = listDeptGet;
@@ -55,6 +58,21 @@ export class AcceptApplyItemPage {
   }
 
   getShowItem(){
+    if(this.oper === Oper_Edit){
+        this.acceptService.getAcceptDetailItem(this.billNumber).subscribe(
+          object => {
+            let resultBase:ResultBase=object[0] as ResultBase;
+            if(resultBase.result=='true'){
+              //this.itemShow = object[1] as AcceptApplyDetail;
+            }
+          }, () => {
+
+          });
+    }
+    if(this.oper === Oper_Edit){
+        this.itemShow = new AcceptApplyDetail();
+        this.itemShow.billNumber = this.billNumber;
+    }
     this.itemShow = new AcceptApplyDetail();
     this.itemShow.billNumber = this.billNumber;
 

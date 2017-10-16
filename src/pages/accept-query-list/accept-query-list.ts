@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AcceptApplyMain} from '../../model/accept-apply-main';
+import {AcceptService} from '../../services/acceptService';
+import {ResultBase} from "../../model/result-base";
 
 import {Page_AcceptApplyInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
@@ -29,15 +31,24 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
 export class AcceptQueryListPage {
     list:AcceptApplyMain[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public acceptService:AcceptService) {
     this.getList();
   }
 
   //获取列表信息
   getList() {
-    /*this.topicService.getTopics(this.params).subscribe(
-      data => this.topics = data.data
-      );*/
+    //1.申请 2.查询 3.审批
+    //0新增（新增）、99待审批（待审批）、1 审批成功（已审批）、2审批失败 （退回）
+    this.acceptService.getAcceptMainList('2', '', '', '', '').subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          //this.list = object[1] as AcceptApplyMain[];
+        }
+      }, () => {
+  
+      });
     this.list = listGet;
   }
 

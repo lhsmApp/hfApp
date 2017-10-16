@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TransferFundsMain} from '../../model/transfer-funds-main';
+import {TranslateVoucherService} from '../../services/translateVoucherService';
+import {ResultBase} from "../../model/result-base";
 
 import {Page_TransferFundsInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Approval} from '../../providers/TransferFeildName';
@@ -29,15 +31,24 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
 export class TransferFundsApprovalListPage {
     list:TransferFundsMain[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public translateVoucherService:TranslateVoucherService) {
     this.getList();
   }
 
   //获取列表信息
   getList() {
-    /*this.topicService.getTopics(this.params).subscribe(
-      data => this.topics = data.data
-      );*/
+    //1.申请 2.查询 3.审批
+    //" 单据状态" //转资后端字段解释(括号中代表客户端对应字段)、0未提交(新增)、1未审批(待审批) 、2已驳回(退回)、3审批中(待审批)、4已审批(已审批)、若客户端传空的时候则后端查询全部
+    this.translateVoucherService.getTranslateVoucherMainList('3','','','','').subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          //this.list = object[1] as TransferAdjustMain[];
+        }
+      }, () => {
+  
+      });
     this.list = listGet;
   }
 

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TransferAdjustMain} from '../../model/transfer-adjust-main';
+import {TzCostService} from '../../services/tzCostService';
+import {ResultBase} from "../../model/result-base";
 
 /**
  * Generated class for the TransferAdjustApprovalListPage page.
@@ -24,15 +26,22 @@ import {TransferAdjustMain} from '../../model/transfer-adjust-main';
 export class TransferAdjustApprovalListPage {
     list:TransferAdjustMain[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public tzCostService:TzCostService) {
     this.getList();
   }
 
   //获取列表信息
   getList() {
-    /*this.topicService.getTopics(this.params).subscribe(
-      data => this.topics = data.data
-      );*/
+    this.tzCostService.getTzCostMainList('').subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          //this.list = object[1] as TransferAdjustMain[];
+        }
+      }, () => {
+  
+      });
     this.list = listGet;
   }
 
