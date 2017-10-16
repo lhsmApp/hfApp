@@ -31,11 +31,11 @@ export class DepartSelectPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private viewCtrl: ViewController,private loginService: LoginService
     ,private globalData: GlobalData) {
-	  this.departList=DEPART_LIST;
+	  //this.departList=DEPART_LIST;
   }
 
   ionViewDidLoad() {
-    //this.getList();
+    this.getList();
   }
 
   getList(){

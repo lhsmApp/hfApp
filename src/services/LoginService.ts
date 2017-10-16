@@ -14,16 +14,16 @@ export class LoginService {
 
 
   login(user): Observable<(Object)> {
-    /*let param = {
+    let param = {
      'action': 'userLogin',
      'sessionid':this.globalData.sessionId,
      'userCode': user.username,
      'passWord': user.password,
      'departCode':this.globalData.departCode
      };
-     return this.httpService.get('phoneLogin/login.do', param).map((res: Response) => res.json());*/
+     return this.httpService.get('phoneLogin/login.do', param).map((res: Response) => res.json());
 
-     let loginInfo = [
+     /*let loginInfo = [
       {result:'true',message:'success'},
       {
         userCode: 1,
@@ -34,7 +34,7 @@ export class LoginService {
     ];
     return Observable.create((observer) => {
       observer.next(loginInfo);
-    });
+    });*/
 
   }
 

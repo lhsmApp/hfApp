@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController,ModalController } from 'ionic-angular';
 import {FormBuilder, Validators} from '@angular/forms';
 import { AdvancePaymentDetail} from '../../model/advance-payment-detail';
+import { PAYMENT_CATEGORY} from '../../enums/enums';
 import {Page_ContractChoiceListPage} from '../../providers/TransferFeildName';
 
 /**
@@ -19,7 +20,8 @@ import {Page_ContractChoiceListPage} from '../../providers/TransferFeildName';
 export class AdvancePaymentApplyPage {
   paymentForm: any;
   paymentDetail:AdvancePaymentDetail;
-  //回调获取选择的工程量清单
+  paymentCategory=PAYMENT_CATEGORY;
+  
   
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -50,12 +52,37 @@ export class AdvancePaymentApplyPage {
       //intercourseName: [, [Validators.required]],//往来单位名称(收款单位)，选择
       requireDate: [, [Validators.required]],//申请时间，自动填写当前时间
       requireUser: [, [Validators.required]]//申请人，自动填写当前用户
-    })
+    });
+
+
+  }
+
+  //初始化数据
+  initData(){
+    let paymentInfo=new AdvancePaymentDetail();
+    this.paymentForm.patchValue({
+          payCode:paymentInfo.payCode,
+          clauseType:paymentInfo.clauseType,
+          contractCode:paymentInfo.contractCode,
+          contractName:paymentInfo.contractName,
+          elementType:paymentInfo.elementType,
+          elementName:paymentInfo.elementName,
+          planType:paymentInfo.planType,
+          payDigest:paymentInfo.payDigest,
+          costMoney:paymentInfo.costMoney,
+          taxMoney:paymentInfo.taxMoney,
+          payMoney:paymentInfo.payMoney,
+          paymentCode:paymentInfo.paymentCode,
+          intercourseCode:paymentInfo.intercourseCode,
+          requireDate:paymentInfo.requireDate,
+          requireUser:paymentInfo.requireUser
+        });
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AdvancePaymentApplyPage');
-    
+    //console.log('ionViewDidLoad AdvancePaymentApplyPage');
+    this.initData();
   }
 
   //选择合同
@@ -91,6 +118,7 @@ export class AdvancePaymentApplyPage {
     });
   };*/
 
+  //回调获取选择的工程量清单
   getData = (data) =>
   {
     return new Promise((resolve, reject) => {
