@@ -19,7 +19,7 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-list class="list-avatar-page">
-    <ion-item *ngFor="let item of invoiceList;trackBy:item?.chalanNumber" (click)="openPage(item.chalanNumber)">
+    <ion-item *ngFor="let item of invoiceList;trackBy:item?.chalanNumber" (click)="openPage(item)">
       <h2>{{item.chalanNumber}}&nbsp;&nbsp;&nbsp;&nbsp;<button ion-button color="danger" outline>{{item.chalanMoney|number}}</button></h2>
       <!-- <h3 item-end>{{item.chalanMoney}}</h3> -->
       <p> {{item.chalanContent}} </p>

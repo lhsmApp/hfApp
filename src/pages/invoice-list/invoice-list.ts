@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InvoiceMain} from '../../model/invoice-main';
+import { PaymentService} from '../../services/paymentService';
+import {ResultBase} from "../../model/result-base";
+import { AdvancePaymentMain} from '../../model/advance-payment-main';
 
 /**
  * Generated class for the InvoiceListPage page.
@@ -24,27 +27,35 @@ import { InvoiceMain} from '../../model/invoice-main';
 export class InvoiceListPage {
 
   invoiceList:InvoiceMain[];
+  paymentMain:AdvancePaymentMain;
 
- 	constructor(public navCtrl: NavController, public navParams: NavParams) {
- 		this.invoiceList=INVOICE_LIST;
+ 	constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
+ 		//this.invoiceList=INVOICE_LIST;
+     this.paymentMain=this.navParams.get("paymentItem");
  	}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InvoiceListPage');
+    this.getList();
   }
 
   //获取发票列表信息
- getList() {
- /*this.topicService.getTopics(this.params).subscribe(
-   data => this.topics = data.data
-   );*/
- }
+  getList() {
+    this.paymentService.getInvoiceMainList(this.paymentMain.payCode,'')
+      .subscribe(object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.invoiceList = object[1] as InvoiceMain[];
+        }
+      }, () => {
+        
+      });
+  }
 
 
   //打开详情页
-  openPage(id: string) {
+  openPage(item: InvoiceMain) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("InvoiceInfoPage",{id:id});
+    this.navCtrl.push("InvoiceInfoPage",{"invoiceItem":item,'paymentItem':this.paymentMain});
   }
 
   //上拉刷新

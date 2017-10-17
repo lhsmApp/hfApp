@@ -157,10 +157,10 @@ export class HttpService {
         msg = '请求失败，服务器出错，请稍后再试';
       }
       this.nativeService.alert(msg);
-      this.logger.httpLog(err, msg, {
+      /*this.logger.httpLog(err, msg, {
         url: url,
         status: status
-      });
+      });*/
     }
 
   }

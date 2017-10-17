@@ -107,12 +107,12 @@ export class AdvancePaymentInfoPage {
 
   //发票
   invoice(){
-  	this.navCtrl.push("InvoiceListPage");
+  	this.navCtrl.push("InvoiceListPage",{'paymentItem':this.paymentMain});
   }
 
   //工程量清单
   billOfGcl(){
-	this.navCtrl.push("BillGclPage");
+	this.navCtrl.push("BillGclPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode});
   }
 
   //送审

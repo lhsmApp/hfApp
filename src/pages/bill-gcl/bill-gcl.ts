@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BillOfWorkMain} from '../../model/billof-work-main';
+import { PaymentService} from '../../services/paymentService';
+import {ResultBase} from "../../model/result-base";
+import { AdvancePaymentMain} from '../../model/advance-payment-main';
 
 /**
  * Generated class for the BillGclPage page.
@@ -28,21 +31,30 @@ const  WORK_LIST: BillOfWorkMain []= [
 export class BillGclPage {
 
   workList:BillOfWorkMain[];
+  paymentMain:AdvancePaymentMain;
+  contractCode:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-	this.workList=WORK_LIST;
+  constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
+	  //this.workList=WORK_LIST;
+    this.paymentMain=this.navParams.get("paymentItem");
+    this.contractCode=this.navParams.get('contractCode');
   }
 
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BillGclPage');
+    this.getList();
   }
 
   //获取工程量列表信息
   getList() {
-	  /*this.topicService.getTopics(this.params).subscribe(
-	   data => this.topics = data.data
-	   );*/
+    this.paymentService.getGclMainList(this.contractCode,'fk',this.paymentMain.payCode,'0')
+      .subscribe(object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.workList = object[1] as BillOfWorkMain[];
+        }
+      }, () => {
+        
+      });
   }
 
   //上拉刷新
@@ -80,8 +92,9 @@ export class BillGclPage {
   }
 
   //查看明细
-  openPage(id: string){
-    this.navCtrl.push("BillGclDetailPage",{id:id});
+  openPage(item: BillOfWorkMain){
+    //this.navCtrl.push("BillGclDetailPage",{id:id});
+    this.navCtrl.push("InvoiceInfoPage",{"gclItem":item,'paymentItem':this.paymentMain,'contractCode':this.contractCode});
   }
 
 }

@@ -79,33 +79,35 @@ export class AdvancePaymentApplyPage {
 
   //初始化数据
   initData(){
-    this.paymentService.getPaymentDetail(this.paymentMain.payCode)
-      .subscribe(object => {
-        let resultBase:ResultBase=object[0] as ResultBase;
-        if(resultBase.result=='true'){
-          console.log(object[1][0]);
-          this.paymentDetail = object[1][0] as AdvancePaymentDetail;
-          this.paymentForm.patchValue({
-          payCode:this.paymentDetail.payCode,
-          clauseType:this.paymentDetail.clauseType,
-          contractCode:this.paymentDetail.contractCode,
-          contractName:this.paymentDetail.contractName,
-          elementType:this.paymentDetail.elementType,
-          elementName:this.paymentDetail.elementName,
-          planType:this.paymentDetail.planType,
-          payDigest:this.paymentDetail.payDigest,
-          costMoney:this.paymentDetail.costMoney,
-          taxMoney:this.paymentDetail.taxMoney,
-          payMoney:this.paymentDetail.payMoney,
-          paymentCode:this.paymentDetail.paymentCode,
-          intercourseCode:this.paymentDetail.intercourseCode,
-          requireDate:this.paymentDetail.requireDate,
-          requireUser:this.paymentDetail.requireUser
+    if(this.paymentMain){
+      this.paymentService.getPaymentDetail(this.paymentMain.payCode)
+        .subscribe(object => {
+          let resultBase:ResultBase=object[0] as ResultBase;
+          if(resultBase.result=='true'){
+            console.log(object[1][0]);
+            this.paymentDetail = object[1][0] as AdvancePaymentDetail;
+            this.paymentForm.patchValue({
+              payCode:this.paymentDetail.payCode,
+              clauseType:this.paymentDetail.clauseType,
+              contractCode:this.paymentDetail.contractCode,
+              contractName:this.paymentDetail.contractName,
+              elementType:this.paymentDetail.elementType,
+              elementName:this.paymentDetail.elementName,
+              planType:this.paymentDetail.planType,
+              payDigest:this.paymentDetail.payDigest,
+              costMoney:this.paymentDetail.costMoney,
+              taxMoney:this.paymentDetail.taxMoney,
+              payMoney:this.paymentDetail.payMoney,
+              paymentCode:this.paymentDetail.paymentCode,
+              intercourseCode:this.paymentDetail.intercourseCode,
+              requireDate:this.paymentDetail.requireDate,
+              requireUser:this.paymentDetail.requireUser
+            });
+          }
+        }, () => {
+          
         });
-        }
-      }, () => {
-        
-      });
+      }
   }
 
   ionViewDidLoad() {
@@ -160,7 +162,7 @@ export class AdvancePaymentApplyPage {
   invoice(paymentDetail:AdvancePaymentDetail){
   	//let payCode=paymentDetail.payCode;
   	//let contractCode=paymentDetail.contractCode;
-    this.navCtrl.push("InvoiceApplyListPage");
+    this.navCtrl.push("InvoiceApplyListPage",{'paymentItem':this.paymentMain});
   }
 
   
@@ -169,7 +171,7 @@ export class AdvancePaymentApplyPage {
   billOfGcl(paymentDetail:AdvancePaymentDetail){
 	  //let payCode=paymentDetail.payCode;
   	//let contractCode=paymentDetail.contractCode;
-    this.navCtrl.push("BillGclSelectPage",{'payCode':'001',callback:this.getData});
+    this.navCtrl.push("BillGclSelectPage",{'paymentItem':this.paymentMain,callback:this.getData,'contractCode':this.paymentDetail.contractCode});
   }
 
   //送审
