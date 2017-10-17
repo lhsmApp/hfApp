@@ -108,14 +108,23 @@ export class ScheduleApplyItemPage {
             this.list = object[1] as ProjectUnitDetail[];
             if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
+              this.FromPatchValue();
             }
           }
         }, () => {
         
         });*/
         this.itemShow = item;
+        this.FromPatchValue();
+    } else if(this.oper === Oper_Add){
+        //this.itemShow
+        this.FromPatchValue();
+    } else {
+        this.FromPatchValue();
     }
+  }
 
+  FromPatchValue(){
     this.applyFrom.patchValue({
             projectCode: this.itemShow.projectCode, 
             projectName: this.itemShow.projectName, 

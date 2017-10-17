@@ -65,7 +65,7 @@ export class AcceptApplyInfoPage {
         if(resultBase.result=='true'){
           this.list = object[1] as AcceptApplyDetail[];
           if(this.list && this.list.length > 0){
-              this.itemShow = this.list[0];
+              this.itemShow = this.list[0] as AcceptApplyDetail;
           }
         }
       }, () => {

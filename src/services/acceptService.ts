@@ -146,7 +146,7 @@ export class AcceptService {
           //4已审批(已审批) 
           //若客户端传空的时候则后端查询全部
      };
-     return this.httpService.post('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
   }
 
   //转资申请详细----basic_translate_voucher  转资单据表
@@ -157,7 +157,7 @@ export class AcceptService {
         'sessionid': this.globalData.sessionId,
         'translateCode': translateCode,//单据编号
     };
-    return this.httpService.post('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
+    return this.httpService.get('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
   }
     
 /*
@@ -171,7 +171,7 @@ export class AcceptService {
      'sessionid': this.globalData.sessionId,
      'translateCode': translateCode,//”转资单号”
      };
-     return this.httpService.post('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
   }
 
   //转资调整单明细-----basic_tz_cost 转资调整明细表
@@ -183,6 +183,6 @@ export class AcceptService {
         'translateCode': translateCode,//转资单号
         'keyCode': keyCode,//资产键码
     };
-    return this.httpService.post('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
+    return this.httpService.get('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
   }
 }

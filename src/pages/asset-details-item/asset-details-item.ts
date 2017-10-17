@@ -124,8 +124,7 @@ export class AssetDetailsItemPage {
 
     if(this.oper === Oper_Add){
         //this.itemShow = this.itemTranfer;
-    } 
-    if(this.oper === Oper_Edit){
+    } else if(this.oper === Oper_Edit){
       /*//是否已验收0为未验收1为验收 0未验收 1已复核 2已验收未复核（如果是验收单据查询，则需要查询未验收的0，如果是转资单据查询，则需要传验收1，如果是合同查询则不用传参）
       this.contractService.getAssetDetailItem(this.contractCode, this.keyCode).subscribe(
         object => {
@@ -134,14 +133,20 @@ export class AssetDetailsItemPage {
             this.list = object[1] as AcceptAssetDetail[];
             if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
+              this.FromPatchValue();
             }
           }
         }, () => {
         
         });*/
       this.itemShow = item;
+      this.FromPatchValue();
+    } else{
+      this.FromPatchValue();
     }
-    
+  }
+
+  FromPatchValue(){
     this.assetFrom.patchValue({
       assetsCode: this.itemShow.assetsCode,
       assetsName: this.itemShow.assetsName,

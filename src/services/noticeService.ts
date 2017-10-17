@@ -20,6 +20,6 @@ export class NoticeService {
        'sessionid': this.globalData.sessionId,
        'size': size,//0是传全部，x是查询x数量
      };
-     return this.httpService.post('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
   }
 }

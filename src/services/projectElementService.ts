@@ -43,6 +43,6 @@ export class ProjectElementService {
         'sessionid': this.globalData.sessionId,
         'elementCode': elementCode,//项目单元编号
     };
-    return this.httpService.post('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
+    return this.httpService.get('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
   }
 }

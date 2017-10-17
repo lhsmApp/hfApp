@@ -6,6 +6,7 @@ import {AcceptApplyDetail} from '../../model/accept-apply-detail';
 import {DicDepart} from '../../model/dic-depart';
 import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
+import {GlobalData} from "../../providers/GlobalData";
 
 import {Oper,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
@@ -49,7 +50,8 @@ export class AcceptApplyItemPage {
               private formBuilder: FormBuilder,
               private modalCtrl: ModalController,
               private viewCtrl: ViewController,
-              public acceptService:AcceptService) {
+              public acceptService:AcceptService, 
+              private globalData: GlobalData) {
     this.itemShow = new AcceptApplyDetail();
   	this.oper = this.params.get(Oper);
   	this.billNumber = this.params.get(BillNumberCode);
@@ -75,23 +77,39 @@ export class AcceptApplyItemPage {
   getShowItem(){
     this.itemShow = new AcceptApplyDetail();
     if(this.oper === Oper_Edit){
-      /*this.acceptService.getAcceptDetailItem(this.billNumber).subscribe(
+      console.log(this.oper);
+      this.acceptService.getAcceptDetailItem(this.billNumber).subscribe(
         object => {
           let resultBase:ResultBase=object[0] as ResultBase;
           if(resultBase.result=='true'){
             this.list = object[1] as AcceptApplyDetail[];
             if(this.list && this.list.length > 0){
-              this.itemShow = this.list[0];
-              console.log("this.itemShow");
-              console.log(this.itemShow);
+              this.itemShow = this.list[0] as AcceptApplyDetail;
+              this.FromPatchValue();
             }
           }
         }, () => {
         
-        });*/
-      this.itemShow = item;
+        });
+      //this.itemShow = item;
+    } else if(this.oper === Oper_Add){
+      console.log(this.oper);
+      this.itemShow.billNumber = "";
+      this.itemShow.contractCode = "";
+      this.itemShow.contractName = "";
+      this.itemShow.elementCode = "";
+      this.itemShow.elementName = "";
+      this.itemShow.departCode = "";
+      this.itemShow.requireDate = "2017-10-18 10:37";
+      this.itemShow.requireUser = this.globalData.userName;
+      this.itemShow.reviewStatus = "0";
+      this.FromPatchValue();
+    } else {
+      this.FromPatchValue();
     }
+  }
 
+  FromPatchValue(){
     this.applyFrom.patchValue({
       contractCode: this.itemShow.contractCode,
       contractName: this.itemShow.contractName,
