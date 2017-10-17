@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
+import { PaymentService} from '../../services/paymentService';
+import {ResultBase} from "../../model/result-base";
 
 /**
  * Generated class for the AdvancePaymentApprovalPage page.
@@ -25,19 +27,26 @@ export class AdvancePaymentApprovalPage {
 
   advancePaymentList:AdvancePaymentMain[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	this.advancePaymentList=ADVANTAGE_LIST;
+  constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
+  	//this.advancePaymentList=ADVANTAGE_LIST;
   }
 
+  //初始化View
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AdvancePaymentApprovalPage');
+    this.getList();
   }
 
   //获取付款单列表信息
-  getList() {
-    /*this.topicService.getTopics(this.params).subscribe(
-      data => this.topics = data.data
-      );*/
+  getList(){
+      this.paymentService.getPaymentMainList()
+      .subscribe(object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.advancePaymentList = object[1] as AdvancePaymentMain[];
+        }
+      }, () => {
+        
+      });
   }
 
   //模糊查询
@@ -58,8 +67,8 @@ export class AdvancePaymentApprovalPage {
 
 
   //打开详情页
-  openPage(id: string) {
-  	this.navCtrl.push("AdvancePaymentInfoPage",{id:id,approval:true});
+  openPage(item: AdvancePaymentMain) {
+    this.navCtrl.push("AdvancePaymentInfoPage",{"paymentItem":item,approval:true});
   }
 
   //上拉刷新
