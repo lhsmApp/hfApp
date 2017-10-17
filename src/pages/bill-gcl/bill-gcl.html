@@ -19,7 +19,7 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-list class="list-avatar-page">
-    <ion-item *ngFor="let item of workList;trackBy:item?.sequence" (click)="openPage(item.sequence)">
+    <ion-item *ngFor="let item of workList;trackBy:item?.sequence" (click)="openPage(item)">
       <h2>序号：{{item.sequence}}</h2>
       <h3 item-end>{{item.payCode}}</h3>
       <p> {{item.listNumber}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.listName}}</p>

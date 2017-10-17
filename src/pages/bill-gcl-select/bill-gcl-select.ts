@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BillOfWorkMain} from '../../model/billof-work-main';
+import { PaymentService} from '../../services/paymentService';
+import {ResultBase} from "../../model/result-base";
+import { AdvancePaymentMain} from '../../model/advance-payment-main';
 
 /**
  * Generated class for the BillGclSelectPage page.
@@ -29,24 +32,32 @@ export class BillGclSelectPage {
 
   workList:BillOfWorkMain[];
   callback :any;
-  payCode:string;
+  paymentMain:AdvancePaymentMain;
+  contractCode:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-	  this.workList=WORK_LIST;
-    this.payCode= this.navParams.get('payCode');
+  constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
+	  //this.workList=WORK_LIST;
+    this.paymentMain= this.navParams.get('paymentItem');
+    this.contractCode=this.navParams.get('contractCode');
     this.callback    = this.navParams.get('callback');
   }
 
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BillGclPage');
+    this.getList();
   }
 
   //获取工程量列表信息
   getList() {
-	  /*this.topicService.getTopics(this.params).subscribe(
-	   data => this.topics = data.data
-	   );*/
+    //getGclMainList(contractCode:string,type:string,payCode:string,sequence :string)
+    this.paymentService.getGclMainList(this.contractCode,'fk',this.paymentMain.payCode,'0')
+      .subscribe(object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.workList = object[1] as BillOfWorkMain[];
+        }
+      }, () => {
+        
+      });
   }
 
   //上拉刷新
@@ -90,8 +101,8 @@ export class BillGclSelectPage {
   }
 
   //查看明细
-  viewDetail(){
-  	this.navCtrl.push("BillGclDetailPage");
+  viewDetail(item: BillOfWorkMain){
+  	this.navCtrl.push("InvoiceInfoPage",{"gclItem":item,'paymentItem':this.paymentMain,'contractCode':this.contractCode});
   }
 
 }

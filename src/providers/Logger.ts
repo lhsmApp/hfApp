@@ -14,7 +14,7 @@ export class Logger {
   constructor(private globalData: GlobalData) {
   }
 
-  log(err: any, action: string, other = null): void {
+  /*log(err: any, action: string, other = null): void {
     console.log('Logger.log：action-' + action);
     other && console.log(other);
     console.log(err);
@@ -38,7 +38,7 @@ export class Logger {
           user: {id: this.globalData.userCode, name: this.globalData.userName}
         }
       });
-  }
+  }*/
 
 
 

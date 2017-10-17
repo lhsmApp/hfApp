@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FormBuilder, Validators} from '@angular/forms';
 import { InvoiceDetail} from '../../model/invoice-detail';
+import { PaymentService} from '../../services/paymentService';
+import {ResultBase} from "../../model/result-base";
+import { InvoiceMain} from '../../model/invoice-main';
+import { AdvancePaymentMain} from '../../model/advance-payment-main';
+import { INVOICE_TYPE} from '../../enums/enums';
 
 /**
  * Generated class for the InvoiceApplyPage page.
@@ -16,11 +21,16 @@ import { InvoiceDetail} from '../../model/invoice-detail';
   templateUrl: 'invoice-apply.html',
 })
 export class InvoiceApplyPage {
+  invoiceType=INVOICE_TYPE;
   invoiceForm: any;
   invoiceDetail:InvoiceDetail;
+  invoiceMain:InvoiceMain;
+  paymentMain:AdvancePaymentMain;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private formBuilder: FormBuilder) {
-  	this.invoiceForm = this.formBuilder.group({
+  constructor(public navCtrl: NavController, public navParams: NavParams,private formBuilder: FormBuilder,private paymentService:PaymentService) {
+    this.invoiceMain=this.navParams.get("invoiceItem");  	
+    this.paymentMain=this.navParams.get("paymentItem");
+    this.invoiceForm = this.formBuilder.group({
       chalanNumber: [,[]],//发票编号，手工录入
       sequence: [, [Validators.required]],//序号，自动生成，判断是否为空，空为增加，有则修改
       chalanType: [, [Validators.required]],//发票类型，选择
@@ -37,7 +47,37 @@ export class InvoiceApplyPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InvoiceApplyPage');
+    this.initData();
+  }
+
+  //初始化数据
+  initData(){
+    if(this.paymentMain){
+      this.paymentService.getInvoiceDetail(this.paymentMain.payCode,this.invoiceMain.chalanNumber)
+        .subscribe(object => {
+          let resultBase:ResultBase=object[0] as ResultBase;
+          if(resultBase.result=='true'){
+            console.log(object[1][0]);
+            this.invoiceDetail = object[1][0] as InvoiceDetail;
+            this.invoiceForm.patchValue({
+            chalanNumber:this.invoiceDetail.chalanNumber,
+            sequence:this.invoiceDetail.sequence,
+            chalanType:this.invoiceDetail.chalanType,
+            price:this.invoiceDetail.price,
+            singleAmount:this.invoiceDetail.singleAmount,
+            sl:this.invoiceDetail.sl,
+            chalanMoney:this.invoiceDetail.chalanMoney,
+            noTaxMoney:this.invoiceDetail.noTaxMoney,
+            deductibleInputString:this.invoiceDetail.deductibleInputString,
+            chalanDate:this.invoiceDetail.chalanDate,
+            chalanContent:this.invoiceDetail.chalanContent,
+            taxNumber:this.invoiceDetail.taxNumber
+            });
+          }
+        }, () => {
+          
+        });
+      }
   }
 
   //附件列表

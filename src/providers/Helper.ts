@@ -85,9 +85,9 @@ export class Helper {
             }
           })
         }, err => {
-          this.logger.log(err, '从版本升级服务获取版本信息失败', {
+          /*this.logger.log(err, '从版本升级服务获取版本信息失败', {
             url: url
-          })
+          })*/
         })
       })
     });

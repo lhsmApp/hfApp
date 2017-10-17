@@ -27,14 +27,9 @@
       </ion-item>
       <ion-item>
         <ion-label fixed>发票类型</ion-label>
-        <ion-select [(ngModel)]="chalanType" formControlName="chalanType">
-	      <ion-option value="nes">NES</ion-option>
-	      <ion-option value="n64">Nintendo64</ion-option>
-	      <ion-option value="ps">PlayStation</ion-option>
-	      <ion-option value="genesis">Sega Genesis</ion-option>
-	      <ion-option value="saturn">Sega Saturn</ion-option>
-	      <ion-option value="snes">SNES</ion-option>
-	    </ion-select>
+        <ion-select [(ngModel)]="chalanType" formControlName="chalanType" cancelText="取消" okText="确定">
+  	      <ion-option *ngFor="let invoice of invoiceType" [value]="invoice.code">{{invoice.name}}</ion-option>
+	     </ion-select>
       </ion-item>
       <span *ngIf="!invoiceForm.controls.chalanType.valid && invoiceForm.controls.chalanType.touched"
             class="validation-failed">

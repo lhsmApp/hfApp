@@ -125,7 +125,7 @@ export class NativeService {
         window['install'].install(apk.replace('file://', ''));
       }, err => {
         alert.dismiss();
-        this.logger.log(err, 'android app 本地升级失败');
+        //this.logger.log(err, 'android app 本地升级失败');
         this.alertCtrl.create({
           title: '前往网页下载',
           subTitle: '本地升级失败',
@@ -272,7 +272,7 @@ export class NativeService {
         if (String(err).indexOf('cancel') != -1) {
           return;
         }
-        this.logger.log(err, '使用cordova-plugin-camera获取照片失败');
+        //this.logger.log(err, '使用cordova-plugin-camera获取照片失败');
         this.alert('获取照片失败');
       });
     });
@@ -331,7 +331,7 @@ export class NativeService {
           }
         }
       }).catch(err => {
-        this.logger.log(err, '通过图库选择多图失败');
+        //this.logger.log(err, '通过图库选择多图失败');
         this.alert('获取照片失败');
       });
     });
@@ -352,7 +352,7 @@ export class NativeService {
           reader.readAsDataURL(file);
         });
       }).catch(err => {
-        this.logger.log(err, '根据图片绝对路径转化为base64字符串失败');
+        //this.logger.log(err, '根据图片绝对路径转化为base64字符串失败');
       });
     });
   }
@@ -366,7 +366,7 @@ export class NativeService {
       this.appVersion.getVersionNumber().then((value: string) => {
         observer.next(value);
       }).catch(err => {
-        this.logger.log(err, '获得app版本号失败');
+        //this.logger.log(err, '获得app版本号失败');
       });
     });
   }
@@ -380,7 +380,7 @@ export class NativeService {
       this.appVersion.getAppName().then((value: string) => {
         observer.next(value);
       }).catch(err => {
-        this.logger.log(err, '获得app name失败');
+        //this.logger.log(err, '获得app name失败');
       });
     });
   }
@@ -394,7 +394,7 @@ export class NativeService {
       this.appVersion.getPackageName().then((value: string) => {
         observer.next(value);
       }).catch(err => {
-        this.logger.log(err, '获得app包名失败');
+        //this.logger.log(err, '获得app包名失败');
       });
     });
   }
@@ -425,11 +425,11 @@ export class NativeService {
                       return this.getLocation(observer);
                     }
                   }).catch(err => {
-                    this.logger.log(err, '调用diagnostic.requestLocationAuthorization方法失败');
+                    //this.logger.log(err, '调用diagnostic.requestLocationAuthorization方法失败');
                   });
                 }
               }).catch(err => {
-                this.logger.log(err, '调用diagnostic.isLocationAvailable方法失败');
+                //this.logger.log(err, '调用diagnostic.isLocationAvailable方法失败');
               });
             }
           } else {
@@ -455,7 +455,7 @@ export class NativeService {
         return;
       }
       this.alert('错误消息：' + msg);
-      this.logger.log(msg, '获取位置失败');
+      //this.logger.log(msg, '获取位置失败');
     });
   }
 
@@ -478,7 +478,7 @@ export class NativeService {
         }, type, message => {
           observer.next(message);
         }, err => {
-          this.logger.log(err, '导航失败');
+          //this.logger.log(err, '导航失败');
           this.alert('导航失败');
         });
       } else {

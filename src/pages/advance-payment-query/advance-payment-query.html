@@ -19,7 +19,7 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-list class="list-avatar-page">
-    <ion-item *ngFor="let item of advancePaymentList;trackBy:item?.payCode" (click)="openPage(item.payCode)">
+    <ion-item *ngFor="let item of advancePaymentList;trackBy:item?.payCode" (click)="openPage(item)">
       <!-- <ion-avatar item-start (click)="openUserPage(item.author.loginname, $event)">
         <img src="{{item.author.avatar_url}}" />
       </ion-avatar> -->
