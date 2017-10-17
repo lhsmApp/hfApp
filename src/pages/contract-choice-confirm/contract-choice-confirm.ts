@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ContractDetail} from '../../model/contract-detail';
+import {ContractService} from '../../services/contractService';
+import {ResultBase} from "../../model/result-base";
 
 import {BillContractCode} from '../../providers/TransferFeildName';
 
@@ -19,21 +21,37 @@ import {BillContractCode} from '../../providers/TransferFeildName';
 export class ContractChoiceConfirmPage {
   contractCode:string;
 
+  list: ContractDetail[];
   itemShow:ContractDetail;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public contractService:ContractService) {
   	this.contractCode = this.navParams.get(BillContractCode);
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ContractChoiceConfirmPage');
     
     this.getShowItem();
   }
 
   getShowItem(){
     this.itemShow = new ContractDetail();
-    this.itemShow.contractCode = this.contractCode;
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ContractChoiceConfirmPage');
+    ////合同流水号 序号
+    //contractCode:string, sequence:string
+    this.contractService.getContractDetailItem(this.contractCode, '').subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.list = object[1] as ContractDetail[];
+          if(this.list && this.list.length > 0){
+              this.itemShow = this.list[0];
+          }
+        }
+      }, () => {
+    
+      });
+    //this.itemShow = item;
   }
 
   /*ok(){

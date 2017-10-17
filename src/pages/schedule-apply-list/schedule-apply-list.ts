@@ -7,7 +7,7 @@ import {ResultBase} from "../../model/result-base";
 import {Page_ScheduleApplyInfoPage,Page_ScheduleApplyItemPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Edit,Oper_Add} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
-import {ItemTranfer} from '../../providers/TransferFeildName';
+import {BillElementCode} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the ScheduleApplyListPage page.
@@ -16,11 +16,11 @@ import {ItemTranfer} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
- /*const listGet:ScheduleManageInfo[]=[
-     {codeScheduleManage: 'XMDY00001', nameScheduleManage: '名称1', typeScheduleManage: '性质1', progressOverviewScheduleManage: '', completePercentageScheduleManage: '', designCompletedDateScheduleManage: '', drawCompletedDateScheduleManage: '', planCompletionDateScheduleManage: '', actualStartDateScheduleManage: '', planStartDateScheduleManage: '', practicalCompletionDateScheduleManage: '', finalAcceptanceDateScheduleManage: '', preTransferDateScheduleManage: '', auditReportDateScheduleManage: '', applyDateScheduleManage: '', applyUserScheduleManage: ''},
-     {codeScheduleManage: 'XMDY00002', nameScheduleManage: '名称2', typeScheduleManage: '性质2', progressOverviewScheduleManage: '', completePercentageScheduleManage: '', designCompletedDateScheduleManage: '', drawCompletedDateScheduleManage: '', planCompletionDateScheduleManage: '', actualStartDateScheduleManage: '', planStartDateScheduleManage: '', practicalCompletionDateScheduleManage: '', finalAcceptanceDateScheduleManage: '', preTransferDateScheduleManage: '', auditReportDateScheduleManage: '', applyDateScheduleManage: '', applyUserScheduleManage: ''},
-     {codeScheduleManage: 'XMDY00003', nameScheduleManage: '名称3', typeScheduleManage: '性质3', progressOverviewScheduleManage: '', completePercentageScheduleManage: '', designCompletedDateScheduleManage: '', drawCompletedDateScheduleManage: '', planCompletionDateScheduleManage: '', actualStartDateScheduleManage: '', planStartDateScheduleManage: '', practicalCompletionDateScheduleManage: '', finalAcceptanceDateScheduleManage: '', preTransferDateScheduleManage: '', auditReportDateScheduleManage: '', applyDateScheduleManage: '', applyUserScheduleManage: ''},
- ];*/
+ const listGet:ProjectUnitMain[]=[
+     {elementCode: 'XMDY00001', elementName: '名称1', elementType: '性质1', sgsx: '施工属性1'},
+     {elementCode: 'XMDY00002', elementName: '名称2', elementType: '性质2', sgsx: '施工属性2'},
+     {elementCode: 'XMDY00003', elementName: '名称3', elementType: '性质3', sgsx: '施工属性3'},
+ ];
 
 @IonicPage()
 @Component({
@@ -60,7 +60,7 @@ export class ScheduleApplyListPage {
           //4审批中(待审批) 
           //10待审批(待审批)
     //type:string, sgsx:string, elementCode:string, startDate:string, endDate:string, checkResult:string
-    this.projectElementService.getProjectElementMainList('1', '0', '', '', '', '').subscribe(
+    /*this.projectElementService.getProjectElementMainList('1', '0', '', '', '', '').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -69,8 +69,9 @@ export class ScheduleApplyListPage {
         }
       }, () => {
     
-      });
-    //this.list = listGet;
+      });*/
+    this.listAll = listGet;
+    this.list = listGet;
   }
 
   //模糊查询
@@ -123,17 +124,17 @@ export class ScheduleApplyListPage {
     }, 500);*/
   }
 
-    toDetail(item: ProjectUnitMain) {
-        this.navCtrl.push(Page_ScheduleApplyInfoPage, {ItemTranfer: item,Oper:Oper_Edit, Title: '进度管理'});
+    toDetail(elementCode: string) {
+        this.navCtrl.push(Page_ScheduleApplyInfoPage, {BillElementCode: elementCode,Oper:Oper_Edit, Title: '进度管理'});
     }
 
     add(){
-        this.navCtrl.push(Page_ScheduleApplyItemPage, {ItemTranfer: [],Oper:Oper_Add});
+        this.navCtrl.push(Page_ScheduleApplyItemPage, {BillElementCode: [],Oper:Oper_Add});
     }
-    edit(item: ProjectUnitMain){
-        this.navCtrl.push(Page_ScheduleApplyItemPage, {ItemTranfer: item,Oper:Oper_Edit});
+    edit(elementCode: string){
+        this.navCtrl.push(Page_ScheduleApplyItemPage, {BillElementCode: elementCode,Oper:Oper_Edit});
     }
-    delete(item: ProjectUnitMain){
+    delete(elementCode: string){
         
     }
 

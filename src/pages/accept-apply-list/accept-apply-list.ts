@@ -63,6 +63,7 @@ export class AcceptApplyListPage {
       }, () => {
     
       });
+    //this.listAll = listGet;
     //this.list = listGet;
   }
 

@@ -28,19 +28,20 @@
      </ion-refresher>
 
 	 <ion-list>
-		<ion-item-sliding *ngFor="let item of list;trackBy:item?.codeScheduleManage">
-       <ion-item (click)="toDetail(item)">
-                <p>项目单元编号：{{item.codeScheduleManage}}</p>
-                <p>项目单元名称：{{item.nameScheduleManage}}</p>
-                <p>项目性质：{{item.typeScheduleManage}}</p>
+		<ion-item-sliding *ngFor="let item of list;trackBy:item?.elementCode">
+       <ion-item (click)="toDetail(item.elementCode)">
+                <h2>{{item.elementCode}}</h2>
+                <h3>{{item.elementName}}</h3>
+                <p>{{item.elementType}}</p>
+                <p item-end>{{item.elementType}}</p>
 			</ion-item>
 
       <ion-item-options side="right">
-        <button ion-button color="primary" (click)="edit(item)">
+        <button ion-button color="primary" (click)="edit(item.elementCode)">
           <ion-icon name="create"></ion-icon>
           编辑
         </button>
-        <button ion-button color="danger" (click)="delete(item)">
+        <button ion-button color="danger" (click)="delete(item.elementCode)">
           <ion-icon name="close"></ion-icon>
           删除
         </button>

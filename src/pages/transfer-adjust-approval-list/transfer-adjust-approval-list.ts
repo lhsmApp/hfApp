@@ -33,7 +33,7 @@ export class TransferAdjustApprovalListPage {
 
   //获取列表信息
   getList() {
-    this.tzCostService.getTzCostMainList('').subscribe(
+    /*this.tzCostService.getTzCostMainList('').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -41,7 +41,7 @@ export class TransferAdjustApprovalListPage {
         }
       }, () => {
   
-      });
+      });*/
     this.list = listGet;
   }
 

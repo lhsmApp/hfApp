@@ -26,7 +26,7 @@ export const ItemTranfer = 'ItemTranfer';
 export const BillElementCode = 'BillElementCode';
 
 //页面
-//验收申请：查看、审批 BillNumberCode title oper:Oper_Look、Oper_Edit、Oper_Approval
+//验收申请：查看、审批 BillNumberCode title oper:Oper_Look、Oper_Add、Oper_Edit、Oper_Approval
 export const Page_AcceptApplyInfoPage = 'AcceptApplyInfoPage';
 //验收申请：添加、编辑、送审 BillNumberCode oper:Oper_Add、Oper_Edit
 export const Page_AcceptApplyItemPage = 'AcceptApplyItemPage';
@@ -55,9 +55,9 @@ export const Page_TransferFundsInfoPage = 'TransferFundsInfoPage';
 
 //公告
 
-//进度管理详情
+//进度管理详情 BillElementCode oper:Oper_Add、Oper_Edit、Oper_Look、Oper_Approval Title
 export const Page_ScheduleApplyInfoPage = 'ScheduleApplyInfoPage';
-//进度管理申请
+//进度管理申请 BillElementCode oper:Oper_Add、Oper_Edit
 export const Page_ScheduleApplyItemPage = 'ScheduleApplyItemPage';
 
 //转资调整审批

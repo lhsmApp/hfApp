@@ -54,6 +54,7 @@ export class AssetDetailsInfoPage {
   contractCode:string;
   keyCode:string;
 
+  list: AcceptAssetDetail[];
   itemShow:AcceptAssetDetail;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -62,6 +63,11 @@ export class AssetDetailsInfoPage {
     this.billNumber = this.navParams.get(BillNumberCode);
     this.contractCode = this.navParams.get(BillContractCode);
     this.keyCode = this.navParams.get(BillKeyCode);
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad AssetDetailsInfoPage');
+    this.itemShow = new AcceptAssetDetail();
     this.getShowItem();
   }
 
@@ -72,16 +78,15 @@ export class AssetDetailsInfoPage {
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
-          //this.list = object[1] as AcceptAssetDetail[];
+          this.list = object[1] as AcceptAssetDetail[];
+          if(this.list && this.list.length > 0){
+              this.itemShow = this.list[0];
+          }
         }
       }, () => {
     
       });*/
     this.itemShow = item;
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AssetDetailsInfoPage');
   }
 
 }

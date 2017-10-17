@@ -14,6 +14,12 @@
 
 
 <ion-content>
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="输入名称或编号模糊搜索"></ion-searchbar>
+    
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
+    </ion-refresher-content>
+  </ion-refresher>
 	<ion-list>
 	    <ion-item *ngFor="let item of list" (click)="toDetail(item)">
 			      <h2>{{item.assetsCode}}</h2><!--资产编码：-->
@@ -22,4 +28,8 @@
 			      <p item-end color="green">{{item.keyCode}}</p><!--资产键码-->
 		</ion-item>
 	</ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

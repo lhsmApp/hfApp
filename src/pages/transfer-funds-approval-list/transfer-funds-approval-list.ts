@@ -40,7 +40,7 @@ export class TransferFundsApprovalListPage {
   getList() {
     //1.申请 2.查询 3.审批
     //" 单据状态" //转资后端字段解释(括号中代表客户端对应字段)、0未提交(新增)、1未审批(待审批) 、2已驳回(退回)、3审批中(待审批)、4已审批(已审批)、若客户端传空的时候则后端查询全部
-    this.translateVoucherService.getTranslateVoucherMainList('3','','','','').subscribe(
+    /*this.translateVoucherService.getTranslateVoucherMainList('3','','','','').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -48,7 +48,7 @@ export class TransferFundsApprovalListPage {
         }
       }, () => {
   
-      });
+      });*/
     this.list = listGet;
   }
 

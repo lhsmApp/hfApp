@@ -27,8 +27,8 @@ import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFei
       {departCode:'3',departName:'单位3',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
       {departCode:'4',departName:'单位4',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
   ]
-  /*const item: AcceptApplyDetail = { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人', contractCode:'HT0001', 
-          contractName:'合同名称', elementCode:'XMDY0045', elementName:'项目单元名称', departCode:'3'};*/
+  const item: AcceptApplyDetail = { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人', contractCode:'HT0001', 
+          contractName:'合同名称', elementCode:'XMDY0045', elementName:'项目单元名称', departCode:'3'};
 
 @IonicPage()
 @Component({
@@ -54,6 +54,16 @@ export class AcceptApplyItemPage {
   	this.oper = this.params.get(Oper);
   	this.billNumber = this.params.get(BillNumberCode);
     this.listDept = listDeptGet;
+
+    this.applyFrom = this.formBuilder.group({
+      contractCode: [, [Validators.required]],
+      contractName: [, []],
+      elementCode: [, []],
+      elementName: [, []],
+      departCode: [, [Validators.required]],
+      requireDate: [, [Validators.required]],
+      requireUser: [, [Validators.required]]
+    });
   }
 
   ionViewDidLoad() {
@@ -65,29 +75,31 @@ export class AcceptApplyItemPage {
   getShowItem(){
     this.itemShow = new AcceptApplyDetail();
     if(this.oper === Oper_Edit){
-      this.acceptService.getAcceptDetailItem(this.billNumber).subscribe(
+      /*this.acceptService.getAcceptDetailItem(this.billNumber).subscribe(
         object => {
           let resultBase:ResultBase=object[0] as ResultBase;
           if(resultBase.result=='true'){
             this.list = object[1] as AcceptApplyDetail[];
             if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
+              console.log("this.itemShow");
+              console.log(this.itemShow);
             }
           }
         }, () => {
         
-        });
-        //this.itemShow = item;
+        });*/
+      this.itemShow = item;
     }
 
-    this.applyFrom = this.formBuilder.group({
-      contractCode: [this.itemShow.contractCode, [Validators.required]],
-      contractName: [this.itemShow.contractName],
-      elementCode: [this.itemShow.elementCode],
-      elementName: [this.itemShow.elementName],
-      departCode: [this.itemShow.departCode, [Validators.required]],
-      requireDate: [this.itemShow.requireDate, [Validators.required]],
-      requireUser: [this.itemShow.requireUser, [Validators.required]]
+    this.applyFrom.patchValue({
+      contractCode: this.itemShow.contractCode,
+      contractName: this.itemShow.contractName,
+      elementCode: this.itemShow.elementCode,
+      elementName: this.itemShow.elementName,
+      departCode: this.itemShow.departCode,
+      requireDate: this.itemShow.requireDate,
+      requireUser: this.itemShow.requireUser
     });
   }
 

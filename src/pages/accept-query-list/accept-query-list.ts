@@ -61,6 +61,7 @@ export class AcceptQueryListPage {
       }, () => {
     
       });
+    //this.listAll = listGet;
     //this.list = listGet;
   }
 

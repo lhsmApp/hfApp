@@ -22,87 +22,96 @@
 <ion-content>
 	<form [formGroup]="applyFrom" (ngSumbit)="(save())">
 		<ion-item-group>
+            
             <ion-item >
                 <ion-label fixed>进展概述</ion-label>
-                <ion-input type="text" formControlName="progressOverviewScheduleManage" 
+                <ion-input type="text" formControlName="projectProgress" 
                     placeholder="手工输入">
                 </ion-input>
             </ion-item>
+
             <ion-item >
                 <ion-label fixed>完工百分比</ion-label>
-                <ion-input type="text" formControlName="completePercentageScheduleManage" 
+                <ion-input type="text" formControlName="completionProgress" 
                     placeholder="手工输入，只能输入数字">
                 </ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>设计完成时间</ion-label>
-                <ion-input type="text" formControlName="designCompletedDateScheduleManage" 
+                <ion-input type="text" formControlName="designFinishTime" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>施工图完成时间</ion-label>
-                <ion-input type="text" formControlName="drawCompletedDateScheduleManage" 
-                    placeholder="选择日期">
-                </ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>计划完工时间</ion-label>
-                <ion-input type="text" formControlName="planCompletionDateScheduleManage" 
-                    placeholder="选择日期">
-                </ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>实际开工时间</ion-label>
-                <ion-input type="text" formControlName="actualStartDateScheduleManage" 
+                <ion-input type="text" formControlName="drawingFinishTime" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>计划开工时间</ion-label>
-                <ion-input type="text" formControlName="planStartDateScheduleManage" 
+                <ion-input type="text" formControlName="planBeginTime" 
+                    placeholder="选择日期">
+                </ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>计划完工时间</ion-label>
+                <ion-input type="text" formControlName="planEndTime" 
+                    placeholder="选择日期">
+                </ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>实际开工时间</ion-label>
+                <ion-input type="text" formControlName="realBeginTime" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>实际完工时间</ion-label>
-                <ion-input type="text" formControlName="practicalCompletionDateScheduleManage"           placeholder="选择日期">
+                <ion-input type="text" formControlName="realEndTime"
+                    placeholder="选择日期">
                 </ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>竣工验收时间</ion-label>
-                <ion-input type="text" formControlName="finalAcceptanceDateScheduleManage" 
+                <ion-input type="text" formControlName="realFinishTime" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>预达转资时间</ion-label>
-                <ion-input type="text" formControlName="preTransferDateScheduleManage" 
+                <ion-input type="text" formControlName="certainDate" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>审计报告日期</ion-label>
-                <ion-input type="text" formControlName="auditReportDateScheduleManage" 
+                <ion-input type="text" formControlName="auditReportTime" 
                     placeholder="选择日期">
                 </ion-input>
             </ion-item>
             <ion-item >
+                <ion-label fixed>复核意见</ion-label>
+                <ion-input type="text" formControlName="checkOpinion" 
+                    placeholder="手工输入">
+                </ion-input>
+            </ion-item>
+            <ion-item >
                 <ion-label fixed>填报日期</ion-label>
-                <ion-input readonly type="text" formControlName="applyDateScheduleManage" 
+                <ion-input readonly type="text" formControlName="requireDate" 
                     placeholder="自动填写">
                 </ion-input>
-                <span *ngIf="!applyFrom.controls.applyDateScheduleManage.valid && applyFrom.controls.applyDateScheduleManage.touched"
+                <span *ngIf="!applyFrom.controls.requireDate.valid && applyFrom.controls.requireDate.touched"
                     class="validation-failed">
                     填报日期不能为空
                 </span>
             </ion-item>
             <ion-item >
                 <ion-label fixed>填报人</ion-label>
-                <ion-input readonly type="text" formControlName="applyUserScheduleManage" 
+                <ion-input readonly type="text" formControlName="requireUser" 
                     placeholder="自动填写">
                 </ion-input>
-                <span *ngIf="!applyFrom.controls.applyUserScheduleManage.valid && applyFrom.controls.applyUserScheduleManage.touched"
+                <span *ngIf="!applyFrom.controls.requireUser.valid && applyFrom.controls.requireUser.touched"
                     class="validation-failed">
                     填报人不能为空
                 </span>

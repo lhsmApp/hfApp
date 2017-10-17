@@ -23,11 +23,12 @@
      </ion-refresher>
 
 	 <ion-list>
-		<ion-item *ngFor="let item of list;trackBy:item?.codeScheduleManage"
-              (click)="toDetail(item)">
-                <p>项目单元编号：{{item.codeScheduleManage}}</p>
-                <p>项目单元名称：{{item.nameScheduleManage}}</p>
-                <p>项目性质：{{item.typeScheduleManage}}</p>
+		<ion-item *ngFor="let item of list;trackBy:item?.elementCode"
+              (click)="toDetail(item.elementCode)">
+                <h2>{{item.elementCode}}</h2>
+                <h3>{{item.elementName}}</h3>
+                <p>{{item.elementType}}</p>
+                <p item-end>{{item.elementType}}</p>
 		</ion-item>
 	</ion-list>
 

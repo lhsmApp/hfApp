@@ -28,80 +28,140 @@
 	<ion-item-group insert>
         <ion-item>
             <ion-row>
+                <ion-col col-4><span class='color-label'>项目计划编码：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.projectCode}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>项目计划名称：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.projectName}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
                 <ion-col col-4><span class='color-label'>进展概述：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.progressOverviewScheduleManage}}</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.projectProgress}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>项目单元编码：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.elementCode}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>项目单元名称：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.elementName}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>项目单元类别：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.elementType}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>施工属性：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.sgsx}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>初始计划金额：</span></ion-col>
+                <ion-col col-8><span text-right>{{itemShow.planMoney}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>当前计划金额：</span></ion-col>
+                <ion-col col-8><span text-right>{{itemShow.planMoney_current}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>已付款金额：</span></ion-col>
+                <ion-col col-8><span text-right>{{itemShow.payMoney}}</span></ion-col>
             </ion-row>
         </ion-item>
         <ion-item>
             <ion-row>
                 <ion-col col-4><span class='color-label'>完工百分比：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.completePercentageScheduleManage}}</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.completionProgress}}</span></ion-col>
             </ion-row>
         </ion-item>
         <ion-item>
             <ion-row>
                 <ion-col col-4><span class='color-label'>设计完成时间：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.designCompletedDateScheduleManage}}</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.designFinishTime}}</span></ion-col>
             </ion-row>
         </ion-item>
         <ion-item>
             <ion-row>
                 <ion-col col-4><span class='color-label'>施工图完成时间：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.drawCompletedDateScheduleManage}}</span></ion-col>
-            </ion-row>
-        </ion-item>
-        <ion-item>
-            <ion-row>
-                <ion-col col-4><span class='color-label'>计划完工时间：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.planCompletionDateScheduleManage}}</span></ion-col>
-            </ion-row>
-        </ion-item>
-        <ion-item>
-            <ion-row>
-                <ion-col col-4><span class='color-label'>实际开工时间：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.actualStartDateScheduleManage}}</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.drawingFinishTime}}</span></ion-col>
             </ion-row>
         </ion-item>
         <ion-item>
             <ion-row>
                 <ion-col col-4><span class='color-label'>计划开工时间：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.planStartDateScheduleManage}}</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.planBeginTime}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>计划完工时间：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.planEndTime}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>实际开工时间：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.realBeginTime}}</span></ion-col>
             </ion-row>
         </ion-item>
         <ion-item>
             <ion-row>
                 <ion-col col-4><span class='color-label'>实际完工时间：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.practicalCompletionDateScheduleManage}}</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.realEndTime}}</span></ion-col>
             </ion-row>
         </ion-item>
         <ion-item>
             <ion-row>
                 <ion-col col-4><span class='color-label'>竣工验收时间：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.finalAcceptanceDateScheduleManage}}</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.realFinishTime}}</span></ion-col>
             </ion-row>
         </ion-item>
         <ion-item>
             <ion-row>
                 <ion-col col-4><span class='color-label'>预达转资时间：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.preTransferDateScheduleManage}}</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.certainDate}}</span></ion-col>
             </ion-row>
         </ion-item>
         <ion-item>
             <ion-row>
                 <ion-col col-4><span class='color-label'>审计报告日期：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.auditReportDateScheduleManage}}</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.auditReportTime}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>复核意见：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.checkOpinion}}</span></ion-col>
             </ion-row>
         </ion-item>
         <ion-item>
             <ion-row>
                 <ion-col col-4><span class='color-label'>填报日期：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.applyDateScheduleManage}}</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.requireDate}}</span></ion-col>
             </ion-row>
         </ion-item>
         <ion-item>
             <ion-row>
                 <ion-col col-4><span class='color-label'>填报人：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.applyUserScheduleManage}}</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.requireUser}}</span></ion-col>
             </ion-row>
         </ion-item>
 	</ion-item-group>
