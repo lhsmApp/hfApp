@@ -24,7 +24,8 @@ export class InvoiceInfoPage {
   paymentMain:AdvancePaymentMain;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
-    this.invoiceMain=this.navParams.get("gclItem");
+    this.invoiceMain=this.navParams.get("invoiceItem");
+    console.log(this.invoiceMain);
     this.paymentMain=this.navParams.get("paymentItem");
   }
 

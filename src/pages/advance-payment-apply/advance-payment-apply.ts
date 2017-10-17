@@ -55,7 +55,7 @@ export class AdvancePaymentApplyPage {
 
     this.paymentMain=this.navParams.get("paymentItem");
     this.paymentForm = this.formBuilder.group({
-      payCode: [,[]],//付款单号，保存后自动生成
+      payCode: '',//付款单号，保存后自动生成
       clauseType: [, [Validators.required]],//款项类别，选择
       contractCode: [, [Validators.required]],//合同流水号，选择
       contractName: [, [Validators.required]],//合同名称，自动带出
@@ -124,7 +124,9 @@ export class AdvancePaymentApplyPage {
     modal.onDidDismiss(contractInfo => {
       console.log(contractInfo);
       if(contractInfo){
+        console.log(contractInfo);
         this.paymentForm.patchValue({
+
           contractCode:contractInfo.contractCode,
           contractName:contractInfo.contractName,
           /*elementType:contractInfo.elementType,
