@@ -154,6 +154,7 @@ export class AcceptApplyItemPage {
           this.itemShow.contractName = contractInfo.contractName;
           //this.itemShow.elementCode = contractInfo.elementCode;
           //this.itemShow.elementName = contractInfo.elementName;
+          this.FromPatchValue();
       }
     });
   }

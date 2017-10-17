@@ -46,6 +46,7 @@ export class ScheduleApplyListPage {
   }
 
   //获取列表信息
+  checkResult:string;
   getList() {
     this.listAll = [];
     this.list = [];
@@ -60,7 +61,8 @@ export class ScheduleApplyListPage {
           //4审批中(待审批) 
           //10待审批(待审批)
     //type:string, sgsx:string, elementCode:string, startDate:string, endDate:string, checkResult:string
-    /*this.projectElementService.getProjectElementMainList('1', '0', '', '', '', '').subscribe(
+    /*this.checkResult = '0','2';
+    this.projectElementService.getProjectElementMainList('1', '0', '', '', '', this.checkResult).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){

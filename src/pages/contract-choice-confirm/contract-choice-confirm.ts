@@ -26,12 +26,13 @@ export class ContractChoiceConfirmPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public contractService:ContractService) {
+    this.itemShow = new ContractDetail();
   	this.contractCode = this.navParams.get(BillContractCode);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContractChoiceConfirmPage');
-    
+    this.itemShow = new ContractDetail();
     this.getShowItem();
   }
 
@@ -39,7 +40,7 @@ export class ContractChoiceConfirmPage {
     this.itemShow = new ContractDetail();
     ////合同流水号 序号
     //contractCode:string, sequence:string
-    this.contractService.getContractDetailItem(this.contractCode, '').subscribe(
+    this.contractService.getContractDetailItem(this.contractCode, '0').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){

@@ -70,8 +70,8 @@ export class AssetDetailsListPage {
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
-          //this.listAll = object[1] as AcceptAssetMain[];
-          //this.list = object[1] as AcceptAssetMain[];
+          this.listAll = object[1] as AcceptAssetMain[];
+          this.list = object[1] as AcceptAssetMain[];
         }
       }, () => {
     
