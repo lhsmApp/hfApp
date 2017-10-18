@@ -17,6 +17,20 @@ import {TypeGetAsset,TypeGetAsset_TransferFunds} from '../../providers/TransferF
  * Ionic pages and navigation.
  */
 
+ const item:TransferFundsDetail = {
+reviewStatus:'单据状态',
+              translateCode:'单据编号',                
+        translateType:'转资类型',//(1、固定资产 2、无形资产3、长期待摊费用4、长期股权投资)                
+        elementCode:'项目单元编码',            
+        elementName:'项目单元名称',            
+              beforehandDate:'达预转资时间',            
+              translateContent:'转资说明',                
+        costTotal: 47,//转资金额',,传double型                
+        requireUser:'申请人',                  
+        requireDate:'申请日期',                
+        checkOpinion:'审批意见',         
+ };
+
 @IonicPage()
 @Component({
   selector: 'page-transfer-funds-info',
@@ -48,8 +62,7 @@ export class TransferFundsInfoPage {
   }
 
   getShowItem(){
-    this.itemShow = new TransferFundsDetail();
-    this.itemShow.translateCode = this.translateCode;
+    this.itemShow = item;
   }
   
   //资产明细

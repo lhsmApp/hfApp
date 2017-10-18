@@ -15,6 +15,40 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
+ const item:TransferAdjustDetail = {
+ xh: '序号',
+assetsType: '资产类型',
+//assetsCodeType: '资产类别',
+assetsCode: '资产编码',
+assetsName: '资产名称',
+departCode: '所属单位',
+//entityCode: '所属资产组',
+assetsStandard: '规格型号',
+licenceNumber: '车牌井号',
+unitCode: '计量单位',
+makeFactory: '制造厂家',
+factoryNumber: '出厂编号',
+productDate: '出厂日期',
+operateDate: '投产日期',
+//usedAspect: '使用方向',
+//contractCode: '合同编号',
+applyCode: '取得方式',
+//guaDate: '保修截止日期',
+depreciateYear: 3,//预计使用年限(int 型)
+usedState: '使用状况',
+storePlace: '存放地点',
+userPerson: '保管人',
+specialLine: '技术鉴定部门',
+originalValue: 58,//原值(double)
+nowValue: 36,//净值(double)
+addDepreciate: 35,//累计折旧(double)
+devalueValue: 25,//减值准备(double)
+keyCode: '资产键码',
+tzOriginalValue: 6,//调整原值', (double)     
+tzNowValue: 9,//调整净值', (double)          
+tzDepreciateValue: 4,//调整累计折旧',(double)
+};
+
 @IonicPage()
 @Component({
   selector: 'page-transfer-adjust-info',
@@ -45,7 +79,7 @@ export class TransferAdjustInfoPage {
 
   getShowItem(){
     //this.itemTranfer.codeAcceptApply
-    this.itemShow = new TransferAdjustDetail();
+    this.itemShow = item;
   }
   
   //资产明细

@@ -61,7 +61,7 @@ export class ScheduleApplyListPage {
           //10待审批(待审批)
     //type:string, sgsx:string, elementCode:string, startDate:string, endDate:string, checkResult:string
     let checkResult = "0,2";
-    this.projectElementService.getProjectElementMainList('1', '0', '', '', '', '').subscribe(
+    /*this.projectElementService.getProjectElementMainList('1', '0', '', '', '', checkResult).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -70,9 +70,9 @@ export class ScheduleApplyListPage {
         }
       }, () => {
     
-      });
-    //this.listAll = listGet;
-    //this.list = listGet;
+      });*/
+    this.listAll = listGet;
+    this.list = listGet;
   }
 
   //模糊查询

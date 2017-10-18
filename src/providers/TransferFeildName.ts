@@ -4,7 +4,7 @@
 export const TypeGetAsset = 'TypeGetAsset';
 export const TypeGetAsset_AcceptApply = '0';
 export const TypeGetAsset_TransferFunds = '1';
-export const TypeGetAsset_TransferAdjust = '';
+export const TypeGetAsset_TransferAdjust = '2';
 
 export const Oper = 'Oper';
 export const Oper_Look = '查看';

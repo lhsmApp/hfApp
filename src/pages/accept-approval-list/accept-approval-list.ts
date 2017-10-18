@@ -17,12 +17,12 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
-  /*const listGet:AcceptApplyMain[] = [
+  const listGet:AcceptApplyMain[] = [
         { billNumber: 'XMDY0001', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
         { billNumber: 'XMDY0002', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
         { billNumber: 'XMDY0003', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
         { billNumber: 'XMDY0004', reviewStatus: '99', requireDate: '2017-09-25', requireUser: '申请人'},
-    ];*/
+    ];
 
 @IonicPage()
 @Component({
@@ -54,7 +54,7 @@ export class AcceptApprovalListPage {
     //0新增（新增）、99待审批（待审批）、1 审批成功（已审批）、2审批失败 （退回）
     //type:string, billNumber:string, startDate:string, endDate:string, reviewStatus:string
     let reviewStatus = "99";
-    this.acceptService.getAcceptMainList('3', '', '', '', '').subscribe(
+    /*this.acceptService.getAcceptMainList('3', '', '', '', '').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -63,9 +63,9 @@ export class AcceptApprovalListPage {
         }
       }, () => {
     
-      });
-    //this.listAll = listGet;
-    //this.list = listGet;
+      });*/
+    this.listAll = listGet;
+    this.list = listGet;
   }
 
   //模糊查询

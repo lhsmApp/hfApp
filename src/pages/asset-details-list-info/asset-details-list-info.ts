@@ -62,7 +62,11 @@ export class AssetDetailsListInfoPage {
     this.list = [];
     ////是否已验收0为未验收1为验收 0未验收 1已复核 2已验收未复核（如果是验收单据查询，则需要查询未验收的0，如果是转资单据查询，则需要传验收1，如果是合同查询则不用传参）
     //contractCode:string, translateCode:string, acceptanceFlag:string
-    this.contractService.getAssetDetailList(this.contractCode, this.billNumber, this.acceptanceFlag).subscribe(
+    let translateCode = "";
+    if(this.acceptanceFlag === TypeGetAsset_TransferFunds){
+      translateCode = this.billNumber;
+    }
+    /*this.contractService.getAssetDetailList(this.contractCode, translateCode, this.acceptanceFlag).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -71,9 +75,9 @@ export class AssetDetailsListInfoPage {
         }
       }, () => {
     
-      });
-    //this.listAll = listGet;
-    //this.list = listGet;
+      });*/
+    this.listAll = listGet;
+    this.list = listGet;
   }
 
   //模糊查询
