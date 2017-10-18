@@ -12,16 +12,27 @@ export class PaymentService {
 
 
   //付款单据申请列表---basic_pay_main       付款主表
-  getPaymentMainList(): Observable<(Object)> {
+  getPaymentMainList(type:string,reviewStatus:string,payCode:string,startDate:string,endDate:string): Observable<(Object)> {
   	console.log('付款主表'+this.globalData.sessionId);
     let param = {
+     //必传
      'action': 'queryListPhonePayMain',
      'sessionid':this.globalData.sessionId,
-     //'reviewStatus': 0,
-     'payCode': '',
-     'startDate':'',
-     'endDate':'',
-     'type':'1'
+     'type':type,//1.申请 2.查询 3.审批
+     //可传
+     /*付款后端字段解释(括号中代表客户端对应字段)
+      0录入(新增)
+      1审批中(待审批)
+      2驳回(退回)
+      3驳回至上一个审批人(待审批)
+      4审批完成(已审批)
+      6作废(若有作废按钮需求可加上作废按钮)
+      若客户端传空的时候则后端查询全部*/
+     'reviewStatus': reviewStatus,
+     'payCode': payCode,
+     'startDate':startDate,
+     'endDate':endDate,
+     
      };
      return this.httpService.get('phonePaymentRequest.do', param).map((res: Response) => res.json());
   }
@@ -29,9 +40,9 @@ export class PaymentService {
   //付款单据申请详情---basic_pay_main
   getPaymentDetail(payCode:string): Observable<(Object)> {
     let param = {
+     //必传
      'action': 'queryPhonePayMain',
      'sessionid':this.globalData.sessionId,
-     //'reviewStatus': 0,
      'payCode': payCode
      };
      return this.httpService.get('phonePaymentRequest.do', param).map((res: Response) => res.json());

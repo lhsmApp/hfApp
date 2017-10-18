@@ -27,7 +27,7 @@ import {ResultBase} from "../../model/result-base";
  export class AdvancePaymentQueryPage {
 
  	advancePaymentList:AdvancePaymentMain[];
-
+  queryState:string;
  	constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
  		//this.advancePaymentList=ADVANTAGE_LIST;
  	}
@@ -40,7 +40,12 @@ import {ResultBase} from "../../model/result-base";
 
  	//获取付款单列表信息
   getList(){
-      this.paymentService.getPaymentMainList()
+      this.queryState='0','2';
+      let payCode='';
+      let startDate="";
+      let endDate="";
+      //getPaymentMainList(type:string,reviewStatus:string,payCode:string,startDate:string,endDate:string)
+      this.paymentService.getPaymentMainList('2',this.queryState,payCode,startDate,endDate)
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){

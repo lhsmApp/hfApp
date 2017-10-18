@@ -24,7 +24,6 @@ import {ResultBase} from "../../model/result-base";
 export class AdvancePaymentApplyListPage {
 
   advancePaymentList:AdvancePaymentMain[];
-
   constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
   	//this.advancePaymentList=ADVANTAGE_LIST;
   }
@@ -36,7 +35,9 @@ export class AdvancePaymentApplyListPage {
 
   //获取付款单列表信息
   getList(){
-      this.paymentService.getPaymentMainList()
+      let state="0,2";
+      //getPaymentMainList(type:string,reviewStatus:string,payCode:string,startDate:string,endDate:string)
+      this.paymentService.getPaymentMainList('1',state,'','','')
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){

@@ -84,4 +84,9 @@ export class InvoiceApplyPage {
   attachment(item){
     this.navCtrl.push("AttachmentPage");
   }
+
+  //发票保存
+  save(){
+
+  }
 }
