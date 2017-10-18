@@ -129,8 +129,10 @@ export class AdvancePaymentApplyPage {
 
           contractCode:contractInfo.contractCode,
           contractName:contractInfo.contractName,
-          /*elementType:contractInfo.elementType,
-          elementName:contractInfo.elementName*/
+          elementType:contractInfo.elementCode,
+          elementName:contractInfo.elementName,
+          planType:contractInfo.compactType,
+          costMoney:contractInfo.contractMoney
         });
       }
     });

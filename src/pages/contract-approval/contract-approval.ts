@@ -10,10 +10,10 @@ import { ContractMain} from '../../model/contract-main';
  */
 
 const  CONTRACT_LIST: ContractMain []= [  
- { contractCode: 'HT2017080001', contractName: '付款缺失合同明细', requireUser: 'zhangsan',checkResult: '1'},
- { contractCode: 'HTD2017080002', contractName: '进度款需要申请' ,requireUser: 'zhangsan',checkResult: '1'},
- { contractCode: 'HTD2017080003', contractName: '进度款需要申请' ,requireUser: 'zhangsan',checkResult: '1'},
- { contractCode: 'HTD2017080004', contractName: '进度款需要申请' ,requireUser: 'zhangsan',checkResult: '1'}
+ { contractCode: 'HT2017080001', contractName: '付款缺失合同明细',sequence:'001',elementCode:'12001',elementName:'私营',compactType:'销售',contractMoney:'2044', requireUser: 'zhangsan',checkResult: '1'},
+ { contractCode: 'HTD2017080002', contractName: '进度款需要申请',sequence:'001',elementCode:'12001',elementName:'私营',compactType:'销售',contractMoney:'2044' ,requireUser: 'zhangsan',checkResult: '1'},
+ { contractCode: 'HTD2017080003', contractName: '进度款需要申请',sequence:'001',elementCode:'12001',elementName:'私营',compactType:'销售',contractMoney:'2044' ,requireUser: 'zhangsan',checkResult: '1'},
+ { contractCode: 'HTD2017080004', contractName: '进度款需要申请',sequence:'001',elementCode:'12001',elementName:'私营',compactType:'销售',contractMoney:'2044' ,requireUser: 'zhangsan',checkResult: '1'}
  ];
 
 @IonicPage()
