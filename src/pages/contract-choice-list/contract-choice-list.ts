@@ -60,7 +60,7 @@ export class ContractChoiceListPage {
           //10待审批(待审批)
     //contract_type,//类型，新增：基建与租赁区分1基建，2租赁(如果是查询界面调用必须输入)
     //type:string, contractCode:string, startDate:string, endDate:string, checkResult:string, contract_type:string
-    this.contractService.getContractMainList('2', '', '', '', '1', '2').subscribe(
+    this.contractService.getContractMainList('2', '', '', '', '1', '1').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){

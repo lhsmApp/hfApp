@@ -48,15 +48,14 @@ export class AcceptApplyListPage {
   }
 
   //获取列表信息
-  reviewStatus:string;
   getList() {
     this.listAll = [];
     this.list = [];
     //1.申请 2.查询 3.审批
     //0新增（新增）、99待审批（待审批）、1 审批成功（已审批）、2审批失败 （退回）
     //type:string, billNumber:string, startDate:string, endDate:string, reviewStatus:string
-    this.reviewStatus = '0', '2';
-    this.acceptService.getAcceptMainList('1', '', '', '', this.reviewStatus).subscribe(
+    let reviewStatus = "0,2";
+    this.acceptService.getAcceptMainList('1', '', '', '', '').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){

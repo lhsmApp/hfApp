@@ -128,12 +128,13 @@ export class AcceptService {
  转资
  */
   //转资申请列表----basic_translate_voucher  转资单据表
-  getTranslateVoucherMainList(type:string, translateCode:string, startDate:string, endDate:string, reviewStatus:string): Observable<(Object)> {
+  getTranslateVoucherMainList(type:string, feeFlag:string, translateCode:string, startDate:string, endDate:string, reviewStatus:string): Observable<(Object)> {
     console.log('转资申请列表'+this.globalData.sessionId);
     let param = {
      'action': 'queryListPhoneBasicTranslateVoucher',
      'sessionid': this.globalData.sessionId,
      'type': type,//1.申请 2.查询 3.审批
+     'feeFlag': feeFlag,//  是否已分摊费用 0否 1是
      'translateCode': translateCode,//单据编号
      'startDate': startDate,//"开始日期"(对应  requireDate :"申请日期")
      'endDate': endDate,//"结束日期"(对应   requireDate :"申请日期")
@@ -146,7 +147,7 @@ export class AcceptService {
           //4已审批(已审批) 
           //若客户端传空的时候则后端查询全部
      };
-     return this.httpService.get('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneBasicTranslateVoucher.do', param).map((res: Response) => res.json());
   }
 
   //转资申请详细----basic_translate_voucher  转资单据表
@@ -157,21 +158,22 @@ export class AcceptService {
         'sessionid': this.globalData.sessionId,
         'translateCode': translateCode,//单据编号
     };
-    return this.httpService.get('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
+    return this.httpService.get('phoneBasicTranslateVoucher.do', param).map((res:Response) => res.json());
   }
     
 /*
  转资调整
  */
   //转资调整单明细列表-----basic_tz_cost 转资调整明细表
-  getTzCostMainList(translateCode:string): Observable<(Object)> {
+  getTzCostMainList(feeFlag:string, translateCode:string): Observable<(Object)> {
     console.log('转资调整单明细列表'+this.globalData.sessionId);
     let param = {
      'action': 'queryListPhonebasicTzCost',
      'sessionid': this.globalData.sessionId,
+     'feeFlag': feeFlag,//  是否已分摊费用 0否 1是
      'translateCode': translateCode,//”转资单号”
      };
-     return this.httpService.get('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneBasicTranslateVoucher.do', param).map((res: Response) => res.json());
   }
 
   //转资调整单明细-----basic_tz_cost 转资调整明细表
@@ -183,6 +185,6 @@ export class AcceptService {
         'translateCode': translateCode,//转资单号
         'keyCode': keyCode,//资产键码
     };
-    return this.httpService.get('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
+    return this.httpService.get('phoneBasicTranslateVoucher.do', param).map((res:Response) => res.json());
   }
 }
