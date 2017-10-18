@@ -28,8 +28,8 @@ import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFei
       {departCode:'133930001',departName:'单位3',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
       {departCode:'4',departName:'单位4',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
   ]
-  const item: AcceptApplyDetail = { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人', contractCode:'HT0001', 
-          contractName:'合同名称', elementCode:'XMDY0045', elementName:'项目单元名称', departCode:'4'};
+  /*const item: AcceptApplyDetail = { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人', contractCode:'HT0001', 
+          contractName:'合同名称', elementCode:'XMDY0045', elementName:'项目单元名称', departCode:'4'};*/
 
 @IonicPage()
 @Component({
@@ -92,6 +92,7 @@ export class AcceptApplyItemPage {
         
         });
       //this.itemShow = item;
+      //this.FromPatchValue();
     } else if(this.oper === Oper_Add){
       console.log(this.oper);
       this.itemShow.billNumber = "";

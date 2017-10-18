@@ -14,12 +14,12 @@ import {BillContractCode} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
-  const listGet:ContractMain[] = [
+  /*const listGet:ContractMain[] = [
         { contractCode: 'HT201800001', contractName: '合同名称',sequence:'001',elementCode:'12001',elementName:'私营',compactType:'销售',contractMoney:'2044', requireUser: '申请人', checkResult: '1'},
         { contractCode: 'HT201800002', contractName: '合同名称',sequence:'001',elementCode:'12001',elementName:'私营',compactType:'销售',contractMoney:'2044', requireUser: '申请人', checkResult: '2'},
         { contractCode: 'HT201800003', contractName: '合同名称',sequence:'001',elementCode:'12001',elementName:'私营',compactType:'销售',contractMoney:'2044', requireUser: '申请人', checkResult: '3'},
         { contractCode: 'HT201800004', contractName: '合同名称',sequence:'001',elementCode:'12001',elementName:'私营',compactType:'销售',contractMoney:'2044', requireUser: '申请人', checkResult: '2'},
-    ];
+    ];*/
 
 @IonicPage()
 @Component({
@@ -60,7 +60,7 @@ export class ContractChoiceListPage {
           //10待审批(待审批)
     //contract_type,//类型，新增：基建与租赁区分1基建，2租赁(如果是查询界面调用必须输入)
     //type:string, contractCode:string, startDate:string, endDate:string, checkResult:string, contract_type:string
-    /*this.contractService.getContractMainList('2', '', '', '', '1', '1').subscribe(
+    this.contractService.getContractMainList('2', '', '', '', '1', '1').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -69,9 +69,9 @@ export class ContractChoiceListPage {
         }
       }, () => {
     
-      });*/
-    this.listAll = listGet;
-    this.list = listGet;
+      });
+    //this.listAll = listGet;
+    //this.list = listGet;
   }
 
   //模糊查询

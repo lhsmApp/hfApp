@@ -20,11 +20,11 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
- const listGet:AcceptAssetMain[]=[
+ /*const listGet:AcceptAssetMain[]=[
      {assetsCode: '0001', assetsName: '资产名称', departCode: '单位', keyCode: '100'},
      {assetsCode: '0002', assetsName: '资产名称', departCode: '单位', keyCode: '100'},
      {assetsCode: '0003', assetsName: '资产名称', departCode: '单位', keyCode: '100'},
- ];
+ ];*/
 
 @IonicPage()
 @Component({
@@ -66,7 +66,7 @@ export class AssetDetailsListInfoPage {
     if(this.acceptanceFlag === TypeGetAsset_TransferFunds){
       translateCode = this.billNumber;
     }
-    /*this.contractService.getAssetDetailList(this.contractCode, translateCode, this.acceptanceFlag).subscribe(
+    this.contractService.getAssetDetailList(this.contractCode, translateCode, this.acceptanceFlag).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -75,9 +75,9 @@ export class AssetDetailsListInfoPage {
         }
       }, () => {
     
-      });*/
-    this.listAll = listGet;
-    this.list = listGet;
+      });/**/
+    /*this.listAll = listGet;
+    this.list = listGet;*/
   }
 
   //模糊查询

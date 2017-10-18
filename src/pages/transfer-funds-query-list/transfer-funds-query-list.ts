@@ -29,31 +29,40 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
   templateUrl: 'transfer-funds-query-list.html',
 })
 export class TransferFundsQueryListPage {
+  listAll:TransferFundsMain[] = [];
     list:TransferFundsMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public translateVoucherService:AcceptService) {
+    this.listAll = [];
+    this.list = [];
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad TransferFundsQueryListPage');
+    this.listAll = [];
+    this.list = [];
     this.getList();
   }
 
   //获取列表信息
   getList() {
+    this.listAll = [];
+    this.list = [];
     //1.申请 2.查询 3.审批
     //" 单据状态" //转资后端字段解释(括号中代表客户端对应字段)、0未提交(新增)、1未审批(待审批) 、2已驳回(退回)、3审批中(待审批)、4已审批(已审批)、若客户端传空的时候则后端查询全部
     /*this.translateVoucherService.getTranslateVoucherMainList('2','','','','').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
-          //this.list = object[1] as TransferAdjustMain[];
+          this.listAll = object[1] as TransferFundsMain[];
+          //this.list = object[1] as TransferFundsMain[];
         }
       }, () => {
   
       });*/
+    //this.listAll = listGet;
     this.list = listGet;
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TransferFundsQueryListPage');
   }
 
   //上拉刷新
@@ -68,7 +77,7 @@ export class TransferFundsQueryListPage {
         );
     }, 2000);*/
 
-    this.list = listGet;
+    this.list = this.listAll;
     refresher.complete();
   }
 

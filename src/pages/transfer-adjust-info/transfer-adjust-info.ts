@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
-import {TransferAdjustMain} from '../../model/transfer-adjust-main';
 import {TransferAdjustDetail} from '../../model/transfer-adjust-detail';
+import {AcceptService} from '../../services/acceptService';
+import {ResultBase} from "../../model/result-base";
 
 import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
+import {BillKeyCode} from '../../providers/TransferFeildName';
+
+import {Page_AssetDetailsListInfoPage } from '../../providers/TransferFeildName';
+import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the TransferAdjustInfoPage page.
@@ -58,33 +63,54 @@ export class TransferAdjustInfoPage {
   isShow:boolean;
   title:string;
   oper:string;
-  itemTranfer:TransferAdjustMain;
+  billNumber:string;
+  billKeyCode:string;
+
+  list:TransferAdjustDetail[];
   itemShow:TransferAdjustDetail;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private formBuilder: FormBuilder,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public acceptService:AcceptService) {
+    this.itemShow = new TransferAdjustDetail();
     this.isShow = false;
     this.title = this.navParams.get("title");
   	this.oper = this.navParams.get("oper");
     if(this.oper === Oper_Approval){
         this.isShow = true;
     }
-  	this.itemTranfer = this.navParams.get("itemTranfer");
-    this.getShowItem();
+  	this.billNumber = this.navParams.get(BillNumberCode);
+    this.billKeyCode = this.navParams.get(BillKeyCode);
+  }
 
-    //,'oper':'审批'
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad TransferAdjustInfoPage');
+    this.itemShow = new TransferAdjustDetail();
+    this.getShowItem();
   }
 
   getShowItem(){
-    //this.itemTranfer.codeAcceptApply
+    this.itemShow = new TransferAdjustDetail();
+    /*this.acceptService.getTzCostDetailItem(this.billNumber, this.billKeyCode).subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.list = object[1] as TransferAdjustDetail[];
+          if(this.list && this.list.length > 0){
+              this.itemShow = this.list[0];
+          }
+        }
+      }, () => {
+    
+      });*/
     this.itemShow = item;
   }
   
   //资产明细
   toAssetDetail(){
-    this.navCtrl.push("AssetDetailsListInfoPage", {'itemTranfer': this.itemShow});
+    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.billNumber, BillContractCode:"", TypeGetAsset:TypeGetAsset_AcceptApply});
   }
 
   check(){
@@ -122,10 +148,6 @@ export class TransferAdjustInfoPage {
       }
     });
     prompt.present();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TransferAdjustInfoPage');
   }
 
 }

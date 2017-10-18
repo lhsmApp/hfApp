@@ -13,7 +13,7 @@ import {BillContractCode} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
-  const item: ContractDetail = { 
+  /*const item: ContractDetail = { 
    sequence:'序号',
   elementCode:'项目单元编码',
   elementName:'项目单元名称',
@@ -31,7 +31,7 @@ import {BillContractCode} from '../../providers/TransferFeildName';
   requireDate :'申请时间',
   checkResult :'单据状态',
   checkOpinion:'审批意见',
-  };
+  };*/
 
 
 @IonicPage()
@@ -61,7 +61,7 @@ export class ContractChoiceConfirmPage {
     this.itemShow = new ContractDetail();
     ////合同流水号 序号
     //contractCode:string, sequence:string
-    /*this.contractService.getContractDetailItem(this.contractCode, '0').subscribe(
+    this.contractService.getContractDetailItem(this.contractCode, '0').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -72,8 +72,8 @@ export class ContractChoiceConfirmPage {
         }
       }, () => {
     
-      });*/
-    this.itemShow = item;
+      });
+    /*this.itemShow = item;*/
   }
 
   /*ok(){

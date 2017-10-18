@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {TransferFundsDetail} from '../../model/transfer-funds-detail';
+import {AcceptService} from '../../services/acceptService';
+import {ResultBase} from "../../model/result-base";
 
 import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
@@ -42,12 +44,14 @@ export class TransferFundsInfoPage {
   oper:string;
   translateCode:string;
 
+  list: TransferFundsDetail[];
   itemShow:TransferFundsDetail;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private formBuilder: FormBuilder,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public acceptService:AcceptService) {
     this.isShow = false;
     this.title = this.navParams.get(Title);
   	this.oper = this.navParams.get(Oper);
@@ -55,13 +59,28 @@ export class TransferFundsInfoPage {
         this.isShow = true;
     }
   	this.translateCode = this.navParams.get(BillNumberCode);
+  }
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad TransferFundsInfoPage');
+    this.itemShow = new TransferFundsDetail();
     this.getShowItem();
-
-    //this.oper === Oper_Approval
   }
 
   getShowItem(){
+    this.itemShow = new TransferFundsDetail();
+    /*this.acceptService.getTranslateVoucherDetailItem(this.translateCode).subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.list = object[1] as TransferFundsDetail[];
+          if(this.list && this.list.length > 0){
+              this.itemShow = this.list[0];
+          }
+        }
+      }, () => {
+    
+      });*/
     this.itemShow = item;
   }
   
@@ -105,10 +124,6 @@ export class TransferFundsInfoPage {
       }
     });
     prompt.present();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TransferFundsInfoPage');
   }
 
 }
