@@ -73,8 +73,7 @@ export class AssetDetailsInfoPage {
 
   getShowItem(){
     this.itemShow = new AcceptAssetDetail();
-    /*//是否已验收0为未验收1为验收 0未验收 1已复核 2已验收未复核（如果是验收单据查询，则需要查询未验收的0，如果是转资单据查询，则需要传验收1，如果是合同查询则不用传参）
-    this.contractService.getAssetDetailItem(this.contractCode, this.keyCode).subscribe(
+    /*this.contractService.getAssetDetailItem(this.contractCode, this.keyCode).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){

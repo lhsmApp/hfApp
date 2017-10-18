@@ -60,6 +60,7 @@ export class ScheduleApprovalListPage {
           //4审批中(待审批) 
           //10待审批(待审批)
     //type:string, sgsx:string, elementCode:string, startDate:string, endDate:string, checkResult:string
+    let reviewStatus = "4,10";
     /*this.projectElementService.getProjectElementMainList('1', '0', '', '', '', '').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
