@@ -32,7 +32,7 @@ export class ProjectElementService {
           //4审批中(待审批) 
           //10待审批(待审批)
      };
-     return this.httpService.get('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneProjectElement.do', param).map((res: Response) => res.json());
   }
 
   //项目单元详细-----basic_project_element  项目单元表
@@ -43,6 +43,41 @@ export class ProjectElementService {
         'sessionid': this.globalData.sessionId,
         'elementCode': elementCode,//项目单元编号
     };
-    return this.httpService.get('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
+    return this.httpService.get('phoneProjectElement.do', param).map((res:Response) => res.json());
+  }
+
+  //项目单元修改（施工进度保存）-----basic_project_element  项目单元表
+  saveProjectElement():Observable<(object)>{
+    console.log('验收单据删除'+this.globalData.sessionId);
+    let param = {
+        'action': "savePhoneBasicProjectElement",
+        'sessionid': this.globalData.sessionId,
+        /*data：[{
+            projectCode:"所属项目计划编码"
+            projectName:"所属项目计划名称"
+            projectProgress:"项目进展概述"
+            elementCode:"项目单元编码"
+            elementName:"项目单元名称"
+            elementType:"项目单元类别"
+            sgsx:"施工属性""
+            planMoney:"初始计划金额",传double型
+            planMoneyCurrent:"当前计划金额",传double型
+            payMoney:"已付款金额",传double型
+            completionProgress:"完工百分比"
+            designFinishTime:"设计完成时间"
+            drawingFinishTime:"施工图完成时间"
+            planBeginTime:"计划开工时间"
+            planEndTime:"计划完工时间"
+            realBeginTime:"实际开工时间"
+            realEndTime:"实际完工时间"
+            realFinishTime:"竣工验收时间"
+            certainDate:"预达转资时间"
+            auditReportTime:"审计报告日期"
+            requireUser:"操作人"
+            requireDate:"操作日期"
+            checkOpinion:"复核意见"
+      }]*/
+    };
+    return this.httpService.post('phoneProjectElement.do', param).map((res:Response) => res.json());
   }
 }

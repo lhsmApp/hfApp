@@ -20,10 +20,8 @@ export class ContractService {
     let param = {
      'action': 'queryListPhoneContractMain',
      'sessionid': this.globalData.sessionId,
-
      'type': type,//1.申请 2.查询 3.审批
      'contractCode': contractCode,//合同流水号" (模糊查询)
-
      'startDate': startDate,//"开始日期"(对应  requireDate :"申请日期")
      'endDate': endDate,//"结束日期"(对应   requireDate :"申请日期")
      'checkResult': checkResult,//" 单据状态"
