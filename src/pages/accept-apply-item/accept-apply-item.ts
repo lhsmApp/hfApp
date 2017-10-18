@@ -152,8 +152,8 @@ export class AcceptApplyItemPage {
       if(contractInfo){
           this.itemShow.contractCode = contractInfo.contractCode;
           this.itemShow.contractName = contractInfo.contractName;
-          //this.itemShow.elementCode = contractInfo.elementCode;
-          //this.itemShow.elementName = contractInfo.elementName;
+          this.itemShow.elementCode = contractInfo.elementCode;
+          this.itemShow.elementName = contractInfo.elementName;
           this.FromPatchValue();
       }
     });
