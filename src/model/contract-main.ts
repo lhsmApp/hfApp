@@ -6,6 +6,16 @@ export class ContractMain{
 	contractCode :string;//合同流水号
 	
 	contractName:string;//合同名称
+
+	sequence:string;//序号
+
+	elementCode:string;//项目性质-项目单元编码
+
+	elementName:string;//项目单元名称
+
+	compactType:string;//项目核算类别-合同类别
+
+	contractMoney:string;//合同标的（审计）额
 	
 	requireUser:string;//申请人
 

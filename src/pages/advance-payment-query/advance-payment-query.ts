@@ -45,7 +45,7 @@ import {ResultBase} from "../../model/result-base";
       let startDate="";
       let endDate="";
       //getPaymentMainList(type:string,reviewStatus:string,payCode:string,startDate:string,endDate:string)
-      this.paymentService.getPaymentMainList('2',this.queryState,payCode,startDate,endDate)
+      this.paymentService.getPaymentMainList('2','',payCode,startDate,endDate)
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){

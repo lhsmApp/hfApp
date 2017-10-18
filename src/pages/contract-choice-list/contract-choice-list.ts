@@ -15,10 +15,10 @@ import {BillContractCode} from '../../providers/TransferFeildName';
  */
 
   const listGet:ContractMain[] = [
-        { contractCode: 'HT201800001', contractName: '合同名称', requireUser: '申请人', checkResult: '1'},
-        { contractCode: 'HT201800002', contractName: '合同名称', requireUser: '申请人', checkResult: '2'},
-        { contractCode: 'HT201800003', contractName: '合同名称', requireUser: '申请人', checkResult: '3'},
-        { contractCode: 'HT201800004', contractName: '合同名称', requireUser: '申请人', checkResult: '2'},
+        { contractCode: 'HT201800001', contractName: '合同名称',sequence:'001',elementCode:'12001',elementName:'私营',compactType:'销售',contractMoney:'2044', requireUser: '申请人', checkResult: '1'},
+        { contractCode: 'HT201800002', contractName: '合同名称',sequence:'001',elementCode:'12001',elementName:'私营',compactType:'销售',contractMoney:'2044', requireUser: '申请人', checkResult: '2'},
+        { contractCode: 'HT201800003', contractName: '合同名称',sequence:'001',elementCode:'12001',elementName:'私营',compactType:'销售',contractMoney:'2044', requireUser: '申请人', checkResult: '3'},
+        { contractCode: 'HT201800004', contractName: '合同名称',sequence:'001',elementCode:'12001',elementName:'私营',compactType:'销售',contractMoney:'2044', requireUser: '申请人', checkResult: '2'},
     ];
 
 @IonicPage()
