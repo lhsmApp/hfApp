@@ -23,9 +23,9 @@
 	<ion-list>
 	    <ion-item *ngFor="let item of list" (click)="toDetail(item)">
 			      <h2>{{item.assetsCode}}</h2><!--资产编码：-->
-			      <p>{{item.assetsName}}</p><!--资产名称：-->
+			      <h3>{{item.assetsName}}</h3><!--资产名称：-->
 			      <p>{{item.departCode}}</p><!--所属单位-->
-			      <p item-end color="green">{{item.keyCode}}</p><!--资产键码-->
+			      <p color="green">{{item.keyCode}}</p><!--资产键码-->
 		</ion-item>
 	</ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

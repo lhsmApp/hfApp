@@ -15,7 +15,7 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
- const item: AcceptAssetDetail = {xh: '24',
+ /*const item: AcceptAssetDetail = {xh: '24',
     assetsType: '资产类型',
     assetsCodeType: '资产类别',
     assetsCode: '资产编码',
@@ -42,7 +42,7 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
     nowValue: 54,
     addDepreciate: 4,
     devalueValue: 34,
-    keyCode: '资产键码'};
+    keyCode: '资产键码'};*/
 
 @IonicPage()
 @Component({
@@ -73,7 +73,7 @@ export class AssetDetailsInfoPage {
 
   getShowItem(){
     this.itemShow = new AcceptAssetDetail();
-    /*this.contractService.getAssetDetailItem(this.contractCode, this.keyCode).subscribe(
+    this.contractService.getAssetDetailItem(this.contractCode, this.keyCode).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -84,8 +84,8 @@ export class AssetDetailsInfoPage {
         }
       }, () => {
     
-      });*/
-    this.itemShow = item;
+      });/**/
+    /*this.itemShow = item;*/
   }
 
 }

@@ -22,11 +22,11 @@ import {ItemTranfer} from '../../providers/TransferFeildName';//从添加界面�
   const listDeptGet: DicDepart[]=[
       {departCode:'1',departName:'单位1',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
       {departCode:'2',departName:'单位2',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
-      {departCode:'3',departName:'单位3',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
+      {departCode:'133930001',departName:'单位3',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
       {departCode:'4',departName:'单位4',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
   ]
 
- const item: AcceptAssetDetail = {xh: '24',
+ /*const item: AcceptAssetDetail = {xh: '24',
     assetsType: '资产类型',
     assetsCodeType: '资产类别',
     assetsCode: '资产编码',
@@ -53,7 +53,7 @@ import {ItemTranfer} from '../../providers/TransferFeildName';//从添加界面�
     nowValue: 54,
     addDepreciate: 4,
     devalueValue: 34,
-    keyCode: '资产键码'};
+    keyCode: '资产键码'};*/
 
 @IonicPage()
 @Component({
@@ -123,9 +123,9 @@ export class AssetDetailsItemPage {
     this.itemShow = new AcceptAssetDetail();
 
     if(this.oper === Oper_Add){
-        //this.itemShow = this.itemTranfer;
+        
     } else if(this.oper === Oper_Edit){
-      /*this.contractService.getAssetDetailItem(this.contractCode, this.keyCode).subscribe(
+      this.contractService.getAssetDetailItem(this.contractCode, this.keyCode).subscribe(
         object => {
           let resultBase:ResultBase=object[0] as ResultBase;
           if(resultBase.result=='true'){
@@ -137,9 +137,9 @@ export class AssetDetailsItemPage {
           }
         }, () => {
         
-        });*/
-      this.itemShow = item;
-      this.FromPatchValue();
+        });/**/
+      /*this.itemShow = item;
+      this.FromPatchValue();*/
     } else{
       this.FromPatchValue();
     }

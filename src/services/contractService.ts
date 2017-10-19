@@ -66,12 +66,12 @@ export class ContractService {
   getAssetDetailItem(contractCode:string, keyCode:string):Observable<(object)>{
     console.log('资产明细详情'+this.globalData.sessionId);
     let param = {
-        'action': "queryPhoneContractDetail",
+        'action': "queryPhoneContractDetailMain",
         'sessionid': this.globalData.sessionId,
         'contractCode': contractCode,//合同流水号
         'keyCode': keyCode,//资产键码
     };
-    return this.httpService.get('phonePaymentRequest.do', param).map((res:Response) => res.json());
+    return this.httpService.get('phoneContactMain.do', param).map((res:Response) => res.json());
   }
 
 }
