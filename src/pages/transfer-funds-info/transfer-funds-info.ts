@@ -19,8 +19,8 @@ import {TypeGetAsset,TypeGetAsset_TransferFunds} from '../../providers/TransferF
  * Ionic pages and navigation.
  */
 
- const item:TransferFundsDetail = {
-reviewStatus:'单据状态',
+ /*const item:TransferFundsDetail = {
+        reviewStatus:'单据状态',
               translateCode:'单据编号',                
         translateType:'转资类型',//(1、固定资产 2、无形资产3、长期待摊费用4、长期股权投资)                
         elementCode:'项目单元编码',            
@@ -31,7 +31,7 @@ reviewStatus:'单据状态',
         requireUser:'申请人',                  
         requireDate:'申请日期',                
         checkOpinion:'审批意见',         
- };
+ };*/
 
 @IonicPage()
 @Component({
@@ -69,7 +69,7 @@ export class TransferFundsInfoPage {
 
   getShowItem(){
     this.itemShow = new TransferFundsDetail();
-    /*this.acceptService.getTranslateVoucherDetailItem(this.translateCode).subscribe(
+    this.acceptService.getTranslateVoucherDetailItem(this.translateCode).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -80,8 +80,8 @@ export class TransferFundsInfoPage {
         }
       }, () => {
     
-      });*/
-    this.itemShow = item;
+      });/**/
+    /*this.itemShow = item;*/
   }
   
   //资产明细

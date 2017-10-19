@@ -17,7 +17,7 @@ import {Page_ChoiceApproversPage} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
-  const item: ProjectUnitDetail = { projectCode: '所属项目计划编码',
+  /*const item: ProjectUnitDetail = { projectCode: '所属项目计划编码',
         projectName: '所属项目计划名称',
         projectProgress: '项目进展概述',
         elementCode: '项目单元编码',
@@ -39,7 +39,7 @@ import {Page_ChoiceApproversPage} from '../../providers/TransferFeildName';
          auditReportTime: '2017-12-14 15:16',//审计报告日期"
          requireUser: '操作人',//
          requireDate: '2017-12-14 15:16',//操作日期"
-         checkOpinion: '复核意见',};
+         checkOpinion: '复核意见',};*/
 
 @IonicPage()
 @Component({
@@ -82,7 +82,7 @@ export class ScheduleApplyInfoPage {
 
   getShowItem(){
     this.itemShow = new ProjectUnitDetail();
-    /*this.projectElementService.getProjectElementDetailItem(this.billElementCode).subscribe(
+    this.projectElementService.getProjectElementDetailItem(this.billElementCode).subscribe(
       object => {
           let resultBase:ResultBase=object[0] as ResultBase;
           if(resultBase.result=='true'){
@@ -93,8 +93,8 @@ export class ScheduleApplyInfoPage {
           }
       }, () => {
         
-      });*/
-    this.itemShow = item;
+      });/**/
+    /*this.itemShow = item;*/
   }
 
   check(){

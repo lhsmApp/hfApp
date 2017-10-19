@@ -16,11 +16,11 @@ import {BillElementCode} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
- const listGet:ProjectUnitMain[]=[
+ /*const listGet:ProjectUnitMain[]=[
      {elementCode: 'XMDY00001', elementName: '名称1', elementType: '性质1', sgsx: '施工属性1'},
      {elementCode: 'XMDY00002', elementName: '名称2', elementType: '性质2', sgsx: '施工属性2'},
      {elementCode: 'XMDY00003', elementName: '名称3', elementType: '性质3', sgsx: '施工属性3'},
- ];
+ ];*/
 
 @IonicPage()
 @Component({
@@ -60,7 +60,7 @@ export class ScheduleQueryListPage {
           //4审批中(待审批) 
           //10待审批(待审批)
     //type:string, sgsx:string, elementCode:string, startDate:string, endDate:string, checkResult:string
-    /*this.projectElementService.getProjectElementMainList('1', '0', '', '', '', '').subscribe(
+    this.projectElementService.getProjectElementMainList('2', '0', '', '', '', '').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -69,9 +69,9 @@ export class ScheduleQueryListPage {
         }
       }, () => {
     
-      });*/
-    this.listAll = listGet;
-    this.list = listGet;
+      });/**/
+    /*this.listAll = listGet;
+    this.list = listGet;*/
   }
 
   //上拉刷新

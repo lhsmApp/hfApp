@@ -30,10 +30,10 @@
 	 <ion-list>
 		<ion-item-sliding *ngFor="let item of list;trackBy:item?.elementCode">
        <ion-item (click)="toDetail(item.elementCode)">
-                <h2>{{item.elementCode}}</h2>
-                <h3>{{item.elementName}}</h3>
-                <p>{{item.elementType}}</p>
-                <p item-end>{{item.elementType}}</p>
+        <h2>{{item.elementCode}}</h2><!--项目单元编号：-->
+        <h3>{{item.elementName}}</h3><!--项目单元名称：-->
+        <p>{{item.elementType}}</p><!--项目单元类别：-->
+        <h3>{{item.sgsx}}</h3><!--施工属性：-->
 			</ion-item>
 
       <ion-item-options side="right">

@@ -39,7 +39,7 @@ export class ProjectElementService {
   getProjectElementDetailItem(elementCode:string):Observable<(object)>{
     console.log('项目单元详细'+this.globalData.sessionId);
     let param = {
-        'action': "queryPhoneBasicProjectElement ",
+        'action': "queryPhoneBasicProjectElement",
         'sessionid': this.globalData.sessionId,
         'elementCode': elementCode,//项目单元编号
     };

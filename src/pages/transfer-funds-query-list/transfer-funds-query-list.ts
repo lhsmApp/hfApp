@@ -16,12 +16,12 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
-  const listGet:TransferFundsMain[] = [
+  /*const listGet:TransferFundsMain[] = [
         { translateCode: 'ZZ0001', costTotal: 2017, elementName: '合同名称', reviewStatus: '1'},
         { translateCode: 'ZZ0002', costTotal: 209, elementName: '合同名称', reviewStatus: '2'},
         { translateCode: 'ZZ0003', costTotal: 1701, elementName: '合同名称', reviewStatus: '2'},
         { translateCode: 'ZZ0004', costTotal: 7091, elementName: '合同名称', reviewStatus: '3'},
-    ];
+    ];*/
 
 @IonicPage()
 @Component({
@@ -51,18 +51,19 @@ export class TransferFundsQueryListPage {
     this.list = [];
     //1.申请 2.查询 3.审批
     //" 单据状态" //转资后端字段解释(括号中代表客户端对应字段)、0未提交(新增)、1未审批(待审批) 、2已驳回(退回)、3审批中(待审批)、4已审批(已审批)、若客户端传空的时候则后端查询全部
-    /*this.translateVoucherService.getTranslateVoucherMainList('2','','','','').subscribe(
+    //type:string, feeFlag:string, translateCode:string, startDate:string, endDate:string, reviewStatus:string
+    this.translateVoucherService.getTranslateVoucherMainList('2','','','','','').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as TransferFundsMain[];
-          //this.list = object[1] as TransferFundsMain[];
+          this.list = object[1] as TransferFundsMain[];
         }
       }, () => {
   
-      });*/
-    //this.listAll = listGet;
-    this.list = listGet;
+      });/**/
+    /*this.listAll = listGet;
+    this.list = listGet;*/
   }
 
   //上拉刷新

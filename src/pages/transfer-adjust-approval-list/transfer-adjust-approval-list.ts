@@ -22,7 +22,7 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
         { assetsCode: 'ZZ0002', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
         { assetsCode: 'ZZ0003', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
         { assetsCode: 'ZZ0004', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
-    ];
+    ];/**/
 
 @IonicPage()
 @Component({
@@ -63,7 +63,7 @@ export class TransferAdjustApprovalListPage {
   
       });*/
     this.listAll = listGet;
-    this.list = listGet;
+    this.list = listGet;/**/
   }
 
   //模糊查询

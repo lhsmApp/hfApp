@@ -23,7 +23,7 @@
 <ion-list class="list-avatar-page">
   <ion-item *ngFor="let item of list;trackBy:item?.elementCode" (click)="toDetail(item.elementCode)">
         <h2>{{item.elementCode}}</h2><!--项目单元编号：-->
-        <p>{{item.elementName}}</p><!--项目单元名称：-->
+        <h3>{{item.elementName}}</h3><!--项目单元名称：-->
         <p>{{item.elementType}}</p><!--项目单元类别：-->
         <h3>{{item.sgsx}}</h3><!--施工属性：-->
   </ion-item>
