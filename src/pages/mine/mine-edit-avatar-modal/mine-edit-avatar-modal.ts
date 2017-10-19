@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {NavParams, ViewController} from 'ionic-angular';
 import {NativeService} from '../../../providers/NativeService';
-import {LoginInfo} from "../../../model/UserInfo";
+import {UserInfo} from "../../../model/UserInfo";
 import {FileService} from "../../../providers/FileService";
 import {FileObj} from "../../../model/FileObj";
 import {MineService} from "../MineService";
@@ -67,10 +67,10 @@ export class MineEditAvatarModalPage {
       this.fileService.uploadByBase64(fileObj).subscribe(fileObj => {// 上传头像图片到文件服务器
         let avatarId = fileObj.id, avatarPath = fileObj.origPath;
         this.mineService.updateUserAvatarId(avatarId).subscribe(res => {//保存avatar字段到用户表
-          this.storage.get('LoginInfo').then((loginInfo: LoginInfo) => {
-            loginInfo.user.avatarId = avatarId;
-            loginInfo.user.avatarPath = avatarPath;
-            this.storage.set('LoginInfo', loginInfo);
+          this.storage.get('userinfo').then((userinfo: UserInfo) => {
+            userinfo.avatarId = avatarId;
+            userinfo.avatarPath = avatarPath;
+            this.storage.set('userinfo', userinfo);
           });
           this.viewCtrl.dismiss({avatarPath: avatarPath});
         });

@@ -37,7 +37,7 @@ export class AdvancePaymentApplyListPage {
   getList(){
       let state="0,2";
       //getPaymentMainList(type:string,reviewStatus:string,payCode:string,startDate:string,endDate:string)
-      this.paymentService.getPaymentMainList('1','','','','')
+      this.paymentService.getPaymentMainList('1',state,'','','')
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -112,7 +112,7 @@ export class AdvancePaymentApplyListPage {
 
   //编辑
   edit(item: AdvancePaymentMain){
-	this.navCtrl.push("AdvancePaymentApplyPage",{"paymentItem":item});
+	  this.navCtrl.push("AdvancePaymentApplyPage",{"paymentItem":item});
   }
 
   //删除

@@ -36,6 +36,7 @@ export class TabsPage implements OnInit {
     if (!userinfo.avatarPath) {
       this.helper.loadAvatarPath(userinfo.avatarId).subscribe(avatarPath => {
         userinfo.avatarPath = avatarPath;
+        console.log(userinfo);
         this.storage.set('userinfo', userinfo);
       });
     }

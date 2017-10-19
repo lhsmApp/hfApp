@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController  } from 'ionic-angular';
-
+import {Storage} from "@ionic/storage";
 import { AdvancePaymentDetail} from '../../model/advance-payment-detail';
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
-import {DictBase} from "../../model/dict-base";
+import {DicBase} from "../../model/dic-base";
+import {IN_DEPART} from "../../enums/storage-type";
+import {OUT_DEPART} from "../../enums/storage-type";
+import {DicInDepart} from '../../model/dic-in-depart';
+import {DicOutDepart} from '../../model/dic-out-depart';
 import { PAYMENT_CATEGORY} from '../../enums/enums';
 
 /**
@@ -15,19 +19,19 @@ import { PAYMENT_CATEGORY} from '../../enums/enums';
  * Ionic pages and navigation.
  */
 
- const listPayDept: DictBase[]=[
+ /*const listPayDept: DicBase[]=[
       {code:'1',name:'单位1'},
       {code:'2',name:'单位2'},
       {code:'3',name:'单位3'},
       {code:'4',name:'单位4'},
   ]
 
-  const listIntercourse: DictBase[]=[
+  const listIntercourse: DicBase[]=[
       {code:'1',name:'单位1'},
       {code:'2',name:'单位2'},
       {code:'3',name:'单位3'},
       {code:'4',name:'单位4'},
-  ]
+  ]*/
 
 @IonicPage()
 @Component({
@@ -40,16 +44,27 @@ export class AdvancePaymentInfoPage {
   paymentDetail:AdvancePaymentDetail;
   paymentMain:AdvancePaymentMain;
   paymentCategory=PAYMENT_CATEGORY;
-  listPayDept = listPayDept;
-  listIntercourse = listIntercourse;
+  listPayDept : DicInDepart;
+  listIntercourse : DicOutDepart;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,private paymentService:PaymentService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
+    private storage: Storage,
+    private paymentService:PaymentService) {
     this.paymentMain=this.navParams.get("paymentItem");
   }
 
   ionViewDidLoad() {
     this.payCode=this.navParams.get('id');
     this.isapproval=this.navParams.get('approval');
+
+    this.storage.get(IN_DEPART).then((inDepart: DicInDepart) => {
+      console.log(inDepart);
+      this.listPayDept=inDepart;
+    });
+    this.storage.get(IN_DEPART).then((outDepart: DicOutDepart) => {
+      console.log(outDepart);
+      this.listIntercourse=outDepart;
+    });
     this.initData();
   }
 

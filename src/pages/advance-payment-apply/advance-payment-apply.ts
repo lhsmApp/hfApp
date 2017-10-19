@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController,ModalController } from 'ionic-angular';
+import {Storage} from "@ionic/storage";
+
 import {FormBuilder, Validators} from '@angular/forms';
 import { AdvancePaymentDetail} from '../../model/advance-payment-detail';
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
@@ -7,7 +9,12 @@ import { PAYMENT_CATEGORY} from '../../enums/enums';
 import {Page_ContractChoiceListPage} from '../../providers/TransferFeildName';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
-import {DictBase} from "../../model/dict-base";
+import {DicBase} from "../../model/dic-base";
+
+import {IN_DEPART} from "../../enums/storage-type";
+import {OUT_DEPART} from "../../enums/storage-type";
+import {DicInDepart} from '../../model/dic-in-depart';
+import {DicOutDepart} from '../../model/dic-out-depart';
 
 /**
  * Generated class for the AdvancePaymentApplyPage page.
@@ -16,19 +23,19 @@ import {DictBase} from "../../model/dict-base";
  * Ionic pages and navigation.
  */
 
- const listPayDept: DictBase[]=[
+ /*const listPayDept: DicBase[]=[
       {code:'1',name:'单位1'},
       {code:'2',name:'单位2'},
       {code:'3',name:'单位3'},
       {code:'4',name:'单位4'},
   ]
 
-  const listIntercourse: DictBase[]=[
+  const listIntercourse: DicBase[]=[
       {code:'1',name:'单位1'},
       {code:'2',name:'单位2'},
       {code:'3',name:'单位3'},
       {code:'4',name:'单位4'},
-  ]
+  ]*/
 
 @IonicPage()
 @Component({
@@ -40,11 +47,12 @@ export class AdvancePaymentApplyPage {
   paymentDetail:AdvancePaymentDetail;
   paymentMain:AdvancePaymentMain;
   paymentCategory=PAYMENT_CATEGORY;
-  listPayDept = listPayDept;
-  listIntercourse = listIntercourse;
+  listPayDept : DicInDepart;
+  listIntercourse : DicOutDepart;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private viewCtrl: ViewController,
+              private storage: Storage,
               private formBuilder: FormBuilder,private modalCtrl: ModalController,private paymentService:PaymentService) {
   	/*this.paymentForm = this.formBuilder.group({
       username: [, [Validators.required, Validators.pattern('[(\u4e00-\u9fa5)0-9a-zA-Z\_\s@]+')]],
@@ -112,6 +120,13 @@ export class AdvancePaymentApplyPage {
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad AdvancePaymentApplyPage');
+    this.storage.get(IN_DEPART).then((inDepart: DicInDepart) => {
+      this.listPayDept=inDepart;
+    });
+    this.storage.get(OUT_DEPART).then((outDepart: DicOutDepart) => {
+      this.listIntercourse=outDepart;
+    });
+
     this.initData();
   }
 
