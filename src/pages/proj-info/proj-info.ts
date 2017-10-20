@@ -5,6 +5,7 @@ import {ProjectElementService} from '../../services/projectElementService';
 import {ResultBase} from "../../model/result-base";
 
 import {BillElementCode} from '../../providers/TransferFeildName';
+import {Oper,Oper_Look} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the ProjInfoPage page.
@@ -41,6 +42,7 @@ import {BillElementCode} from '../../providers/TransferFeildName';
 })
 export class ProjInfoPage {
 	elementCode: string;
+  oper: string;
 
   list: ProjectUnitDetail[];
   itemShow:ProjectUnitDetail;
@@ -49,6 +51,7 @@ export class ProjInfoPage {
               public projectElementService: ProjectElementService) {
     this.itemShow = new ProjectUnitDetail();
   	this.elementCode = this.navParams.get(BillElementCode);
+    this.oper = this.navParams.get(Oper);
   }
 
   ionViewDidLoad() {

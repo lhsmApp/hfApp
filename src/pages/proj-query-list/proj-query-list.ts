@@ -5,6 +5,7 @@ import {ProjectElementService} from '../../services/projectElementService';
 import {ResultBase} from "../../model/result-base";
 
 import {Page_ProjInfoPage} from '../../providers/TransferFeildName';
+import {Oper,Oper_Look} from '../../providers/TransferFeildName';
 import {BillElementCode} from '../../providers/TransferFeildName';
 
 /**
@@ -123,7 +124,7 @@ export class ProjQueryListPage {
   }
 
     toDetail(elementCode: string) {
-        this.navCtrl.push(Page_ProjInfoPage, {BillElementCode: elementCode});
+        this.navCtrl.push(Page_ProjInfoPage, {BillElementCode: elementCode, Oper:Oper_Look});
     }
 
 }

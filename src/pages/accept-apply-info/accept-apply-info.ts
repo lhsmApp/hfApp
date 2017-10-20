@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {AcceptApplyDetail} from '../../model/accept-apply-detail';
-import {DicDepart} from '../../model/dic-depart';
+import {Depart} from '../../model/depart';
 import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
 
@@ -19,11 +19,11 @@ import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFei
  * Ionic pages and navigation.
  */
 
-  const listDeptGet: DicDepart[]=[
-      {departCode:'1',departName:'单位1',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
-      {departCode:'2',departName:'单位2',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
-      {departCode:'133930001',departName:'单位3',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
-      {departCode:'4',departName:'单位4',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
+  const listDeptGet: Depart[]=[
+      {departCode:'1',departName:'单位1'},
+      {departCode:'2',departName:'单位2'},
+      {departCode:'133930001',departName:'单位3'},
+      {departCode:'4',departName:'单位4'},
   ]
 
   /*const item: AcceptApplyDetail = { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人', contractCode:'HT0001', 
@@ -43,7 +43,7 @@ export class AcceptApplyInfoPage {
 
   list: AcceptApplyDetail[];
   itemShow:AcceptApplyDetail;
-  listDept: DicDepart[];
+  listDept: Depart[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
               public acceptService:AcceptService) {
