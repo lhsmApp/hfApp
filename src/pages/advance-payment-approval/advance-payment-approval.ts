@@ -26,6 +26,7 @@ import {ResultBase} from "../../model/result-base";
 export class AdvancePaymentApprovalPage {
 
   advancePaymentList:AdvancePaymentMain[];
+  listAll:AdvancePaymentMain[];
   constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
   	//this.advancePaymentList=ADVANTAGE_LIST;
   }
@@ -43,6 +44,7 @@ export class AdvancePaymentApprovalPage {
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
+          this.listAll = object[1] as AdvancePaymentMain[];
           this.advancePaymentList = object[1] as AdvancePaymentMain[];
         }
       }, () => {
@@ -60,7 +62,7 @@ export class AdvancePaymentApprovalPage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.advancePaymentList = this.advancePaymentList.filter((item) => {
+      this.advancePaymentList = this.listAll.filter((item) => {
         return (item.payCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
@@ -74,35 +76,7 @@ export class AdvancePaymentApprovalPage {
 
   //上拉刷新
   doRefresh(refresher) {
-  	/*this.params.page = 1;
-  	setTimeout(() => {
-  		this.topicService.getTopics(this.params).subscribe(
-  			data => {
-  				this.advancePaymentList = data.data;
-  				refresher.complete();
-  			}
-  			);
-  	}, 2000);*/
-
-  	this.advancePaymentList = ADVANTAGE_LIST;
+  	this.getList();
   	refresher.complete();
-  }
-
-  //下拉加载
-  doInfinite(infiniteScroll) {
-  	/*this.params.page++;
-  	setTimeout(() => {
-  		this.topicService.getTopics(this.params).subscribe(
-  			data => {
-  				if (data) {
-  					this.topics.push(...data.data);
-  					infiniteScroll.complete();
-  				}
-  				else {
-  					infiniteScroll.enable(false);
-  				}
-  			}
-  			);
-  	}, 500);*/
   }
 }

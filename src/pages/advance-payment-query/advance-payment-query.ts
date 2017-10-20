@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
+import { QueryCondition } from '../../model/query-condition';
 
 /**
  * Generated class for the AdvancePaymentQueryPage page.
@@ -27,25 +28,39 @@ import {ResultBase} from "../../model/result-base";
  export class AdvancePaymentQueryPage {
 
  	advancePaymentList:AdvancePaymentMain[];
-  queryState:string;
+  queryCondition:QueryCondition;
+
  	constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
  		//this.advancePaymentList=ADVANTAGE_LIST;
+     this.queryCondition=this.navParams.get("queryCondition");
  	}
 
  	//页面初始化
  	ionViewDidLoad() {
  		this.getList();
-
  	}
 
  	//获取付款单列表信息
   getList(){
-      this.queryState='0','2';
-      let payCode='';
-      let startDate="";
-      let endDate="";
+      let state;
+      if(this.queryCondition){
+        if(this.queryCondition.state=='1'){
+          state="0";
+        }else if(this.queryCondition.state=='2'){
+          state="'1','3'";
+        }else if(this.queryCondition.state=='3'){
+          state="4";
+        }else if(this.queryCondition.state=='4'){
+          state="2";
+        }else{
+          state="";
+        }
+      }
+      let payCode=this.queryCondition.queryString;
+      let startDate=this.queryCondition.startDate;
+      let endDate=this.queryCondition.endDate;
       //getPaymentMainList(type:string,reviewStatus:string,payCode:string,startDate:string,endDate:string)
-      this.paymentService.getPaymentMainList('2','',payCode,startDate,endDate)
+      this.paymentService.getPaymentMainList('2',state,payCode,startDate,endDate)
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -65,36 +80,8 @@ import {ResultBase} from "../../model/result-base";
 
   //上拉刷新
   doRefresh(refresher) {
-  	/*this.params.page = 1;
-  	setTimeout(() => {
-  		this.topicService.getTopics(this.params).subscribe(
-  			data => {
-  				this.advancePaymentList = data.data;
-  				refresher.complete();
-  			}
-  			);
-  	}, 2000);*/
-
-  	this.advancePaymentList = ADVANTAGE_LIST;
+  	this.getList();
   	refresher.complete();
-  }
-
-  //下拉加载
-  doInfinite(infiniteScroll) {
-  	/*this.params.page++;
-  	setTimeout(() => {
-  		this.topicService.getTopics(this.params).subscribe(
-  			data => {
-  				if (data) {
-  					this.topics.push(...data.data);
-  					infiniteScroll.complete();
-  				}
-  				else {
-  					infiniteScroll.enable(false);
-  				}
-  			}
-  			);
-  	}, 500);*/
   }
 
 }

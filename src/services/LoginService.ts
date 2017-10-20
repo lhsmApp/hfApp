@@ -17,7 +17,7 @@ export class LoginService {
     let param = {
      'action': 'userLogin',
      'sessionid':this.globalData.sessionId,
-     'userCode': user.username,
+     'userCode': user.usercode,
      'passWord': user.password,
      'departCode':this.globalData.departCode
      };
@@ -42,7 +42,7 @@ export class LoginService {
     let param = {
      'action': 'userLogin',
      //'sessionid':'',
-     'userCode': user.username,
+     'userCode': user.usercode,
      'passWord': user.password,
      //'departCode':''
      };

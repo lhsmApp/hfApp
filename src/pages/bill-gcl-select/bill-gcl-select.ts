@@ -36,7 +36,7 @@ export class BillGclSelectPage {
   contractCode:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
-	  //this.workList=WORK_LIST;
+	  this.workList=WORK_LIST;
     this.paymentMain= this.navParams.get('paymentItem');
     this.contractCode=this.navParams.get('contractCode');
     this.callback    = this.navParams.get('callback');
@@ -102,7 +102,7 @@ export class BillGclSelectPage {
 
   //查看明细
   viewDetail(item: BillOfWorkMain){
-  	this.navCtrl.push("InvoiceInfoPage",{"gclItem":item,'paymentItem':this.paymentMain,'contractCode':this.contractCode});
+  	this.navCtrl.push("BillGclDetailPage",{"gclItem":item,'paymentItem':this.paymentMain,'contractCode':this.contractCode});
   }
 
 }

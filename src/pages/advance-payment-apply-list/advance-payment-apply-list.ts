@@ -24,6 +24,7 @@ import {ResultBase} from "../../model/result-base";
 export class AdvancePaymentApplyListPage {
 
   advancePaymentList:AdvancePaymentMain[];
+  listAll:AdvancePaymentMain[];
   constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
   	//this.advancePaymentList=ADVANTAGE_LIST;
   }
@@ -37,10 +38,11 @@ export class AdvancePaymentApplyListPage {
   getList(){
       let state="0,2";
       //getPaymentMainList(type:string,reviewStatus:string,payCode:string,startDate:string,endDate:string)
-      this.paymentService.getPaymentMainList('1','','','','')
+      this.paymentService.getPaymentMainList('1',state,'','','')
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
+          this.listAll = object[1] as AdvancePaymentMain[];
           this.advancePaymentList = object[1] as AdvancePaymentMain[];
         }
       }, () => {
@@ -67,7 +69,7 @@ export class AdvancePaymentApplyListPage {
   			);
   	}, 2000);*/
 
-  	this.advancePaymentList = ADVANTAGE_LIST;
+  	this.getList();
   	refresher.complete();
   }
 
@@ -99,7 +101,7 @@ export class AdvancePaymentApplyListPage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.advancePaymentList = this.advancePaymentList.filter((item) => {
+      this.advancePaymentList = this.listAll.filter((item) => {
         return (item.payCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
@@ -112,7 +114,7 @@ export class AdvancePaymentApplyListPage {
 
   //编辑
   edit(item: AdvancePaymentMain){
-	this.navCtrl.push("AdvancePaymentApplyPage",{"paymentItem":item});
+	  this.navCtrl.push("AdvancePaymentApplyPage",{"paymentItem":item});
   }
 
   //删除

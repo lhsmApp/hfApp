@@ -22,6 +22,11 @@ export class UserInfo {
 
 
 export interface LoginInfo {
-  access_token: string;
-  user: UserInfo;
+  //access_token: string;
+  //user: UserInfo;
+
+  ischeck:boolean;
+  usercode:string;
+  password:string;
+  departcode:string;
 }

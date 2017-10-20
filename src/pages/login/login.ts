@@ -21,6 +21,7 @@ import {DEFAULT_LOGIN_BG} from "../../providers/Constants";
   
 })
 export class LoginPage {
+  loginInfo: LoginInfo;
   userInfo: UserInfo;
   submitted: boolean = false;
   canLeave: boolean = false;
@@ -39,7 +40,8 @@ export class LoginPage {
               private events: Events,
               private loginService: LoginService) {
     this.loginForm = this.formBuilder.group({
-      username: ['gdliyh', [Validators.required, Validators.minLength(4)]],// 第一个参数是默认值
+      /*gdliyh 78005250*/
+      usercode: ['gdliyh', [Validators.required, Validators.minLength(4)]],// 第一个参数是默认值
       password: ['78005250', [Validators.required, Validators.minLength(4)]],
       departCode:['',[Validators.required]]
     });
@@ -47,8 +49,17 @@ export class LoginPage {
 
   ionViewWillEnter() {
     this.canLeave = false;
-    this.storage.get('LoginInfo').then((loginInfo: LoginInfo) => {
-      this.userInfo = loginInfo && loginInfo.user ? loginInfo.user : null;
+    this.storage.get('loginInfo').then((login: LoginInfo) => {
+      console.log(login);
+      //this.userInfo = loginInfo && loginInfo.user ? loginInfo.user : null;
+      this.loginInfo = login ? login : null;
+      if(this.loginInfo){
+        this.loginForm.patchValue({
+          usercode:this.loginInfo.usercode,
+          password:this.loginInfo.password,
+          //departCode:this.userInfo.departCode    
+      });
+      }
     });
   }
 
@@ -59,11 +70,14 @@ export class LoginPage {
         let resultBase:ResultBase=loginInfo[0] as ResultBase;
         if(resultBase.result=='true'){
           //console.log(this.loginInfo[2]);
-          this.storage.clear();//清除缓存
+
+          //this.storage.clear();//清除缓存
           Utils.sessionStorageClear();//清除缓存
           //this.globalData.token = loginInfo.access_token;
           //this.globalData.sessionId = loginInfo.access_token;
           this.submitted = false;
+          this.storage.set('loginInfo', user);
+          this.globalData.passWord=user.passWord;
           this.userInfo = loginInfo[1] as UserInfo;
           this.userInfo.departCode=this.globalData.departCode;
           this.userInfo.departName=this.globalData.departName;

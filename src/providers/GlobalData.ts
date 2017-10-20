@@ -7,6 +7,7 @@ import {Injectable} from '@angular/core';
 export class GlobalData {
 
   private _userCode: string;//用户编码
+  private _passWord: string;//用户密码
   private _userName: string;//用户名
   /*private _fullName: string;//姓名
   private _token: string;//token*/
@@ -34,6 +35,14 @@ export class GlobalData {
 
   set userCode(value: string) {
     this._userCode = value;
+  }
+
+  get passWord(): string {
+    return this._passWord;
+  }
+
+  set passWord(value: string) {
+    this._passWord = value;
   }
 
   get userName(): string {

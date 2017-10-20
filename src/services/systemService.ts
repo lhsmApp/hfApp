@@ -27,8 +27,9 @@ export class SystemService {
      //必传
      'action': 'queryDepartCodeList',
      'sessionid':this.globalData.sessionId,
+     'departCode':''
      };
-     return this.httpService.get('phoneDictionaryQuery.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneMyInfo.do', param).map((res: Response) => res.json());
   }
 
   //外部单位字典
@@ -37,8 +38,19 @@ export class SystemService {
      //必传
      'action': 'queryOutDepartCodeList',
      'sessionid':this.globalData.sessionId,
+     'departCode':''
      };
-     return this.httpService.get('phoneDictionaryQuery.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneMyInfo.do', param).map((res: Response) => res.json());
+  }
+
+  //资产组字典
+  getBasicEntityManagerDict(): Observable<(Object)> {
+    let param = {
+     //必传
+     'action': 'querySelectBasicEntityManagerList',
+     'sessionid':this.globalData.sessionId,
+     };
+     return this.httpService.get('phoneMyInfo.do', param).map((res: Response) => res.json());
   }
 
   //切换单位

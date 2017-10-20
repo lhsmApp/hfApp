@@ -35,7 +35,7 @@ export class BillGclPage {
   contractCode:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
-	  //this.workList=WORK_LIST;
+	  this.workList=WORK_LIST;
     this.paymentMain=this.navParams.get("paymentItem");
     this.contractCode=this.navParams.get('contractCode');
   }
@@ -94,7 +94,7 @@ export class BillGclPage {
   //查看明细
   openPage(item: BillOfWorkMain){
     //this.navCtrl.push("BillGclDetailPage",{id:id});
-    this.navCtrl.push("InvoiceInfoPage",{"gclItem":item,'paymentItem':this.paymentMain,'contractCode':this.contractCode});
+    this.navCtrl.push("BillGclDetailPage",{"gclItem":item,'paymentItem':this.paymentMain,'contractCode':this.contractCode});
   }
 
 }

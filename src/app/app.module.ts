@@ -43,6 +43,7 @@ import {ENABLE_FUNDEBUG, IS_DEBUG, FUNDEBUG_API_KEY} from "../providers/Constant
 import {Logger} from "../providers/Logger";
 import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLeave} from "./modal-transitions";
 import {Diagnostic} from "@ionic-native/diagnostic";
+import {DictUtil} from "../providers/dict-util";
 
 //Business Service
 import {LoginService} from '../services/LoginService';
@@ -50,6 +51,7 @@ import {PaymentService} from '../services/paymentService';
 import {AcceptService} from '../services/acceptService';
 import {ContractService} from '../services/contractService';
 import {ProjectElementService} from '../services/projectElementService';
+import {SystemService} from '../services/systemService';
 
 //指令
 import { TabDirective } from "../directive/";
@@ -117,13 +119,15 @@ import { TabDirective } from "../directive/";
     Utils,
     GlobalData,
     Logger,
+    DictUtil,
 
     //service
     LoginService,
     PaymentService,
     AcceptService,
     ContractService,
-    ProjectElementService
+    ProjectElementService,
+    SystemService
   ]
 })
 export class AppModule {

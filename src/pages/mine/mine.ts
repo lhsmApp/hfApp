@@ -11,6 +11,21 @@ import {DEFAULT_AVATAR} from "../../providers/Constants";
 import {WorkMapPage} from "./work-map/work-map";
 import {SettingPage} from "./setting/setting";
 import {NativeService} from "../../providers/NativeService";
+import {DicComplex} from '../../model/dic-complex';
+import {DicInDepart} from '../../model/dic-in-depart';
+import {DicOutDepart} from '../../model/dic-out-depart';
+import {DicBasicEntity} from '../../model/dic-basic-entity';
+import {SystemService} from '../../services/systemService';
+import {ResultBase} from "../../model/result-base";
+import {UNIT} from "../../enums/storage-type";
+import {USED_ASPECT} from "../../enums/storage-type";
+import {APPLY_CODE} from "../../enums/storage-type";
+import {USED_STATE} from "../../enums/storage-type";
+import {SPECIAL_LINE} from "../../enums/storage-type";
+import {IN_DEPART} from "../../enums/storage-type";
+import {OUT_DEPART} from "../../enums/storage-type";
+import {BASIC_ENTITY} from "../../enums/storage-type";
+import {DictUtil} from "../../providers/dict-util";
 
 @Component({
   selector: 'page-mine',
@@ -26,7 +41,9 @@ export class MinePage {
               private helper: Helper,
               private modalCtrl: ModalController,
               private nativeService: NativeService,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              private systemService:SystemService,
+              private dictUtil:DictUtil) {
 
   }
 
@@ -77,9 +94,67 @@ export class MinePage {
     }).present();
   }
 
-  //工作地图
-  map() {
+  //数据字典刷新
+  dictReflesh() {
+    console.log('cccccccccccc');
     //this.navCtrl.push(WorkMapPage);
+    //获取综合字典
+    this.systemService.getSystemDict()
+    .subscribe(object => {
+      let resultBase:ResultBase=object[0] as ResultBase;
+      if(resultBase.result=='true'){
+        let complexDicts = object[1];
+        for(let complexDict of complexDicts){
+          //unit:计量单位
+          //usedAspect:使用方向
+          //applyCode:取得方式
+          //usedState:使用状态
+          //specialLine:技术部门
+          //console.log(complexDict.CodeProperty);
+          //console.log(complexDict.codeDetail);
+          this.storage.set(complexDict.CodeProperty, complexDict.codeDetail);
+        }
+        
+      }
+    }, () => {
+      
+    });
+
+    //获取内部单位字典
+    this.systemService.getDepartDict()
+    .subscribe(object => {
+      let resultBase:ResultBase=object[0] as ResultBase;
+      if(resultBase.result=='true'){
+        let inDepart = object[1] as DicInDepart[];
+        this.storage.set(IN_DEPART, inDepart);
+      }
+    }, () => {
+      
+    });
+
+    //获取外部单位字典
+    this.systemService.getOutDepartDict()
+    .subscribe(object => {
+      let resultBase:ResultBase=object[0] as ResultBase;
+      if(resultBase.result=='true'){
+        let outDepart = object[1] as DicOutDepart[];
+        this.storage.set(OUT_DEPART, outDepart);
+      }
+    }, () => {
+      
+    });
+
+    //获取资产组字典
+    this.systemService.getBasicEntityManagerDict()
+    .subscribe(object => {
+      let resultBase:ResultBase=object[0] as ResultBase;
+      if(resultBase.result=='true'){
+        let basicEntity = object[1] as DicBasicEntity[];
+        this.storage.set(BASIC_ENTITY, basicEntity);
+      }
+    }, () => {
+      
+    });
   }
 
 

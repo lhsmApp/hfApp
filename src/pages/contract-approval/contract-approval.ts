@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ContractMain} from '../../model/contract-main';
+import {ContractService} from '../../services/contractService';
+import {ResultBase} from "../../model/result-base";
 
 /**
  * Generated class for the ContractApprovalPage page.
@@ -24,21 +26,42 @@ const  CONTRACT_LIST: ContractMain []= [
 export class ContractApprovalPage {
 
   contractList:ContractMain[];
+  listAll:ContractMain[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	this.contractList=CONTRACT_LIST;
+  constructor(public navCtrl: NavController, public navParams: NavParams,private contractService:ContractService) {
+  	//this.contractList=CONTRACT_LIST;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContractApprovalPage');
+    this.getList();
   }
 
-  //获取发票列表信息
- getList() {
- /*this.topicService.getTopics(this.params).subscribe(
-   data => this.topics = data.data
-   );*/
- }
+  //获取列表信息
+  getList() {
+    //type,//1.申请 2.查询 3.审批
+    //contractCode,//合同流水号" (模糊查询)
+    //checkResult,//" 单据状态" //合同后端字段解释(括号中代表客户端对应字段)
+    //0新增(新增) 
+    //1审批通过(已审批)) 
+    //2驳回(退回) 
+    //3解约 
+    //4审批中(待审批) 
+    //10待审批(待审批)
+    //contract_type,//类型，新增：基建与租赁区分1基建，2租赁(如果是查询界面调用必须输入)
+    //type:string, contractCode:string, startDate:string, endDate:string, checkResult:string, contract_type:string
+
+    let state="4,10";
+    this.contractService.getContractMainList('3', '', '', '', state, '1').subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.listAll = object[1] as ContractMain[];
+          this.contractList = object[1] as ContractMain[];
+        }
+      }, () => {
+    
+      });
+  }
 
  //模糊查询
   getItems(ev: any) {
@@ -50,9 +73,11 @@ export class ContractApprovalPage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.contractList = this.contractList.filter((item) => {
-        return (item.contractCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      this.contractList = this.listAll.filter((item) => {
+        return (item.contractCode.toLowerCase().indexOf(val.toLowerCase()) > -1||item.contractName.indexOf(val)> -1);
       })
+    }else{
+        this.contractList=this.listAll;
     }
   }
 
@@ -74,26 +99,7 @@ export class ContractApprovalPage {
   			);
   	}, 2000);*/
 
-  	this.contractList = CONTRACT_LIST;
+    this.getList();
   	refresher.complete();
   }
-
-  //下拉加载
-  doInfinite(infiniteScroll) {
-  	/*this.params.page++;
-  	setTimeout(() => {
-  		this.topicService.getTopics(this.params).subscribe(
-  			data => {
-  				if (data) {
-  					this.topics.push(...data.data);
-  					infiniteScroll.complete();
-  				}
-  				else {
-  					infiniteScroll.enable(false);
-  				}
-  			}
-  			);
-  	}, 500);*/
-  }
-
 }
