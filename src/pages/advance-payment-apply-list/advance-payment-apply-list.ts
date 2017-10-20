@@ -24,6 +24,7 @@ import {ResultBase} from "../../model/result-base";
 export class AdvancePaymentApplyListPage {
 
   advancePaymentList:AdvancePaymentMain[];
+  listAll:AdvancePaymentMain[];
   constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
   	//this.advancePaymentList=ADVANTAGE_LIST;
   }
@@ -41,6 +42,7 @@ export class AdvancePaymentApplyListPage {
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
+          this.listAll = object[1] as AdvancePaymentMain[];
           this.advancePaymentList = object[1] as AdvancePaymentMain[];
         }
       }, () => {
@@ -67,7 +69,7 @@ export class AdvancePaymentApplyListPage {
   			);
   	}, 2000);*/
 
-  	this.advancePaymentList = ADVANTAGE_LIST;
+  	this.getList();
   	refresher.complete();
   }
 
@@ -99,7 +101,7 @@ export class AdvancePaymentApplyListPage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.advancePaymentList = this.advancePaymentList.filter((item) => {
+      this.advancePaymentList = this.listAll.filter((item) => {
         return (item.payCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }

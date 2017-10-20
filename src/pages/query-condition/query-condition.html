@@ -15,7 +15,7 @@
 
 <ion-content>
 	<ion-card>
-		<ion-searchbar></ion-searchbar>
+		<ion-searchbar [(ngModel)]="queryString" placeholder="请输入单号或名称"></ion-searchbar>
 
 		<ion-item-group>
 		    <ion-item-divider color="light">单据申请期间</ion-item-divider>
@@ -31,7 +31,7 @@
 		    <ion-item-divider color="light">单据状态</ion-item-divider>
 		    <ion-item no-lines>
 		    	<!-- Segment buttons with text -->
-		    	<ion-segment [(ngModel)]="relationship" color="primary">
+		    	<ion-segment [(ngModel)]="state" color="primary">
 				    <ion-segment-button value="1">
 				      <button ion-button color="secondary" outline small>新增</button>
 				    </ion-segment-button>

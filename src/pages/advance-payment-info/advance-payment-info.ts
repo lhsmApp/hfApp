@@ -58,11 +58,9 @@ export class AdvancePaymentInfoPage {
     this.isapproval=this.navParams.get('approval');
 
     this.storage.get(IN_DEPART).then((inDepart: DicInDepart) => {
-      console.log(inDepart);
       this.listPayDept=inDepart;
     });
-    this.storage.get(IN_DEPART).then((outDepart: DicOutDepart) => {
-      console.log(outDepart);
+    this.storage.get(OUT_DEPART).then((outDepart: DicOutDepart) => {
       this.listIntercourse=outDepart;
     });
     this.initData();
