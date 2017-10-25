@@ -53,11 +53,21 @@ export class HttpService {
   public post(url: string, body: any = {}): Observable<Response> {
     return this.request(url, new RequestOptions({
       method: RequestMethod.Post,
-      withCredentials:true,
       body: body,
       headers: new Headers({
         'Content-Type': 'application/json; charset=UTF-8'
       })
+    }));
+  }
+
+  public postMultiFormData(url: string, body: any = {}): Observable<Response> {
+    return this.request(url, new RequestOptions({
+      method: RequestMethod.Post,
+      body: body,
+      /*headers: new Headers({
+        //'Content-Type': 'application/json; charset=UTF-8'
+        'enctype': 'multipart/form-data'
+      })*/
     }));
   }
 
