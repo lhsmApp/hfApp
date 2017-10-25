@@ -21,13 +21,14 @@
   <ion-list class="list-avatar-page">
     <ion-item *ngFor="let item of workList;trackBy:item?.sequence">
       <ion-label>
-	      <p>序号:{{item.sequence}}</h2>
-	      <p>付款单号:{{item.payCode}}</h3>
+	      <p>序号:{{item.sequence}}</p>
+	      <p>付款单号:{{item.payCode}}</p>
 	      <p>清单项目编号:{{item.listNumber}}</p>
         <p>清单项目名称:{{item.listName}}</p>
-        <ion-icon name="arrow-dropright"></ion-icon>
+        <p>合价:{{item.moneyTotal}}</p>
+        <!-- <ion-icon item-end name="arrow-dropright"></ion-icon> -->
       </ion-label>
-  	  <ion-checkbox color="dark" checked="true"></ion-checkbox>
+  	  <ion-checkbox color="dark" checked="{{item.checked}}" [(ngModel)]="item.checked"></ion-checkbox>
   	  <button ion-button color="secondary" clear item-end (click)='viewDetail(item)'>查看明细</button>
     </ion-item>
   </ion-list>

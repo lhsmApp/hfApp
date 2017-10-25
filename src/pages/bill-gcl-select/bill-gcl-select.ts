@@ -12,12 +12,12 @@ import { AdvancePaymentMain} from '../../model/advance-payment-main';
  * Ionic pages and navigation.
  */
 
-const  WORK_LIST: BillOfWorkMain []= [  
+/*const  WORK_LIST: BillOfWorkMain []= [  
  { payCode: 'FKD2017080001', sequence: '001', listNumber: 'QD001',listName: '牙膏'},
  { payCode: 'FKD2017080002', sequence: '002' ,listNumber: 'QD002',listName: '铁锹'},
  { payCode: 'FKD2017080003', sequence: '003' ,listNumber: 'QD003',listName: '自行车'},
  { payCode: 'FKD2017080004', sequence: '004' ,listNumber: 'QD004',listName: '扳手'}
- ];
+ ];*/
 
 /**
  * 工程量清单列表多选选择
@@ -36,7 +36,7 @@ export class BillGclSelectPage {
   contractCode:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
-	  this.workList=WORK_LIST;
+	  //this.workList=WORK_LIST;
     this.paymentMain= this.navParams.get('paymentItem');
     this.contractCode=this.navParams.get('contractCode');
     this.callback    = this.navParams.get('callback');
@@ -54,6 +54,10 @@ export class BillGclSelectPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.workList = object[1] as BillOfWorkMain[];
+          for(let workItem of this.workList){
+            workItem.checked=false;
+          }
+          console.log(this.workList);
         }
       }, () => {
         

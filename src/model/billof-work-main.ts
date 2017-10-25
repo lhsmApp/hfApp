@@ -12,5 +12,7 @@ export class BillOfWorkMain{
 
 	listName :string;//清单项目名称
 
-	//checked:boolean;//是否选中
+	moneyTotal :number;//合价
+
+	checked:boolean;//是否选中
 }
