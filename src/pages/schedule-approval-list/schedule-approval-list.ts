@@ -34,21 +34,21 @@ export class ScheduleApprovalListPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public projectElementService: ProjectElementService) {
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ScheduleApprovalListPage');
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
     this.getList();
   }
 
   //获取列表信息
   getList() {
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
     //type 1.申请 2.查询 3.审批
     //sgsx ”施工属性”（如果是进度管理输入0，如果是项目单元查询则输入空）,
     //checkResult "单据状态"
@@ -86,24 +86,17 @@ export class ScheduleApprovalListPage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.list = this.listAll.filter((item) => {
-        return (item.elementCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.elementCode.toLowerCase().indexOf(val.toLowerCase()) > -1
+          || item.elementName.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
+    } else {
+      this.list = this.listAll;
     }
   }
 
   //上拉刷新
   doRefresh(refresher) {
-    /*this.params.page = 1;
-    setTimeout(() => {
-      this.topicService.getTopics(this.params).subscribe(
-        data => {
-          this.advancePaymentList = data.data;
-          refresher.complete();
-        }
-        );
-    }, 2000);*/
-
-    this.list = this.listAll;
+    this.getList();
     refresher.complete();
   }
 

@@ -30,29 +30,30 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
   templateUrl: 'transfer-adjust-approval-list.html',
 })
 export class TransferAdjustApprovalListPage {
-    listAll:TransferAdjustMain[] = [];
+    listAll:TransferAdjustMain[];
     list:TransferAdjustMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public tzCostService:AcceptService) {
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TransferAdjustApprovalListPage');
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
     this.getList();
   }
 
   //获取列表信息
   getList() {
-    this.listAll = [];
-    this.list = [];
-    //feeFlag:string, translateCode:string
+    //this.listAll = [];
+    //this.list = [];
+    //type:string, feeFlag:string, translateCode:string
+    //type,//  1.申请 2.查询 3.审批
     //feeFlag,//  是否已分摊费用 0否 1是  //”转资单号”
-    /*this.tzCostService.getTzCostMainList('', '').subscribe(
+    this.tzCostService.getTzCostMainList('3', '0', '').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -61,9 +62,9 @@ export class TransferAdjustApprovalListPage {
         }
       }, () => {
   
-      });*/
-    this.listAll = listGet;
-    this.list = listGet;/**/
+      });
+    /*this.listAll = listGet;
+    this.list = listGet;*/
   }
 
   //模糊查询
@@ -77,24 +78,17 @@ export class TransferAdjustApprovalListPage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.list = this.listAll.filter((item) => {
-        return (item.assetsCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.assetsCode.toLowerCase().indexOf(val.toLowerCase()) > -1
+          || item.assetsName.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
+    } else {
+      this.list = this.listAll;
     }
   }
 
   //上拉刷新
   doRefresh(refresher) {
-    /*this.params.page = 1;
-    setTimeout(() => {
-      this.topicService.getTopics(this.params).subscribe(
-        data => {
-          this.advancePaymentList = data.data;
-          refresher.complete();
-        }
-        );
-    }, 2000);*/
-
-    this.list = this.listAll;
+    this.getList();
     refresher.complete();
   }
 

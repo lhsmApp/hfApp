@@ -36,13 +36,13 @@ export class AssetDetailsListInfoPage {
   contractCode:string;
   acceptanceFlag:string;
 
-  listAll:AcceptAssetMain[] = [];
+  listAll:AcceptAssetMain[];
 	list:AcceptAssetMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public contractService:ContractService) {
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
     this.billNumber = this.navParams.get(BillNumberCode);
     this.contractCode = this.navParams.get(BillContractCode);
     this.acceptanceFlag = this.navParams.get(TypeGetAsset);
@@ -50,16 +50,16 @@ export class AssetDetailsListInfoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AssetDetailsListInfoPage');
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
 
     this.getList();
   }
 
   //获取列表信息
   getList() {
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
     ////是否已验收0为未验收1为验收 0未验收 1已复核 2已验收未复核（如果是验收单据查询，则需要查询未验收的0，如果是转资单据查询，则需要传验收1，如果是合同查询则不用传参）
     //contractCode:string, translateCode:string, acceptanceFlag:string
     let translateCode = "";
@@ -91,24 +91,17 @@ export class AssetDetailsListInfoPage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.list = this.listAll.filter((item) => {
-        return (item.assetsCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.assetsCode.toLowerCase().indexOf(val.toLowerCase()) > -1 
+          || item.assetsName.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
+    } else {
+      this.list = this.listAll;
     }
   }
 
   //上拉刷新
   doRefresh(refresher) {
-    /*this.params.page = 1;
-    setTimeout(() => {
-      this.topicService.getTopics(this.params).subscribe(
-        data => {
-          this.advancePaymentList = data.data;
-          refresher.complete();
-        }
-        );
-    }, 2000);*/
-
-    this.list = this.listAll;
+    this.getList();
     refresher.complete();
   }
 
