@@ -59,37 +59,10 @@ export class BillGclPage {
 
   //上拉刷新
   doRefresh(refresher) {
-  	/*this.params.page = 1;
-  	setTimeout(() => {
-  		this.topicService.getTopics(this.params).subscribe(
-  			data => {
-  				this.advancePaymentList = data.data;
-  				refresher.complete();
-  			}
-  			);
-  	}, 2000);*/
-
-  	this.workList = WORK_LIST;
+  	this.getList();
   	refresher.complete();
   }
 
-  //下拉加载
-  doInfinite(infiniteScroll) {
-  	/*this.params.page++;
-  	setTimeout(() => {
-  		this.topicService.getTopics(this.params).subscribe(
-  			data => {
-  				if (data) {
-  					this.topics.push(...data.data);
-  					infiniteScroll.complete();
-  				}
-  				else {
-  					infiniteScroll.enable(false);
-  				}
-  			}
-  			);
-  	}, 500);*/
-  }
 
   //查看明细
   openPage(item: BillOfWorkMain){
