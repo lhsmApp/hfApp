@@ -19,6 +19,7 @@ import {DicOutDepart} from '../../model/dic-out-depart';
 import { BillOfWorkMain} from '../../model/billof-work-main';
 import { BillOfWorkDetail} from '../../model/billof-work-detail';
 import {BillNumberCode} from '../../providers/TransferFeildName';
+import { ReviewType} from '../../enums/review-type';
 
 /**
  * Generated class for the AdvancePaymentApplyPage page.
@@ -282,6 +283,6 @@ export class AdvancePaymentApplyPage {
 
   //送审
   send(){
-    this.navCtrl.push('ChoiceApproversPage',{BillNumberCode:this.paymentDetail.payCode});
+    this.navCtrl.push('ChoiceApproversPage',{BillNumberCode:this.paymentDetail.payCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]});
   }
 }
