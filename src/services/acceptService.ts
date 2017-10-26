@@ -61,7 +61,7 @@ export class AcceptService {
     formData.append('action', 'saveAssetsAcceptanceApply');
     formData.append('sessionid', this.globalData.sessionId);
     formData.append('data', data);
-    console.log(data);
+    console.log('data:' + data);
     return this.httpService.postMultiFormData('phoneAcceptanceApply.do', formData).map((res:Response) => res.json());
   }
 
@@ -109,7 +109,7 @@ export class AcceptService {
     formData.append('billNumber', billNumber);//”验收单号”，
     formData.append('contractCode', contractCode);//合同单号
     formData.append('data', data);
-    console.log(data);
+    console.log('data:' + data);
     return this.httpService.postMultiFormData('phoneAcceptanceApply.do', formData).map((res:Response) => res.json());
   }
 

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ProjectUnitDetail} from '../../model/project-unit-detail'
+import {GlobalData} from "../../providers/GlobalData";
+import {Utils} from "../../providers/Utils";
 import {ProjectElementService} from '../../services/projectElementService';
 import {ResultBase} from "../../model/result-base";
 
@@ -56,7 +58,8 @@ export class ScheduleApplyItemPage {
  
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams,
-              public formBuilder: FormBuilder,
+              public formBuilder: FormBuilder, 
+              private globalData: GlobalData,
               public projectElementService: ProjectElementService) {
     this.itemShow = new ProjectUnitDetail();
   	this.oper = this.navParams.get(Oper);
@@ -117,7 +120,8 @@ export class ScheduleApplyItemPage {
         /*this.itemShow = item;
         this.FromPatchValue();*/
     } else if(this.oper === Oper_Add){
-        //this.itemShow
+        this.itemShow.requireDate = Utils.dateFormat(new Date());
+        this.itemShow.requireUser = this.globalData.userName;
         this.FromPatchValue();
     } else {
         this.FromPatchValue();
@@ -154,10 +158,24 @@ export class ScheduleApplyItemPage {
 
   //保存
   save(){
-    //Object.assign(this.userInfo, this.userForm.value);
-    //this.storage.set('UserInfo', this.userInfo);
-    //this.nativeService.showToast('保存成功');
-    //this.viewCtrl.dismiss(this.userInfo);
+    let transferInfo=new Array<ProjectUnitDetail>();
+    let detail=this.applyFrom.value as ProjectUnitDetail;
+    
+    transferInfo.push(detail);
+
+    this.projectElementService.saveProjectElement(JSON.stringify(transferInfo))
+      .subscribe(object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.oper = Oper_Edit;
+          console.log(object[1][0]);
+          this.itemShow = object[1][0] as ProjectUnitDetail;
+          this.billElementCode = this.itemShow.elementCode;
+          this.FromPatchValue();
+        }
+      }, () => {
+        
+      });
   }
 
 //送审

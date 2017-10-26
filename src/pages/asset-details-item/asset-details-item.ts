@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AcceptAssetDetail} from '../../model/accept-asset-detail';
 import {Depart} from '../../model/depart';
 import {ContractService} from '../../services/contractService';
+import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
 
 import {Oper,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
@@ -74,7 +75,8 @@ export class AssetDetailsItemPage {
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams,
   	          public formBuilder: FormBuilder,
-              public contractService:ContractService) {
+              public contractService:ContractService, 
+              public acceptService:AcceptService) {
     this.itemShow = new AcceptAssetDetail();
     this.oper = this.navParams.get(Oper);
     this.billNumber = this.navParams.get(BillNumberCode);
@@ -110,6 +112,7 @@ export class AssetDetailsItemPage {
       nowValue: [, []],
       addDepreciate: [, []],
       devalueValue: [, []],
+      keyCode: [, []],
     });
   }
 
@@ -174,15 +177,30 @@ export class AssetDetailsItemPage {
       nowValue: this.itemShow.nowValue,
       addDepreciate: this.itemShow.addDepreciate,
       devalueValue: this.itemShow.devalueValue,
+      keyCode: this.itemShow.keyCode,
     });
   }
 
   //保存
   save(){
-    //Object.assign(this.userInfo, this.userForm.value);
-    //this.storage.set('UserInfo', this.userInfo);
-    //this.nativeService.showToast('保存成功');
-    //this.viewCtrl.dismiss(this.userInfo);
+    let transferInfo=new Array<AcceptAssetDetail>();
+    let detail=this.assetFrom.value as AcceptAssetDetail;
+    
+    transferInfo.push(detail);
+
+    this.acceptService.saveAcceptApplyDetail(this.billNumber, this.contractCode, JSON.stringify(transferInfo))
+      .subscribe(object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.oper = Oper_Edit;
+          console.log(object[1][0]);
+          this.itemShow = object[1][0] as AcceptAssetDetail;
+          this.keyCode = this.itemShow.keyCode;
+          this.FromPatchValue();
+        }
+      }, () => {
+        
+      });
   }
 
 }

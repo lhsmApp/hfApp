@@ -47,12 +47,12 @@ export class ProjectElementService {
   }
 
   //项目单元修改（施工进度保存）-----basic_project_element  项目单元表
-  saveProjectElement():Observable<(object)>{
-    console.log('验收单据删除'+this.globalData.sessionId);
-    let param = {
+  saveProjectElement(data: string):Observable<(object)>{
+    console.log('项目单元修改（施工进度保存）'+this.globalData.sessionId);
+    /*let param = {
         'action': "savePhoneBasicProjectElement",
         'sessionid': this.globalData.sessionId,
-        /*data：[{
+        data：[{
             projectCode:"所属项目计划编码"
             projectName:"所属项目计划名称"
             projectProgress:"项目进展概述"
@@ -76,8 +76,13 @@ export class ProjectElementService {
             requireUser:"操作人"
             requireDate:"操作日期"
             checkOpinion:"复核意见"
-      }]*/
-    };
-    return this.httpService.post('phoneProjectElement.do', param).map((res:Response) => res.json());
+      }]
+    };*/
+    let formData: FormData = new FormData(); 
+    formData.append('action', 'savePhoneBasicProjectElement');
+    formData.append('sessionid', this.globalData.sessionId);
+    formData.append('data', data);
+    console.log('data:' + data);
+    return this.httpService.postMultiFormData('phoneProjectElement.do', formData).map((res:Response) => res.json());
   }
 }

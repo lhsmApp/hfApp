@@ -4,9 +4,13 @@ import {Storage} from '@ionic/storage';
 import {IonicPage, NavController, NavParams, ViewController,ModalController} from 'ionic-angular';
 import {AcceptApplyDetail} from '../../model/accept-apply-detail';
 import {Depart} from '../../model/depart';
+import {GlobalData} from "../../providers/GlobalData";
+import {Utils} from "../../providers/Utils";
 import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
-import {GlobalData} from "../../providers/GlobalData";
+
+import {IN_DEPART} from "../../enums/storage-type";
+import {DicInDepart} from '../../model/dic-in-depart';
 
 import {Oper,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
@@ -48,6 +52,7 @@ export class AcceptApplyItemPage {
   constructor(public navCtrl: NavController,
               public params: NavParams,
               private formBuilder: FormBuilder,
+              private storage: Storage,
               private modalCtrl: ModalController,
               private viewCtrl: ViewController,
               public acceptService:AcceptService, 
@@ -64,12 +69,33 @@ export class AcceptApplyItemPage {
       elementName: [, []],
       departCode: [, [Validators.required]],
       requireDate: [, [Validators.required]],
-      requireUser: [, [Validators.required]]
+      requireUser: [, [Validators.required]],
+
+      billNumber: [, []],
+      reviewStatus: [, []],
+    });
+  }
+
+  FromPatchValue(){
+    this.applyFrom.patchValue({
+      contractCode: this.itemShow.contractCode,
+      contractName: this.itemShow.contractName,
+      elementCode: this.itemShow.elementCode,
+      elementName: this.itemShow.elementName,
+      departCode: this.itemShow.departCode,
+      requireDate: this.itemShow.requireDate,
+      requireUser: this.itemShow.requireUser,
+
+      billNumber: this.itemShow.billNumber,
+      reviewStatus: this.itemShow.reviewStatus,
     });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AcceptApplyItemPage');
+    //this.storage.get(IN_DEPART).then((inDepart: DicInDepart) => {
+    //  this.listDept=inDepart;
+    //});
     this.itemShow = new AcceptApplyDetail();
     this.getShowItem();
   }
@@ -101,7 +127,7 @@ export class AcceptApplyItemPage {
       this.itemShow.elementCode = "";
       this.itemShow.elementName = "";
       this.itemShow.departCode = "";
-      this.itemShow.requireDate = "2017-10-18 10:37";
+      this.itemShow.requireDate =  Utils.dateFormat(new Date());
       this.itemShow.requireUser = this.globalData.userName;
       this.itemShow.reviewStatus = "0";
       this.FromPatchValue();
@@ -110,27 +136,39 @@ export class AcceptApplyItemPage {
     }
   }
 
-  FromPatchValue(){
-    this.applyFrom.patchValue({
-      contractCode: this.itemShow.contractCode,
-      contractName: this.itemShow.contractName,
-      elementCode: this.itemShow.elementCode,
-      elementName: this.itemShow.elementName,
-      departCode: this.itemShow.departCode,
-      requireDate: this.itemShow.requireDate,
-      requireUser: this.itemShow.requireUser
-    });
-  }
-
   //保存
   save(){
-    //Object.assign(this.userInfo, this.userForm.value);
-    //this.storage.set('UserInfo', this.userInfo);
-    //this.nativeService.showToast('保存成功');
-    //this.viewCtrl.dismiss(this.userInfo);
+    /*if(this.paymentDetail.clauseType=='2'||this.paymentDetail.clauseType=='4'){
+      if(this.gclListInfo==null||this.gclListInfo.length==0){
+        let alert = this.alertCtrl.create({
+          title: '提示!',
+          subTitle: '请后再进行保存!',
+          buttons: ['确定']
+        });
+        alert.present();
+        return;
+      }
+    }*/
+    let transferInfo=new Array<AcceptApplyDetail>();
+    let detail=this.applyFrom.value as AcceptApplyDetail;
+    if(this.oper === Oper_Add){
+        detail.requireUser=this.globalData.userCode;
+    }
+    transferInfo.push(detail);
 
-
-    //保存后设置this.billNumber
+    this.acceptService.saveAcceptApplyMain(JSON.stringify(transferInfo))
+      .subscribe(object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.oper = Oper_Edit;
+          console.log(object[1][0]);
+          this.itemShow = object[1][0] as AcceptApplyDetail;
+          this.billNumber = this.itemShow.billNumber;
+          this.FromPatchValue();
+        }
+      }, () => {
+        
+      });
   }
 
 //送审
@@ -143,7 +181,7 @@ export class AcceptApplyItemPage {
       this.navCtrl.push(Page_AssetDetailsListPage,  {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, TypeGetAsset:TypeGetAsset_AcceptApply});
   }
 
-//选择合同
+  //选择合同
   choiceContract(){
     //this.navCtrl.push(Page_ContractChoiceListPage);
     let modal = this.modalCtrl.create(Page_ContractChoiceListPage);

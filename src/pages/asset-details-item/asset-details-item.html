@@ -14,7 +14,7 @@
 
 
 <ion-content>
-	<form [formGroup]="assetFrom" (ngSumbit)="(save())">
+	<form [formGroup]="assetFrom" (ngSubmit)="(save())">
         <ion-item-group>
             <ion-item >
                 <ion-label fixed>序号</ion-label>
@@ -73,11 +73,15 @@
             </ion-item>
             <ion-item >
                 <ion-label fixed>出厂日期</ion-label>
-                <ion-input formControlName="productDate" placeholder="手工选择"></ion-input>
+                <!--<ion-input formControlName="productDate" placeholder="手工选择"></ion-input>-->
+                <ion-datetime displayFormat="YYYY-MM-DD" placeholder="手工选择"
+                            formControlName="productDate" [(ngModel)]="productDate"></ion-datetime>
             </ion-item>
             <ion-item >
                 <ion-label fixed>投产日期</ion-label>
-                <ion-input formControlName="operateDate" placeholder="手工选择"></ion-input>
+                <!--<ion-input formControlName="operateDate" placeholder="手工选择"></ion-input>-->
+                <ion-datetime displayFormat="YYYY-MM-DD" placeholder="手工选择"
+                            formControlName="operateDate" [(ngModel)]="operateDate"></ion-datetime>
             </ion-item>
             <ion-item >
                 <ion-label fixed>使用方向</ion-label>
@@ -136,14 +140,14 @@
                 <ion-input readonly formControlName="devalueValue" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
 		</ion-item-group>
+        <div padding-horizontal>
+            <button ion-button color="danger" block type="submit" [disabled]="!assetFrom.valid">保 存</button>
+        </div>
 	</form>
 
 </ion-content>
 
-<ion-footer>
+<!--<ion-footer>
     <ion-toolbar>
-        <div padding-horizontal>
-            <button ion-button color="danger" block type="submit" [disabled]="!assetFrom.valid">保 存</button>
-        </div>
     </ion-toolbar>
-</ion-footer>
+</ion-footer>-->
