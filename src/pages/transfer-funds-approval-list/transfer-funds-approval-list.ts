@@ -29,26 +29,26 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
   templateUrl: 'transfer-funds-approval-list.html',
 })
 export class TransferFundsApprovalListPage {
-  listAll:TransferFundsMain[] = [];
+  listAll:TransferFundsMain[];
     list:TransferFundsMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public translateVoucherService:AcceptService) {
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TransferFundsApprovalListPage');
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
     this.getList();
   }
 
   //获取列表信息
   getList() {
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
     //1.申请 2.查询 3.审批
     //" 单据状态" //转资后端字段解释(括号中代表客户端对应字段)、0未提交(新增)、1未审批(待审批) 、2已驳回(退回)、3审批中(待审批)、4已审批(已审批)、若客户端传空的时候则后端查询全部
     //type:string, feeFlag:string, translateCode:string, startDate:string, endDate:string, reviewStatus:string
@@ -79,22 +79,14 @@ export class TransferFundsApprovalListPage {
       this.list = this.listAll.filter((item) => {
         return (item.translateCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
+    } else {
+      this.list = this.listAll;
     }
   }
 
   //上拉刷新
   doRefresh(refresher) {
-    /*this.params.page = 1;
-    setTimeout(() => {
-      this.topicService.getTopics(this.params).subscribe(
-        data => {
-          this.advancePaymentList = data.data;
-          refresher.complete();
-        }
-        );
-    }, 2000);*/
-
-    this.list = this.listAll;
+    this.getList();
     refresher.complete();
   }
 

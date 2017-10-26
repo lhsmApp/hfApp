@@ -93,7 +93,7 @@ export class TransferAdjustInfoPage {
 
   getShowItem(){
     this.itemShow = new TransferAdjustDetail();
-    /*this.acceptService.getTzCostDetailItem(this.billNumber, this.billKeyCode).subscribe(
+    this.acceptService.getTzCostDetailItem(this.billNumber, this.billKeyCode).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -104,14 +104,14 @@ export class TransferAdjustInfoPage {
         }
       }, () => {
     
-      });*/
-    this.itemShow = item;
+      });
+    //this.itemShow = item;
   }
   
   //资产明细
-  toAssetDetail(){
-    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.billNumber, BillContractCode:"", TypeGetAsset:TypeGetAsset_AcceptApply});
-  }
+  //toAssetDetail(){
+  //  this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.billNumber, BillContractCode:"", TypeGetAsset:TypeGetAsset_AcceptApply});
+  //}
 
   check(){
     let prompt = this.alertCtrl.create({

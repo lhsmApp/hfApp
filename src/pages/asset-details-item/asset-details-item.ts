@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AcceptAssetDetail} from '../../model/accept-asset-detail';
-import {DicDepart} from '../../model/dic-depart';
+import {Depart} from '../../model/depart';
 import {ContractService} from '../../services/contractService';
 import {ResultBase} from "../../model/result-base";
 
@@ -19,11 +19,11 @@ import {ItemTranfer} from '../../providers/TransferFeildName';//从添加界面�
  * Ionic pages and navigation.
  */
 
-  const listDeptGet: DicDepart[]=[
-      {departCode:'1',departName:'单位1',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
-      {departCode:'2',departName:'单位2',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
-      {departCode:'133930001',departName:'单位3',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
-      {departCode:'4',departName:'单位4',parentCode:'',shortName:'',markHolding:'',departLevel:1,markTail:1,dutyCenterName:'',costCenterName:'',},
+  const listDeptGet: Depart[]=[
+      {departCode:'1',departName:'单位1'},
+      {departCode:'2',departName:'单位2'},
+      {departCode:'133930001',departName:'单位3'},
+      {departCode:'4',departName:'单位4'},
   ]
 
  /*const item: AcceptAssetDetail = {xh: '24',

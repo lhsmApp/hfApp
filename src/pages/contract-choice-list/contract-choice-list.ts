@@ -27,28 +27,28 @@ import {BillContractCode} from '../../providers/TransferFeildName';
   templateUrl: 'contract-choice-list.html',
 })
 export class ContractChoiceListPage {
-    listAll:ContractMain[] = [];
+    listAll:ContractMain[];
     list:ContractMain[];
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private viewCtrl: ViewController,
               public contractService:ContractService) {
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContractChoiceListPage');
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
     this.getList();
   }
 
   //获取列表信息
   getList() {
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
     //type,//1.申请 2.查询 3.审批
     //contractCode,//合同流水号" (模糊查询)
     //checkResult,//" 单据状态" //合同后端字段解释(括号中代表客户端对应字段)
@@ -85,24 +85,17 @@ export class ContractChoiceListPage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.list = this.listAll.filter((item) => {
-        return (item.contractCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.contractCode.toLowerCase().indexOf(val.toLowerCase()) > -1 
+          || item.contractName.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
+    } else {
+      this.list = this.listAll;
     }
   }
 
   //上拉刷新
   doRefresh(refresher) {
-    /*this.params.page = 1;
-    setTimeout(() => {
-      this.topicService.getTopics(this.params).subscribe(
-        data => {
-          this.advancePaymentList = data.data;
-          refresher.complete();
-        }
-        );
-    }, 2000);*/
-
-    this.list = this.listAll;
+    this.getList();
     refresher.complete();
   }
 

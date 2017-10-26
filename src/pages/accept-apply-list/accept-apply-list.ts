@@ -31,26 +31,26 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
   templateUrl: 'accept-apply-list.html',
 })
 export class AcceptApplyListPage {
-    listAll:AcceptApplyMain[] = [];
+    listAll:AcceptApplyMain[];
     list:AcceptApplyMain[];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public acceptService:AcceptService) {
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
   }
 
   ionViewDidLoad() {
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
     this.getList();
   }
 
   //获取列表信息
   getList() {
-    this.listAll = [];
-    this.list = [];
+    //this.listAll = [];
+    //this.list = [];
     //1.申请 2.查询 3.审批
     //0新增（新增）、99待审批（待审批）、1 审批成功（已审批）、2审批失败 （退回）
     //type:string, billNumber:string, startDate:string, endDate:string, reviewStatus:string
@@ -82,22 +82,14 @@ export class AcceptApplyListPage {
       this.list = this.listAll.filter((item) => {
         return (item.billNumber.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
+    } else {
+      this.list = this.listAll;
     }
   }
 
   //上拉刷新
   doRefresh(refresher) {
-    /*this.params.page = 1;
-    setTimeout(() => {
-      this.topicService.getTopics(this.params).subscribe(
-        data => {
-          this.advancePaymentList = data.data;
-          refresher.complete();
-        }
-        );
-    }, 2000);*/
-
-    this.list = this.listAll;
+    this.getList();
     refresher.complete();
   }
 

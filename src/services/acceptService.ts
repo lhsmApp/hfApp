@@ -40,9 +40,9 @@ export class AcceptService {
   }
 
   //验收申请主页面保存---basic_assets_accept_apply  验收单据表
-  saveAcceptApplyMain():Observable<(object)>{
+  saveAcceptApplyMain(data: string):Observable<(object)>{
     console.log('验收申请主页面保存'+this.globalData.sessionId);
-    let param = {
+    /*let param = {
         'action': "saveAssetsAcceptanceApply",
         'sessionid': this.globalData.sessionId,
         //data:[{//单条
@@ -56,14 +56,19 @@ export class AcceptService {
         //      requireUser:"申请人",
         //      requireDate:"申请日期"
         //           }]
-    };
-    return this.httpService.post('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
+    };*/
+    let formData: FormData = new FormData(); 
+    formData.append('action', 'saveAssetsAcceptanceApply');
+    formData.append('sessionid', this.globalData.sessionId);
+    formData.append('data', data);
+    console.log(data);
+    return this.httpService.postMultiFormData('phoneAcceptanceApply.do', formData).map((res:Response) => res.json());
   }
 
   //验收明细主页面保存---就是显示合同已审批通过的明细----basic_contract_detail   合同明细表
-  saveAcceptApplyDetail(billNumber:string, contractCode:string):Observable<(object)>{
+  saveAcceptApplyDetail(billNumber:string, contractCode:string, data: string):Observable<(object)>{
     console.log('验收明细主页面保存'+this.globalData.sessionId);
-    let param = {
+    /*let param = {
         'action': "savebasicContractDetail",
         //'sessionid': this.globalData.sessionId,
         'billNumber': billNumber,//”验收单号”，
@@ -97,12 +102,19 @@ export class AcceptService {
         //   addDepreciate:累计折旧(double)
         //   devalueValue:减值准备(double)
         //   keyCode:资产键码}]
-    };
-    return this.httpService.post('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
+    };*/
+    let formData: FormData = new FormData(); 
+    formData.append('action', 'savebasicContractDetail');
+    formData.append('sessionid', this.globalData.sessionId);
+    formData.append('billNumber', billNumber);//”验收单号”，
+    formData.append('contractCode', contractCode);//合同单号
+    formData.append('data', data);
+    console.log(data);
+    return this.httpService.postMultiFormData('phoneAcceptanceApply.do', formData).map((res:Response) => res.json());
   }
 
   //（暂时不开发）验收单据删除---basic_assets_accept_apply  验收单据表
-  deleteAcceptApply(billNumber:string):Observable<(object)>{
+  /*deleteAcceptApply(billNumber:string):Observable<(object)>{
     console.log('验收单据删除'+this.globalData.sessionId);
     let param = {
         'action': "deletePhoneAssetsAcceptanceApply",
@@ -110,7 +122,7 @@ export class AcceptService {
         'billNumber': billNumber,//”验收单号”，
     };
     return this.httpService.post('phoneAcceptanceApply.do', param).map((res:Response) => res.json());
-  }
+  }*/
 
   //
 
@@ -165,11 +177,12 @@ export class AcceptService {
  转资调整
  */
   //转资调整单明细列表-----basic_tz_cost 转资调整明细表
-  getTzCostMainList(feeFlag:string, translateCode:string): Observable<(Object)> {
+  getTzCostMainList(type:string, feeFlag:string, translateCode:string): Observable<(Object)> {
     console.log('转资调整单明细列表'+this.globalData.sessionId);
     let param = {
      'action': 'queryListPhonebasicTzCost',
      'sessionid': this.globalData.sessionId,
+      'type': type,//  1.申请 2.查询 3.审批
      'feeFlag': feeFlag,//  是否已分摊费用 0否 1是
      'translateCode': translateCode,//”转资单号”
      };

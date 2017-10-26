@@ -54,6 +54,7 @@ import {ProjectElementService} from '../services/projectElementService';
 import {SystemService} from '../services/systemService';
 import {ApprovalService} from '../services/approvalService';
 import {AttachmentService} from '../services/attachmentService';
+import {NoticeService} from '../services/noticeService';
 
 //指令
 import { TabDirective } from "../directive/";
@@ -131,7 +132,8 @@ import { TabDirective } from "../directive/";
     ProjectElementService,
     SystemService,
     ApprovalService,
-    AttachmentService
+    AttachmentService,
+    NoticeService
   ]
 })
 export class AppModule {

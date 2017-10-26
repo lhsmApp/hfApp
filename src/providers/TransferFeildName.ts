@@ -44,16 +44,17 @@ export const Page_AssetDetailsListPage = 'AssetDetailsListPage';
 export const Page_AssetDetailsInfoPage = 'AssetDetailsInfoPage';
 //资产详情添加： BillNumberCode BillContractCode TypeGetAsset
 //export const Page_AssetDetailsAddPage = 'AssetDetailsAddPage';
-//资产详情编辑： BillNumberCode BillContractCode BillKeyCode Oper:Oper_Add、Oper_Edit ItemTranfer
+//资产详情编辑： BillNumberCode BillContractCode BillKeyCode Oper:Oper_Add、Oper_Edit ItemTranfer//从添加界面传入
 export const Page_AssetDetailsItemPage = 'AssetDetailsItemPage';
 
-//项目单元详情查看： BillElementCode
+//项目单元详情查看： BillElementCode Oper:Oper_Look
 export const Page_ProjInfoPage = 'ProjInfoPage';
 
 //转资审批：Oper,Oper_Look、Oper_Approval Title BillNumberCode TypeGetAsset:TypeGetAsset_TransferFunds
 export const Page_TransferFundsInfoPage = 'TransferFundsInfoPage';
 
-//公告
+//公告 ItemTranfer Oper:Oper_Look
+export const Page_NoticeInfoPage = 'NoticeInfoPage';
 
 //进度管理详情 BillElementCode oper:Oper_Add、Oper_Edit、Oper_Look、Oper_Approval Title
 export const Page_ScheduleApplyInfoPage = 'ScheduleApplyInfoPage';
