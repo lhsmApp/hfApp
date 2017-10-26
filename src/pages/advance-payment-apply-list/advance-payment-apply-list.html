@@ -26,10 +26,10 @@
   <ion-list class="list-avatar-page">
   	<ion-item-sliding *ngFor="let item of advancePaymentList;trackBy:item?.payCode" >
 	    <ion-item (click)="openPage(item)">
-	      <h2>{{item.payCode}}</h2>
+	      <h2>付款单号：{{item.payCode}}</h2>
 	      <h3 item-end><span  item-end [tab]="item"></span></h3>
-	      <p> {{item.payDigest}} </p>
-	      <p> {{item.requireUser}} &nbsp;&nbsp;<ion-note>{{item.requireUser}}</ion-note></p>
+	      <p>付款原因：{{item.payDigest}} </p>
+	      <p>申请人： {{item.requireUser}} </p>
 	    </ion-item>
 	    <ion-item-options side="right">
 	      <button ion-button color="primary" (click)="edit(item);$event.stopPropagation()">

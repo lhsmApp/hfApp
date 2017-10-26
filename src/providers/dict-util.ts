@@ -4,6 +4,9 @@
 import {Injectable} from '@angular/core';
 import {Storage} from "@ionic/storage";
 import {DicComplex} from '../model/dic-complex';
+import {DicInDepart} from '../model/dic-in-depart';
+import {DicOutDepart} from '../model/dic-out-depart';
+import {PAYMENT_CATEGORY} from '../enums/enums';
 
 /**
  * 字典工具类
@@ -69,18 +72,18 @@ export class DictUtil {
   }
 
   //翻译内部单位
-  getInDepartName(dictInfo:DicComplex[],code:string):string{
+  getInDepartName(dictInfo:DicInDepart[],code:string):string{
   	for(let inDepart of dictInfo){
-  		if(inDepart.complexCode===code)
-  			return inDepart.complexName;
+  		if(inDepart.departCode===code)
+  			return inDepart.departName;
   	}
   }
 
   //翻译外部单位
-  getOutDepartName(dictInfo:DicComplex[],code:string):string{
+  getOutDepartName(dictInfo:DicOutDepart[],code:string):string{
   	for(let outDepart of dictInfo){
-  		if(outDepart.complexCode===code)
-  			return outDepart.complexName;
+  		if(outDepart.departCode===code)
+  			return outDepart.departName;
   	}
   }
 
@@ -90,5 +93,13 @@ export class DictUtil {
   		if(basicEntity.complexCode===code)
   			return basicEntity.complexName;
   	}
+  }
+
+  //翻译款项类别
+  getClauseTypeName(code:string):string{
+    for(let clauseType of PAYMENT_CATEGORY){
+      if(clauseType.code===code)
+        return clauseType.name;
+    }
   }
 }

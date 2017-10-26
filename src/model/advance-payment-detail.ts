@@ -5,6 +5,7 @@
 export class AdvancePaymentDetail{
 	payCode :string;//付款单号
 	clauseType:string;//款项类别
+	clauseTypeName:string;//款项类别名称
 	contractCode:string;//合同流水号
 	contractName:string;//合同名称
 	elementType:string;//项目性质

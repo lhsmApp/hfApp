@@ -17,13 +17,13 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list *ngFor="let item of attachmentList" (click)="openPage(item.attachmentCode)">
+  <ion-list *ngFor="let item of attachmentList" (click)="openPage(item.fileName)">
   	<ion-item>
 	    <ion-thumbnail item-start>
 	      <img src="{{item.attachmentPath}}">
 	    </ion-thumbnail>
-	    <h2>{{item.attachmentName}}</h2>
-	    <p>{{item.attachmentCode}}</p>
+	    <h2>{{item.fileName}}</h2>
+	    <p>{{item.fileInfo}}</p>
      </ion-item>
   </ion-list>
 </ion-content>

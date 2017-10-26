@@ -64,70 +64,30 @@ export class PaymentService {
     formData.append('sessionid', this.globalData.sessionId);
     formData.append('data', paymentInfo);
     formData.append('datalist', gclInfo);
+
+    console.log('data:'+paymentInfo);
+    console.log('datalist:'+gclInfo);
     //formData.append('data', '[{"payCode":"好","clauseType":"1","contractCode":"0000000101000009","contractName":"合同工作量清单test","elementType":"项目性质","elementName":"项目单元名称","planType":"0","payDigest":"付款原因","costMoney":100,"taxMoney":0,"payMoney":0,"paymentCode":"0000002","intercourseCode":"往来单位名称(收款单位)","requireDate":"20170202x","requireUser":"比如往来单位名称(收款单往来单位名称(收款单往来单位名称(收款单往来单位名称(收款单往来单位名称(收款单 "}]');
     return this.httpService.postMultiFormData('phonePaymentRequest.do', formData).map((res: Response) => res.json());
   }
 
   //付款单据删除---basic_pay_main       付款主表
   deletePaymentMain(payCode:string):Observable<(Object)> {
-    let param = {
+    /*let param = {
      //必传
      'action': 'deletePhonePayMain',
      'sessionid':this.globalData.sessionId,
      'payCode': payCode,
-     };
-     return this.httpService.post('phonePaymentRequest.do', param).map((res: Response) => res.json());
-  }
+     };*/
 
-  //付款单据送审-审列表接口review_process 审批流程表
-  queryUserReviewPay(payCode:string,reviewType:string): Observable<(Object)> {
-    let param = {
+     let formData: FormData = new FormData(); 
      //必传
-     'action': 'queryUserReviewPay',
-     'sessionid':this.globalData.sessionId,
-     'payCode': payCode,
-     'reviewType':reviewType//审批使用常量名
-     };
-     return this.httpService.get('phoneCommon.do', param).map((res: Response) => res.json());
-  }
+     formData.append('action', 'deletePhonePayMain');
+     formData.append('sessionid', this.globalData.sessionId);
+     formData.append('payCode', payCode);
 
-  //单据送审确认接口- review_process 审批流程表
-  sendReviewPay(payCode:string,data:object[]): Observable<(Object)> {
-    let param = {
-     //必传
-     'action': 'sendReviewPay',
-     'sessionid':this.globalData.sessionId,
-     'payCode': payCode,
-     'reviewType':1,//审批使用常量名
-     'data': data,
-     };
-     return this.httpService.post('phoneCommon.do', param).map((res: Response) => res.json());
-  }
-
-  //审批接口review_process 审批流程表
-  auditReview(billNumber:string,vetoReason:string): Observable<(Object)> {
-    let param = {
-     //必传
-     'action': 'auditReview',
-     'sessionid':this.globalData.sessionId,
-     'billNumber': billNumber,//单据单号
-     'reviewType':1,//审批使用常量名
-     'vetoReason': vetoReason,//审批意见
-     };
-     return this.httpService.post('phoneCommon.do', param).map((res: Response) => res.json());
-  }
-
-  //否决接口review_process 审批流程表
-  vetoReview(billNumber:string,reviewType:string,vetoReason:string): Observable<(Object)> {
-    let param = {
-     //必传
-     'action': 'vetoReview',
-     'sessionid':this.globalData.sessionId,
-     'billNumber': billNumber,//单据单号
-     'reviewType':reviewType,//审批使用常量名
-     'vetoReason': vetoReason,//审批意见
-     };
-     return this.httpService.post('phoneCommon.do', param).map((res: Response) => res.json());
+     console.log('payCode:'+payCode);
+     return this.httpService.postMultiFormData('phonePaymentRequest.do', formData).map((res: Response) => res.json());
   }
 
   //发票列表basic_chalan_manager 发票主表
@@ -156,28 +116,48 @@ export class PaymentService {
   }
 
   //发票单据新增（修改）---basic_chalan_manager发票主表
-  saveInvoiceMain(payCode:string,invoiceInfo:object[]):Observable<(Object)> {
-    let param = {
+  saveInvoiceMain(payCode:string,invoiceInfo:string):Observable<(Object)> {
+    /*let param = {
      //必传
      'action': 'savePhoneBasicChalan',
      //'sessionid':this.globalData.sessionId,
      'payCode':payCode,
      //可传
      'data': invoiceInfo
-     };
-     return this.httpService.post('phonePaymentRequest.do', param).map((res: Response) => res.json());
+     };*/
+     let formData: FormData = new FormData(); 
+     //必传
+     formData.append('action', 'savePhoneBasicChalan');
+     formData.append('sessionid', this.globalData.sessionId);
+     formData.append('payCode', payCode);
+     //可传
+     formData.append('data', invoiceInfo);
+
+     console.log('payCode:'+payCode);
+     console.log('data:'+invoiceInfo);
+     return this.httpService.postMultiFormData('phonePaymentRequest.do', formData).map((res: Response) => res.json());
   }
 
   //发票详细信息删除basic_chalan_manager 发票主表
   deleteInvoiceMain(payCode:string,chalanNumber:string):Observable<(Object)> {
-    let param = {
+    /*let param = {
      //必传
      'action': 'deletePhoneBasicChalan',
      'sessionid':this.globalData.sessionId,
      'payCode':payCode,
      'chalanNumber': chalanNumber
-     };
-     return this.httpService.post('phonePaymentRequest.do', param).map((res: Response) => res.json());
+     };*/
+
+     let formData: FormData = new FormData(); 
+     //必传
+     formData.append('action', 'deletePhoneBasicChalan');
+     formData.append('sessionid', this.globalData.sessionId);
+     formData.append('payCode', payCode);
+     formData.append('chalanNumber', chalanNumber);
+
+     console.log('payCode:'+payCode);
+     console.log('chalanNumber:'+chalanNumber);
+     return this.httpService.postMultiFormData('phonePaymentRequest.do', formData).map((res: Response) => res.json());
   }
 
   //工作量清单列表----basic_contract_work_list工作量清单表
