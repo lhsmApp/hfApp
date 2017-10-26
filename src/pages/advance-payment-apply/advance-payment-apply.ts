@@ -18,6 +18,7 @@ import {DicOutDepart} from '../../model/dic-out-depart';
 
 import { BillOfWorkMain} from '../../model/billof-work-main';
 import { BillOfWorkDetail} from '../../model/billof-work-detail';
+import {BillNumberCode} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AdvancePaymentApplyPage page.
@@ -60,6 +61,7 @@ export class AdvancePaymentApplyPage {
               private formBuilder: FormBuilder,
               private modalCtrl: ModalController,
               private paymentService:PaymentService,
+              
               private alertCtrl: AlertController) {
   	/*this.paymentForm = this.formBuilder.group({
       username: [, [Validators.required, Validators.pattern('[(\u4e00-\u9fa5)0-9a-zA-Z\_\s@]+')]],
@@ -162,7 +164,7 @@ export class AdvancePaymentApplyPage {
 
   //保存
   save(){
-    /*if(this.paymentDetail.clauseType=='2'||this.paymentDetail.clauseType=='4'){
+    if(this.paymentForm.get('clauseType')._value=='2'||this.paymentForm.get('clauseType')._value=='4'){
       if(this.gclListInfo==null||this.gclListInfo.length==0){
         let alert = this.alertCtrl.create({
           title: '提示!',
@@ -172,7 +174,7 @@ export class AdvancePaymentApplyPage {
         alert.present();
         return;
       }
-    }*/
+    }
 
     let paymentInfo=new Array<AdvancePaymentDetail>();
     let detail=this.paymentForm.value as AdvancePaymentDetail;
@@ -249,6 +251,15 @@ export class AdvancePaymentApplyPage {
     return new Promise((resolve, reject) => {
       console.log(data);
       this.gclListInfo=data;
+      let sumHj=0;
+      if(this.gclListInfo){
+        for(let gclItem of this.gclListInfo){
+          sumHj+=gclItem.moneyTotal;
+        }
+      }
+      this.paymentForm.patchValue({
+          payMoney:sumHj,
+        });
       resolve();
     });
   };
@@ -257,7 +268,7 @@ export class AdvancePaymentApplyPage {
   invoice(paymentDetail:AdvancePaymentDetail){
   	//let payCode=paymentDetail.payCode;
   	//let contractCode=paymentDetail.contractCode;
-    this.navCtrl.push("InvoiceApplyListPage",{'paymentItem':this.paymentMain});
+    this.navCtrl.push("InvoiceApplyListPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode});
   }
 
   
@@ -271,6 +282,6 @@ export class AdvancePaymentApplyPage {
 
   //送审
   send(){
-    this.navCtrl.push('ChoiceApproversPage');
+    this.navCtrl.push('ChoiceApproversPage',{BillNumberCode:this.paymentDetail.payCode});
   }
 }

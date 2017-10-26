@@ -22,11 +22,13 @@ export class InvoiceInfoPage {
   invoiceMain:InvoiceMain;
   invoiceDetail:InvoiceDetail;
   paymentMain:AdvancePaymentMain;
+  contractCode:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
     this.invoiceMain=this.navParams.get("invoiceItem");
     console.log(this.invoiceMain);
     this.paymentMain=this.navParams.get("paymentItem");
+    this.contractCode=this.navParams.get('contractCode');
   }
 
   ionViewDidLoad() {
@@ -49,7 +51,7 @@ export class InvoiceInfoPage {
 
   //附件
   attachment(){
-  	this.navCtrl.push("AttachmentInfoPage");
+  	this.navCtrl.push("AttachmentInfoPage",{'billNumber':this.invoiceDetail.sequence,'contractCode':this.contractCode,'type':'2'});
   }
 
 }

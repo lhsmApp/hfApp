@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 import {ReviewProcessMain} from '../../model/review-process-main';
 import {ReviewProcessDetail} from '../../model/review-process-detail';
-
+import {ApprovalService} from '../../services/approvalService';
 import {BillNumberCode} from '../../providers/TransferFeildName';
+import {ResultBase} from "../../model/result-base";
+import { ReviewType} from '../../enums/review-type';
 
 /**
  * Generated class for the ChoiceApproversPage page.
@@ -32,15 +34,32 @@ export class ChoiceApproversPage {
   billNumber:string;
   list: ReviewProcessMain[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              private viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private viewCtrl: ViewController,
+              private approvalService:ApprovalService) {
   	this.billNumber = this.navParams.get(BillNumberCode);
-
-  	this.list = mainList;
+  	//this.list = mainList;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ChoiceApproversPage');
+    //console.log('ionViewDidLoad ChoiceApproversPage');
+    this.getList();
+  }
+
+  //获取付款单列表信息
+  getList(){
+      console.log(ReviewType.REVIEW_TYPE_BASIC_PAYMENT);
+      console.log(ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]);
+      this.approvalService.queryUserReviewPay(this.billNumber,ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT])
+      .subscribe(object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.list = object[1] as ReviewProcessMain[];
+        }
+      }, () => {
+        
+      });
   }
 
   ok(){
@@ -50,5 +69,4 @@ export class ChoiceApproversPage {
         this.navCtrl.pop();
     }
   }
-
 }

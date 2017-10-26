@@ -52,7 +52,8 @@ import {AcceptService} from '../services/acceptService';
 import {ContractService} from '../services/contractService';
 import {ProjectElementService} from '../services/projectElementService';
 import {SystemService} from '../services/systemService';
-//import {Service} from '../services/systemService';
+import {ApprovalService} from '../services/approvalService';
+import {AttachmentService} from '../services/attachmentService';
 
 //指令
 import { TabDirective } from "../directive/";
@@ -128,7 +129,9 @@ import { TabDirective } from "../directive/";
     AcceptService,
     ContractService,
     ProjectElementService,
-    SystemService
+    SystemService,
+    ApprovalService,
+    AttachmentService
   ]
 })
 export class AppModule {

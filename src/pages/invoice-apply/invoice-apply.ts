@@ -26,10 +26,12 @@ export class InvoiceApplyPage {
   invoiceDetail:InvoiceDetail;
   invoiceMain:InvoiceMain;
   paymentMain:AdvancePaymentMain;
+  contractCode:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private formBuilder: FormBuilder,private paymentService:PaymentService) {
     this.invoiceMain=this.navParams.get("invoiceItem");  	
     this.paymentMain=this.navParams.get("paymentItem");
+    this.contractCode=this.navParams.get('contractCode');
     this.invoiceForm = this.formBuilder.group({
       chalanNumber: [,[]],//发票编号，手工录入
       sequence: [, [Validators.required]],//序号，自动生成，判断是否为空，空为增加，有则修改
@@ -82,7 +84,7 @@ export class InvoiceApplyPage {
 
   //附件列表
   attachment(item){
-    this.navCtrl.push("AttachmentPage");
+    this.navCtrl.push("AttachmentPage",{'billNumber':this.invoiceDetail.sequence,'contractCode':this.contractCode,'type':'2'});
   }
 
   //发票保存

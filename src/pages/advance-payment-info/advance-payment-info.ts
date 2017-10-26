@@ -11,6 +11,7 @@ import {OUT_DEPART} from "../../enums/storage-type";
 import {DicInDepart} from '../../model/dic-in-depart';
 import {DicOutDepart} from '../../model/dic-out-depart';
 import { PAYMENT_CATEGORY} from '../../enums/enums';
+import { DictUtil} from '../../providers/dict-util';
 
 /**
  * Generated class for the AdvancePaymentInfoPage page.
@@ -44,12 +45,13 @@ export class AdvancePaymentInfoPage {
   paymentDetail:AdvancePaymentDetail;
   paymentMain:AdvancePaymentMain;
   paymentCategory=PAYMENT_CATEGORY;
-  listPayDept : DicInDepart;
-  listIntercourse : DicOutDepart;
+  listPayDept : DicInDepart[];
+  listIntercourse : DicOutDepart[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
     private storage: Storage,
-    private paymentService:PaymentService) {
+    private paymentService:PaymentService,
+    private dictUtil:DictUtil) {
     this.paymentMain=this.navParams.get("paymentItem");
   }
 
@@ -57,10 +59,10 @@ export class AdvancePaymentInfoPage {
     this.payCode=this.navParams.get('id');
     this.isapproval=this.navParams.get('approval');
 
-    this.storage.get(IN_DEPART).then((inDepart: DicInDepart) => {
+    this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
       this.listPayDept=inDepart;
     });
-    this.storage.get(OUT_DEPART).then((outDepart: DicOutDepart) => {
+    this.storage.get(OUT_DEPART).then((outDepart: DicOutDepart[]) => {
       this.listIntercourse=outDepart;
     });
     this.initData();
@@ -74,6 +76,9 @@ export class AdvancePaymentInfoPage {
         if(resultBase.result=='true'){
           console.log(object[1][0]);
           this.paymentDetail = object[1][0] as AdvancePaymentDetail;
+          this.paymentDetail.clauseTypeName=this.dictUtil.getClauseTypeName(this.paymentDetail.clauseType);
+          this.paymentDetail.payDepart=this.dictUtil.getInDepartName(this.listPayDept,this.paymentDetail.paymentCode);
+          this.paymentDetail.intercourseName=this.dictUtil.getOutDepartName(this.listIntercourse,this.paymentDetail.intercourseCode);
         }
       }, () => {
         
@@ -120,7 +125,7 @@ export class AdvancePaymentInfoPage {
 
   //发票
   invoice(){
-  	this.navCtrl.push("InvoiceListPage",{'paymentItem':this.paymentMain});
+  	this.navCtrl.push("InvoiceListPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode});
   }
 
   //工程量清单

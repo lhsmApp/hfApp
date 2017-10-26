@@ -28,10 +28,12 @@ export class InvoiceListPage {
 
   invoiceList:InvoiceMain[];
   paymentMain:AdvancePaymentMain;
+  contractCode:string;
 
  	constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
  		//this.invoiceList=INVOICE_LIST;
      this.paymentMain=this.navParams.get("paymentItem");
+     this.contractCode=this.navParams.get('contractCode');
  	}
 
   ionViewDidLoad() {
@@ -55,7 +57,7 @@ export class InvoiceListPage {
   //打开详情页
   openPage(item: InvoiceMain) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-    this.navCtrl.push("InvoiceInfoPage",{"invoiceItem":item,'paymentItem':this.paymentMain});
+    this.navCtrl.push("InvoiceInfoPage",{"invoiceItem":item,'paymentItem':this.paymentMain,'contractCode':this.contractCode});
   }
 
   //上拉刷新
