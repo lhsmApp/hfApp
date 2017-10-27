@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { BillOfWorkMain} from '../../model/billof-work-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
@@ -36,7 +36,7 @@ export class BillGclSelectPage {
   contractCode:string;
   gclList:BillOfWorkMain[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl:AlertController,private paymentService:PaymentService) {
 	  //this.workList=WORK_LIST;
     this.paymentMain= this.navParams.get('paymentItem');
     this.contractCode=this.navParams.get('contractCode');
@@ -68,6 +68,13 @@ export class BillGclSelectPage {
             }
           }
           console.log(this.workList);
+        }else{
+          let alert = this.alertCtrl.create({
+            title: '提示!',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
         }
       }, () => {
         

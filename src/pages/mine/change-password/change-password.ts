@@ -3,7 +3,10 @@ import {ViewController} from 'ionic-angular';
 import {FormBuilder} from "@angular/forms";
 import {Validators} from "../../../providers/Validators";
 import {NativeService} from "../../../providers/NativeService";
-import {MineService} from "../MineService";
+import {SystemService} from "../../../services/systemService";
+import {ResultBase} from "../../../model/result-base";
+import {GlobalData} from "../../../providers/GlobalData";
+import {Base64} from "../../../providers/base64";
 
 /**
  * Generated class for the ChangePasswordPage page.
@@ -42,8 +45,10 @@ export class ChangePasswordPage {
 
   constructor(private viewCtrl: ViewController,
               private formBuilder: FormBuilder,
-              private mineService: MineService,
-              private nativeService: NativeService) {
+              private systemService:SystemService,
+              private nativeService: NativeService,
+              private globalData: GlobalData,
+              private base64:Base64) {
     this.form = this.formBuilder.group({
       oldPsw: ['', [Validators.required]],
       newPsw: ['', [Validators.required, Validators.minLength(4)]],
@@ -73,9 +78,21 @@ export class ChangePasswordPage {
       this.nativeService.alert('新密码两次输入不一致');
       return;
     }
-    this.mineService.updateUserPassword(oldPsw, newPsw).subscribe(res => {
+    /*this.mineService.updateUserPassword(oldPsw, newPsw).subscribe(res => {
       this.nativeService.showToast('密码修改成功');
       this.dismiss();
+    });*/
+    let oldPsw64=this.base64.encode(oldPsw);
+    let newPsw64=this.base64.encode(newPsw);
+    this.systemService.changePassword(oldPsw64,newPsw64).subscribe(object => {
+      let resultBase:ResultBase=object[0] as ResultBase;
+      if(resultBase.result=='true'){
+        this.globalData.passWord = newPsw;
+        this.nativeService.showToast('密码修改成功');
+        this.dismiss();
+      }
+    }, () => {
+      
     });
   }
 

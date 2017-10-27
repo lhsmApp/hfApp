@@ -6,6 +6,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class GlobalData {
 
+  private _userId: string;//用户ID(登录帐号) 
   private _userCode: string;//用户编码
   private _passWord: string;//用户密码
   private _userName: string;//用户名
@@ -27,6 +28,14 @@ export class GlobalData {
 
   set sessionId(value: string) {
     this._sessionId = value;
+  }
+
+  get userId(): string {
+    return this._userId;
+  }
+
+  set userId(value: string) {
+    this._userId = value;
   }
 
   get userCode(): string {

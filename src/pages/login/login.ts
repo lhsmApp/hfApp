@@ -77,7 +77,8 @@ export class LoginPage {
           //this.globalData.sessionId = loginInfo.access_token;
           this.submitted = false;
           this.storage.set('loginInfo', user);
-          this.globalData.passWord=user.passWord;
+          this.globalData.userId=user.usercode;
+          this.globalData.passWord=user.password;
           this.userInfo = loginInfo[1] as UserInfo;
           this.userInfo.departCode=this.globalData.departCode;
           this.userInfo.departName=this.globalData.departName;
@@ -85,7 +86,6 @@ export class LoginPage {
           //this.events.publish('user:login');
           //this.viewCtrl.dismiss(loginInfo.user);
         }else{
-            console.log('fa');
             let alert = this.alertCtrl.create({
             title: '提示信息',
             subTitle: resultBase.message,

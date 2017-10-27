@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { BillOfWorkMain} from '../../model/billof-work-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
@@ -33,11 +33,15 @@ export class BillGclPage {
   workList:BillOfWorkMain[];
   paymentMain:AdvancePaymentMain;
   contractCode:string;
+  type:string;//ht，fk
+  sequence:string;//合同序号sequence
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl:AlertController,private paymentService:PaymentService) {
 	  //this.workList=WORK_LIST;
     this.paymentMain=this.navParams.get("paymentItem");
     this.contractCode=this.navParams.get('contractCode');
+    this.type=this.navParams.get('type');
+    this.sequence=this.navParams.get('sequence');
   }
 
   ionViewDidLoad() {
@@ -46,11 +50,24 @@ export class BillGclPage {
 
   //获取工程量列表信息
   getList() {
-    this.paymentService.getGclMainList(this.contractCode,'fk',this.paymentMain.payCode,'0')
+    let nullItem1='0';
+    let payCode='';
+    if(this.type=='ht')
+      nullItem1=this.sequence;
+    else
+      payCode=this.paymentMain.payCode;
+    this.paymentService.getGclMainList(this.contractCode,this.type,payCode,nullItem1)
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.workList = object[1] as BillOfWorkMain[];
+        }else{
+          let alert = this.alertCtrl.create({
+            title: '提示!',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
         }
       }, () => {
         

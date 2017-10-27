@@ -133,6 +133,13 @@ export class AdvancePaymentApplyPage {
             }, () => {
               
             });
+          }else{
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
           }
         }, () => {
           
@@ -248,11 +255,11 @@ export class AdvancePaymentApplyPage {
           });
         }else{
           let alert = this.alertCtrl.create({
-          title: '提示!',
-          subTitle: resultBase.message,
-          buttons: ['确定']
-        });
-        alert.present();
+            title: '提示!',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
         }
       }, () => {
         

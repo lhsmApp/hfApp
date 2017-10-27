@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
@@ -30,7 +30,10 @@ import { QueryCondition } from '../../model/query-condition';
  	advancePaymentList:AdvancePaymentMain[];
   queryCondition:QueryCondition;
 
- 	constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
+ 	constructor(public navCtrl: NavController, 
+     public navParams: NavParams,
+     public alertCtrl:AlertController,
+     private paymentService:PaymentService) {
  		//this.advancePaymentList=ADVANTAGE_LIST;
      this.queryCondition=this.navParams.get("queryCondition");
  	}
@@ -65,6 +68,13 @@ import { QueryCondition } from '../../model/query-condition';
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.advancePaymentList = object[1] as AdvancePaymentMain[];
+        }else{
+          let alert = this.alertCtrl.create({
+            title: '提示!',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
         }
       }, () => {
         

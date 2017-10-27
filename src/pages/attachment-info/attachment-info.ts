@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { Attachment} from '../../model/attachment';
 import {DEFAULT_INVOICE} from "../../providers/Constants";
 import { AttachmentService} from '../../services/attachmentService';
@@ -29,7 +29,7 @@ export class AttachmentInfoPage {
   contractCode :string;
   type:string;//1.合同 2.发票 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private attachmentService:AttachmentService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl:AlertController, private attachmentService:AttachmentService) {
   	this.attachmentList=ATTACHMENT_LIST;
     this.billNumber=this.navParams.get('billNumber');
     this.contractCode=this.navParams.get('contractCode');
@@ -47,6 +47,13 @@ export class AttachmentInfoPage {
       let resultBase:ResultBase=object[0] as ResultBase;
       if(resultBase.result=='true'){
         this.attachmentList = object[1] as Attachment[];
+      }else{
+        let alert = this.alertCtrl.create({
+          title: '提示!',
+          subTitle: resultBase.message,
+          buttons: ['确定']
+        });
+        alert.present();
       }
     }, () => {
       

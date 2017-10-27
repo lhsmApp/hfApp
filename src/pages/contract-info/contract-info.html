@@ -20,25 +20,13 @@
 
 <ion-content>
 	<ion-item-group inset>
-		<ion-item>
-			<ion-row>
-				<ion-col col-4>
-		   			<span class='color-label'>单据状态</span>
-	       		
-	       		</ion-col>
-	       		<ion-col col-8>
-	       			<span text-left>待审批</span>
-	       		</ion-col>
-       		</ion-row>
-	    </ion-item>
 	    <ion-item>
 			<ion-row>
 				<ion-col col-4>
 		   			<span class='color-label'>序号：</span>
-	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>12345</span>
+	       			<span text-left>{{contractDetailInfo?.sequence }}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -49,7 +37,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>FP2332444</span>
+	       			<span text-left>{{contractDetailInfo?.elementCode}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -60,7 +48,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>2017-09-30</span>
+	       			<span text-left>{{contractDetailInfo?.elementName}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -71,7 +59,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>加油100升</span>
+	       			<span text-left>{{contractDetailInfo?.contractCode}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -82,7 +70,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>123</span>
+	       			<span text-left>{{contractDetailInfo?.contractName}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -93,7 +81,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>23</span>
+	       			<span text-left>{{contractDetailInfo?.compactType}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -104,7 +92,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>11</span>
+	       			<span text-left>{{contractDetailInfo?.relativePerson}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -115,7 +103,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>2000</span>
+	       			<span text-left>{{contractDetailInfo?.additionalPerson}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -126,7 +114,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>3000</span>
+	       			<span text-left>{{contractDetailInfo?.ownDepart}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -137,7 +125,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>1200</span>
+	       			<span text-left>{{contractDetailInfo?.contractMoney}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -148,7 +136,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>PZD2017080001</span>
+	       			<span text-left>{{contractDetailInfo?.costProperty}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -159,7 +147,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>PZD2017080001</span>
+	       			<span text-left>{{contractDetailInfo?.contractDate}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -170,7 +158,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>PZD2017080001</span>
+	       			<span text-left>{{contractDetailInfo?.requireUser}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -181,7 +169,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>PZD2017080001</span>
+	       			<span text-left>{{contractDetailInfo?.requireDate}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -192,7 +180,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>PZD2017080001</span>
+	       			<span text-left>{{contractDetailInfo?.checkOpinion}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>

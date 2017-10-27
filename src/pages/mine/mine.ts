@@ -27,6 +27,8 @@ import {OUT_DEPART} from "../../enums/storage-type";
 import {BASIC_ENTITY} from "../../enums/storage-type";
 import {DictUtil} from "../../providers/dict-util";
 
+import {GlobalData} from "../../providers/GlobalData";
+
 @Component({
   selector: 'page-mine',
   templateUrl: 'mine.html'
@@ -43,7 +45,8 @@ export class MinePage {
               private nativeService: NativeService,
               private alertCtrl: AlertController,
               private systemService:SystemService,
-              private dictUtil:DictUtil) {
+              private dictUtil:DictUtil,
+              private globalData: GlobalData) {
 
   }
 
@@ -68,7 +71,23 @@ export class MinePage {
 
   //切换单位
   changeUnit(){
-    
+    let userinfo={usercode:this.globalData.userId,password:this.globalData.passWord};
+    console.log(userinfo);
+    let modal = this.modalCtrl.create('DepartSelectPage',{'userinfo':userinfo});
+    modal.present();
+    modal.onDidDismiss(departInfo => {
+        if(departInfo){
+          let departCodeAndName:string[]=departInfo.split('|');
+          this.systemService.changeDepart(departCodeAndName[0]).subscribe(object => {
+            let resultBase:ResultBase=object[0] as ResultBase;
+            if(resultBase.result=='true'){
+              this.globalData.departCode = departCodeAndName[0];
+            }
+          }, () => {
+            
+          });
+      }
+    });
   }
 
   loginOut() {

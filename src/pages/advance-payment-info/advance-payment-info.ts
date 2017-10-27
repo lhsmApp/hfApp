@@ -79,6 +79,13 @@ export class AdvancePaymentInfoPage {
           this.paymentDetail.clauseTypeName=this.dictUtil.getClauseTypeName(this.paymentDetail.clauseType);
           this.paymentDetail.payDepart=this.dictUtil.getInDepartName(this.listPayDept,this.paymentDetail.paymentCode);
           this.paymentDetail.intercourseName=this.dictUtil.getOutDepartName(this.listIntercourse,this.paymentDetail.intercourseCode);
+        }else{
+          let alert = this.alertCtrl.create({
+            title: '提示!',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
         }
       }, () => {
         
@@ -130,7 +137,7 @@ export class AdvancePaymentInfoPage {
 
   //工程量清单
   billOfGcl(){
-	this.navCtrl.push("BillGclPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode});
+	this.navCtrl.push("BillGclPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode,'type':'fk'});
   }
 
   //送审

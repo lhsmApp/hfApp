@@ -44,6 +44,9 @@ import {Logger} from "../providers/Logger";
 import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLeave} from "./modal-transitions";
 import {Diagnostic} from "@ionic-native/diagnostic";
 import {DictUtil} from "../providers/dict-util";
+import {Base64} from "../providers/base64";
+
+
 
 //Business Service
 import {LoginService} from '../services/LoginService';
@@ -123,6 +126,7 @@ import { TabDirective } from "../directive/";
     GlobalData,
     Logger,
     DictUtil,
+    Base64,
 
     //service
     LoginService,

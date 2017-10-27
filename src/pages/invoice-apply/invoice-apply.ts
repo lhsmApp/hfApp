@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {FormBuilder, Validators} from '@angular/forms';
 import { InvoiceDetail} from '../../model/invoice-detail';
 import { PaymentService} from '../../services/paymentService';
@@ -28,7 +28,7 @@ export class InvoiceApplyPage {
   paymentMain:AdvancePaymentMain;
   contractCode:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private formBuilder: FormBuilder,private paymentService:PaymentService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl:AlertController,private formBuilder: FormBuilder,private paymentService:PaymentService) {
     this.invoiceMain=this.navParams.get("invoiceItem");  	
     this.paymentMain=this.navParams.get("paymentItem");
     this.contractCode=this.navParams.get('contractCode');
@@ -75,6 +75,13 @@ export class InvoiceApplyPage {
             chalanContent:this.invoiceDetail.chalanContent,
             taxNumber:this.invoiceDetail.taxNumber
             });
+          }else{
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
           }
         }, () => {
           
@@ -113,6 +120,13 @@ export class InvoiceApplyPage {
             chalanContent:this.invoiceDetail.chalanContent,
             taxNumber:this.invoiceDetail.taxNumber
           });
+        }else{
+          let alert = this.alertCtrl.create({
+            title: '提示!',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
         }
       }, () => {
         
