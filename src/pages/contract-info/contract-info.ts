@@ -4,7 +4,6 @@ import {ContractDetail} from '../../model/contract-detail';
 import {ContractMain} from '../../model/contract-main';
 import {ContractService} from '../../services/contractService';
 import {ResultBase} from "../../model/result-base";
-import {TypeGetAsset} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the ContractInfoPage page.
@@ -93,7 +92,7 @@ export class ContractInfoPage {
 
   //合同明细
   contractDetail(){
-  	this.navCtrl.push("AssetDetailsListInfoPage",{'contractCode':this.contractDetailInfo.contractCode,TypeGetAsset:''});
+  	this.navCtrl.push("AssetDetailsListInfoPage",{'contractCode':this.contractDetailInfo.contractCode});
   }
 
   //工程量清单

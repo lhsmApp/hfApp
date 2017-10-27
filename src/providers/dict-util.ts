@@ -81,6 +81,16 @@ export class DictUtil {
     }
   }
 
+  //翻译存放地点
+  getDepositaryName(dictInfo:DicComplex[],code:string):string{
+    if(dictInfo&&dictInfo.length>0){
+      for(let depositary of dictInfo){
+        if(depositary.complexCode===code)
+          return depositary.complexName;
+      }
+    }
+  }
+
   //翻译内部单位
   getInDepartName(dictInfo:DicInDepart[],code:string):string{
     if(dictInfo&&dictInfo.length>0){

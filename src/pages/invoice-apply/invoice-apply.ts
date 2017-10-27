@@ -34,7 +34,7 @@ export class InvoiceApplyPage {
     this.contractCode=this.navParams.get('contractCode');
     this.invoiceForm = this.formBuilder.group({
       chalanNumber: [,[Validators.required]],//发票编号，手工录入
-      sequence: [,[Validators.required]],//序号，自动生成，判断是否为空，空为增加，有则修改
+      sequence: '',//序号，自动生成，判断是否为空，空为增加，有则修改
       chalanType: [,[Validators.required]],//发票类型，选择
       price: [,[Validators.required]],//发票单价，手工录入
       singleAmount: [,[Validators.required]],//发票数量，手工录入
@@ -54,7 +54,7 @@ export class InvoiceApplyPage {
 
   //初始化数据
   initData(){
-    if(this.paymentMain){
+    if(this.invoiceMain){
       this.paymentService.getInvoiceDetail(this.paymentMain.payCode,this.invoiceMain.chalanNumber)
         .subscribe(object => {
           let resultBase:ResultBase=object[0] as ResultBase;
@@ -97,10 +97,14 @@ export class InvoiceApplyPage {
   //发票保存
   save(){
     let invoiceInfo=new Array<InvoiceDetail>();
-    let detail=this.invoiceForm.value as InvoiceDetail;
+    let detail=<InvoiceDetail>this.invoiceForm.value;
+    detail.price=parseFloat(detail.price.toString());
+    detail.chalanMoney =parseFloat(detail.chalanMoney .toString());
+    detail.noTaxMoney =parseFloat(detail.noTaxMoney.toString());
+    console.log(detail);
     invoiceInfo.push(detail);
     
-    this.paymentService.saveInvoiceMain(this.paymentMain.payCode,this.invoiceDetail.chalanNumber,JSON.stringify(invoiceInfo))
+    this.paymentService.saveInvoiceMain(this.paymentMain.payCode,detail.chalanNumber,JSON.stringify(invoiceInfo))
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){

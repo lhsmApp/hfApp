@@ -95,7 +95,7 @@ export class FileService {
    */
   uploadByBase64(fileObj: FileObj): Observable<FileObj> {
     if (!fileObj.base64) {
-      return Observable.of({});
+      return Observable.of(<FileObj>{});
     }
     return this.httpService.post(FILE_SERVE_URL + '/appUpload?directory=liveWork', [fileObj]).map((res: Response) => {
       let result = res.json();
@@ -148,7 +148,7 @@ export class FileService {
    */
   uploadByFilePath(fileObj: FileObj): Observable<FileObj> {
     if (!fileObj.origPath) {
-      return Observable.of({});
+      return Observable.of(<FileObj>{});
     }
     return Observable.create((observer) => {
       this.nativeService.showLoading();

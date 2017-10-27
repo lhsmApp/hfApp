@@ -13,6 +13,8 @@ export const USED_STATE="usedState";//使用状态
 
 export const SPECIAL_LINE="specialLine";//技术部门
 
+export const DEPOSITARY="depositary";//存放地点
+
 export const IN_DEPART="inDepart";//内部单位
 
 export const OUT_DEPART="outDepart";//外部单位

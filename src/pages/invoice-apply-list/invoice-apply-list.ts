@@ -77,7 +77,7 @@ export class InvoiceApplyListPage {
 
   //增加
   add(){
-  	this.navCtrl.push("InvoiceApplyPage");
+  	this.navCtrl.push("InvoiceApplyPage",{'paymentItem':this.paymentMain});
   }
 
   //编辑

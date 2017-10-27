@@ -16,7 +16,7 @@ export class InvoiceDetail{
 
 	singleAmount:number;//发票数量
 
-	sl:number;//税率
+	sl:string;//税率
 
 	chalanMoney:number;//发票金额,传double型
 
