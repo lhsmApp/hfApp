@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angul
 import {Storage} from "@ionic/storage";
 import {AcceptApplyDetail} from '../../model/accept-apply-detail';
 import {AcceptService} from '../../services/acceptService';
+import {ApprovalService} from '../../services/approvalService';
 import {ResultBase} from "../../model/result-base";
 import {IN_DEPART} from "../../enums/storage-type";
 import {DicInDepart} from '../../model/dic-in-depart';
@@ -53,7 +54,8 @@ export class AcceptApplyInfoPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
               private storage: Storage,
               private dictUtil:DictUtil,
-              public acceptService:AcceptService) {
+              public acceptService:AcceptService,
+              public approvalService:ApprovalService) {
     this.itemShow = new AcceptApplyDetail();
     this.isShowCheck = false;
     this.isShowSend = false;
@@ -124,20 +126,40 @@ export class AcceptApplyInfoPage {
         text: '不通过',
         cssClass:'alertButtionNo',
         handler: data => {
-          console.log(data);
+        //billNumber:string,reviewType:string,vetoReason:string
+        this.approvalService.vetoReview(this.itemShow.billNumber, ReviewType[ReviewType.BASICACCEPTANCE_APPLY], data)
+          .subscribe(object => {
+            let resultBase:ResultBase=object[0] as ResultBase;
+            if(resultBase.result=='true'){
+
+            }
+          }, () => {
+        
+          });
         }
       });
     prompt.addButton({
       text: '通过',
       cssClass:'alertButtionYes',
       handler: data => {
+        //billNumber:string,reviewType:string,vetoReason:string
+        this.approvalService.auditReview(this.itemShow.billNumber, ReviewType[ReviewType.BASICACCEPTANCE_APPLY], data)
+          .subscribe(object => {
+            let resultBase:ResultBase=object[0] as ResultBase;
+            if(resultBase.result=='true'){
+
+            }
+          }, () => {
+        
+          });
       }
     });
     prompt.present();
   }
 
   send(){
-      this.navCtrl.push(Page_ChoiceApproversPage, {BillNumberCode: this.billNumber,BillReviewType:ReviewType[ReviewType.BASICACCEPTANCE_APPLY]});
+    console.log("ReviewType：" + ReviewType[ReviewType.BASICACCEPTANCE_APPLY]);
+      this.navCtrl.push(Page_ChoiceApproversPage, {BillNumberCode: this.billNumber,'reviewType':ReviewType[ReviewType.BASICACCEPTANCE_APPLY]});
   }
 
 }

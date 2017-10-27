@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {LoginInfo} from "../model/UserInfo";
 import {HttpService} from "../providers/HttpService";
 import {GlobalData} from "../providers/GlobalData";
+import {ReviewType} from '../enums/review-type';
 
 @Injectable()
 export class ApprovalService {
@@ -12,9 +13,19 @@ export class ApprovalService {
 
   //付款单据送审-审列表接口review_process 审批流程表
   queryUserReviewPay(billNumber:string,reviewType:string): Observable<(Object)> {
+    console.log('reviewType: ' + reviewType);
+    let action = "";
+    if(reviewType === ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]){
+      action = 'queryUserReviewPay';
+    } else {
+      if(reviewType === ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
+        action = 'queryUserReviewAcceptance';
+      }
+    }
+    console.log('action: ' + action);
     let param = {
      //必传
-     'action': 'queryUserReviewPay',
+     'action': action,
      'sessionid':this.globalData.sessionId,
      'billNumber': billNumber,
      'reviewType':reviewType//审批使用常量名

@@ -3,7 +3,9 @@ import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {TransferAdjustDetail} from '../../model/transfer-adjust-detail';
 import {AcceptService} from '../../services/acceptService';
+import {ApprovalService} from '../../services/approvalService';
 import {ResultBase} from "../../model/result-base";
+import {ReviewType} from '../../enums/review-type';
 
 import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
@@ -73,7 +75,8 @@ export class TransferAdjustInfoPage {
               public navParams: NavParams,
               private formBuilder: FormBuilder,
               public alertCtrl: AlertController,
-              public acceptService:AcceptService) {
+              public acceptService:AcceptService,
+              public approvalService:ApprovalService) {
     this.itemShow = new TransferAdjustDetail();
     this.isShow = false;
     this.title = this.navParams.get("title");
@@ -138,13 +141,32 @@ export class TransferAdjustInfoPage {
         text: '不通过',
         cssClass:'alertButtionNo',
         handler: data => {
-          console.log(data);
+        //billNumber:string,reviewType:string,vetoReason:string
+        /*this.approvalService.vetoReview(this.itemShow.billNumber, ReviewType[ReviewType.BASICACCEPTANCE_APPLY], data)
+          .subscribe(object => {
+            let resultBase:ResultBase=object[0] as ResultBase;
+            if(resultBase.result=='true'){
+
+            }
+          }, () => {
+        
+          });*/
         }
       });
     prompt.addButton({
       text: '通过',
       cssClass:'alertButtionYes',
       handler: data => {
+        //billNumber:string,reviewType:string,vetoReason:string
+        /*this.approvalService.auditReview(this.itemShow.billNumber, ReviewType[ReviewType.BASICACCEPTANCE_APPLY], data)
+          .subscribe(object => {
+            let resultBase:ResultBase=object[0] as ResultBase;
+            if(resultBase.result=='true'){
+
+            }
+          }, () => {
+        
+          });*/
       }
     });
     prompt.present();
