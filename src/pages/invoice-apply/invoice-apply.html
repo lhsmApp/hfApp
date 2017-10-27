@@ -37,7 +37,7 @@
       </span>
       <ion-item>
         <ion-label fixed>发票编号</ion-label>
-        <ion-input type="text" readonly formControlName="chalanNumber"></ion-input>
+        <ion-input type="text" formControlName="chalanNumber"></ion-input>
       </ion-item>
       <span *ngIf="!invoiceForm.controls.chalanNumber.valid && invoiceForm.controls.chalanNumber.touched"
             class="validation-failed">

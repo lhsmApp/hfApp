@@ -34,12 +34,14 @@ export class BillGclSelectPage {
   callback :any;
   paymentMain:AdvancePaymentMain;
   contractCode:string;
+  gclList:BillOfWorkMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
 	  //this.workList=WORK_LIST;
     this.paymentMain= this.navParams.get('paymentItem');
     this.contractCode=this.navParams.get('contractCode');
     this.callback    = this.navParams.get('callback');
+    this.gclList=this.navParams.get('gclList');
   }
 
   ionViewDidLoad() {
@@ -48,6 +50,8 @@ export class BillGclSelectPage {
 
   //获取工程量列表信息
   getList() {
+    console.log('cccc');
+    console.log(this.gclList);
     //getGclMainList(contractCode:string,type:string,payCode:string,sequence :string)
     this.paymentService.getGclMainList(this.contractCode,'fk',this.paymentMain.payCode,'0')
       .subscribe(object => {
@@ -55,7 +59,13 @@ export class BillGclSelectPage {
         if(resultBase.result=='true'){
           this.workList = object[1] as BillOfWorkMain[];
           for(let workItem of this.workList){
-            workItem.checked=false;
+            for(let gclItem of this.gclList){
+              if(workItem.payCode==gclItem.payCode){
+                workItem.checked=true;
+              }else{
+                workItem.checked=false;
+              }
+            }
           }
           console.log(this.workList);
         }

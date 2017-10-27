@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
@@ -25,7 +25,10 @@ export class AdvancePaymentApplyListPage {
 
   advancePaymentList:AdvancePaymentMain[];
   listAll:AdvancePaymentMain[];
-  constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    private alertCtrl: AlertController,
+    private paymentService:PaymentService) {
   	//this.advancePaymentList=ADVANTAGE_LIST;
   }
   
@@ -104,6 +107,8 @@ export class AdvancePaymentApplyListPage {
       this.advancePaymentList = this.listAll.filter((item) => {
         return (item.payCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
+    }else{
+        this.advancePaymentList=this.listAll;
     }
   }
 
@@ -118,8 +123,45 @@ export class AdvancePaymentApplyListPage {
   }
 
   //删除
-  delete(payCode:string){
-
+  delete(item:AdvancePaymentMain){
+    let confirm = this.alertCtrl.create({
+      title: '删除提示?',
+      message: '确认要删除当前付款单吗?',
+      buttons: [
+        {
+          text: '取消',
+          handler: () => {
+            console.log('cancel');
+          }
+        },
+        {
+          text: '确认',
+          handler: () => {
+            console.log(item.payCode);
+            this.paymentService.deletePaymentMain(item.payCode)
+            .subscribe(object => {
+              let resultBase:ResultBase=object[0] as ResultBase;
+              if(resultBase.result=='true'){
+                //this.listAll.unshift(item);
+                //this.advancePaymentList.unshift(item);
+                this.listAll = this.listAll.filter(h => h !== item);
+                this.advancePaymentList = this.advancePaymentList.filter(h => h !== item);
+              }else{
+                let alert = this.alertCtrl.create({
+                title: '提示!',
+                subTitle: resultBase.message,
+                buttons: ['确定']
+              });
+              alert.present();
+              }
+            }, () => {
+              
+            });
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
 }

@@ -65,6 +65,8 @@ export class AdvancePaymentApprovalPage {
       this.advancePaymentList = this.listAll.filter((item) => {
         return (item.payCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
+    }else{
+        this.advancePaymentList=this.listAll;
     }
   }
 

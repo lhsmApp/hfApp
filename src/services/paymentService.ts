@@ -116,7 +116,7 @@ export class PaymentService {
   }
 
   //发票单据新增（修改）---basic_chalan_manager发票主表
-  saveInvoiceMain(payCode:string,invoiceInfo:string):Observable<(Object)> {
+  saveInvoiceMain(payCode:string,chalanNumber:string,invoiceInfo:string):Observable<(Object)> {
     /*let param = {
      //必传
      'action': 'savePhoneBasicChalan',
@@ -130,6 +130,7 @@ export class PaymentService {
      formData.append('action', 'savePhoneBasicChalan');
      formData.append('sessionid', this.globalData.sessionId);
      formData.append('payCode', payCode);
+     formData.append('chalanNumber', chalanNumber);
      //可传
      formData.append('data', invoiceInfo);
 
