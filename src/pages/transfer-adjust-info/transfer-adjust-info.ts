@@ -11,7 +11,7 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillKeyCode} from '../../providers/TransferFeildName';
 
 import {Page_AssetDetailsListInfoPage } from '../../providers/TransferFeildName';
-import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFeildName';
+import {TypeView,TypeView_AcceptApply} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the TransferAdjustInfoPage page.
@@ -20,7 +20,7 @@ import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFei
  * Ionic pages and navigation.
  */
 
- const item:TransferAdjustDetail = {
+ /*const item:TransferAdjustDetail = {
  xh: '序号',
 assetsType: '资产类型',
 //assetsCodeType: '资产类别',
@@ -52,7 +52,7 @@ keyCode: '资产键码',
 tzOriginalValue: 6,//调整原值', (double)     
 tzNowValue: 9,//调整净值', (double)          
 tzDepreciateValue: 4,//调整累计折旧',(double)
-};
+};*/
 
 @IonicPage()
 @Component({
@@ -110,7 +110,7 @@ export class TransferAdjustInfoPage {
   
   //资产明细
   //toAssetDetail(){
-  //  this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.billNumber, BillContractCode:"", TypeGetAsset:TypeGetAsset_AcceptApply});
+  //  this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.billNumber, BillContractCode:"", TypeView:TypeView_AcceptApply});
   //}
 
   check(){

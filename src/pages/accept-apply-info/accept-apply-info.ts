@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import {Storage} from "@ionic/storage";
 import {AcceptApplyDetail} from '../../model/accept-apply-detail';
-import {Depart} from '../../model/depart';
 import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
+import {IN_DEPART} from "../../enums/storage-type";
+import {DicInDepart} from '../../model/dic-in-depart';
+import {DictUtil} from '../../providers/dict-util';
+import {ReviewType} from '../../enums/review-type';
 
 import {Oper,Oper_Look,Oper_Edit,Oper_Add,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
 
 import {Page_AssetDetailsListInfoPage,Page_ChoiceApproversPage } from '../../providers/TransferFeildName';
-import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFeildName';
+import {TypeView,TypeView_AcceptApply} from '../../providers/TransferFeildName';
+import {BillReviewType} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AcceptApplyInfoPage page.
@@ -19,12 +24,12 @@ import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFei
  * Ionic pages and navigation.
  */
 
-  const listDeptGet: Depart[]=[
+  /*const listDeptGet: Depart[]=[
       {departCode:'1',departName:'单位1'},
       {departCode:'2',departName:'单位2'},
       {departCode:'133930001',departName:'单位3'},
       {departCode:'4',departName:'单位4'},
-  ]
+  ]*/
 
   /*const item: AcceptApplyDetail = { billNumber: 'XMDY0001', reviewStatus: '0', requireDate: '2017-09-25', requireUser: '申请人', contractCode:'HT0001', 
           contractName:'合同名称', elementCode:'XMDY0045', elementName:'项目单元名称', departCode:'4'};*/
@@ -43,9 +48,11 @@ export class AcceptApplyInfoPage {
 
   list: AcceptApplyDetail[];
   itemShow:AcceptApplyDetail;
-  listDept: Depart[];
+  listDept: DicInDepart[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
+              private storage: Storage,
+              private dictUtil:DictUtil,
               public acceptService:AcceptService) {
     this.itemShow = new AcceptApplyDetail();
     this.isShowCheck = false;
@@ -59,11 +66,14 @@ export class AcceptApplyInfoPage {
         this.isShowSend = true;
     }
   	this.billNumber = this.navParams.get(BillNumberCode);
-    this.listDept = listDeptGet;
+    //this.listDept = listDeptGet;
   }
 
   ionViewDidLoad() {
     this.itemShow = new AcceptApplyDetail();
+    this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
+      this.listDept=inDepart;
+    });
     this.getShowItem();
   }
 
@@ -76,6 +86,7 @@ export class AcceptApplyInfoPage {
           this.list = object[1] as AcceptApplyDetail[];
           if(this.list && this.list.length > 0){
               this.itemShow = this.list[0] as AcceptApplyDetail;
+              this.itemShow.departName = this.dictUtil.getInDepartName(this.listDept,this.itemShow.departCode);
           }
         }
       }, () => {
@@ -86,7 +97,7 @@ export class AcceptApplyInfoPage {
   
   //资产明细
   toAssetDetail(){
-    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, TypeGetAsset:TypeGetAsset_AcceptApply});
+    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, TypeView:TypeView_AcceptApply});
   }
 
   check(){
@@ -126,7 +137,7 @@ export class AcceptApplyInfoPage {
   }
 
   send(){
-      this.navCtrl.push(Page_ChoiceApproversPage, {BillNumberCode: this.billNumber});
+      this.navCtrl.push(Page_ChoiceApproversPage, {BillNumberCode: this.billNumber,BillReviewType:ReviewType[ReviewType.BASICACCEPTANCE_APPLY]});
   }
 
 }

@@ -10,7 +10,7 @@ import {Title} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
 
 import {Page_AssetDetailsListInfoPage} from '../../providers/TransferFeildName';
-import {TypeGetAsset,TypeGetAsset_TransferFunds} from '../../providers/TransferFeildName';
+import {TypeView,TypeView_TransferFunds} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the TransferFundsInfoPage page.
@@ -52,6 +52,7 @@ export class TransferFundsInfoPage {
               private formBuilder: FormBuilder,
               public alertCtrl: AlertController,
               public acceptService:AcceptService) {
+    this.itemShow = new TransferFundsDetail();
     this.isShow = false;
     this.title = this.navParams.get(Title);
   	this.oper = this.navParams.get(Oper);
@@ -86,7 +87,7 @@ export class TransferFundsInfoPage {
   
   //资产明细
   toAssetDetail(){
-    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.translateCode, BillContractCode:'', TypeGetAsset:TypeGetAsset_TransferFunds});
+    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.translateCode, BillContractCode:'', TypeView:TypeView_TransferFunds});
   }
 
   check(){

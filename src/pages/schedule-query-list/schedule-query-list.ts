@@ -39,13 +39,13 @@ export class ScheduleQueryListPage {
               public projectElementService: ProjectElementService) {
     //this.listAll = [];
     //this.list = [];
-     this.queryCondition=this.navParams.get("queryCondition");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ScheduleQueryListPage');
     //this.listAll = [];
     //this.list = [];
+     this.queryCondition=this.navParams.get("queryCondition");
     this.getList();
   }
 
@@ -86,7 +86,7 @@ export class ScheduleQueryListPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as ProjectUnitMain[];
-          this.list = object[1] as ProjectUnitMain[];
+          this.list = this.listAll;
         }
       }, () => {
     

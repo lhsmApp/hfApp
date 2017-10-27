@@ -56,6 +56,17 @@ export class AssetDetailsInfoPage {
 
   list: AcceptAssetDetail[];
   itemShow:AcceptAssetDetail;
+  //assetsTypeName: string;//资产类型"
+    assetsCodeTypeName: string;//资产类别"
+    departCodeName: string;//所属单位"
+    entityCodeName: string;//所属资产组"
+    unitCodeName: string;//计量单位"
+    usedAspectName: string;//使用方向"
+    applyCodeName: string;//取得方式"
+    usedStateName: string;//使用状况"
+    storePlaceName: string;//存放地点""
+    userPersonName: string;//保管人"
+    specialLineName: string;//技术鉴定部门"
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public contractService:ContractService) {
@@ -80,6 +91,17 @@ export class AssetDetailsInfoPage {
           this.list = object[1] as AcceptAssetDetail[];
           if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
+              //assetsTypeName: string;//资产类型"
+              //this.itemShow.assetsCodeTypeName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//资产类别"
+              //this.itemShow.departCodeName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//所属单位"
+              //this.itemShow.entityCodeName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//所属资产组"
+              //this.itemShow.unitCodeName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//计量单位"
+              //this.itemShow.usedAspectName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//使用方向"
+              //this.itemShow.applyCodeName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//取得方式"
+              //this.itemShow.usedStateName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//使用状况"
+              //this.itemShow.storePlaceName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//存放地点""
+              //this.itemShow.userPersonName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//保管人"
+              //this.itemShow.specialLineName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//技术鉴定部门"
           }
         }
       }, () => {

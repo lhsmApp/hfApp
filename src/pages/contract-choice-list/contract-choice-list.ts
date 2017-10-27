@@ -65,7 +65,7 @@ export class ContractChoiceListPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as ContractMain[];
-          this.list = object[1] as ContractMain[];
+          this.list = this.listAll;
         }
       }, () => {
     

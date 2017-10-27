@@ -72,6 +72,12 @@ export class AssetDetailsItemPage {
   itemShow:AcceptAssetDetail;
   assetFrom:any;
 
+
+
+
+
+  
+
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams,
   	          public formBuilder: FormBuilder,
@@ -101,7 +107,7 @@ export class AssetDetailsItemPage {
       productDate: [, []],
       operateDate: [, []],
       usedAspect: [, []],
-      contractCode: [, []],
+      contractCode: [, [Validators.required]],
       applyCode: [, []],
       guaDate: [, []],
       depreciateYear: [, []],

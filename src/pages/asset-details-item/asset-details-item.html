@@ -16,7 +16,7 @@
 <ion-content>
 	<form [formGroup]="assetFrom" (ngSubmit)="(save())">
         <ion-item-group>
-            <ion-item >
+            <!--<ion-item >
                 <ion-label fixed>序号</ion-label>
                 <ion-input readonly formControlName="xh" placeholder="自动填写"></ion-input>
             </ion-item>
@@ -24,10 +24,15 @@
                 <ion-label fixed>资产类型</ion-label>
                 <ion-input readonly formControlName="assetsType" placeholder="自动填写，禁止调整"></ion-input>
             </ion-item>
+            <ion-item >-->
             <ion-item >
-                <ion-label fixed>资产类别</ion-label>
-                <ion-input formControlName="assetsCodeType" placeholder="手工选择"></ion-input>
+                <ion-label fixed>合同编号</ion-label>
+                <ion-input readonly formControlName="contractCode" placeholder="自动填写"></ion-input>
             </ion-item>
+            <span *ngIf="!assetFrom.controls.contractCode.valid && assetFrom.controls.contractCode.touched"
+                  class="validation-failed">
+                合同编号不能为空
+            </span>
             <ion-item >
                 <ion-label fixed>资产编码</ion-label>
                 <ion-input readonly formControlName="assetsCode" placeholder="自动填写，禁止调整"></ion-input>
@@ -35,6 +40,10 @@
             <ion-item >
                 <ion-label fixed>资产名称</ion-label>
                 <ion-input readonly formControlName="assetsName" placeholder="自动填写"></ion-input>
+            </ion-item>
+            <ion-item >
+                <ion-label fixed>资产类别</ion-label>
+                <ion-input formControlName="assetsCodeType" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>所属单位</ion-label>
@@ -88,24 +97,12 @@
                 <ion-input formControlName="usedAspect" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
-                <ion-label fixed>合同编号</ion-label>
-                <ion-input readonly formControlName="contractCode" placeholder="自动填写"></ion-input>
-            </ion-item>
-            <span *ngIf="!assetFrom.controls.contractCode.valid && assetFrom.controls.contractCode.touched"
-                  class="validation-failed">
-                合同编号不能为空
-            </span>
-            <ion-item >
                 <ion-label fixed>取得方式</ion-label>
                 <ion-input formControlName="applyCode" placeholder="手工选择"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>保修截止日期</ion-label>
                 <ion-input formControlName="guaDate" placeholder="手工输入"></ion-input>
-            </ion-item>
-            <ion-item >
-                <ion-label fixed>预计使用年限</ion-label>
-                <ion-input readonly formControlName="depreciateYear" placeholder="自动填写"></ion-input>
             </ion-item>
             <ion-item >
                 <ion-label fixed>使用状态</ion-label>
@@ -123,6 +120,10 @@
                 <ion-label fixed>技术部门</ion-label>
                 <ion-input formControlName="specialLine" placeholder="手工选择"></ion-input>
             </ion-item>
+            <!--<ion-item >
+                <ion-label fixed>预计使用年限</ion-label>
+                <ion-input readonly formControlName="depreciateYear" placeholder="自动填写"></ion-input>
+            </ion-item>
             <ion-item >
                 <ion-label fixed>原值</ion-label>
                 <ion-input readonly formControlName="originalValue" placeholder="自动填写，禁止调整"></ion-input>
@@ -138,7 +139,7 @@
             <ion-item >
                 <ion-label fixed>减值准备</ion-label>
                 <ion-input readonly formControlName="devalueValue" placeholder="自动填写，禁止调整"></ion-input>
-            </ion-item>
+            </ion-item>-->
 		</ion-item-group>
         <div padding-horizontal>
             <button ion-button color="danger" block type="submit" [disabled]="!assetFrom.valid">保 存</button>

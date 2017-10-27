@@ -4,6 +4,8 @@ import {ProjectUnitMain} from '../../model/project-unit-main';
 import {ProjectElementService} from '../../services/projectElementService';
 import {ResultBase} from "../../model/result-base";
 import { QueryCondition } from '../../model/query-condition';
+import {Storage} from "@ionic/storage";
+import {DictUtil} from '../../providers/dict-util';
 
 import {Page_ProjInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
@@ -29,16 +31,16 @@ import {BillElementCode} from '../../providers/TransferFeildName';
   templateUrl: 'proj-query-list.html',
 })
 export class ProjQueryListPage {
-  queryCondition:QueryCondition;
   
   listAll:ProjectUnitMain[];
     list:ProjectUnitMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+              private storage: Storage,
+              private dictUtil:DictUtil,
               public projectElementService: ProjectElementService) {
     //this.listAll = [];
     //this.list = [];
-     this.queryCondition=this.navParams.get("queryCondition");
   }
 
   ionViewDidLoad() {
@@ -52,23 +54,6 @@ export class ProjQueryListPage {
   getList() {
     //this.listAll = [];
     //this.list = [];
-      let state;
-      if(this.queryCondition){
-        if(this.queryCondition.state=='1'){
-          state="0";
-        }else if(this.queryCondition.state=='2'){
-          state="4,10";
-        }else if(this.queryCondition.state=='3'){
-          state="1";
-        }else if(this.queryCondition.state=='4'){
-          state="2,3";
-        }else{
-          state="";
-        }
-      }
-      let code=this.queryCondition.queryString;
-      let startDate=this.queryCondition.startDate;
-      let endDate=this.queryCondition.endDate;
     //type 1.申请 2.查询 3.审批
     //sgsx ”施工属性”（如果是进度管理输入0，如果是项目单元查询则输入空）,
     //checkResult "单据状态"
@@ -80,12 +65,17 @@ export class ProjQueryListPage {
           //4审批中(待审批) 
           //10待审批(待审批)
     //type:string, sgsx:string, elementCode:string, startDate:string, endDate:string, checkResult:string
-    this.projectElementService.getProjectElementMainList('2', '', code, startDate, endDate, state).subscribe(
+    this.projectElementService.getProjectElementMainList('2', '', '', '', '', '').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as ProjectUnitMain[];
-          this.list = object[1] as ProjectUnitMain[];
+          if(this.listAll){
+            for(let item of this.listAll){
+              //item.departName  = this.dictUtil.getInDepartName(this.listDept,item.departCode);
+            }
+          }
+          this.list = this.listAll;
         }
       }, () => {
     

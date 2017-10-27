@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TransferAdjustMain} from '../../model/transfer-adjust-main';
 import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
+import {Storage} from "@ionic/storage";
+import {IN_DEPART} from "../../enums/storage-type";
+import {DicInDepart} from '../../model/dic-in-depart';
+import {DictUtil} from '../../providers/dict-util';
 
 import {Page_TransferAdjustInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
@@ -17,11 +21,11 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
  * Ionic pages and navigation.
  */
 
-  const listGet:TransferAdjustMain[] = [
-        { assetsCode: 'ZZ0001', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
-        { assetsCode: 'ZZ0002', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
-        { assetsCode: 'ZZ0003', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
-        { assetsCode: 'ZZ0004', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
+  /*const listGet:TransferAdjustMain[] = [
+        { translateCode: "1", assetsCode: 'ZZ0001', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
+        { translateCode: "2", assetsCode: 'ZZ0002', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
+        { translateCode: "3", assetsCode: 'ZZ0003', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
+        { translateCode: "4", assetsCode: 'ZZ0004', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
     ];/**/
 
 @IonicPage()
@@ -32,8 +36,11 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
 export class TransferAdjustApprovalListPage {
     listAll:TransferAdjustMain[];
     list:TransferAdjustMain[];
+  listDept: DicInDepart[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+              private storage: Storage,
+              private dictUtil:DictUtil,
               public tzCostService:AcceptService) {
     //this.listAll = [];
     //this.list = [];
@@ -43,6 +50,9 @@ export class TransferAdjustApprovalListPage {
     console.log('ionViewDidLoad TransferAdjustApprovalListPage');
     //this.listAll = [];
     //this.list = [];
+    this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
+      this.listDept=inDepart;
+    });
     this.getList();
   }
 
@@ -53,12 +63,17 @@ export class TransferAdjustApprovalListPage {
     //type:string, feeFlag:string, translateCode:string
     //type,//  1.申请 2.查询 3.审批
     //feeFlag,//  是否已分摊费用 0否 1是  //”转资单号”
-    this.tzCostService.getTzCostMainList('3', '0', '').subscribe(
+    this.tzCostService.getTzCostMainList('3', '', '').subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as TransferAdjustMain[];
-          this.list = object[1] as TransferAdjustMain[];
+          if(this.listAll){
+            for(let item of this.listAll){
+              item.departName  = this.dictUtil.getInDepartName(this.listDept,item.departCode);
+            }
+          }
+          this.list = this.listAll;
         }
       }, () => {
   
@@ -111,7 +126,7 @@ export class TransferAdjustApprovalListPage {
   }
 
     toDetail(item: TransferAdjustMain) {
-        this.navCtrl.push(Page_TransferAdjustInfoPage, {BillNumberCode: item.assetsCode, BillKeyCode: item.keyCode, Oper:Oper_Look,Title:'转资调整审批'});
+        this.navCtrl.push(Page_TransferAdjustInfoPage, {BillNumberCode: item.translateCode, BillKeyCode: item.keyCode, Oper:Oper_Look,Title:'转资调整审批'});
     }
 
 }

@@ -14,7 +14,7 @@ import {Oper,Oper_Add} from '../../providers/TransferFeildName';
 //import {BillContractCode} from '../../providers/TransferFeildName';
 import {BillKeyCode} from '../../providers/TransferFeildName';
 import {ItemTranfer} from '../../providers/TransferFeildName';
-import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFeildName';
+import {TypeView,TypeView_AcceptApply} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AssetDetailsAddPage page.
@@ -46,7 +46,7 @@ export class AssetDetailsAddPage {
               public contractService:ContractService) {
     this.billNumber = this.navParams.get(BillNumberCode);
     this.contractCode = this.navParams.get(BillContractCode);
-    this.acceptanceFlag = this.navParams.get(TypeGetAsset);
+    this.acceptanceFlag = this.navParams.get(TypeView);
     
   	this.list=listGet;
   }

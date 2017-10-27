@@ -57,7 +57,7 @@ export class TransferFundsApprovalListPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as TransferFundsMain[];
-          this.list = object[1] as TransferFundsMain[];
+          this.list = this.listAll;
         }
       }, () => {
   

@@ -10,6 +10,5 @@ export class AcceptApplyDetail {
     elementName :string;//项目单元名称
     departCode:string;//申请单位
 
-    //requireUserName: string;//申请人
-    //departName:string;//申请单位
+    departName:string;//申请单位
 }

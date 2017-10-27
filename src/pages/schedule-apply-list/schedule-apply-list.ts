@@ -66,7 +66,7 @@ export class ScheduleApplyListPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as ProjectUnitMain[];
-          this.list = object[1] as ProjectUnitMain[];
+          this.list = this.listAll;
         }
       }, () => {
     
@@ -122,14 +122,14 @@ export class ScheduleApplyListPage {
         this.navCtrl.push(Page_ScheduleApplyInfoPage, {BillElementCode: elementCode,Oper:Oper_Edit, Title: '进度管理'});
     }
 
-    add(){
+    /*add(){
         this.navCtrl.push(Page_ScheduleApplyItemPage, {BillElementCode: [],Oper:Oper_Add});
-    }
+    }*/
     edit(elementCode: string){
         this.navCtrl.push(Page_ScheduleApplyItemPage, {BillElementCode: elementCode,Oper:Oper_Edit});
     }
-    delete(elementCode: string){
+    /*delete(elementCode: string){
         
-    }
+    }*/
 
 }

@@ -59,7 +59,7 @@ export class AcceptApprovalListPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as AcceptApplyMain[];
-          this.list = object[1] as AcceptApplyMain[];
+          this.list = this.listAll;
         }
       }, () => {
     

@@ -3,10 +3,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AcceptAssetMain} from '../../model/accept-asset-main';
 import {ContractService} from '../../services/contractService';
 import {ResultBase} from "../../model/result-base";
+import {Storage} from "@ionic/storage";
+import {IN_DEPART} from "../../enums/storage-type";
+import {DicInDepart} from '../../model/dic-in-depart';
+import {DictUtil} from '../../providers/dict-util';
 
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
-import {TypeGetAsset,TypeGetAsset_AcceptApply,TypeGetAsset_TransferFunds,TypeGetAsset_TransferAdjust} from '../../providers/TransferFeildName';
+import {TypeView,TypeView_AcceptApply,TypeView_TransferFunds,TypeView_TransferAdjust} from '../../providers/TransferFeildName';
 
 import {Page_AssetDetailsInfoPage,Page_AssetDetailsItemPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
@@ -14,7 +18,7 @@ import {Oper,Oper_Look,Oper_Add,Oper_Edit} from '../../providers/TransferFeildNa
 //import {BillContractCode} from '../../providers/TransferFeildName';
 import {BillKeyCode} from '../../providers/TransferFeildName';
 import {ItemTranfer} from '../../providers/TransferFeildName';
-//import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFeildName';
+//import {TypeView,TypeView_AcceptApply} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AssetDetailsListPage page.
@@ -37,25 +41,31 @@ import {ItemTranfer} from '../../providers/TransferFeildName';
 export class AssetDetailsListPage {
   billNumber:string;
   contractCode:string;
-  acceptanceFlag:string;
+  TypeView:string;
 
   listAll:AcceptAssetMain[];
 	list:AcceptAssetMain[];
+  listDept: DicInDepart[];
 
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams,
+              private storage: Storage,
+              private dictUtil:DictUtil,
               public contractService:ContractService) {
     //this.listAll = [];
     //this.list = [];
     this.billNumber = this.navParams.get(BillNumberCode);
     this.contractCode = this.navParams.get(BillContractCode);
-    this.acceptanceFlag = this.navParams.get(TypeGetAsset);
+    this.TypeView = this.navParams.get(TypeView);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AssetDetailsListPage');
     //this.listAll = [];
     //this.list = [];
+    this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
+      this.listDept=inDepart;
+    });
 
     this.getList();
   }
@@ -67,15 +77,24 @@ export class AssetDetailsListPage {
     //是否已验收0为未验收1为验收 0未验收 1已复核 2已验收未复核（如果是验收单据查询，则需要查询未验收的0，如果是转资单据查询，则需要传验收1，如果是合同查询则不用传参）
     //contractCode:string, translateCode:string, acceptanceFlag:string
     let translateCode = "";
-    if(this.acceptanceFlag === TypeGetAsset_TransferFunds){
+    let acceptanceFlag = "";
+    if(this.TypeView === TypeView_TransferFunds){
       translateCode = this.billNumber;
     }
-    this.contractService.getAssetDetailList(this.contractCode, translateCode, this.acceptanceFlag).subscribe(
+    if(this.TypeView === TypeView_AcceptApply){
+      //acceptanceFlag = '0';
+    }
+    this.contractService.getAssetDetailList(this.contractCode, translateCode, acceptanceFlag).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as AcceptAssetMain[];
-          this.list = object[1] as AcceptAssetMain[];
+          if(this.listAll){
+            for(let item of this.listAll){
+              item.departName  = this.dictUtil.getInDepartName(this.listDept,item.departCode);
+            }
+          }
+          this.list = this.listAll;
         }
       }, () => {
     
@@ -128,7 +147,7 @@ export class AssetDetailsListPage {
   }
 
   //add(){
-  //	this.navCtrl.push(Page_AssetDetailsAddPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, TypeGetAsset:TypeGetAsset_AcceptApply});
+  //	this.navCtrl.push(Page_AssetDetailsAddPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, TypeView:TypeView_AcceptApply});
   //}
   edit(item: AcceptAssetMain){
     this.navCtrl.push(Page_AssetDetailsItemPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode,ItemTranfer:[],Oper:Oper_Edit});
