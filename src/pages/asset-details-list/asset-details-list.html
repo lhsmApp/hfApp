@@ -28,10 +28,10 @@
 	<ion-list>
 	    <!--<ion-item-sliding *ngFor="let item of list">-->
 		      <ion-item *ngFor="let item of list" (click)="edit(item)">
-            <h2>{{item.assetsCode}}</h2><!--资产编码：-->
-            <h3>{{item.assetsName}}</h3><!--资产名称：-->
-            <p>{{item.departCode}}</p><!--所属单位-->
-            <p color="green">{{item.keyCode}}</p><!--资产键码-->
+            <h2>资产编码：{{item.assetsCode}}</h2><!---->
+            <h3>资产名称：{{item.assetsName}}</h3><!---->
+            <p>所属单位：{{item.departName}}</p><!---->
+            <p color="green">键码：{{item.keyCode}}</p><!--资产-->
 		      </ion-item>
           <!--<ion-item-options side="right">
               <button ion-button color="primary" (click)="edit(item)">

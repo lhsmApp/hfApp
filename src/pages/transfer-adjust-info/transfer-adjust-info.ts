@@ -3,7 +3,9 @@ import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {TransferAdjustDetail} from '../../model/transfer-adjust-detail';
 import {AcceptService} from '../../services/acceptService';
+import {ApprovalService} from '../../services/approvalService';
 import {ResultBase} from "../../model/result-base";
+import {ReviewType} from '../../enums/review-type';
 
 import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
@@ -11,7 +13,7 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillKeyCode} from '../../providers/TransferFeildName';
 
 import {Page_AssetDetailsListInfoPage } from '../../providers/TransferFeildName';
-import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFeildName';
+import {TypeView,TypeView_AcceptApply} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the TransferAdjustInfoPage page.
@@ -20,7 +22,7 @@ import {TypeGetAsset,TypeGetAsset_AcceptApply} from '../../providers/TransferFei
  * Ionic pages and navigation.
  */
 
- const item:TransferAdjustDetail = {
+ /*const item:TransferAdjustDetail = {
  xh: '序号',
 assetsType: '资产类型',
 //assetsCodeType: '资产类别',
@@ -52,7 +54,7 @@ keyCode: '资产键码',
 tzOriginalValue: 6,//调整原值', (double)     
 tzNowValue: 9,//调整净值', (double)          
 tzDepreciateValue: 4,//调整累计折旧',(double)
-};
+};*/
 
 @IonicPage()
 @Component({
@@ -73,7 +75,8 @@ export class TransferAdjustInfoPage {
               public navParams: NavParams,
               private formBuilder: FormBuilder,
               public alertCtrl: AlertController,
-              public acceptService:AcceptService) {
+              public acceptService:AcceptService,
+              public approvalService:ApprovalService) {
     this.itemShow = new TransferAdjustDetail();
     this.isShow = false;
     this.title = this.navParams.get("title");
@@ -110,7 +113,7 @@ export class TransferAdjustInfoPage {
   
   //资产明细
   //toAssetDetail(){
-  //  this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.billNumber, BillContractCode:"", TypeGetAsset:TypeGetAsset_AcceptApply});
+  //  this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.billNumber, BillContractCode:"", TypeView:TypeView_AcceptApply});
   //}
 
   check(){
@@ -138,13 +141,32 @@ export class TransferAdjustInfoPage {
         text: '不通过',
         cssClass:'alertButtionNo',
         handler: data => {
-          console.log(data);
+        //billNumber:string,reviewType:string,vetoReason:string
+        /*this.approvalService.vetoReview(this.itemShow.billNumber, ReviewType[ReviewType.BASICACCEPTANCE_APPLY], data)
+          .subscribe(object => {
+            let resultBase:ResultBase=object[0] as ResultBase;
+            if(resultBase.result=='true'){
+
+            }
+          }, () => {
+        
+          });*/
         }
       });
     prompt.addButton({
       text: '通过',
       cssClass:'alertButtionYes',
       handler: data => {
+        //billNumber:string,reviewType:string,vetoReason:string
+        /*this.approvalService.auditReview(this.itemShow.billNumber, ReviewType[ReviewType.BASICACCEPTANCE_APPLY], data)
+          .subscribe(object => {
+            let resultBase:ResultBase=object[0] as ResultBase;
+            if(resultBase.result=='true'){
+
+            }
+          }, () => {
+        
+          });*/
       }
     });
     prompt.present();

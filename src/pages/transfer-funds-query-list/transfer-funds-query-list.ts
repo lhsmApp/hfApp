@@ -39,13 +39,13 @@ export class TransferFundsQueryListPage {
               public translateVoucherService:AcceptService) {
     //this.listAll = [];
     //this.list = [];
-     this.queryCondition=this.navParams.get("queryCondition");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TransferFundsQueryListPage');
     //this.listAll = [];
     //this.list = [];
+     this.queryCondition=this.navParams.get("queryCondition");
     this.getList();
   }
 
@@ -79,7 +79,7 @@ export class TransferFundsQueryListPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as TransferFundsMain[];
-          this.list = object[1] as TransferFundsMain[];
+          this.list = this.listAll;
         }
       }, () => {
   

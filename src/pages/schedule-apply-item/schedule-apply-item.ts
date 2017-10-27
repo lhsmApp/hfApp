@@ -179,8 +179,8 @@ export class ScheduleApplyItemPage {
   }
 
 //送审
-  send(){
+  /*send(){
       this.navCtrl.push(Page_ChoiceApproversPage, {BillNumberCode: this.billElementCode});
-  }
+  }*/
 
 }

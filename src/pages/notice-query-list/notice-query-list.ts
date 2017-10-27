@@ -73,7 +73,7 @@ export class NoticeQueryListPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as Notice[];
-          this.list = object[1] as Notice[];
+          this.list = this.listAll;
         }
       }, () => {
     

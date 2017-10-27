@@ -60,7 +60,7 @@ export class AcceptApplyListPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as AcceptApplyMain[];
-          this.list = object[1] as AcceptApplyMain[];
+          this.list = this.listAll;
         }
       }, () => {
     
@@ -126,7 +126,15 @@ export class AcceptApplyListPage {
   }
 
   //删除
-    delete(billNumber: string){
+  /*delete(billNumber: string){
+    this.acceptService.saveAcceptApplyMain(billNumber)
+        .subscribe(object => {
+          let resultBase:ResultBase=object[0] as ResultBase;
+          if(resultBase.result=='true'){
+            this.getList();
+          }
+        }, () => {
         
-    }
+      });
+  }*/
 }

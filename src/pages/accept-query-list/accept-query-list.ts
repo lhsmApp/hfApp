@@ -39,13 +39,13 @@ export class AcceptQueryListPage {
               public acceptService:AcceptService) {
     //this.listAll = [];
     //this.list = [];
-     this.queryCondition=this.navParams.get("queryCondition");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AcceptQueryListPage');
     //this.listAll = [];
     //this.list = [];
+     this.queryCondition=this.navParams.get("queryCondition");
     this.getList();
   }
 
@@ -78,7 +78,7 @@ export class AcceptQueryListPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as AcceptApplyMain[];
-          this.list = object[1] as AcceptApplyMain[];
+          this.list = this.listAll;
         }
       }, () => {
     

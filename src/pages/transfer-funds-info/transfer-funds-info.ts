@@ -3,14 +3,16 @@ import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {TransferFundsDetail} from '../../model/transfer-funds-detail';
 import {AcceptService} from '../../services/acceptService';
+import {ApprovalService} from '../../services/approvalService';
 import {ResultBase} from "../../model/result-base";
+import {ReviewType} from '../../enums/review-type';
 
 import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
 
 import {Page_AssetDetailsListInfoPage} from '../../providers/TransferFeildName';
-import {TypeGetAsset,TypeGetAsset_TransferFunds} from '../../providers/TransferFeildName';
+import {TypeView,TypeView_TransferFunds} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the TransferFundsInfoPage page.
@@ -51,7 +53,9 @@ export class TransferFundsInfoPage {
               public navParams: NavParams,
               private formBuilder: FormBuilder,
               public alertCtrl: AlertController,
-              public acceptService:AcceptService) {
+              public acceptService:AcceptService,
+              public approvalService:ApprovalService) {
+    this.itemShow = new TransferFundsDetail();
     this.isShow = false;
     this.title = this.navParams.get(Title);
   	this.oper = this.navParams.get(Oper);
@@ -86,7 +90,7 @@ export class TransferFundsInfoPage {
   
   //资产明细
   toAssetDetail(){
-    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.translateCode, BillContractCode:'', TypeGetAsset:TypeGetAsset_TransferFunds});
+    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.translateCode, BillContractCode:'', TypeView:TypeView_TransferFunds});
   }
 
   check(){
@@ -115,12 +119,32 @@ export class TransferFundsInfoPage {
         cssClass:'alertButtionNo',
         handler: data => {
           console.log(data);
+        //billNumber:string,reviewType:string,vetoReason:string
+        this.approvalService.vetoReview(this.itemShow.translateCode, ReviewType[ReviewType.BASICACCEPTANCE_APPLY], data)
+          .subscribe(object => {
+            let resultBase:ResultBase=object[0] as ResultBase;
+            if(resultBase.result=='true'){
+
+            }
+          }, () => {
+        
+          });
         }
       });
     prompt.addButton({
       text: '通过',
       cssClass:'alertButtionYes',
       handler: data => {
+        //billNumber:string,reviewType:string,vetoReason:string
+        this.approvalService.auditReview(this.itemShow.translateCode, ReviewType[ReviewType.BASICACCEPTANCE_APPLY], data)
+          .subscribe(object => {
+            let resultBase:ResultBase=object[0] as ResultBase;
+            if(resultBase.result=='true'){
+
+            }
+          }, () => {
+        
+          });
       }
     });
     prompt.present();

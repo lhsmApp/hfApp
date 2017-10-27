@@ -41,6 +41,7 @@ export class ChoiceApproversPage {
               private approvalService:ApprovalService) {
   	this.billNumber = this.navParams.get(BillNumberCode);
     this.reviewType=this.navParams.get('reviewType');
+      console.log('reviewType：' + this.reviewType);
   	//this.list = mainList;
   }
 
@@ -52,7 +53,7 @@ export class ChoiceApproversPage {
   //获取付款单列表信息
   getList(){
       //console.log(ReviewType.REVIEW_TYPE_BASIC_PAYMENT);
-      //console.log(ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]);
+      console.log('reviewType：' + this.reviewType);
       this.approvalService.queryUserReviewPay(this.billNumber,this.reviewType)
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;

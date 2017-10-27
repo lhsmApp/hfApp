@@ -1,10 +1,11 @@
 
 
-//用于获取资产明细 如果是验收单据查询，则需要查询未验收的0，如果是转资单据查询，则需要传验收1，如果是合同查询则不用传参
-export const TypeGetAsset = 'TypeGetAsset';
-export const TypeGetAsset_AcceptApply = '0';
-export const TypeGetAsset_TransferFunds = '1';
-export const TypeGetAsset_TransferAdjust = '2';
+//验收的转界面类型
+export const TypeView = 'TypeView';
+export const TypeView_AcceptApply = '0';
+export const TypeView_AcceptOther = '1';
+export const TypeView_TransferFunds = '2';
+export const TypeView_TransferAdjust = '3';
 
 export const Oper = 'Oper';
 export const Oper_Look = '查看';
@@ -24,6 +25,8 @@ export const BillKeyCode = 'BillKeyCode';
 export const ItemTranfer = 'ItemTranfer';
 //项目单元编码
 export const BillElementCode = 'BillElementCode';
+//送审类型
+export const BillReviewType = 'reviewType';
 
 //页面
 //验收申请：查看、审批 BillNumberCode title oper:Oper_Look、Oper_Add、Oper_Edit、Oper_Approval
@@ -36,13 +39,13 @@ export const Page_ContractChoiceListPage = 'ContractChoiceListPage';
 //合同选择确认 BillContractCode
 export const Page_ContractChoiceConfirmPage = 'ContractChoiceConfirmPage';
 
-//资产列表查看： BillNumberCode BillContractCode TypeGetAsset:TypeGetAsset_AcceptApply
+//资产列表查看： BillNumberCode BillContractCode TypeView:TypeView_AcceptApply
 export const Page_AssetDetailsListInfoPage = 'AssetDetailsListInfoPage';
-//资产列表操作： BillNumberCode BillContractCode TypeGetAsset:TypeGetAsset_AcceptApply
+//资产列表操作： BillNumberCode BillContractCode TypeView:TypeView_AcceptApply
 export const Page_AssetDetailsListPage = 'AssetDetailsListPage';
 //资产详情查看： BillNumberCode BillContractCode BillKeyCode
 export const Page_AssetDetailsInfoPage = 'AssetDetailsInfoPage';
-//资产详情添加： BillNumberCode BillContractCode TypeGetAsset
+//资产详情添加： BillNumberCode BillContractCode TypeView
 //export const Page_AssetDetailsAddPage = 'AssetDetailsAddPage';
 //资产详情编辑： BillNumberCode BillContractCode BillKeyCode Oper:Oper_Add、Oper_Edit ItemTranfer//从添加界面传入
 export const Page_AssetDetailsItemPage = 'AssetDetailsItemPage';
@@ -50,7 +53,7 @@ export const Page_AssetDetailsItemPage = 'AssetDetailsItemPage';
 //项目单元详情查看： BillElementCode Oper:Oper_Look
 export const Page_ProjInfoPage = 'ProjInfoPage';
 
-//转资审批：Oper,Oper_Look、Oper_Approval Title BillNumberCode TypeGetAsset:TypeGetAsset_TransferFunds
+//转资审批：Oper,Oper_Look、Oper_Approval Title BillNumberCode TypeView:TypeView_TransferFunds
 export const Page_TransferFundsInfoPage = 'TransferFundsInfoPage';
 
 //公告 ItemTranfer Oper:Oper_Look
@@ -64,5 +67,5 @@ export const Page_ScheduleApplyItemPage = 'ScheduleApplyItemPage';
 //转资调整审批 BillNumberCode BillKeyCode
 export const Page_TransferAdjustInfoPage = 'TransferAdjustInfoPage';
 
-//选择审批人 BillNumberCode
+//选择审批人 BillNumberCode BillReviewType
 export const Page_ChoiceApproversPage = 'ChoiceApproversPage';

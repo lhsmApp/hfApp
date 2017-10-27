@@ -27,4 +27,19 @@ export class AcceptAssetDetail {
     addDepreciate: number;//累计折旧(double)
     devalueValue: number;//减值准备(double)
     keyCode: string;//资产键码
+
+
+
+
+    //assetsTypeName: string;//资产类型"
+    assetsCodeTypeName: string;//资产类别"
+    departCodeName: string;//所属单位"
+    entityCodeName: string;//所属资产组"
+    unitCodeName: string;//计量单位"
+    usedAspectName: string;//使用方向"
+    applyCodeName: string;//取得方式"
+    usedStateName: string;//使用状况"
+    storePlaceName: string;//存放地点""
+    userPersonName: string;//保管人"
+    specialLineName: string;//技术鉴定部门"
 }

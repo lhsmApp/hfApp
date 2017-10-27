@@ -97,7 +97,7 @@ export class ScheduleApplyInfoPage {
     /*this.itemShow = item;*/
   }
 
-  check(){
+  /*check(){
     let prompt = this.alertCtrl.create({
       title: '审批',
       message: "请输入审批意见",
@@ -136,6 +136,6 @@ export class ScheduleApplyInfoPage {
 
   send(){
       this.navCtrl.push(Page_ChoiceApproversPage, {BillNumberCode: this.billElementCode});
-  }
+  }*/
 
 }

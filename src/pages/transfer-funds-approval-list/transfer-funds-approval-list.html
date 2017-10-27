@@ -21,10 +21,10 @@
   </ion-refresher>
 <ion-list>
   <ion-item *ngFor="let item of list;trackBy:item?.translateCode" (click)="toDetail(item.translateCode)">
-        <h2>{{item.translateCode}}</h2><!--单据编号-->
-        <p>{{item.elementName}}</p><!--项目单元名称-->
-        <p>{{item.costTotal}}</p><!--转资金额-->
-        <h3>{{item.reviewStatus}}</h3><!--单据状态-->
+        <h2>单据编号：{{item.translateCode}}</h2><!---->
+        <p>项目单元名称：{{item.elementName}}</p><!---->
+        <p>转资金额：{{item.costTotal}}</p><!---->
+        <h3 item-end><span item-end [tab]="item"></span></h3><!--单据状态：reviewStatus-->
   </ion-item>
 </ion-list>
   <!--<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
