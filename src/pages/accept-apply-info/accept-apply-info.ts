@@ -139,7 +139,7 @@ export class AcceptApplyInfoPage {
           .subscribe(object => {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
-
+                //this.getShowItem();
             } else {
               
             }
@@ -163,7 +163,7 @@ export class AcceptApplyInfoPage {
           .subscribe(object => {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
-
+                //this.getShowItem();
             } else {
 
             }

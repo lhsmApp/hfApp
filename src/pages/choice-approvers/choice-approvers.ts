@@ -62,16 +62,13 @@ export class ChoiceApproversPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.list = object[1] as ReviewProcessMain[];
-          if(this.list){
-              for(let item of this.list){
-                item.reveiwPersonlist = item.reveiwPersonlist as ReviewProcessDetail[];
-                if(item.reveiwPersonlist){
-                  for(let det of item.reveiwPersonlist){
-                    det.isCheck = false;
-                  }
-                }
-              }
-          }
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
         
@@ -81,23 +78,38 @@ export class ChoiceApproversPage {
   ok(){
     if(this.list!=null && this.list.length>0){
       console.log(this.list);
-      let data: ReviewProcessMain[];
-      for(let item of this.list){
-          let detailListAdd:ReviewProcessDetail[];
-          if(item.reveiwPersonlist){
-              for(let detail of item.reveiwPersonlist){
-                  if(detail.isCheck){
-                      detailListAdd.push(detail);
-                  }
-              }
+      let data: ReviewProcessMain[] = [];
+      let itemAdd: ReviewProcessMain = new ReviewProcessMain();
+      itemAdd.userId = "";
+      for(let each of this.list){
+        itemAdd.reviewType = each.reviewType;
+        itemAdd.billNumber = each.billNumber;
+        itemAdd.dutySpecial = each.dutySpecial;
+        itemAdd.vetoType = each.vetoType;
+        itemAdd.sendDate = each.sendDate;
+        itemAdd.designPosition = each.designPosition;
+        itemAdd.departCode = each.departCode;
+        itemAdd.reviewPersons = each.reviewPersons;
+    //number:number;//审批岗位表流水号 int
+    //sequence:number;//审批序号 int 
+    //dutyId:string;//岗位编号"                  
+    //dutyName:string;//岗位名称"     
+
+    //current:number;//是否当前审批岗位 int     
+        
+    //result:number;//审批结果int                   
+    //date:string;//审批日期”                     
+    //option:string;//审批意见”    
+
+        if(each.userId!=null && each.userId!=""){
+          if(itemAdd.userId!=null && itemAdd.userId!=""){
+            itemAdd.userId += '@';
           }
-          if(detailListAdd!=null && detailListAdd.length>0){
-              let baseAdd = item;
-              baseAdd.reveiwPersonlist = detailListAdd;
-              data.push(baseAdd);
-          }
+          itemAdd.userId += each.userId;
+        }
       }
-      if(!(data!=null && data.length>0)){
+
+      if(!(itemAdd.userId!=null && itemAdd.userId!="")){
         let alert = this.alertCtrl.create({
           title: '提示!',
           subTitle: "请勾选记录！",
@@ -106,10 +118,9 @@ export class ChoiceApproversPage {
         alert.present();
         return;
       }
-      console.log("list:");
-      console.log(this.list);
-      console.log("data:");
-      console.log(data);
+      data.push(itemAdd);
+      console.log("list:"); console.log(this.list);
+      console.log("data:"); console.log(data);
       //billNumber:string,reviewType:string,data:object[]
       this.approvalService.sendReviewPay(this.billNumber,this.reviewType,data)
       .subscribe(object => {
