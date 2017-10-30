@@ -64,7 +64,12 @@ export class ChoiceApproversPage {
           this.list = object[1] as ReviewProcessMain[];
           if(this.list){
               for(let item of this.list){
-                //item
+                item.reveiwPersonlist = item.reveiwPersonlist as ReviewProcessDetail[];
+                if(item.reveiwPersonlist){
+                  for(let det of item.reveiwPersonlist){
+                    det.isCheck = false;
+                  }
+                }
               }
           }
         }
