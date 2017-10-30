@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Storage} from '@ionic/storage';
-import {NavController, NavParams, ViewController,IonicPage} from 'ionic-angular';
+import {NavController, NavParams, ViewController,IonicPage,AlertController} from 'ionic-angular';
 import {AcceptApplyMain} from '../../model/accept-apply-main';
 import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
@@ -35,6 +35,7 @@ export class AcceptApplyListPage {
     list:AcceptApplyMain[];
 
   constructor(public navCtrl: NavController,
+              public alertCtrl: AlertController,
               public navParams: NavParams,
               public acceptService:AcceptService) {
     //this.listAll = [];
@@ -61,6 +62,13 @@ export class AcceptApplyListPage {
         if(resultBase.result=='true'){
           this.listAll = object[1] as AcceptApplyMain[];
           this.list = this.listAll;
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
     
@@ -132,7 +140,14 @@ export class AcceptApplyListPage {
           let resultBase:ResultBase=object[0] as ResultBase;
           if(resultBase.result=='true'){
             this.getList();
-          }
+          } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
+        }
         }, () => {
         
       });

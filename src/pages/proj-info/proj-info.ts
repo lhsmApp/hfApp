@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {ProjectUnitDetail} from '../../model/project-unit-detail';
 import {ProjectElementService} from '../../services/projectElementService';
 import {ResultBase} from "../../model/result-base";
@@ -53,6 +53,7 @@ export class ProjInfoPage {
   //dicElementType: DicComplex[];//项目单元类别"        
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+              public alertCtrl: AlertController,
               private storage: Storage,
               private dictUtil:DictUtil,
               public projectElementService: ProjectElementService) {
@@ -82,7 +83,14 @@ export class ProjInfoPage {
               //this.itemShow.elementTypeName = this.dictUtil.(this.dicElementType,this.itemShow.elementType);//项目单元类别"          
               this.itemShow.sgsxName = this.dictUtil.getEnumsName(Sgsx,this.itemShow.sgsx);//施工属性"" 
             }
-          }
+          } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
+        }
       }, () => {
         
       });/**/

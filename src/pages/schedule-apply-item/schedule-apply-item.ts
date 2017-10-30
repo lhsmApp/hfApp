@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {ProjectUnitDetail} from '../../model/project-unit-detail'
 import {GlobalData} from "../../providers/GlobalData";
 import {Utils} from "../../providers/Utils";
@@ -57,6 +57,7 @@ export class ScheduleApplyItemPage {
     itemShow:ProjectUnitDetail;
  
   constructor(public navCtrl: NavController, 
+              public alertCtrl: AlertController,
   	          public navParams: NavParams,
               public formBuilder: FormBuilder, 
               private globalData: GlobalData,
@@ -113,7 +114,14 @@ export class ScheduleApplyItemPage {
               this.itemShow = this.list[0];
               this.FromPatchValue();
             }
-          }
+          } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
+        }
         }, () => {
         
         });/**/
@@ -172,6 +180,13 @@ export class ScheduleApplyItemPage {
           this.itemShow = object[1][0] as ProjectUnitDetail;
           this.billElementCode = this.itemShow.elementCode;
           this.FromPatchValue();
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
         

@@ -40,7 +40,6 @@ export class AcceptAssetDetail {
     usedAspectName: string;//使用方向"
     applyCodeName: string;//取得方式"
     usedStateName: string;//使用状况"
-    //没字典
     storePlaceName: string;//存放地点""
     //没字典
     userPersonName: string;//保管人"

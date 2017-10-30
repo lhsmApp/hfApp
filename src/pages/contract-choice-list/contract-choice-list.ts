@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController,AlertController } from 'ionic-angular';
 import {ContractMain} from '../../model/contract-main';
 import {ContractService} from '../../services/contractService';
 import {ResultBase} from "../../model/result-base";
@@ -31,6 +31,7 @@ export class ContractChoiceListPage {
     list:ContractMain[];
 
   constructor(public navCtrl: NavController, 
+              public alertCtrl: AlertController,
               public navParams: NavParams,
               private viewCtrl: ViewController,
               public contractService:ContractService) {
@@ -66,6 +67,13 @@ export class ContractChoiceListPage {
         if(resultBase.result=='true'){
           this.listAll = object[1] as ContractMain[];
           this.list = this.listAll;
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
     

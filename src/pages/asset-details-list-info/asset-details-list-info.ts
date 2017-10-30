@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {AcceptAssetMain} from '../../model/accept-asset-main';
 import {ContractService} from '../../services/contractService';
 import {ResultBase} from "../../model/result-base";
@@ -45,6 +45,7 @@ export class AssetDetailsListInfoPage {
   listDept: DicInDepart[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+              public alertCtrl: AlertController,
               private storage: Storage,
               private dictUtil:DictUtil,
               public contractService:ContractService) {
@@ -91,6 +92,13 @@ export class AssetDetailsListInfoPage {
             }
           }
           this.list = this.listAll;
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
     

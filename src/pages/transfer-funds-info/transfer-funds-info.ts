@@ -89,6 +89,13 @@ export class TransferFundsInfoPage {
               //转资类型"(1、固定资产 2、无形资产3、长期待摊费用4、长期股权投资)
               this.itemShow.translateTypeName = this.dictUtil.getEnumsName(TransferFundsType,this.itemShow.translateType);
           }
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
     
@@ -133,7 +140,14 @@ export class TransferFundsInfoPage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
 
-            }
+            } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
+        }
           }, () => {
         
           });
@@ -149,7 +163,14 @@ export class TransferFundsInfoPage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
 
-            }
+            } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
+        }
           }, () => {
         
           });

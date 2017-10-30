@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {TransferAdjustMain} from '../../model/transfer-adjust-main';
 import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
@@ -39,6 +39,7 @@ export class TransferAdjustApprovalListPage {
   listDept: DicInDepart[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+              public alertCtrl: AlertController,
               private storage: Storage,
               private dictUtil:DictUtil,
               public tzCostService:AcceptService) {
@@ -74,6 +75,13 @@ export class TransferAdjustApprovalListPage {
             }
           }
           this.list = this.listAll;
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
   

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {Notice} from '../../model/notice';
 import {NoticeService} from '../../services/noticeService';
 import {ResultBase} from "../../model/result-base";
@@ -33,6 +33,7 @@ export class NoticeQueryListPage {
     list:Notice[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+              public alertCtrl: AlertController,
               public noticeService:NoticeService) {
     //this.listAll = [];
     //this.list = [];
@@ -74,6 +75,13 @@ export class NoticeQueryListPage {
         if(resultBase.result=='true'){
           this.listAll = object[1] as Notice[];
           this.list = this.listAll;
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
     

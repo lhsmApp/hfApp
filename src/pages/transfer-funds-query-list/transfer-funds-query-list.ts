@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {TransferFundsMain} from '../../model/transfer-funds-main';
 import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
@@ -38,6 +38,7 @@ export class TransferFundsQueryListPage {
     list:TransferFundsMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+              public alertCtrl: AlertController,
               private dictUtil:DictUtil,
               public translateVoucherService:AcceptService) {
     //this.listAll = [];
@@ -87,6 +88,13 @@ export class TransferFundsQueryListPage {
               item.feeFlagName = this.dictUtil.getEnumsName(FeeFlag,item.feeFlag);
             }
           this.list = this.listAll;
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
   

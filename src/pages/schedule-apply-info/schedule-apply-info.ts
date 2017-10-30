@@ -104,7 +104,14 @@ export class ScheduleApplyInfoPage {
               //this.itemShow.elementTypeName = this.dictUtil.(this.dicElementType,this.itemShow.elementType);//项目单元类别"          
               this.itemShow.sgsxName = this.dictUtil.getEnumsName(this.dicSgsx,this.itemShow.sgsx);//施工属性"" 
             }
-          }
+          } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
+        }
       }, () => {
         
       });/**/

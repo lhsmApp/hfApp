@@ -104,6 +104,13 @@ export class TransferAdjustInfoPage {
           if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
           }
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
     
@@ -147,7 +154,14 @@ export class TransferAdjustInfoPage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
 
-            }
+            } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
+        }
           }, () => {
         
           });*/
@@ -163,7 +177,14 @@ export class TransferAdjustInfoPage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
 
-            }
+            } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
+        }
           }, () => {
         
           });*/

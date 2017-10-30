@@ -51,7 +51,8 @@ export class AcceptApplyInfoPage {
   itemShow:AcceptApplyDetail;
   listDept: DicInDepart[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public alertCtrl: AlertController,
               private storage: Storage,
               private dictUtil:DictUtil,
               public acceptService:AcceptService,
@@ -90,6 +91,13 @@ export class AcceptApplyInfoPage {
               this.itemShow = this.list[0] as AcceptApplyDetail;
               this.itemShow.departName = this.dictUtil.getInDepartName(this.listDept,this.itemShow.departCode);
           }
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
     

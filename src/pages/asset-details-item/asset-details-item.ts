@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {AcceptAssetDetail} from '../../model/accept-asset-detail';
 import {Depart} from '../../model/depart';
 import {ContractService} from '../../services/contractService';
@@ -85,6 +85,7 @@ export class AssetDetailsItemPage {
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams,
   	          public formBuilder: FormBuilder,
+              public alertCtrl: AlertController,
               private storage: Storage,
               private dictUtil:DictUtil,
               public contractService:ContractService, 
@@ -149,7 +150,14 @@ export class AssetDetailsItemPage {
               this.itemShow = this.list[0];
               this.FromPatchValue();
             }
-          }
+          } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
+        }
         }, () => {
         
         });/**/
@@ -209,6 +217,13 @@ export class AssetDetailsItemPage {
           this.itemShow = object[1][0] as AcceptAssetDetail;
           this.keyCode = this.itemShow.keyCode;
           this.FromPatchValue();
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
         

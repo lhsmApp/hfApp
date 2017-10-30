@@ -122,7 +122,14 @@ export class AcceptApplyItemPage {
               this.itemShow = this.list[0] as AcceptApplyDetail;
               this.itemShow.departName = this.dictUtil.getInDepartName(this.listDept,this.itemShow.departCode);
               this.FromPatchValue();
-            }
+            } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
+        }
           }
         }, () => {
         
@@ -162,6 +169,13 @@ export class AcceptApplyItemPage {
           this.itemShow = object[1][0] as AcceptApplyDetail;
           this.billNumber = this.itemShow.billNumber;
           this.FromPatchValue();
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
         

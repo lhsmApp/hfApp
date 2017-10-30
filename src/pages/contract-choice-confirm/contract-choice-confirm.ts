@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {ContractDetail} from '../../model/contract-detail';
 import {ContractService} from '../../services/contractService';
 import {ResultBase} from "../../model/result-base";
@@ -57,6 +57,7 @@ export class ContractChoiceConfirmPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private storage: Storage,
               private dictUtil:DictUtil,
+              public alertCtrl: AlertController,
               public contractService:ContractService) {
     this.itemShow = new ContractDetail();
   	this.contractCode = this.navParams.get(BillContractCode);
@@ -96,6 +97,13 @@ export class ContractChoiceConfirmPage {
               //成本属性
               this.itemShow.costPropertyName = this.dictUtil.getEnumsName(ContractCostProperty,this.itemShow.costProperty);
           }
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
         }
       }, () => {
     
