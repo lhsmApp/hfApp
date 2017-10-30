@@ -15,6 +15,7 @@ import {DicComplex} from '../../model/dic-complex';
 import {DicInDepart} from '../../model/dic-in-depart';
 import {DicOutDepart} from '../../model/dic-out-depart';
 import {DicBasicEntity} from '../../model/dic-basic-entity';
+import {DicAsset} from '../../model/dic-asset';
 import {SystemService} from '../../services/systemService';
 import {ResultBase} from "../../model/result-base";
 import {UNIT} from "../../enums/storage-type";
@@ -25,6 +26,7 @@ import {SPECIAL_LINE} from "../../enums/storage-type";
 import {IN_DEPART} from "../../enums/storage-type";
 import {OUT_DEPART} from "../../enums/storage-type";
 import {BASIC_ENTITY} from "../../enums/storage-type";
+import {ASSETS} from "../../enums/storage-type";
 import {DictUtil} from "../../providers/dict-util";
 
 import {GlobalData} from "../../providers/GlobalData";
@@ -170,6 +172,18 @@ export class MinePage {
       if(resultBase.result=='true'){
         let basicEntity = object[1] as DicBasicEntity[];
         this.storage.set(BASIC_ENTITY, basicEntity);
+      }
+    }, () => {
+      
+    });
+
+    //获取资产目录字典
+    this.systemService.getAssetsDict()
+    .subscribe(object => {
+      let resultBase:ResultBase=object[0] as ResultBase;
+      if(resultBase.result=='true'){
+        let aeests = object[1] as DicAsset[];
+        this.storage.set(ASSETS, aeests);
       }
     }, () => {
       

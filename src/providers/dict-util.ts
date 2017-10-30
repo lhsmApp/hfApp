@@ -6,6 +6,8 @@ import {Storage} from "@ionic/storage";
 import {DicComplex} from '../model/dic-complex';
 import {DicInDepart} from '../model/dic-in-depart';
 import {DicOutDepart} from '../model/dic-out-depart';
+import {DicBasicEntity} from '../model/dic-basic-entity';
+import {DicAsset} from '../model/dic-asset';
 import {PAYMENT_CATEGORY} from '../enums/enums';
 
 /**
@@ -112,12 +114,22 @@ export class DictUtil {
   }
 
   //翻译资产组
-  getBasicEntityName(dictInfo:DicComplex[],code:string):string{
+  getBasicEntityName(dictInfo:DicBasicEntity[],code:string):string{
     if(dictInfo&&dictInfo.length>0){
     	for(let basicEntity of dictInfo){
-    		if(basicEntity.complexCode===code)
-    			return basicEntity.complexName;
+    		if(basicEntity.entityCode===code)
+    			return basicEntity.entityName;
     	}
+    }
+  }
+
+  //翻译资产目录
+  getAssetsName(dictInfo:DicAsset[],code:string):string{
+    if(dictInfo&&dictInfo.length>0){
+      for(let basicEntity of dictInfo){
+        if(basicEntity.assetsCode===code)
+          return basicEntity.assetsName;
+      }
     }
   }
 
