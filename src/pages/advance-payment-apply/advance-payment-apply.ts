@@ -310,6 +310,7 @@ export class AdvancePaymentApplyPage {
 
   //送审
   send(){
+    console.log('reviewType：' + ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]);
     this.navCtrl.push('ChoiceApproversPage',{BillNumberCode:this.paymentDetail.payCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]});
   }
 

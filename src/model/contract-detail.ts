@@ -20,4 +20,14 @@ export class ContractDetail{
 	requireDate :string;//申请时间
 	checkResult :string;//单据状态
 	checkOpinion:string;//审批意见
+
+
+    //没字典
+	compactTypeName:string;//合同类别
+	relativePersonName:string;//合同相对人 外部单位字典
+    //没字典
+	additionalPersonName:string;//附加相对人 综合编码字典
+	ownDepartName :string;//甲方签约单位 组织机构字典
+	costPropertyName :string;//成本属性
+	
 }

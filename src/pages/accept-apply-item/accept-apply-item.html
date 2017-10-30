@@ -46,10 +46,11 @@
             </ion-item>
             <ion-item>
                 <ion-label fixed>申请单位</ion-label>
-                <ion-select type="text" [(ngModel)]="departCode" formControlName="departCode" placeholder="选择">
+                <ion-input type="text" readonly formControlName="departName"></ion-input>
+                <!--<ion-select type="text" [(ngModel)]="departCode" formControlName="departCode" placeholder="选择">
                     <ion-option *ngFor="let dept of listDept" value="{{dept.departCode}}">{{dept.departName}}</ion-option>
                     <ion-option value=""></ion-option>
-                </ion-select>
+                </ion-select>-->
             </ion-item>
             <span *ngIf="!applyFrom.controls.departCode.valid && applyFrom.controls.departCode.touched"
                   class="validation-failed">
