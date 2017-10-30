@@ -16,6 +16,7 @@ import {DicInDepart} from '../../model/dic-in-depart';
 import {DictUtil} from '../../providers/dict-util';
 import {Storage} from "@ionic/storage";
 import {DicComplex} from '../../model/dic-complex';
+import {DicBasicEntity} from '../../model/dic-basic-entity';
 
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
@@ -72,7 +73,7 @@ export class AssetDetailsInfoPage {
   //assetsType: string;//资产类型"
     assetsCodeType: string;//资产类别"
   DicDepartCode: DicInDepart[];//所属单位"
-  dicEntityCode: DicComplex[];//所属资产组"
+  dicEntityCode: DicBasicEntity[];//所属资产组"
   dicUnitCode: DicComplex[];//计量单位"
   dicUsedAspect: DicComplex[];//使用方向"
   dicApplyCode: DicComplex[];//取得方式"
@@ -98,7 +99,7 @@ export class AssetDetailsInfoPage {
     this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
       this.DicDepartCode=inDepart;
     });
-    this.storage.get(BASIC_ENTITY).then((dicList: DicComplex[]) => {
+    this.storage.get(BASIC_ENTITY).then((dicList: DicBasicEntity[]) => {
       this.dicEntityCode=dicList;
     });
     this.storage.get(UNIT).then((dicList: DicComplex[]) => {
