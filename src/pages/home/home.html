@@ -7,7 +7,7 @@
 <ion-content>
     <ion-list>
       <ion-list-header text-center>
-      <h2>通知公告</h2><ion-icon name="more" item-end (click)="toNoticeList()"></ion-icon>
+      <h2>通知公告</h2><ion-icon name="list" item-end (click)="toNoticeList()"></ion-icon>
      </ion-list-header>
       <!-- <button ion-item *ngFor="let item of notices" (click)="itemSelected(item)">
         {{ item.name }}
@@ -25,20 +25,28 @@
       <h2>代办事项</h2>
     </ion-list-header> -->
       <ion-row>
-        <ion-col col-4 (click)="openPage('ht')">
+        <!-- <ion-col *ngFor="let item of scheduleList;" (click)="openPage(item)">
+          <div text-center>
+            <img color="secondary" class='imgSize' src='{{yfkPath}}'/>
+            <p>item.businessName</p>
+            <ion-badge *ngIf="item.billCount>0" color="danger" class="brage">{{item.billCount}}</ion-badge>
+          </div>
+        </ion-col> -->
+        <ion-col col-4 (click)="openPage('HTSP')">
           <div text-center>
             <img color="secondary" class='imgSize' src='{{htPath}}'/>
             <p>合同审批</p>
+            <ion-badge *ngIf="htBillCount>0" color="danger" class="brage">{{htBillCount}}</ion-badge>
           </div>
         </ion-col>
-        <ion-col col-4 (click)="openPage('yfk')">
+        <ion-col col-4 (click)="openPage('FKSP')">
           <div text-center>
             <img color="secondary" class='imgSize' src='{{yfkPath}}'/>
             <p>付款审批</p>
-            <ion-badge *ngIf="messageCount" color="danger" class="brage">{{messageCount}}</ion-badge>
+            <ion-badge *ngIf="yfkBillCount>0" color="danger" class="brage">{{yfkBillCount}}</ion-badge>
           </div>
       </ion-col>
-        <ion-col col-4 (click)="openPage('ys')" >
+        <ion-col col-4 (click)="openPage('ZCYS')" >
           <div text-center>
             <img color="primary"  class='imgSize' src='{{ysPath}}'/>
             <p>验收审批</p>
@@ -46,13 +54,13 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-4 (click)="openPage('zz')">
+        <ion-col col-4 (click)="openPage('ZZFH')">
           <div text-center>
             <img color="danger"  class='imgSize' src='{{zzPath}}'/>
             <p>转资审批</p>
           </div>
         </ion-col>
-        <ion-col col-4 (click)="openPage('zztz')" >
+        <ion-col col-4 (click)="openPage('ZZTZSP')" >
           <div text-center>
             <img color="secondary"  class='imgSize' src='{{zztzPath}}'/>
             <p>转资调整审批</p>

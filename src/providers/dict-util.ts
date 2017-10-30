@@ -33,101 +33,100 @@ export class DictUtil {
 
   //翻译计量单位
   getUnitName(dictInfo:DicComplex[],code:string):string{
-    if(dictInfo){
-  	for(let unit of dictInfo){
-  		if(unit.complexCode===code)
-  			return unit.complexName;
-  	}
+    if(dictInfo&&dictInfo.length>0){
+    	for(let unit of dictInfo){
+    		if(unit.complexCode===code)
+    			return unit.complexName;
+    	}
     }
-    return code;
   }
 
   //翻译使用方向
   getUsedAspectName(dictInfo:DicComplex[],code:string):string{
-    if(dictInfo){
-  	for(let usedAspect of dictInfo){
-  		if(usedAspect.complexCode===code)
-  			return usedAspect.complexName;
-  	}
+  	if(dictInfo&&dictInfo.length>0){
+      for(let usedAspect of dictInfo){
+    		if(usedAspect.complexCode===code)
+    			return usedAspect.complexName;
+    	}
     }
-    return code;
   }
 
   //翻译取得方式
   getApplyCodeName(dictInfo:DicComplex[],code:string):string{
-    if(dictInfo){
-  	for(let applyCode of dictInfo){
-  		if(applyCode.complexCode===code)
-  			return applyCode.complexName;
-  	}
+    if(dictInfo&&dictInfo.length>0){
+    	for(let applyCode of dictInfo){
+    		if(applyCode.complexCode===code)
+    			return applyCode.complexName;
+    	}
     }
-    return code;
   }
 
   //翻译使用状态
   getUsedStateName(dictInfo:DicComplex[],code:string):string{
-    if(dictInfo){
-  	for(let usedState of dictInfo){
-  		if(usedState.complexCode===code)
-  			return usedState.complexName;
-  	}
+    if(dictInfo&&dictInfo.length>0){
+    	for(let usedState of dictInfo){
+    		if(usedState.complexCode===code)
+    			return usedState.complexName;
+    	}
     }
-    return code;
   }
 
   //翻译技术部门
   getSpecialLineName(dictInfo:DicComplex[],code:string):string{
-    if(dictInfo){
-  	for(let specialLine of dictInfo){
-  		if(specialLine.complexCode===code)
-  			return specialLine.complexName;
-  	}
+    if(dictInfo&&dictInfo.length>0){
+    	for(let specialLine of dictInfo){
+    		if(specialLine.complexCode===code)
+    			return specialLine.complexName;
+    	}
     }
-    return code;
+  }
+
+  //翻译存放地点
+  getDepositaryName(dictInfo:DicComplex[],code:string):string{
+    if(dictInfo&&dictInfo.length>0){
+      for(let depositary of dictInfo){
+        if(depositary.complexCode===code)
+          return depositary.complexName;
+      }
+    }
   }
 
   //翻译内部单位
   getInDepartName(dictInfo:DicInDepart[],code:string):string{
-    if(dictInfo){
-      for(let inDepart of dictInfo){
-        if(inDepart.departCode===code)
-          return inDepart.departName;
-      }
+    if(dictInfo&&dictInfo.length>0){
+    	for(let inDepart of dictInfo){
+    		if(inDepart.departCode===code)
+    			return inDepart.departName;
+    	}
     }
-    return code;
   }
 
   //翻译外部单位
   getOutDepartName(dictInfo:DicOutDepart[],code:string):string{
-    if(dictInfo){
-  	for(let outDepart of dictInfo){
-  		if(outDepart.departCode===code)
-  			return outDepart.departName;
-  	}
+    if(dictInfo&&dictInfo.length>0){
+    	for(let outDepart of dictInfo){
+    		if(outDepart.departCode===code)
+    			return outDepart.departName;
+    	}
     }
-    return code;
   }
 
   //翻译资产组
   getBasicEntityName(dictInfo:DicComplex[],code:string):string{
-    if(dictInfo){
-  	for(let basicEntity of dictInfo){
-  		if(basicEntity.complexCode===code)
-  			return basicEntity.complexName;
-  	}
+    if(dictInfo&&dictInfo.length>0){
+    	for(let basicEntity of dictInfo){
+    		if(basicEntity.complexCode===code)
+    			return basicEntity.complexName;
+    	}
     }
-    return code;
   }
 
   //翻译款项类别
   getClauseTypeName(code:string):string{
-    if(PAYMENT_CATEGORY){
     for(let clauseType of PAYMENT_CATEGORY){
       if(clauseType.code===code)
         return clauseType.name;
     }
-    }
-    return code;
   }
 
   //枚举类翻译

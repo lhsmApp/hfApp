@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
 import { InvoiceMain} from '../../model/invoice-main';
@@ -24,7 +24,7 @@ export class InvoiceInfoPage {
   paymentMain:AdvancePaymentMain;
   contractCode:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private paymentService:PaymentService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl:AlertController,private paymentService:PaymentService) {
     this.invoiceMain=this.navParams.get("invoiceItem");
     console.log(this.invoiceMain);
     this.paymentMain=this.navParams.get("paymentItem");
@@ -43,6 +43,13 @@ export class InvoiceInfoPage {
         if(resultBase.result=='true'){
           console.log(object[1][0]);
           this.invoiceDetail = object[1][0] as InvoiceDetail;
+        }else{
+          let alert = this.alertCtrl.create({
+            title: '提示!',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
         }
       }, () => {
         

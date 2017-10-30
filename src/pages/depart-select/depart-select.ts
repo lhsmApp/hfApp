@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,ViewController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,ViewController,AlertController} from 'ionic-angular';
 import { Depart} from '../../model/depart';
 import {LoginService} from '../../services/LoginService';
 import {ResultBase} from "../../model/result-base";
@@ -29,8 +29,13 @@ export class DepartSelectPage {
   departList:Depart[];
   selectDepart:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private viewCtrl: ViewController,private loginService: LoginService
-    ,private globalData: GlobalData) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    private viewCtrl: ViewController,
+    private loginService: LoginService,
+    private globalData: GlobalData,
+    private alertCtrl:AlertController
+    ) {
 	  //this.departList=DEPART_LIST;
   }
 
@@ -47,6 +52,13 @@ export class DepartSelectPage {
           let userInfo=object[1];
           this.globalData.sessionId=userInfo.sessionId;
           this.departList = object[2] as Depart[];
+        }else{
+          let alert = this.alertCtrl.create({
+            title: '提示!',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
         }
       }, () => {
         
@@ -55,37 +67,10 @@ export class DepartSelectPage {
 
   //上拉刷新
   doRefresh(refresher) {
-  	/*this.params.page = 1;
-  	setTimeout(() => {
-  		this.topicService.getTopics(this.params).subscribe(
-  			data => {
-  				this.advancePaymentList = data.data;
-  				refresher.complete();
-  			}
-  			);
-  	}, 2000);*/
-
-  	this.departList = DEPART_LIST;
+  	this.getList();
   	refresher.complete();
   }
 
-  //下拉加载
-  doInfinite(infiniteScroll) {
-  	/*this.params.page++;
-  	setTimeout(() => {
-  		this.topicService.getTopics(this.params).subscribe(
-  			data => {
-  				if (data) {
-  					this.topics.push(...data.data);
-  					infiniteScroll.complete();
-  				}
-  				else {
-  					infiniteScroll.enable(false);
-  				}
-  			}
-  			);
-  	}, 500);*/
-  }
 
   //确定选择
   confirm(){

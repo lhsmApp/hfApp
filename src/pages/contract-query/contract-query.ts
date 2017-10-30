@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { ContractMain} from '../../model/contract-main';
 import {ContractService} from '../../services/contractService';
 import {ResultBase} from "../../model/result-base";
@@ -29,7 +29,7 @@ export class ContractQueryPage {
   contractList:ContractMain[];
   queryCondition:QueryCondition;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private contractService:ContractService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl:AlertController,private contractService:ContractService) {
   	//this.contractList=CONTRACT_LIST;
     this.queryCondition=this.navParams.get("queryCondition");
   }
@@ -74,6 +74,13 @@ export class ContractQueryPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.contractList = object[1] as ContractMain[];
+        }else{
+          let alert = this.alertCtrl.create({
+            title: '提示!',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
         }
       }, () => {
     
@@ -81,9 +88,9 @@ export class ContractQueryPage {
   }
 
   //打开详情页
-  openPage(id: string) {
+  openPage(item: ContractMain) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("ContractInfoPage",{id:id});
+  	this.navCtrl.push("ContractInfoPage",{'contractMain':item});
   }
 
   //上拉刷新

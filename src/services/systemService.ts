@@ -54,16 +54,16 @@ export class SystemService {
   }
 
   //切换单位
-  changeDepart(): Observable<(Object)> {
+  changeDepart(departCode:string): Observable<(Object)> {
     let param = {
      //必传
      'action': 'loginSelectDepart',
      'sessionid':this.globalData.sessionId,
      'userCode':this.globalData.userCode,
      'password':this.globalData.userName,
-     'departCode':this.globalData.departCode
+     'departCode':departCode
      };
-     return this.httpService.get('phoneDictionaryQuery.do', param).map((res: Response) => res.json());
+     return this.httpService.get('departmentLogin.do', param).map((res: Response) => res.json());
   }
 
   //待办事项
@@ -73,18 +73,18 @@ export class SystemService {
      'action': 'getReviewTypeInfo',
      'sessionid':this.globalData.sessionId,
      };
-     return this.httpService.get('phoneDictionaryQuery.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneMyInfo.do', param).map((res: Response) => res.json());
   }
 
   //修改密码sys_user用户表
   changePassword(password:string,newPassword:string): Observable<(Object)> {
     let param = {
      //必传
-     'action': 'loginSelectDepart',
+     'action': 'userPasswordChange',
      'sessionid':this.globalData.sessionId,
      'password':password,
      'newPassword':newPassword,
      };
-     return this.httpService.get('phoneDictionaryQuery.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneMyInfo.do', param).map((res: Response) => res.json());
   }
 }
