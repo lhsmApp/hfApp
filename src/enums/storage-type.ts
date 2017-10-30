@@ -21,3 +21,4 @@ export const OUT_DEPART="outDepart";//外部单位
 
 export const BASIC_ENTITY="basicEntity";//资产组
 
+export const ASSETS="assets";//资产目录

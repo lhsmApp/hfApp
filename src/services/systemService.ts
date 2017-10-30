@@ -53,6 +53,16 @@ export class SystemService {
      return this.httpService.get('phoneMyInfo.do', param).map((res: Response) => res.json());
   }
 
+  //资产目录字典 assets_code 资产组表
+  getAssetsDict(): Observable<(Object)> {
+    let param = {
+     //必传
+     'action': 'querySelectAssetsCodeList',
+     'sessionid':this.globalData.sessionId,
+     };
+     return this.httpService.get('phoneMyInfo.do', param).map((res: Response) => res.json());
+  }
+
   //切换单位
   changeDepart(departCode:string): Observable<(Object)> {
     let param = {
