@@ -6,6 +6,9 @@ import {AcceptService} from '../../services/acceptService';
 import {ApprovalService} from '../../services/approvalService';
 import {ResultBase} from "../../model/result-base";
 import {ReviewType} from '../../enums/review-type';
+import {DictUtil} from '../../providers/dict-util';
+import {TransferFundsReviewStatus} from '../../enums/enums';
+import {TransferFundsType} from '../../enums/enums';
 
 import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
@@ -52,6 +55,7 @@ export class TransferFundsInfoPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private formBuilder: FormBuilder,
+              private dictUtil:DictUtil,
               public alertCtrl: AlertController,
               public acceptService:AcceptService,
               public approvalService:ApprovalService) {
@@ -79,7 +83,11 @@ export class TransferFundsInfoPage {
         if(resultBase.result=='true'){
           this.list = object[1] as TransferFundsDetail[];
           if(this.list && this.list.length > 0){
-              this.itemShow = this.list[0];
+              this.itemShow = this.list[0];   
+              //单据状态"
+              this.itemShow.reviewStatusName = this.dictUtil.getEnumsName(TransferFundsReviewStatus,this.itemShow.reviewStatus);
+              //转资类型"(1、固定资产 2、无形资产3、长期待摊费用4、长期股权投资)
+              this.itemShow.translateTypeName = this.dictUtil.getEnumsName(TransferFundsType,this.itemShow.translateType);
           }
         }
       }, () => {

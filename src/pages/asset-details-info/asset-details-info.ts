@@ -3,6 +3,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AcceptAssetDetail} from '../../model/accept-asset-detail';
 import {ContractService} from '../../services/contractService';
 import {ResultBase} from "../../model/result-base";
+import {IN_DEPART} from "../../enums/storage-type";
+import {UNIT} from "../../enums/storage-type";
+import {SPECIAL_LINE} from "../../enums/storage-type";
+//import {} from "../../enums/storage-type";
+import {USED_STATE} from "../../enums/storage-type";
+import {APPLY_CODE} from "../../enums/storage-type";
+import {BASIC_ENTITY} from "../../enums/storage-type";
+import {USED_ASPECT} from "../../enums/storage-type";
+import {DicInDepart} from '../../model/dic-in-depart';
+import {DictUtil} from '../../providers/dict-util';
+import {Storage} from "@ionic/storage";
+import {DicComplex} from '../../model/dic-complex';
 
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
@@ -56,19 +68,21 @@ export class AssetDetailsInfoPage {
 
   list: AcceptAssetDetail[];
   itemShow:AcceptAssetDetail;
-  //assetsTypeName: string;//资产类型"
-    assetsCodeTypeName: string;//资产类别"
-    departCodeName: string;//所属单位"
-    entityCodeName: string;//所属资产组"
-    unitCodeName: string;//计量单位"
-    usedAspectName: string;//使用方向"
-    applyCodeName: string;//取得方式"
-    usedStateName: string;//使用状况"
-    storePlaceName: string;//存放地点""
-    userPersonName: string;//保管人"
-    specialLineName: string;//技术鉴定部门"
+  //assetsType: string;//资产类型"
+    assetsCodeType: string;//资产类别"
+  DicDepartCode: DicInDepart[];//所属单位"
+  dicEntityCode: DicComplex[];//所属资产组"
+  dicUnitCode: DicComplex[];//计量单位"
+  dicUsedAspect: DicComplex[];//使用方向"
+  dicApplyCode: DicComplex[];//取得方式"
+  dicUsedState: DicComplex[];//使用状况"
+  //dicStorePlace: DicComplex[];//存放地点""
+    userPerson: string;//保管人"
+  dicSpecialLine: DicComplex[];//技术鉴定部门"
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+              private storage: Storage,
+              private dictUtil:DictUtil,
               public contractService:ContractService) {
     this.itemShow = new AcceptAssetDetail();
     this.billNumber = this.navParams.get(BillNumberCode);
@@ -79,6 +93,31 @@ export class AssetDetailsInfoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AssetDetailsInfoPage');
     this.itemShow = new AcceptAssetDetail();
+    this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
+      this.DicDepartCode=inDepart;
+    });
+    this.storage.get(BASIC_ENTITY).then((dicList: DicComplex[]) => {
+      this.dicEntityCode=dicList;
+    });
+    this.storage.get(UNIT).then((dicList: DicComplex[]) => {
+      this.dicUnitCode=dicList;
+    });
+    this.storage.get(USED_ASPECT).then((dicList: DicComplex[]) => {
+      this.dicUsedAspect=dicList;
+    });
+    this.storage.get(APPLY_CODE).then((dicList: DicComplex[]) => {
+      this.dicApplyCode=dicList;
+    });
+    this.storage.get(USED_STATE).then((dicList: DicComplex[]) => {
+      this.dicUsedState=dicList;
+    });
+    //this.storage.get().then((dicList: DicComplex[]) => {
+    //  this.dicStorePlace=dicList;
+    //});
+
+    this.storage.get(SPECIAL_LINE).then((dicList: DicComplex[]) => {
+      this.dicSpecialLine=dicList;
+    });
     this.getShowItem();
   }
 
@@ -91,17 +130,17 @@ export class AssetDetailsInfoPage {
           this.list = object[1] as AcceptAssetDetail[];
           if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
-              //assetsTypeName: string;//资产类型"
-              //this.itemShow.assetsCodeTypeName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//资产类别"
-              //this.itemShow.departCodeName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//所属单位"
-              //this.itemShow.entityCodeName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//所属资产组"
-              //this.itemShow.unitCodeName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//计量单位"
-              //this.itemShow.usedAspectName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//使用方向"
-              //this.itemShow.applyCodeName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//取得方式"
-              //this.itemShow.usedStateName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//使用状况"
-              //this.itemShow.storePlaceName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//存放地点""
-              //this.itemShow.userPersonName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//保管人"
-              //this.itemShow.specialLineName = this.dictUtil.getInDepartName(this.listDept,item.departCode);//技术鉴定部门"
+              //this.itemShow.assetsTypeName = this.dictUtil.(this.,);//资产类型"
+              //this.itemShow.assetsCodeTypeName = this.dictUtil.(this.,);//资产类别"
+              this.itemShow.departCodeName = this.dictUtil.getInDepartName(this.DicDepartCode,this.itemShow.departCode);//所属单位"
+              this.itemShow.entityCodeName = this.dictUtil.getBasicEntityName(this.dicEntityCode,this.itemShow.entityCode);//所属资产组"
+              this.itemShow.unitCodeName = this.dictUtil.getUnitName(this.dicUnitCode,this.itemShow.unitCode);//计量单位"
+              this.itemShow.usedAspectName = this.dictUtil.getUsedAspectName(this.dicUsedAspect,this.itemShow.usedAspect);//使用方向"
+              this.itemShow.applyCodeName = this.dictUtil.getApplyCodeName(this.dicApplyCode,this.itemShow.applyCode);//取得方式"
+              this.itemShow.usedStateName = this.dictUtil.getUsedStateName(this.dicUsedState,this.itemShow.usedState);//使用状况"
+              //this.itemShow.storePlaceName = this.dictUtil.(this.dicStorePlace,this.itemShow.storePlace);//存放地点""
+              //this.itemShow.userPersonName = this.dictUtil.(this.,);//保管人"
+              this.itemShow.specialLineName = this.dictUtil.getSpecialLineName(this.dicSpecialLine,this.itemShow.specialLine);//技术鉴定部门"
           }
         }
       }, () => {

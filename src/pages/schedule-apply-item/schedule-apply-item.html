@@ -22,7 +22,56 @@
 <ion-content>
 	<form [formGroup]="applyFrom" (ngSubmit)="(save())">
 		<ion-item-group>
-            
+            <!--<ion-item >
+                <ion-label fixed></ion-label>
+                <ion-input readonly type="text" formControlName="">
+                </ion-input>
+            </ion-item>
+
+
+
+
+
+
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>项目计划编码：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.projectCode}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>项目计划名称：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.projectName}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>项目单元编码：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.elementCode}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>项目单元名称：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.elementName}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>项目单元类别：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.elementTypeName}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>施工属性：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.sgsxName}}</span></ion-col>
+            </ion-row>
+        </ion-item>-->
+
+
+
             <ion-item >
                 <ion-label fixed>进展概述</ion-label>
                 <ion-input type="text" formControlName="projectProgress" 

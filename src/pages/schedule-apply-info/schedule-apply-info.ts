@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angul
 import {ProjectUnitDetail} from '../../model/project-unit-detail'
 import {ProjectElementService} from '../../services/projectElementService';
 import {ResultBase} from "../../model/result-base";
+//import {} from "../../enums/storage-type";
+import {DictUtil} from '../../providers/dict-util';
+import {Storage} from "@ionic/storage";
+import {Sgsx} from '../../enums/enums';
 
 import {Oper,Oper_Look,Oper_Edit,Oper_Add,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
@@ -56,9 +60,13 @@ export class ScheduleApplyInfoPage {
 
   list: ProjectUnitDetail[];
   itemShow:ProjectUnitDetail;
+  //dicElementType: DicComplex[];//项目单元类别"          
+  dicSgsx: Array<{code: string, name: string}>;//施工属性"" 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController,
+              private storage: Storage,
+              private dictUtil:DictUtil,
               public projectElementService: ProjectElementService) {
     this.itemShow = new ProjectUnitDetail();
     this.isShowCheck = false;
@@ -77,6 +85,10 @@ export class ScheduleApplyInfoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ScheduleApplyInfoPage');
     this.itemShow = new ProjectUnitDetail();
+    this.dicSgsx = Sgsx;
+    //this.storage.get().then((dicList: DicComplex[]) => {
+    //  this.dicElementType=dicList;
+    //});
     this.getShowItem();
   }
 
@@ -89,6 +101,8 @@ export class ScheduleApplyInfoPage {
             this.list = object[1] as ProjectUnitDetail[];
             if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
+              //this.itemShow.elementTypeName = this.dictUtil.(this.dicElementType,this.itemShow.elementType);//项目单元类别"          
+              this.itemShow.sgsxName = this.dictUtil.getEnumsName(this.dicSgsx,this.itemShow.sgsx);//施工属性"" 
             }
           }
       }, () => {

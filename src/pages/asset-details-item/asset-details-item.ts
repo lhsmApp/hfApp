@@ -6,6 +6,10 @@ import {Depart} from '../../model/depart';
 import {ContractService} from '../../services/contractService';
 import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
+import {IN_DEPART} from "../../enums/storage-type";
+import {DicInDepart} from '../../model/dic-in-depart';
+import {DictUtil} from '../../providers/dict-util';
+import {Storage} from "@ionic/storage";
 
 import {Oper,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
@@ -73,7 +77,7 @@ export class AssetDetailsItemPage {
   assetFrom:any;
 
 
-
+//2.其中出厂日期早于投产日期，投产日期早于增加日期；
 
 
   
@@ -81,6 +85,8 @@ export class AssetDetailsItemPage {
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams,
   	          public formBuilder: FormBuilder,
+              private storage: Storage,
+              private dictUtil:DictUtil,
               public contractService:ContractService, 
               public acceptService:AcceptService) {
     this.itemShow = new AcceptAssetDetail();

@@ -17,7 +17,7 @@ export class AcceptAssetDetail {
     contractCode: string;//合同编号"
     applyCode: string;//取得方式"
     guaDate: string;//保修截止日期"
-    depreciateYear: number;//预计使用年限(int 型)
+    depreciateYear: number;//预计使用年限(int 型) 依据目录，自动填写
     usedState: string;//使用状况"
     storePlace: string;//存放地点""
     userPerson: string;//保管人"
@@ -30,8 +30,9 @@ export class AcceptAssetDetail {
 
 
 
-
-    //assetsTypeName: string;//资产类型"
+    //没字典
+    assetsTypeName: string;//资产类型"
+    //没字典
     assetsCodeTypeName: string;//资产类别"
     departCodeName: string;//所属单位"
     entityCodeName: string;//所属资产组"
@@ -39,7 +40,9 @@ export class AcceptAssetDetail {
     usedAspectName: string;//使用方向"
     applyCodeName: string;//取得方式"
     usedStateName: string;//使用状况"
+    //没字典
     storePlaceName: string;//存放地点""
+    //没字典
     userPersonName: string;//保管人"
     specialLineName: string;//技术鉴定部门"
 }

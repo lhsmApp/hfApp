@@ -140,4 +140,15 @@ export class DictUtil {
         return clauseType.name;
     }
   }
+
+  //枚举类翻译
+  getEnumsName(list:Array<{code: string, name: string}>,code:string):string{
+    if(list){
+    for(let enu of list){
+      if(enu.code===code)
+        return enu.name;
+    }
+    }
+    return code;
+  }
 }

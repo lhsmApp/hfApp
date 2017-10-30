@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Storage} from '@ionic/storage';
+import {DictUtil} from '../../providers/dict-util';
 import {IonicPage, NavController, NavParams, ViewController,ModalController,AlertController} from 'ionic-angular';
 import {AcceptApplyDetail} from '../../model/accept-apply-detail';
 import {Depart} from '../../model/depart';
@@ -56,6 +57,7 @@ export class AcceptApplyItemPage {
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController,
               private storage: Storage,
+              private dictUtil:DictUtil,
               private modalCtrl: ModalController,
               private viewCtrl: ViewController,
               public acceptService:AcceptService, 
@@ -76,6 +78,8 @@ export class AcceptApplyItemPage {
 
       billNumber: [, []],
       reviewStatus: [, []],
+      
+      departName: [, []],
     });
   }
 
@@ -91,6 +95,8 @@ export class AcceptApplyItemPage {
 
       billNumber: this.itemShow.billNumber,
       reviewStatus: this.itemShow.reviewStatus,
+      
+      departName: this.itemShow.departName,
     });
   }
 
@@ -114,6 +120,7 @@ export class AcceptApplyItemPage {
             this.list = object[1] as AcceptApplyDetail[];
             if(this.list && this.list.length > 0){
               this.itemShow = this.list[0] as AcceptApplyDetail;
+              this.itemShow.departName = this.dictUtil.getInDepartName(this.listDept,this.itemShow.departCode);
               this.FromPatchValue();
             }
           }
@@ -129,7 +136,8 @@ export class AcceptApplyItemPage {
       this.itemShow.contractName = "";
       this.itemShow.elementCode = "";
       this.itemShow.elementName = "";
-      this.itemShow.departCode = "";
+      this.itemShow.departCode = this.globalData.departCode;
+      this.itemShow.departName = this.globalData.departName;
       this.itemShow.requireDate =  Utils.dateFormat(new Date());
       this.itemShow.requireUser = this.globalData.userName;
       this.itemShow.reviewStatus = "0";

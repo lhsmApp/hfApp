@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TransferFundsMain} from '../../model/transfer-funds-main';
 import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
+import {DictUtil} from '../../providers/dict-util';
+import {FeeFlag} from '../../enums/enums';
 
 import {Page_TransferFundsInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Approval} from '../../providers/TransferFeildName';
@@ -33,6 +35,7 @@ export class TransferFundsApprovalListPage {
     list:TransferFundsMain[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+              private dictUtil:DictUtil,
               public translateVoucherService:AcceptService) {
     //this.listAll = [];
     //this.list = [];
@@ -57,6 +60,10 @@ export class TransferFundsApprovalListPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as TransferFundsMain[];
+            for(let item of this.listAll){
+              //"是否分摊费用"  
+              item.feeFlagName = this.dictUtil.getEnumsName(FeeFlag,item.feeFlag);
+            }
           this.list = this.listAll;
         }
       }, () => {

@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ProjectUnitDetail} from '../../model/project-unit-detail';
 import {ProjectElementService} from '../../services/projectElementService';
 import {ResultBase} from "../../model/result-base";
+//import {} from "../../enums/storage-type";
+import {DictUtil} from '../../providers/dict-util';
+import {Storage} from "@ionic/storage";
+import {Sgsx} from '../../enums/enums';
 
 import {BillElementCode} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
@@ -46,8 +50,11 @@ export class ProjInfoPage {
 
   list: ProjectUnitDetail[];
   itemShow:ProjectUnitDetail;
+  //dicElementType: DicComplex[];//项目单元类别"        
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+              private storage: Storage,
+              private dictUtil:DictUtil,
               public projectElementService: ProjectElementService) {
     this.itemShow = new ProjectUnitDetail();
   	this.elementCode = this.navParams.get(BillElementCode);
@@ -57,6 +64,9 @@ export class ProjInfoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProjInfoPage');
     this.itemShow = new ProjectUnitDetail();
+    //this.storage.get().then((dicList: DicComplex[]) => {
+    //  this.dicElementType=dicList;
+    //});
     this.getShowItem();
   }
 
@@ -69,6 +79,8 @@ export class ProjInfoPage {
             this.list = object[1] as ProjectUnitDetail[];
             if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
+              //this.itemShow.elementTypeName = this.dictUtil.(this.dicElementType,this.itemShow.elementType);//项目单元类别"          
+              this.itemShow.sgsxName = this.dictUtil.getEnumsName(Sgsx,this.itemShow.sgsx);//施工属性"" 
             }
           }
       }, () => {

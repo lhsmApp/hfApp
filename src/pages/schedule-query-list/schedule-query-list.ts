@@ -4,6 +4,10 @@ import {ProjectUnitMain} from '../../model/project-unit-main'
 import {ProjectElementService} from '../../services/projectElementService';
 import {ResultBase} from "../../model/result-base";
 import { QueryCondition } from '../../model/query-condition';
+import {Storage} from "@ionic/storage";
+import {DictUtil} from '../../providers/dict-util';
+//import {} from "../../enums/storage-type";
+import {Sgsx} from '../../enums/enums';
 
 import {Page_ScheduleApplyInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
@@ -33,9 +37,12 @@ export class ScheduleQueryListPage {
   
   listAll:ProjectUnitMain[];
   list:ProjectUnitMain[];
+  //dicElementType: DicComplex[];//项目单元类别"        
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
+              private storage: Storage,
+              private dictUtil:DictUtil,
               public projectElementService: ProjectElementService) {
     //this.listAll = [];
     //this.list = [];
@@ -53,6 +60,9 @@ export class ScheduleQueryListPage {
   getList() {
     //this.listAll = [];
     //this.list = [];
+    //this.storage.get().then((dicList: DicComplex[]) => {
+    //  this.dicElementType=dicList;
+    //});
       let state;
       if(this.queryCondition){
         if(this.queryCondition.state=='1'){
@@ -86,6 +96,10 @@ export class ScheduleQueryListPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.listAll = object[1] as ProjectUnitMain[];
+            for(let item of this.listAll){
+              //item.elementTypeName = this.dictUtil.(this.dicElementType,item.elementType);//项目单元类别"          
+              item.sgsxName = this.dictUtil.getEnumsName(Sgsx,item.sgsx);//施工属性"" 
+            }
           this.list = this.listAll;
         }
       }, () => {
