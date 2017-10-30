@@ -33,9 +33,8 @@ export class TabTransferFundsApprovalDirective {
       this.el.style.paddingRight='7px';
       this.el.style.paddingTop='4px';
       this.el.style.paddingBottom='4px';
-      for(let state of TransferFundsReviewStatus){
-        this.el.textContent = state.name;
-      }
+      this.el.textContent = this.getValue(topic.reviewStatus);
+      
       if (topic.reviewStatus=='0') {
         this.el.style.background = '#32DB64';
         this.el.style.color = '#fff';

@@ -140,7 +140,15 @@ export class AcceptApplyInfoPage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
 
+            } else {
+              
             }
+            let alert = this.alertCtrl.create({
+                title: '提示!',
+                subTitle: resultBase.message,
+                buttons: ['确定']
+            });
+            alert.present();
           }, () => {
         
           });
@@ -156,7 +164,15 @@ export class AcceptApplyInfoPage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
 
+            } else {
+
             }
+            let alert = this.alertCtrl.create({
+                title: '提示!',
+                subTitle: resultBase.message,
+                buttons: ['确定']
+            });
+            alert.present();
           }, () => {
         
           });
@@ -167,7 +183,19 @@ export class AcceptApplyInfoPage {
 
   send(){
     console.log("ReviewType：" + ReviewType[ReviewType.BASICACCEPTANCE_APPLY]);
-      this.navCtrl.push(Page_ChoiceApproversPage, {BillNumberCode: this.billNumber,'reviewType':ReviewType[ReviewType.BASICACCEPTANCE_APPLY]});
+      this.navCtrl.push(Page_ChoiceApproversPage, {callback:this.saveSend,BillNumberCode: this.billNumber,'reviewType':ReviewType[ReviewType.BASICACCEPTANCE_APPLY]});
   }
+
+  //回调
+  saveSend = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+          this.getShowItem();
+      }
+      resolve();
+    });
+  };
 
 }

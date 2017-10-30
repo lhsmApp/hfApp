@@ -12,17 +12,25 @@ export class ApprovalService {
   }
 
   //付款单据送审-审列表接口review_process 审批流程表
-  queryUserReviewPay(billNumber:string,reviewType:string): Observable<(Object)> {
-    console.log('reviewType: ' + reviewType);
+  queryUserReviewPay(billNumber:string, type:string): Observable<(Object)> {
+    console.log('type: ' + type);
     let action = "";
-    if(reviewType === ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]){
-      action = 'queryUserReviewPay';
+    let reviewType = "";
+    let getDo = "";
+    if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]){
+        action = 'queryUserReviewPay';
+        reviewType = "";
+        getDo = "phonePaymentRequest.do";
     } else {
-      if(reviewType === ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
+      if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
         action = 'queryUserReviewAcceptance';
+        reviewType = "验收申请审批";
+        getDo = "phoneAcceptanceApply.do";
       }
     }
     console.log('action: ' + action);
+    console.log('reviewType: ' + reviewType);
+    console.log('getDo: ' + getDo);
     let param = {
      //必传
      'action': action,
@@ -30,7 +38,7 @@ export class ApprovalService {
      'billNumber': billNumber,
      'reviewType':reviewType//审批使用常量名
      };
-     return this.httpService.get('phoneCommon.do', param).map((res: Response) => res.json());
+     return this.httpService.get(getDo, param).map((res: Response) => res.json());
   }
 
   //单据送审确认接口- review_process 审批流程表

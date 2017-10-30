@@ -74,7 +74,7 @@ export class TransferFundsQueryListPage {
       let code=this.queryCondition.queryString;
       let startDate=this.queryCondition.startDate;
       let endDate=this.queryCondition.endDate;
-    //1.申请 2.查询 3.审批
+    //1.转资申请单据 2. 转资查询3.审批的转资单查询 4.审批的转资调整单查询
     //" 单据状态" //转资后端字段解释(括号中代表客户端对应字段)、
     //   0未提交(新增)、1未审批(待审批) 、2已驳回(退回)、3审批中(待审批)、4已审批(已审批)、若客户端传空的时候则后端查询全部
     //type:string, feeFlag:string, translateCode:string, startDate:string, endDate:string, reviewStatus:string

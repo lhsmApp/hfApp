@@ -71,7 +71,7 @@ export class AssetDetailsInfoPage {
   list: AcceptAssetDetail[];
   itemShow:AcceptAssetDetail;
   //assetsType: string;//资产类型"
-    assetsCodeType: string;//资产类别"
+    dicAssetsCodeType: string;//资产类别"
   DicDepartCode: DicInDepart[];//所属单位"
   dicEntityCode: DicBasicEntity[];//所属资产组"
   dicUnitCode: DicComplex[];//计量单位"
@@ -79,7 +79,7 @@ export class AssetDetailsInfoPage {
   dicApplyCode: DicComplex[];//取得方式"
   dicUsedState: DicComplex[];//使用状况"
   dicStorePlace: DicComplex[];//存放地点""
-    userPerson: string;//保管人"
+    dicUserPerson: string;//保管人"
   dicSpecialLine: DicComplex[];//技术鉴定部门"
 
   constructor(public navCtrl: NavController, public navParams: NavParams,

@@ -10,6 +10,15 @@ import {IN_DEPART} from "../../enums/storage-type";
 import {DicInDepart} from '../../model/dic-in-depart';
 import {DictUtil} from '../../providers/dict-util';
 import {Storage} from "@ionic/storage";
+import {DicComplex} from '../../model/dic-complex';
+import {DicBasicEntity} from '../../model/dic-basic-entity';
+import {SPECIAL_LINE} from "../../enums/storage-type";
+import {DEPOSITARY} from "../../enums/storage-type";
+import {USED_STATE} from "../../enums/storage-type";
+import {APPLY_CODE} from "../../enums/storage-type";
+import {USED_ASPECT} from "../../enums/storage-type";
+import {BASIC_ENTITY} from "../../enums/storage-type";
+import {UNIT} from "../../enums/storage-type";
 
 import {Oper,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
@@ -24,12 +33,12 @@ import {ItemTranfer} from '../../providers/TransferFeildName';//从添加界面�
  * Ionic pages and navigation.
  */
 
-  const listDeptGet: Depart[]=[
+  /*const listDeptGet: Depart[]=[
       {departCode:'1',departName:'单位1'},
       {departCode:'2',departName:'单位2'},
       {departCode:'133930001',departName:'单位3'},
       {departCode:'4',departName:'单位4'},
-  ]
+  ]*/
 
  /*const item: AcceptAssetDetail = {xh: '24',
     assetsType: '资产类型',
@@ -76,11 +85,19 @@ export class AssetDetailsItemPage {
   itemShow:AcceptAssetDetail;
   assetFrom:any;
 
+  //assetsType: string;//资产类型"
+    dicAssetsCodeType: string;//资产类别"
+  DicDepartCode: DicInDepart[];//所属单位"
+  dicEntityCode: DicBasicEntity[];//所属资产组"
+  dicUnitCode: DicComplex[];//计量单位"
+  dicUsedAspect: DicComplex[];//使用方向"
+  dicApplyCode: DicComplex[];//取得方式"
+  dicUsedState: DicComplex[];//使用状况"
+  dicStorePlace: DicComplex[];//存放地点""
+    dicUserPerson: string;//保管人"
+  dicSpecialLine: DicComplex[];//技术鉴定部门"
 
 //2.其中出厂日期早于投产日期，投产日期早于增加日期；
-
-
-  
 
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams,
@@ -132,6 +149,31 @@ export class AssetDetailsItemPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AssetDetailsItemPage');
     this.itemShow = new AcceptAssetDetail();
+    this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
+      this.DicDepartCode=inDepart;
+    });
+    this.storage.get(BASIC_ENTITY).then((dicList: DicBasicEntity[]) => {
+      this.dicEntityCode=dicList;
+    });
+    this.storage.get(UNIT).then((dicList: DicComplex[]) => {
+      this.dicUnitCode=dicList;
+    });
+    this.storage.get(USED_ASPECT).then((dicList: DicComplex[]) => {
+      this.dicUsedAspect=dicList;
+    });
+    this.storage.get(APPLY_CODE).then((dicList: DicComplex[]) => {
+      this.dicApplyCode=dicList;
+    });
+    this.storage.get(USED_STATE).then((dicList: DicComplex[]) => {
+      this.dicUsedState=dicList;
+    });
+    this.storage.get(DEPOSITARY).then((dicList: DicComplex[]) => {
+      this.dicStorePlace=dicList;
+    });
+
+    this.storage.get(SPECIAL_LINE).then((dicList: DicComplex[]) => {
+      this.dicSpecialLine=dicList;
+    });
     this.getShowItem();
   }
 
