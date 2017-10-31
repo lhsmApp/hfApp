@@ -78,8 +78,8 @@ export class ChoiceApproversPage {
   ok(){
     if(this.list!=null && this.list.length>0){
       console.log(this.list);
-      let data: ReviewProcessMain[] = [];
-      let itemAdd: ReviewProcessMain = new ReviewProcessMain();
+      let data = new Array<ReviewProcessMain>();
+      let itemAdd = new ReviewProcessMain();
       itemAdd.userId = "";
       for(let each of this.list){
         itemAdd.reviewType = each.reviewType;
@@ -119,10 +119,8 @@ export class ChoiceApproversPage {
         return;
       }
       data.push(itemAdd);
-      console.log("list:"); console.log(this.list);
-      console.log("data:"); console.log(data);
       //billNumber:string,reviewType:string,data:object[]
-      this.approvalService.sendReviewPay(this.billNumber,this.reviewType,data)
+      this.approvalService.sendReviewPay(this.billNumber,this.reviewType,JSON.stringify(data))
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
