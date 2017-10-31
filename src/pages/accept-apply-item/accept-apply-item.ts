@@ -193,8 +193,21 @@ export class AcceptApplyItemPage {
         alert.present();
         return;
       }
-      this.navCtrl.push(Page_ChoiceApproversPage, {BillNumberCode: this.billNumber,BillReviewType:ReviewType[ReviewType.BASICACCEPTANCE_APPLY]});
+      console.log("ReviewType：" + ReviewType[ReviewType.BASICACCEPTANCE_APPLY]);
+      this.navCtrl.push(Page_ChoiceApproversPage, {callback:this.checkRefresh,BillNumberCode: this.billNumber,'reviewType':ReviewType[ReviewType.BASICACCEPTANCE_APPLY]});
   }
+
+  //回调
+  checkRefresh = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+          
+      }
+      resolve();
+    });
+  };
   
   //资产明细
   toAssetDetail(){

@@ -183,16 +183,16 @@ export class AcceptApplyInfoPage {
 
   send(){
     console.log("ReviewType：" + ReviewType[ReviewType.BASICACCEPTANCE_APPLY]);
-      this.navCtrl.push(Page_ChoiceApproversPage, {callback:this.saveSend,BillNumberCode: this.billNumber,'reviewType':ReviewType[ReviewType.BASICACCEPTANCE_APPLY]});
+      this.navCtrl.push(Page_ChoiceApproversPage, {callback:this.checkRefresh,BillNumberCode: this.billNumber,'reviewType':ReviewType[ReviewType.BASICACCEPTANCE_APPLY]});
   }
 
   //回调
-  saveSend = (data) =>
+  checkRefresh = (data) =>
   {
     return new Promise((resolve, reject) => {
       console.log(data);
       if(data){
-          this.getShowItem();
+          
       }
       resolve();
     });
