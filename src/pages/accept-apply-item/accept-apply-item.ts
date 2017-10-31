@@ -231,17 +231,21 @@ export class AcceptApplyItemPage {
 
   //选择合同
   choiceContract(){
-    let modal = this.modalCtrl.create(Page_ContractChoiceListPage);
-    modal.present();
-    modal.onDidDismiss(contractInfo => {
-      console.log(contractInfo);
-      if(contractInfo){
-          this.itemShow.contractCode = contractInfo.contractCode;
-          this.itemShow.contractName = contractInfo.contractName;
-          this.itemShow.elementCode = contractInfo.elementCode;
-          this.itemShow.elementName = contractInfo.elementName;
+      this.navCtrl.push(Page_ContractChoiceListPage,  {callback: this.choiceOk});
+  }
+
+  choiceOk = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+          this.itemShow.contractCode = data.contractCode;
+          this.itemShow.contractName = data.contractName;
+          this.itemShow.elementCode = data.elementCode;
+          this.itemShow.elementName = data.elementName;
           this.FromPatchValue();
       }
+      resolve();
     });
   }
 

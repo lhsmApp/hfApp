@@ -29,12 +29,14 @@ import {BillContractCode} from '../../providers/TransferFeildName';
 export class ContractChoiceListPage {
     listAll:ContractMain[];
     list:ContractMain[];
+  callback :any;
 
   constructor(public navCtrl: NavController, 
               public alertCtrl: AlertController,
               public navParams: NavParams,
               private viewCtrl: ViewController,
               public contractService:ContractService) {
+    this.callback    = this.navParams.get('callback');
     //this.listAll = [];
     //this.list = [];
   }
@@ -131,7 +133,8 @@ export class ContractChoiceListPage {
 
   //选择合同
   selectContract(selectItem){
-    this.viewCtrl.dismiss(selectItem);
+      this.callback(selectItem).then(()=>{ this.navCtrl.pop() });
+    //this.viewCtrl.dismiss(selectItem);
     //this.navCtrl.pop();
   }
 }
