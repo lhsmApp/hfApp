@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,ToastController  } from 'ionic-angular';
 import {Storage} from "@ionic/storage";
 import { AdvancePaymentDetail} from '../../model/advance-payment-detail';
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
@@ -14,6 +14,7 @@ import { PAYMENT_CATEGORY} from '../../enums/enums';
 import { DictUtil} from '../../providers/dict-util';
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import { ReviewType} from '../../enums/review-type';
+import {ApprovalService} from '../../services/approvalService';
 
 /**
  * Generated class for the AdvancePaymentInfoPage page.
@@ -54,9 +55,13 @@ export class AdvancePaymentInfoPage {
   approvalState:string;
   hasApprovalProgress=false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    public toastCtrl:ToastController,
     private storage: Storage,
     private paymentService:PaymentService,
+    private approvalService:ApprovalService,
     private dictUtil:DictUtil) {
     this.paymentMain=this.navParams.get("paymentItem");
     this.callback    = this.navParams.get('callback');
@@ -69,6 +74,7 @@ export class AdvancePaymentInfoPage {
   }
 
   ionViewDidLoad() {
+    this.sendSuccess=false;
     this.payCode=this.navParams.get('id');
     this.isapproval=this.navParams.get('approval');
 
@@ -131,13 +137,55 @@ export class AdvancePaymentInfoPage {
         text: '不通过',
         cssClass:'alertButtionNo',
         handler: data => {
-          console.log(data);
+          this.approvalService.vetoReview(this.paymentDetail.payCode,ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT],data.title)
+          .subscribe(object => {
+            let resultBase:ResultBase=object[0] as ResultBase;
+            if(resultBase.result=='true'){
+              this.sendSuccess=true;
+              let toast = this.toastCtrl.create({
+                message: resultBase.message,
+                duration: 3000
+              });
+              toast.present();
+            } else {
+                let alert = this.alertCtrl.create({
+                  title: '提示!',
+                  subTitle: resultBase.message,
+                  buttons: ['确定']
+                });
+                alert.present();
+            }
+          }, () => {
+            
+          });
         }
       });
     prompt.addButton({
       text: '通过',
       cssClass:'alertButtionYes',
       handler: data => {
+        console.log(data);
+        this.approvalService.auditReview(this.paymentDetail.payCode,ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT],data.title)
+        .subscribe(object => {
+          let resultBase:ResultBase=object[0] as ResultBase;
+          if(resultBase.result=='true'){
+            this.sendSuccess=true;
+            let toast = this.toastCtrl.create({
+              message: resultBase.message,
+              duration: 3000
+            });
+            toast.present();
+          } else {
+              let alert = this.alertCtrl.create({
+                title: '提示!',
+                subTitle: resultBase.message,
+                buttons: ['确定']
+              });
+              alert.present();
+          }
+        }, () => {
+          
+        });
       }
     });
     prompt.present();
