@@ -121,13 +121,25 @@ export class AdvancePaymentApplyListPage {
 
   //增加
   add(){
-  	this.navCtrl.push("AdvancePaymentApplyPage");
+  	this.navCtrl.push("AdvancePaymentApplyPage",{callback:this.saveSend});
   }
 
   //编辑
   edit(item: AdvancePaymentMain){
-	  this.navCtrl.push("AdvancePaymentApplyPage",{"paymentItem":item});
+	  this.navCtrl.push("AdvancePaymentApplyPage",{callback:this.saveSend,"paymentItem":item});
   }
+
+  //回调
+  saveSend = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+          this.getList();
+      }
+      resolve();
+    });
+  };
 
   //删除
   delete(item:AdvancePaymentMain){

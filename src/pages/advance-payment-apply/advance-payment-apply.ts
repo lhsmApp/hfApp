@@ -56,6 +56,8 @@ export class AdvancePaymentApplyPage {
   listPayDept : DicInDepart;
   listIntercourse : DicOutDepart;
   gclListInfo:BillOfWorkMain[]=[];
+  callback :any;
+  sendSuccess=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private viewCtrl: ViewController,
@@ -70,7 +72,7 @@ export class AdvancePaymentApplyPage {
       phone: [, [Validators.required, Validators.pattern('1[0-9]{10}')]],
       password: [, [Validators.required]]
     })*/
-
+    this.callback    = this.navParams.get('callback');
     this.paymentMain=this.navParams.get("paymentItem");
     this.oper=this.navParams.get('oper');
     this.paymentForm = this.formBuilder.group({
@@ -150,6 +152,7 @@ export class AdvancePaymentApplyPage {
   }
 
   ionViewDidLoad() {
+    this.sendSuccess=false;
     //console.log('ionViewDidLoad AdvancePaymentApplyPage');
     this.storage.get(IN_DEPART).then((inDepart: DicInDepart) => {
       this.listPayDept=inDepart;
@@ -318,7 +321,37 @@ export class AdvancePaymentApplyPage {
   //送审
   send(){
     console.log('reviewType：' + ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]);
-    this.navCtrl.push('ChoiceApproversPage',{BillNumberCode:this.paymentDetail.payCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]});
+    let payCode=this.paymentForm.get('payCode')._value;
+    if(!(payCode!=null&&payCode.trim()!="")){
+        let alert = this.alertCtrl.create({
+          title: '提示!',
+          subTitle: '请先保存付款信息，再进行送审!',
+          buttons: ['确定']
+        });
+        alert.present();
+        return;
+      }
+    this.navCtrl.push('ChoiceApproversPage',{callback:this.saveSend,BillNumberCode:this.paymentDetail.payCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]});
+  }
+
+  //回调
+  saveSend = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+          //this.getShowItem();
+          this.sendSuccess=true;
+      }
+      resolve();
+    });
+  };
+
+  goBack(){
+    console.log('back');
+    if(this.sendSuccess){
+      this.callback(true).then(()=>{ this.navCtrl.pop() });
+    }
   }
 
   //款项类别变化
