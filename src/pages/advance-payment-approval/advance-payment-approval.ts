@@ -83,8 +83,20 @@ export class AdvancePaymentApprovalPage {
 
   //打开详情页
   openPage(item: AdvancePaymentMain) {
-    this.navCtrl.push("AdvancePaymentInfoPage",{"paymentItem":item,approval:true});
+    this.navCtrl.push("AdvancePaymentInfoPage",{callback:this.saveSend,"paymentItem":item,approval:true});
   }
+
+  //回调
+  saveSend = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+          this.getList();
+      }
+      resolve();
+    });
+  };
 
   //上拉刷新
   doRefresh(refresher) {

@@ -31,7 +31,7 @@ export class AttachmentInfoPage {
   type:string;//1.合同 2.发票 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl:AlertController, private attachmentService:AttachmentService) {
-  	this.attachmentList=ATTACHMENT_LIST;
+  	//this.attachmentList=ATTACHMENT_LIST;
     this.billNumber=this.navParams.get('billNumber');
     this.contractCode=this.navParams.get('contractCode');
     this.type=this.navParams.get('type');
@@ -43,7 +43,7 @@ export class AttachmentInfoPage {
   }
 
   ionViewDidLoad() {
-    //this.getList();
+    this.getList();
   }
 
   //获取附件列表信息

@@ -35,7 +35,7 @@ export class AttachmentPage {
     private modalCtrl: ModalController,
     private alertCtrl:AlertController,
     private attachmentService:AttachmentService) {
-  	this.attachmentList=ATTACHMENT_LIST;
+  	//this.attachmentList=ATTACHMENT_LIST;
     this.billNumber=this.navParams.get('billNumber');
     this.contractCode=this.navParams.get('contractCode');
     this.type=this.navParams.get('type');
@@ -47,7 +47,7 @@ export class AttachmentPage {
   }
 
   ionViewDidLoad() {
-    //this.getList();
+    this.getList();
   }
 
   //获取附件列表信息

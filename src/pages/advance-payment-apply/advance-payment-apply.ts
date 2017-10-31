@@ -172,9 +172,7 @@ export class AdvancePaymentApplyPage {
 
   //选择合同
   choiceContract(){
-    console.log(this.paymentForm.get('paymentCode'));
-    //this.navCtrl.push(Page_ContractChoiceListPage);
-    let modal = this.modalCtrl.create(Page_ContractChoiceListPage);
+    /*let modal = this.modalCtrl.create(Page_ContractChoiceListPage);
     modal.present();
     modal.onDidDismiss(contractInfo => {
       console.log(contractInfo);
@@ -190,6 +188,25 @@ export class AdvancePaymentApplyPage {
           costMoney:contractInfo.contractMoney
         });
       }
+    });*/
+    this.navCtrl.push(Page_ContractChoiceListPage,  {callback: this.choiceOk});
+  }
+
+  choiceOk = (contractInfo) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(contractInfo);
+      if(contractInfo){
+          this.paymentForm.patchValue({
+          contractCode:contractInfo.contractCode,
+          contractName:contractInfo.contractName,
+          //elementType:contractInfo.elementCode,
+          elementName:contractInfo.elementName,
+          planType:contractInfo.compactType,
+          costMoney:contractInfo.contractMoney
+        });
+      }
+      resolve();
     });
   }
 
