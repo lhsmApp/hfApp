@@ -24,6 +24,7 @@ import {ResultBase} from "../../model/result-base";
 })
 export class AttachmentPage {
 
+  title:string;
   attachmentList:Attachment[];
   billNumber:string;
   contractCode :string;
@@ -38,6 +39,11 @@ export class AttachmentPage {
     this.billNumber=this.navParams.get('billNumber');
     this.contractCode=this.navParams.get('contractCode');
     this.type=this.navParams.get('type');
+    if(this.type=='1'){
+      this.title='合同附件';
+    }else if(this.type=='2'){
+      this.title='发票附件';
+    }
   }
 
   ionViewDidLoad() {

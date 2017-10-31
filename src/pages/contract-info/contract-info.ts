@@ -102,7 +102,7 @@ export class ContractInfoPage {
 
   //附件
   attachment(){
-  	this.navCtrl.push("AttachmentInfoPage");
+  	this.navCtrl.push("AttachmentInfoPage",{'billNumber':this.contractDetailInfo.contractCode,'contractCode':'','type':'1'});
   }
 
 }

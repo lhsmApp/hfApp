@@ -20,6 +20,8 @@ import { BillOfWorkMain} from '../../model/billof-work-main';
 import { BillOfWorkDetail} from '../../model/billof-work-detail';
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import { ReviewType} from '../../enums/review-type';
+import { Utils } from '../../providers/Utils';
+import {GlobalData} from "../../providers/GlobalData";
 
 /**
  * Generated class for the AdvancePaymentApplyPage page.
@@ -65,7 +67,8 @@ export class AdvancePaymentApplyPage {
               private formBuilder: FormBuilder,
               private modalCtrl: ModalController,
               private paymentService:PaymentService,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              private globalData: GlobalData) {
   	/*this.paymentForm = this.formBuilder.group({
       username: [, [Validators.required, Validators.pattern('[(\u4e00-\u9fa5)0-9a-zA-Z\_\s@]+')]],
       verificationCode: [, [Validators.required, Validators.minLength(6), Validators.pattern('1[0-9]{6}')]],
@@ -146,9 +149,12 @@ export class AdvancePaymentApplyPage {
         }, () => {
           
         });
+      }else{
+        this.paymentForm.patchValue({
+          requireDate:Utils.dateFormat(new Date()),
+          requireUser:this.globalData.userName
+        });
       }
-
-      
   }
 
   ionViewDidLoad() {

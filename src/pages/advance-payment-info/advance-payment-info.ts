@@ -12,6 +12,8 @@ import {DicInDepart} from '../../model/dic-in-depart';
 import {DicOutDepart} from '../../model/dic-out-depart';
 import { PAYMENT_CATEGORY} from '../../enums/enums';
 import { DictUtil} from '../../providers/dict-util';
+import {BillNumberCode} from '../../providers/TransferFeildName';
+import { ReviewType} from '../../enums/review-type';
 
 /**
  * Generated class for the AdvancePaymentInfoPage page.
@@ -47,12 +49,23 @@ export class AdvancePaymentInfoPage {
   paymentCategory=PAYMENT_CATEGORY;
   listPayDept : DicInDepart[];
   listIntercourse : DicOutDepart[];
+  callback :any;
+  sendSuccess=false;
+  approvalState:string;
+  hasApprovalProgress=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
     private storage: Storage,
     private paymentService:PaymentService,
     private dictUtil:DictUtil) {
     this.paymentMain=this.navParams.get("paymentItem");
+    this.callback    = this.navParams.get('callback');
+    this.approvalState=this.navParams.get('approvalState');
+    if(this.approvalState=='2'||this.approvalState=='3'||this.approvalState=='4'){
+      this.hasApprovalProgress=true;
+    }else{
+      this.hasApprovalProgress=false;
+    }
   }
 
   ionViewDidLoad() {
@@ -142,6 +155,33 @@ export class AdvancePaymentInfoPage {
 
   //送审
   send(){
-    this.navCtrl.push('ChoiceApproversPage');
+    this.navCtrl.push('ChoiceApproversPage',{callback:this.saveSend,BillNumberCode:this.paymentDetail.payCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]});
+  }
+
+  //回调
+  saveSend = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+          //this.getShowItem();
+          this.sendSuccess=true;
+      }
+      resolve();
+    });
+  };
+
+  goBack(){
+    console.log('back');
+    if(this.sendSuccess){
+      this.callback(true).then(()=>{ this.navCtrl.pop() });
+    }else{
+      this.navCtrl.pop();
+    }
+  }
+
+  //审批进度
+  approvalProgress(){
+    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.paymentDetail.payCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]});
   }
 }

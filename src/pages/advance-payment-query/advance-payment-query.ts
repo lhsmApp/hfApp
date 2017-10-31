@@ -85,7 +85,7 @@ import { QueryCondition } from '../../model/query-condition';
   //打开详情页
   openPage(item: AdvancePaymentMain) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("AdvancePaymentInfoPage",{"paymentItem":item});
+  	this.navCtrl.push("AdvancePaymentInfoPage",{"paymentItem":item,'approvalState':this.queryCondition.state});
   }
 
   //上拉刷新

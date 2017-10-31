@@ -64,7 +64,7 @@ export class AdvancePaymentApplyListPage {
   //打开详情页
   openPage(item: AdvancePaymentMain) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("AdvancePaymentInfoPage",{"paymentItem":item});
+  	this.navCtrl.push("AdvancePaymentInfoPage",{callback:this.saveSend,"paymentItem":item});
   }
 
   //上拉刷新
