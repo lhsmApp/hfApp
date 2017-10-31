@@ -85,5 +85,8 @@
             <ion-item-divider color="light"></ion-item-divider>
             <ion-item (click)='toAssetDetail()'>资产明细 <ion-icon name="more" item-end></ion-icon></ion-item>
             <ion-item-divider color="light"></ion-item-divider>
+        <ion-item-divider *ngIf="hasApprovalProgress" color="light"></ion-item-divider>
+        <ion-item *ngIf="hasApprovalProgress" (click)='approvalProgress()'>审批进度 <ion-icon name="more" item-end>
+        </ion-icon></ion-item>
 	</ion-item-group>
 </ion-content>

@@ -13,6 +13,7 @@ import {TransferFundsType} from '../../enums/enums';
 import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
+import {BillApprovalState} from '../../providers/TransferFeildName';
 
 import {Page_AssetDetailsListInfoPage} from '../../providers/TransferFeildName';
 import {TypeView,TypeView_TransferFunds} from '../../providers/TransferFeildName';
@@ -53,6 +54,8 @@ export class TransferFundsInfoPage {
   itemShow:TransferFundsDetail;
   callback :any;
   isBackRefrash=false;
+  hasApprovalProgress=false;
+  approvalState:string;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -71,6 +74,12 @@ export class TransferFundsInfoPage {
   	this.translateCode = this.navParams.get(BillNumberCode);
     this.callback    = this.navParams.get('callback');
     this.isBackRefrash=false;
+    this.approvalState=this.navParams.get(BillApprovalState);
+    if(this.approvalState=='2'||this.approvalState=='3'||this.approvalState=='4'){
+      this.hasApprovalProgress=true;
+    }else{
+      this.hasApprovalProgress=false;
+    }
   }
 
   ionViewDidLoad() {
@@ -191,6 +200,11 @@ export class TransferFundsInfoPage {
     }else{
       this.navCtrl.pop();
     }
+  }
+
+  //审批进度
+  approvalProgress(){
+    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.translateCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]});
   }
 
 }
