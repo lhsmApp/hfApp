@@ -27,9 +27,11 @@ export const ItemTranfer = 'ItemTranfer';
 export const BillElementCode = 'BillElementCode';
 //送审类型
 export const BillReviewType = 'reviewType';
+//
+export const BillApprovalState = 'approvalState';
 
 //页面
-//验收申请：查看、审批 BillNumberCode title oper:Oper_Look、Oper_Add、Oper_Edit、Oper_Approval
+//验收申请：查看、审批 BillNumberCode title oper:Oper_Look、Oper_Add、Oper_Edit、Oper_Approval BillApprovalState
 export const Page_AcceptApplyInfoPage = 'AcceptApplyInfoPage';
 //验收申请：添加、编辑、送审 BillNumberCode oper:Oper_Add、Oper_Edit
 export const Page_AcceptApplyItemPage = 'AcceptApplyItemPage';
@@ -53,7 +55,7 @@ export const Page_AssetDetailsItemPage = 'AssetDetailsItemPage';
 //项目单元详情查看： BillElementCode Oper:Oper_Look
 export const Page_ProjInfoPage = 'ProjInfoPage';
 
-//转资审批：Oper,Oper_Look、Oper_Approval Title BillNumberCode TypeView:TypeView_TransferFunds
+//转资审批：Oper,Oper_Look、Oper_Approval Title BillNumberCode TypeView:TypeView_TransferFunds BillApprovalState
 export const Page_TransferFundsInfoPage = 'TransferFundsInfoPage';
 
 //公告 ItemTranfer Oper:Oper_Look

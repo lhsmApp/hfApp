@@ -9,6 +9,7 @@ import {Page_AcceptApplyInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
+import {BillApprovalState} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AcceptQueryListPage page.
@@ -120,7 +121,7 @@ export class AcceptQueryListPage {
   }
 
     toDetail(billNumber: string) {
-        this.navCtrl.push(Page_AcceptApplyInfoPage, {BillNumberCode: billNumber,Oper:Oper_Look,Title:'验收查询'});
+        this.navCtrl.push(Page_AcceptApplyInfoPage, {BillNumberCode: billNumber,Oper:Oper_Look,Title:'验收查询',BillApprovalState:this.queryCondition.state});
     }
 
 }

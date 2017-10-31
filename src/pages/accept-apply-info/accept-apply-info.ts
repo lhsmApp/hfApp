@@ -17,6 +17,7 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
 import {Page_AssetDetailsListInfoPage,Page_ChoiceApproversPage } from '../../providers/TransferFeildName';
 import {TypeView,TypeView_AcceptApply} from '../../providers/TransferFeildName';
 import {BillReviewType} from '../../providers/TransferFeildName';
+import {BillApprovalState} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AcceptApplyInfoPage page.
@@ -52,6 +53,8 @@ export class AcceptApplyInfoPage {
   listDept: DicInDepart[];
   callback :any;
   isBackRefrash=false;
+  hasApprovalProgress=false;
+  approvalState:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController,
@@ -73,6 +76,12 @@ export class AcceptApplyInfoPage {
   	this.billNumber = this.navParams.get(BillNumberCode);
     this.callback    = this.navParams.get('callback');
     this.isBackRefrash=false;
+    this.approvalState=this.navParams.get(BillApprovalState);
+    if(this.approvalState=='2'||this.approvalState=='3'||this.approvalState=='4'){
+      this.hasApprovalProgress=true;
+    }else{
+      this.hasApprovalProgress=false;
+    }
     //this.listDept = listDeptGet;
   }
 
@@ -212,6 +221,11 @@ export class AcceptApplyInfoPage {
     }else{
       this.navCtrl.pop();
     }
+  }
+
+  //审批进度
+  approvalProgress(){
+    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.billNumber,'reviewType':ReviewType[ReviewType.BASICACCEPTANCE_APPLY]});
   }
 
 }

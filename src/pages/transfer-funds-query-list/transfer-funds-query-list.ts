@@ -11,6 +11,7 @@ import {Page_TransferFundsInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
+import {BillApprovalState} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the TransferFundsQueryListPage page.
@@ -128,7 +129,7 @@ export class TransferFundsQueryListPage {
   }
 
     toDetail(translateCode: string) {
-        this.navCtrl.push(Page_TransferFundsInfoPage, {Oper:Oper_Look,Title:'转资查询',BillNumberCode: translateCode});
+        this.navCtrl.push(Page_TransferFundsInfoPage, {Oper:Oper_Look,Title:'转资查询',BillNumberCode: translateCode,BillApprovalState:this.queryCondition.state});
     }
 
 }
