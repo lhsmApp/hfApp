@@ -6,14 +6,22 @@ import {AcceptService} from '../../services/acceptService';
 import {ApprovalService} from '../../services/approvalService';
 import {ResultBase} from "../../model/result-base";
 import {ReviewType} from '../../enums/review-type';
+import {IN_DEPART} from "../../enums/storage-type";
+import {UNIT} from "../../enums/storage-type";
+import {SPECIAL_LINE} from "../../enums/storage-type";
+import {DEPOSITARY} from "../../enums/storage-type";
+//import {} from "../../enums/storage-type";
+import {USED_STATE} from "../../enums/storage-type";
+import {APPLY_CODE} from "../../enums/storage-type";
+import {DicInDepart} from '../../model/dic-in-depart';
+import {DictUtil} from '../../providers/dict-util';
+import {Storage} from "@ionic/storage";
+import {DicComplex} from '../../model/dic-complex';
 
 import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillKeyCode} from '../../providers/TransferFeildName';
-
-import {Page_AssetDetailsListInfoPage } from '../../providers/TransferFeildName';
-import {TypeView,TypeView_AcceptApply} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the TransferAdjustInfoPage page.
@@ -73,22 +81,33 @@ export class TransferAdjustInfoPage {
   callback :any;
   isBackRefrash=false;
 
+    dicAssetsCodeType: string;//资产类别"
+  DicDepartCode: DicInDepart[];//所属单位"
+  dicUnitCode: DicComplex[];//计量单位"
+  dicApplyCode: DicComplex[];//取得方式"
+  dicUsedState: DicComplex[];//使用状况"
+  dicStorePlace: DicComplex[];//存放地点""
+    dicUserPerson: string;//保管人"
+  dicSpecialLine: DicComplex[];//技术鉴定部门"
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private formBuilder: FormBuilder,
               public alertCtrl: AlertController,
+              private storage: Storage,
+              private dictUtil:DictUtil,
               public acceptService:AcceptService,
               public approvalService:ApprovalService) {
     this.itemShow = new TransferAdjustDetail();
     this.isShow = false;
-    this.title = this.navParams.get("title");
-  	this.oper = this.navParams.get("oper");
+    this.title = this.navParams.get(Title);
+  	this.oper = this.navParams.get(Oper);
     if(this.oper === Oper_Approval){
         this.isShow = true;
     }
   	this.billNumber = this.navParams.get(BillNumberCode);
     this.billKeyCode = this.navParams.get(BillKeyCode);
-    this.callback    = this.navParams.get('callback');
+    this.callback = this.navParams.get('callback');
     this.isBackRefrash=false;
   }
 
@@ -96,6 +115,25 @@ export class TransferAdjustInfoPage {
     console.log('ionViewDidLoad TransferAdjustInfoPage');
     this.isBackRefrash=false;
     this.itemShow = new TransferAdjustDetail();
+    this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
+      this.DicDepartCode=inDepart;
+    });
+    this.storage.get(UNIT).then((dicList: DicComplex[]) => {
+      this.dicUnitCode=dicList;
+    });
+    this.storage.get(APPLY_CODE).then((dicList: DicComplex[]) => {
+      this.dicApplyCode=dicList;
+    });
+    this.storage.get(USED_STATE).then((dicList: DicComplex[]) => {
+      this.dicUsedState=dicList;
+    });
+    this.storage.get(DEPOSITARY).then((dicList: DicComplex[]) => {
+      this.dicStorePlace=dicList;
+    });
+
+    this.storage.get(SPECIAL_LINE).then((dicList: DicComplex[]) => {
+      this.dicSpecialLine=dicList;
+    });
     this.getShowItem();
   }
 
@@ -108,6 +146,14 @@ export class TransferAdjustInfoPage {
           this.list = object[1] as TransferAdjustDetail[];
           if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
+              //this.itemShow.assetsCodeTypeName = this.dictUtil.(this.,);//资产类别"
+              this.itemShow.departCodeName = this.dictUtil.getInDepartName(this.DicDepartCode,this.itemShow.departCode);//所属单位"
+              this.itemShow.unitCodeName = this.dictUtil.getUnitName(this.dicUnitCode,this.itemShow.unitCode);//计量单位"
+              this.itemShow.applyCodeName = this.dictUtil.getApplyCodeName(this.dicApplyCode,this.itemShow.applyCode);//取得方式"
+              this.itemShow.usedStateName = this.dictUtil.getUsedStateName(this.dicUsedState,this.itemShow.usedState);//使用状况"
+              this.itemShow.storePlaceName = this.dictUtil.getDepositaryName(this.dicStorePlace,this.itemShow.storePlace);//存放地点""
+              //this.itemShow.userPersonName = this.dictUtil.(this.,);//保管人"
+              this.itemShow.specialLineName = this.dictUtil.getSpecialLineName(this.dicSpecialLine,this.itemShow.specialLine);//技术鉴定部门"
           }
         } else {
             let alert = this.alertCtrl.create({
@@ -122,11 +168,6 @@ export class TransferAdjustInfoPage {
       });
     //this.itemShow = item;
   }
-  
-  //资产明细
-  //toAssetDetail(){
-  //  this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.billNumber, BillContractCode:"", TypeView:TypeView_AcceptApply});
-  //}
 
   check(){
     let prompt = this.alertCtrl.create({

@@ -177,14 +177,15 @@ export class AcceptService {
  转资调整
  */
   //转资调整单明细列表-----basic_tz_cost 转资调整明细表
-  getTzCostMainList(type:string, feeFlag:string, translateCode:string): Observable<(Object)> {
+  getTzCostMainList(type:string, feeFlag:string, translateCode:string, sequence:string): Observable<(Object)> {
     console.log('转资调整单明细列表'+this.globalData.sessionId);
     let param = {
      'action': 'queryListPhonebasicTzCost',
      'sessionid': this.globalData.sessionId,
-      'type': type,//  1.申请 2.查询 3.审批
+     'type': type,//  1.申请明细(没有) 2.查询明细 3.审批明细
      'feeFlag': feeFlag,//  是否已分摊费用 0否 1是
      'translateCode': translateCode,//”转资单号”
+     'sequence': sequence,// 转资序号
      };
      return this.httpService.get('phoneBasicTranslateVoucher.do', param).map((res: Response) => res.json());
   }

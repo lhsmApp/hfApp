@@ -35,7 +35,7 @@
         <ion-item>
             <ion-row>
                 <ion-col col-4><span class='color-label'>资产类型：</span></ion-col>
-                <ion-col col-8><span text-left>{{itemShow.assetsType}}</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.assetsTypeName}}</span></ion-col>
             </ion-row>
         </ion-item>
         <!--<ion-item>
@@ -188,9 +188,29 @@
                 <ion-col col-8><span text-left>{{itemShow.devalueValue}}</span></ion-col>
             </ion-row>
         </ion-item>
-            <!-- 资产明细 -->
-            <!-- <ion-item-divider color="light"></ion-item-divider>
-            <ion-item (click)='toAssetDetail()'>资产明细 <ion-icon name="more" item-end></ion-icon></ion-item>
-            <ion-item-divider color="light"></ion-item-divider> -->
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>资产键码：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.keyCode}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>调整原值：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.tzOriginalValue}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>调整净值：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.tzNowValue}}</span></ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-row>
+                <ion-col col-4><span class='color-label'>调整累计折旧：</span></ion-col>
+                <ion-col col-8><span text-left>{{itemShow.tzDepreciateValue}}</span></ion-col>
+            </ion-row>
+        </ion-item>
     </ion-item-group>
 </ion-content>

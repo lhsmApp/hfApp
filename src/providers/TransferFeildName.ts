@@ -66,8 +66,10 @@ export const Page_ScheduleApplyInfoPage = 'ScheduleApplyInfoPage';
 //进度管理申请 BillElementCode oper:Oper_Add、Oper_Edit
 export const Page_ScheduleApplyItemPage = 'ScheduleApplyItemPage';
 
-//转资调整审批 BillNumberCode BillKeyCode
+//转资调整审批 BillNumberCode BillKeyCode oper:Oper_Approval Title
 export const Page_TransferAdjustInfoPage = 'TransferAdjustInfoPage';
+//转资调整审批 oper:Oper_Approval Title ItemTranfer
+export const Page_TransferAdjustDetailListPage = 'TransferAdjustDetailListPage';
 
 //选择审批人 BillNumberCode BillReviewType
 export const Page_ChoiceApproversPage = 'ChoiceApproversPage';

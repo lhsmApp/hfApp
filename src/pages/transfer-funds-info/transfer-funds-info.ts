@@ -74,7 +74,7 @@ export class TransferFundsInfoPage {
   	this.translateCode = this.navParams.get(BillNumberCode);
     this.callback    = this.navParams.get('callback');
     this.isBackRefrash=false;
-    this.approvalState=this.navParams.get(BillApprovalState);
+    this.approvalState=this.navParams.get('approvalState');
     if(this.approvalState=='2'||this.approvalState=='3'||this.approvalState=='4'){
       this.hasApprovalProgress=true;
     }else{

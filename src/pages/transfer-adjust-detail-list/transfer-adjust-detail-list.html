@@ -1,31 +1,36 @@
 <!--
-  Generated template for the TransferAdjustApprovalListPage page.
+  Generated template for the TransferAdjustDetailListPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
-  <ion-navbar color="dark">
-    <ion-title>转资调整审批</ion-title>
+  <ion-navbar color="dark" hideBackButton="true">
+    
+    <ion-buttons left>
+      <button ion-button icon-only (click)="goBack()">
+          <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-    <ion-searchbar (ionInput)="getItems($event)" placeholder="输入编号模糊搜索"></ion-searchbar>
-    
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
     </ion-refresher-content>
   </ion-refresher>
 <ion-list class="list-avatar-page">
   <ion-item *ngFor="let item of list;trackBy:item?.assetsCode" (click)="toDetail(item)">
-        <h2>单据编号：{{item.translateCode}}</h2><!---->
-        <p>项目单元名称：{{item.elementName}}</p><!---->
-        <p>转资金额：{{item.costTotal}}</p><!---->
-        <p>是否分摊费用：{{item.feeFlagName}}</p><!---->
-        <h3 item-end><span item-end [tab]="item"></span></h3><!--单据状态：reviewStatus-->
+        <h2>资产编码：{{item.assetsCode}}</h2>
+        <h3>资产名称：{{item.assetsName}}</h3>
+        <p>所属单位：{{item.departName}}</p>
+        <p>资产键码：{{item.keyCode}}</p>
+        <p>是否分摊费用：{{item.feeFlagName}}</p>
+        <p>转资单号：{{item.translateCode}}</p>
   </ion-item>
 </ion-list>
   <!--<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
