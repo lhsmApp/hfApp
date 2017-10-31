@@ -13,7 +13,7 @@ reviewStatus:" 单据状态"
 */
 
 @Directive({ selector: '[tab]' })
-export class TabTransferFundsApprovalDirective {
+export class TabTransferAdjustApprovalDirective {
   @Input('tab') set topic(topic: any) {
     this.setStyle(topic);
   }

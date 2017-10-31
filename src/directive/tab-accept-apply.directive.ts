@@ -44,9 +44,10 @@ export class TabAcceptApplyDirective {
 
   private getValue(code: string): string {
     for(let item of this.tabMaps) {
-      if (item.code === code) {
+      if (item.code == code) {
         return item.name;
       }
     }
+    return code;
   }
 }

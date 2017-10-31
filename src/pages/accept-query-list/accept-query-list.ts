@@ -120,8 +120,9 @@ export class AcceptQueryListPage {
     }, 500);*/
   }
 
-    toDetail(billNumber: string) {
-        this.navCtrl.push(Page_AcceptApplyInfoPage, {BillNumberCode: billNumber,Oper:Oper_Look,Title:'验收查询',BillApprovalState:this.queryCondition.state});
-    }
+  toDetail(billNumber: string) {
+    console.log(BillApprovalState + ':' + this.queryCondition.state);
+    this.navCtrl.push(Page_AcceptApplyInfoPage, {BillNumberCode: billNumber,Oper:Oper_Look,Title:'验收查询','approvalState':this.queryCondition.state});
+  }
 
 }

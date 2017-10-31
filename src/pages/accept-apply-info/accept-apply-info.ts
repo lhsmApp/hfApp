@@ -74,14 +74,15 @@ export class AcceptApplyInfoPage {
         this.isShowSend = true;
     }
   	this.billNumber = this.navParams.get(BillNumberCode);
-    this.callback    = this.navParams.get('callback');
-    this.isBackRefrash=false;
-    this.approvalState=this.navParams.get(BillApprovalState);
+    this.approvalState=this.navParams.get('approvalState');
+    console.log(BillApprovalState + ':' + this.approvalState);
     if(this.approvalState=='2'||this.approvalState=='3'||this.approvalState=='4'){
       this.hasApprovalProgress=true;
     }else{
       this.hasApprovalProgress=false;
     }
+    this.callback = this.navParams.get('callback');
+    this.isBackRefrash=false;
     //this.listDept = listDeptGet;
   }
 

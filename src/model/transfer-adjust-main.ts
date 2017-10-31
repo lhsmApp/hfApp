@@ -8,4 +8,5 @@ export class TransferAdjustMain {
 
 
     departName: string;//所属单位"
+    feeFlagName: string;//"是否分摊费用"      
 }

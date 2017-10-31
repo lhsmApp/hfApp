@@ -1,76 +1,90 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {TransferFundsMain} from '../../model/transfer-funds-main';
+import {TransferAdjustMain} from '../../model/transfer-adjust-main';
 import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
 import {Storage} from "@ionic/storage";
+import {IN_DEPART} from "../../enums/storage-type";
+import {DicInDepart} from '../../model/dic-in-depart';
 import {DictUtil} from '../../providers/dict-util';
 import {FeeFlag} from '../../enums/enums';
 
-import {Page_TransferAdjustDetailListPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
 import {ItemTranfer} from '../../providers/TransferFeildName';
 
+import {Page_TransferAdjustInfoPage} from '../../providers/TransferFeildName';
+//import {Oper,Oper_Approval} from '../../providers/TransferFeildName';
+//import {Title} from '../../providers/TransferFeildName';
+import {BillNumberCode} from '../../providers/TransferFeildName';
+import {BillKeyCode} from '../../providers/TransferFeildName';
+
+
 /**
- * Generated class for the TransferAdjustApprovalListPage page.
+ * Generated class for the TransferAdjustDetailListPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
-  /*const listGet:TransferFundsMain[] = [
-        { translateCode: "1", assetsCode: 'ZZ0001', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
-        { translateCode: "2", assetsCode: 'ZZ0002', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
-        { translateCode: "3", assetsCode: 'ZZ0003', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
-        { translateCode: "4", assetsCode: 'ZZ0004', assetsName: '2017-09-01', departCode: '单位XXX', keyCode: ''},
-    ];/**/
-
 @IonicPage()
 @Component({
-  selector: 'page-transfer-adjust-approval-list',
-  templateUrl: 'transfer-adjust-approval-list.html',
+  selector: 'page-transfer-adjust-detail-list',
+  templateUrl: 'transfer-adjust-detail-list.html',
 })
-export class TransferAdjustApprovalListPage {
-    listAll:TransferFundsMain[];
-    list:TransferFundsMain[];
+export class TransferAdjustDetailListPage {
+    title:string;
+    oper:string;
+    itemTranfer:TransferFundsMain;
+    
+    listAll:TransferAdjustMain[];
+    listDept: DicInDepart[];
+  callback :any;
+  isBackRefrash=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController,
               private storage: Storage,
               private dictUtil:DictUtil,
               public tzCostService:AcceptService) {
+    this.title = this.navParams.get(Title);
+    this.oper = this.navParams.get(Oper);
+    this.itemTranfer = this.navParams.get(ItemTranfer);
+    this.callback = this.navParams.get('callback');
+    this.isBackRefrash=false;
     //this.listAll = [];
-    //this.list = [];
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TransferAdjustApprovalListPage');
+    console.log('ionViewDidLoad TransferAdjustDetailListPage');
+    this.isBackRefrash=false;
     //this.listAll = [];
-    //this.list = [];
+    this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
+      this.listDept=inDepart;
+    });
     this.getList();
   }
 
   //获取列表信息
   getList() {
     //this.listAll = [];
-    //this.list = [];
     
-    //1.转资申请单据 2. 转资查询3.审批的转资单查询 4.审批的转资调整单查询
-    //" 单据状态" //转资后端字段解释(括号中代表客户端对应字段)、0未提交(新增)、1未审批(待审批) 、2已驳回(退回)、3审批中(待审批)、4已审批(已审批)、若客户端传空的时候则后端查询全部
-    //type:string, feeFlag:string, translateCode:string, startDate:string, endDate:string, reviewStatus:string
-    this.tzCostService.getTranslateVoucherMainList('4','','','','','').subscribe(
+    //type,//  1.申请明细(没有) 2.查询明细 3.审批明细
+    //feeFlag,//  是否已分摊费用 0否 1是
+    //type:string, feeFlag:string, translateCode:string, sequence:string
+    this.tzCostService.getTzCostMainList('3',this.itemTranfer.feeFlag,this.itemTranfer.translateCode,this.itemTranfer.sequence).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
-          this.listAll = object[1] as TransferFundsMain[];
+          this.listAll = object[1] as TransferAdjustMain[];
           if(this.listAll){
             for(let item of this.listAll){
               //"是否分摊费用"  
               item.feeFlagName = this.dictUtil.getEnumsName(FeeFlag,item.feeFlag);
+              item.departName = this.dictUtil.getInDepartName(this.listDept,item.departCode);
             }
           }
-          this.list = this.listAll;
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
@@ -84,24 +98,6 @@ export class TransferAdjustApprovalListPage {
       });
     /*this.listAll = listGet;
     this.list = listGet;*/
-  }
-
-  //模糊查询
-  getItems(ev: any) {
-    // Reset items back to all of the items
-    //this.initializeItems();
-
-    // set val to the value of the searchbar
-    let val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.list = this.listAll.filter((item) => {
-        return (item.translateCode.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    } else {
-      this.list = this.listAll;
-    }
   }
 
   //上拉刷新
@@ -128,8 +124,8 @@ export class TransferAdjustApprovalListPage {
     }, 500);*/
   }
 
-    toDetail(item: TransferFundsMain) {
-        this.navCtrl.push(Page_TransferAdjustDetailListPage, {callback:this.checkRefresh,ItemTranfer: item, Oper:Oper_Approval,Title:'转资调整审批'});
+    toDetail(item: TransferAdjustMain) {
+        this.navCtrl.push(Page_TransferAdjustInfoPage, {callback:this.checkRefresh,BillNumberCode: item.translateCode, BillKeyCode: item.keyCode, Oper:Oper_Approval,Title:'转资调整审批'});
     }
 
   //回调
@@ -138,10 +134,20 @@ export class TransferAdjustApprovalListPage {
     return new Promise((resolve, reject) => {
       console.log(data);
       if(data){
+        this.isBackRefrash=true;
         this.getList();
       }
       resolve();
     });
   };
+
+  goBack(){
+    console.log('back');
+    if(this.isBackRefrash){
+      this.callback(this.isBackRefrash).then(()=>{ this.navCtrl.pop() });
+    }else{
+      this.navCtrl.pop();
+    }
+  }
 
 }

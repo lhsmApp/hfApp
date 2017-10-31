@@ -129,7 +129,7 @@ export class TransferFundsQueryListPage {
   }
 
     toDetail(translateCode: string) {
-        this.navCtrl.push(Page_TransferFundsInfoPage, {Oper:Oper_Look,Title:'转资查询',BillNumberCode: translateCode,BillApprovalState:this.queryCondition.state});
+        this.navCtrl.push(Page_TransferFundsInfoPage, {Oper:Oper_Look,Title:'转资查询',BillNumberCode: translateCode,'approvalState':this.queryCondition.state});
     }
 
 }
