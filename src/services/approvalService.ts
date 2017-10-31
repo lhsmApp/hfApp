@@ -65,7 +65,16 @@ export class ApprovalService {
   }
 
   //审批接口review_process 审批流程表
-  auditReview(billNumber:string,reviewType:string,vetoReason:string): Observable<(Object)> {
+  auditReview(billNumber:string,type:string,vetoReason:string): Observable<(Object)> {
+    let reviewType = "";
+    if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]){
+        reviewType = "付款审批";
+    } else {
+      if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
+        reviewType = "验收申请审批";
+      }
+    }
+    console.log('reviewType: ' + reviewType);
     let param = {
      //必传
      'action': 'auditReview',
@@ -74,11 +83,23 @@ export class ApprovalService {
      'reviewType':reviewType,//审批使用常量名
      'vetoReason': vetoReason,//审批意见
      };
+     console.log('sessionid:' + this.globalData.sessionId);
+     console.log('billNumber:' + billNumber);
+     console.log('vetoReason:' + vetoReason);
      return this.httpService.postMultiFormData('phoneCommon.do', param).map((res: Response) => res.json());
   }
 
   //否决接口review_process 审批流程表
-  vetoReview(billNumber:string,reviewType:string,vetoReason:string): Observable<(Object)> {
+  vetoReview(billNumber:string,type:string,vetoReason:string): Observable<(Object)> {
+    let reviewType = "";
+    if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]){
+        reviewType = "付款审批";
+    } else {
+      if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
+        reviewType = "验收申请审批";
+      }
+    }
+    console.log('reviewType: ' + reviewType);
     let param = {
      //必传
      'action': 'vetoReview',
@@ -87,6 +108,9 @@ export class ApprovalService {
      'reviewType':reviewType,//审批使用常量名
      'vetoReason': vetoReason,//审批意见
      };
+     console.log('sessionid:' + this.globalData.sessionId);
+     console.log('billNumber:' + billNumber);
+     console.log('vetoReason:' + vetoReason);
      return this.httpService.postMultiFormData('phoneCommon.do', param).map((res: Response) => res.json());
   }
 }
