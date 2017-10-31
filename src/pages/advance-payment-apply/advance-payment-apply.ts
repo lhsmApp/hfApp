@@ -351,6 +351,8 @@ export class AdvancePaymentApplyPage {
     console.log('back');
     if(this.sendSuccess){
       this.callback(true).then(()=>{ this.navCtrl.pop() });
+    }else{
+      this.navCtrl.pop();
     }
   }
 
