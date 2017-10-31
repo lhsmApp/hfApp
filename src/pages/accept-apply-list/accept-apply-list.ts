@@ -136,8 +136,8 @@ export class AcceptApplyListPage {
   //回调
   checkRefresh = (data) =>
   {
+    console.log(data);
     return new Promise((resolve, reject) => {
-      console.log(data);
       if(data){
         this.getList();
       }

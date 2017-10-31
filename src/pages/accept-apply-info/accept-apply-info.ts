@@ -77,6 +77,7 @@ export class AcceptApplyInfoPage {
   }
 
   ionViewDidLoad() {
+    console.log("ionViewDidLoad");
     this.isBackRefrash=false;
     this.itemShow = new AcceptApplyDetail();
     this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
@@ -205,6 +206,7 @@ export class AcceptApplyInfoPage {
 
   goBack(){
     console.log('back');
+    console.log(this.isBackRefrash);
     if(this.isBackRefrash){
       this.callback(this.isBackRefrash).then(()=>{ this.navCtrl.pop() });
     }else{

@@ -63,6 +63,7 @@ export class ChoiceApproversPage {
         if(resultBase.result=='true'){
           this.list = object[1] as ReviewProcessMain[];
         } else {
+            this.navCtrl.pop();
             let alert = this.alertCtrl.create({
               title: '提示!',
               subTitle: resultBase.message,
@@ -77,11 +78,19 @@ export class ChoiceApproversPage {
 
   ok(){
     if(this.list!=null && this.list.length>0){
-      console.log(this.list);
       let data = new Array<ReviewProcessMain>();
       let itemAdd = new ReviewProcessMain();
       itemAdd.userId = "";
       for(let each of this.list){
+        if(!(each.userId!=null && each.userId!="")){
+          let alert = this.alertCtrl.create({
+            title: '提示!',
+            subTitle: "请勾选审批序号:" + each.sequence + "记录！",
+            buttons: ['确定']
+          });
+          alert.present();
+          return;
+        }
         itemAdd.reviewType = each.reviewType;
         itemAdd.billNumber = each.billNumber;
         itemAdd.dutySpecial = each.dutySpecial;
@@ -90,23 +99,18 @@ export class ChoiceApproversPage {
         itemAdd.designPosition = each.designPosition;
         itemAdd.departCode = each.departCode;
         itemAdd.reviewPersons = each.reviewPersons;
-    //number:number;//审批岗位表流水号 int
-    //sequence:number;//审批序号 int 
-    //dutyId:string;//岗位编号"                  
-    //dutyName:string;//岗位名称"     
-
-    //current:number;//是否当前审批岗位 int     
-        
-    //result:number;//审批结果int                   
-    //date:string;//审批日期”                     
-    //option:string;//审批意见”    
-
-        if(each.userId!=null && each.userId!=""){
-          if(itemAdd.userId!=null && itemAdd.userId!=""){
+        if(itemAdd.userId!=null && itemAdd.userId!=""){
             itemAdd.userId += '@';
-          }
-          itemAdd.userId += each.userId;
         }
+        itemAdd.userId += each.userId;
+        //number:number;//审批岗位表流水号 int
+        //sequence:number;//审批序号 int 
+        //dutyId:string;//岗位编号"                  
+        //dutyName:string;//岗位名称"     
+        //current:number;//是否当前审批岗位 int    
+        //result:number;//审批结果int                   
+        //date:string;//审批日期”                     
+        //option:string;//审批意见” 
       }
 
       if(!(itemAdd.userId!=null && itemAdd.userId!="")){
