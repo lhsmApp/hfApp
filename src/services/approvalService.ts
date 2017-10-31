@@ -19,7 +19,7 @@ export class ApprovalService {
     let getDo = "";
     if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]){
         action = 'queryUserReviewPay';
-        reviewType = "";
+        reviewType = "付款审批";
         getDo = "phonePaymentRequest.do";
     } else {
       if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
@@ -42,7 +42,15 @@ export class ApprovalService {
   }
 
   //单据送审确认接口- review_process 审批流程表
-  sendReviewPay(billNumber:string,reviewType:string,data:object[]): Observable<(Object)> {
+  sendReviewPay(billNumber:string,type:string,data:object[]): Observable<(Object)> {
+    let reviewType = "";
+    if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]){
+        reviewType = "付款审批";
+    } else {
+      if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
+        reviewType = "验收申请审批";
+      }
+    }
     let param = {
      //必传
      'action': 'sendReviewPay',
