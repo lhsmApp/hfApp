@@ -87,7 +87,8 @@
       </span>
       <ion-item>
         <ion-label fixed>发票日期</ion-label>
-        <ion-input type="text" formControlName="chalanDate"></ion-input>
+        <!-- <ion-input type="text" formControlName="chalanDate"></ion-input> -->
+        <ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY MM DD" formControlName="chalanDate" cancelText="取消" doneText="确定"></ion-datetime>
       </ion-item>
       <span *ngIf="!invoiceForm.controls.chalanDate.valid && invoiceForm.controls.chalanDate.touched"
             class="validation-failed">请输入发票日期

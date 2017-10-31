@@ -21,11 +21,11 @@
 		    <ion-item-divider color="light">单据申请期间</ion-item-divider>
 		    <ion-item>
 		    	<ion-label>开始日期</ion-label>
-				<ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY MM DD" [(ngModel)]="startDate"></ion-datetime>
+				<ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY MM DD" [(ngModel)]="startDate" cancelText="取消" doneText="确定"></ion-datetime>
 		    </ion-item>
 		    <ion-item>
 		    	<ion-label>结束日期</ion-label>
-				<ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY MM DD" [(ngModel)]="endDate"></ion-datetime>
+				<ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY MM DD" [(ngModel)]="endDate" cancelText="取消" doneText="确定"></ion-datetime>
 		    </ion-item>
 		    
 		    <ion-item-divider color="light">单据状态</ion-item-divider>
