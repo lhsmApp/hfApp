@@ -134,7 +134,19 @@ export class TransferAdjustApprovalListPage {
   }
 
     toDetail(item: TransferAdjustMain) {
-        this.navCtrl.push(Page_TransferAdjustInfoPage, {BillNumberCode: item.translateCode, BillKeyCode: item.keyCode, Oper:Oper_Look,Title:'转资调整审批'});
+        this.navCtrl.push(Page_TransferAdjustInfoPage, {callback:this.checkRefresh,BillNumberCode: item.translateCode, BillKeyCode: item.keyCode, Oper:Oper_Look,Title:'转资调整审批'});
     }
+
+  //回调
+  checkRefresh = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+        this.getList();
+      }
+      resolve();
+    });
+  };
 
 }

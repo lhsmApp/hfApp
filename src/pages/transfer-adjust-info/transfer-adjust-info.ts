@@ -70,6 +70,8 @@ export class TransferAdjustInfoPage {
 
   list:TransferAdjustDetail[];
   itemShow:TransferAdjustDetail;
+  callback :any;
+  isBackRefrash=false;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -86,10 +88,13 @@ export class TransferAdjustInfoPage {
     }
   	this.billNumber = this.navParams.get(BillNumberCode);
     this.billKeyCode = this.navParams.get(BillKeyCode);
+    this.callback    = this.navParams.get('callback');
+    this.isBackRefrash=false;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TransferAdjustInfoPage');
+    this.isBackRefrash=false;
     this.itemShow = new TransferAdjustDetail();
     this.getShowItem();
   }
@@ -153,7 +158,7 @@ export class TransferAdjustInfoPage {
           .subscribe(object => {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
-
+              this.isBackRefrash=true;
             } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
@@ -176,7 +181,7 @@ export class TransferAdjustInfoPage {
           .subscribe(object => {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
-
+              this.isBackRefrash=true;
             } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
@@ -191,6 +196,15 @@ export class TransferAdjustInfoPage {
       }
     });
     prompt.present();
+  }
+
+  goBack(){
+    console.log('back');
+    if(this.isBackRefrash){
+      this.callback(this.isBackRefrash).then(()=>{ this.navCtrl.pop() });
+    }else{
+      this.navCtrl.pop();
+    }
   }
 
 }

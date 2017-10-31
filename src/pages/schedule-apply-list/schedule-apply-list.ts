@@ -148,8 +148,20 @@ export class ScheduleApplyListPage {
         this.navCtrl.push(Page_ScheduleApplyItemPage, {BillElementCode: [],Oper:Oper_Add});
     }*/
     edit(elementCode: string){
-        this.navCtrl.push(Page_ScheduleApplyItemPage, {BillElementCode: elementCode,Oper:Oper_Edit});
+        this.navCtrl.push(Page_ScheduleApplyItemPage, {callback:this.checkRefresh,BillElementCode: elementCode,Oper:Oper_Edit});
     }
+
+  //回调
+  checkRefresh = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+        this.getList();
+      }
+      resolve();
+    });
+  };
     /*delete(elementCode: string){
         
     }*/

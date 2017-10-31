@@ -120,18 +120,30 @@ export class AcceptApplyListPage {
   }
 
     toDetail(billNumber: string) {
-        this.navCtrl.push(Page_AcceptApplyInfoPage, {BillNumberCode: billNumber,Oper:Oper_Edit,Title:'验收申请'});
+        this.navCtrl.push(Page_AcceptApplyInfoPage, {callback:this.checkRefresh,BillNumberCode: billNumber,Oper:Oper_Edit,Title:'验收申请'});
     }
 
   //增加
     add(){
-        this.navCtrl.push(Page_AcceptApplyItemPage, {BillNumberCode: '',Oper:Oper_Add});
+        this.navCtrl.push(Page_AcceptApplyItemPage, {callback:this.checkRefresh,BillNumberCode: '',Oper:Oper_Add});
     }
 
   //编辑
   edit(billNumber: string){
-        this.navCtrl.push(Page_AcceptApplyItemPage, {BillNumberCode: billNumber,Oper:Oper_Edit});
+        this.navCtrl.push(Page_AcceptApplyItemPage, {callback:this.checkRefresh,BillNumberCode: billNumber,Oper:Oper_Edit});
   }
+
+  //回调
+  checkRefresh = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+        this.getList();
+      }
+      resolve();
+    });
+  };
 
   //删除
   /*delete(billNumber: string){

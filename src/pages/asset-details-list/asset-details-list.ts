@@ -158,8 +158,21 @@ export class AssetDetailsListPage {
   //	this.navCtrl.push(Page_AssetDetailsAddPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, TypeView:TypeView_AcceptApply});
   //}
   edit(item: AcceptAssetMain){
-    this.navCtrl.push(Page_AssetDetailsItemPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode,ItemTranfer:[],Oper:Oper_Edit});
+    this.navCtrl.push(Page_AssetDetailsItemPage, {callback:this.checkRefresh,BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode,ItemTranfer:[],Oper:Oper_Edit});
   }
+
+  //回调
+  checkRefresh = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+        this.getList();
+      }
+      resolve();
+    });
+  };
+  
   //toDetail(item: AcceptAssetMain){
   //	this.navCtrl.push(Page_AssetDetailsInfoPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode});
   //}

@@ -124,8 +124,20 @@ export class TransferFundsApprovalListPage {
   }
 
     toDetail(translateCode: string) {
-        this.navCtrl.push(Page_TransferFundsInfoPage, {Oper:Oper_Approval,Title:'转资审批',BillNumberCode: translateCode});
+        this.navCtrl.push(Page_TransferFundsInfoPage, {callback:this.checkRefresh,Oper:Oper_Approval,Title:'转资审批',BillNumberCode: translateCode});
     }
+
+  //回调
+  checkRefresh = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+        this.getList();
+      }
+      resolve();
+    });
+  };
 
 
 }

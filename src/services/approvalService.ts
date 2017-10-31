@@ -51,17 +51,19 @@ export class ApprovalService {
         reviewType = "验收申请审批";
       }
     }
+    let action = "sendReview";
+    let formData: FormData = new FormData(); 
+    formData.append('action', action);
+    formData.append('sessionid', this.globalData.sessionId);
+    formData.append('billNumber', billNumber);//单号”，
+    formData.append('reviewType', reviewType);//审批使用常量名
+    formData.append('data', data);
+    console.log('action:' + action);
+    console.log('sessionid:' + this.globalData.sessionId);
+    console.log('billNumber:' + billNumber);
     console.log('reviewType: ' + reviewType);
-    let param = {
-     //必传
-     'action': 'sendReviewPay',
-     'sessionid':this.globalData.sessionId,
-     'billNumber': billNumber,
-     'reviewType':reviewType,//审批使用常量名
-     'data': data,
-     };
-     console.log('data:' + data);
-     return this.httpService.postMultiFormData('phoneCommon.do', param).map((res: Response) => res.json());
+    console.log('data:' + data);
+    return this.httpService.postMultiFormData('phoneCommon.do', formData).map((res: Response) => res.json());
   }
 
   //审批接口review_process 审批流程表
@@ -74,19 +76,19 @@ export class ApprovalService {
         reviewType = "验收申请审批";
       }
     }
-    console.log('reviewType: ' + reviewType);
-    let param = {
-     //必传
-     'action': 'auditReview',
-     'sessionid':this.globalData.sessionId,
-     'billNumber': billNumber,//单据单号
-     'reviewType':reviewType,//审批使用常量名
-     'vetoReason': vetoReason,//审批意见
-     };
+    let action = "auditReview";
+    let formData: FormData = new FormData(); 
+    formData.append('action', action);
+    formData.append('sessionid', this.globalData.sessionId);
+    formData.append('billNumber', billNumber);//单号”，
+    formData.append('reviewType', reviewType);//审批使用常量名
+    formData.append('vetoReason', vetoReason);//审批意见
+    console.log('action:' + action);
      console.log('sessionid:' + this.globalData.sessionId);
      console.log('billNumber:' + billNumber);
+    console.log('reviewType: ' + reviewType);
      console.log('vetoReason:' + vetoReason);
-     return this.httpService.postMultiFormData('phoneCommon.do', param).map((res: Response) => res.json());
+     return this.httpService.postMultiFormData('phoneCommon.do', formData).map((res: Response) => res.json());
   }
 
   //否决接口review_process 审批流程表
@@ -99,18 +101,18 @@ export class ApprovalService {
         reviewType = "验收申请审批";
       }
     }
-    console.log('reviewType: ' + reviewType);
-    let param = {
-     //必传
-     'action': 'vetoReview',
-     'sessionid':this.globalData.sessionId,
-     'billNumber': billNumber,//单据单号
-     'reviewType':reviewType,//审批使用常量名
-     'vetoReason': vetoReason,//审批意见
-     };
+    let action = "vetoReview";
+    let formData: FormData = new FormData(); 
+    formData.append('action', action);
+    formData.append('sessionid', this.globalData.sessionId);
+    formData.append('billNumber', billNumber);//单号”，
+    formData.append('reviewType', reviewType);//审批使用常量名
+    formData.append('vetoReason', vetoReason);//审批意见
+    console.log('action:' + action);
      console.log('sessionid:' + this.globalData.sessionId);
      console.log('billNumber:' + billNumber);
+    console.log('reviewType: ' + reviewType);
      console.log('vetoReason:' + vetoReason);
-     return this.httpService.postMultiFormData('phoneCommon.do', param).map((res: Response) => res.json());
+     return this.httpService.postMultiFormData('phoneCommon.do', formData).map((res: Response) => res.json());
   }
 }

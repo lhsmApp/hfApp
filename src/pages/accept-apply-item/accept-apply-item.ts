@@ -51,6 +51,8 @@ export class AcceptApplyItemPage {
   list: AcceptApplyDetail[];
   itemShow:AcceptApplyDetail;
   listDept: DicInDepart[];
+  callback :any;
+  isBackRefrash=false;
 
   constructor(public navCtrl: NavController,
               public params: NavParams,
@@ -65,6 +67,8 @@ export class AcceptApplyItemPage {
     this.itemShow = new AcceptApplyDetail();
   	this.oper = this.params.get(Oper);
   	this.billNumber = this.params.get(BillNumberCode);
+    this.callback    = this.params.get('callback');
+    this.isBackRefrash=false;
     //this.listDept = listDeptGet;
 
     this.applyFrom = this.formBuilder.group({
@@ -102,6 +106,7 @@ export class AcceptApplyItemPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AcceptApplyItemPage');
+    this.isBackRefrash=false;
     this.itemShow = new AcceptApplyDetail();
     this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
       this.listDept=inDepart;
@@ -164,6 +169,7 @@ export class AcceptApplyItemPage {
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
+          this.isBackRefrash=true;
           this.oper = Oper_Edit;
           console.log(object[1][0]);
           this.itemShow = object[1][0] as AcceptApplyDetail;
@@ -203,7 +209,7 @@ export class AcceptApplyItemPage {
     return new Promise((resolve, reject) => {
       console.log(data);
       if(data){
-          
+         this.isBackRefrash=true;
       }
       resolve();
     });
@@ -237,6 +243,15 @@ export class AcceptApplyItemPage {
           this.FromPatchValue();
       }
     });
+  }
+
+  goBack(){
+    console.log('back');
+    if(this.isBackRefrash){
+      this.callback(this.isBackRefrash).then(()=>{ this.navCtrl.pop() });
+    }else{
+      this.navCtrl.pop();
+    }
   }
 
 }

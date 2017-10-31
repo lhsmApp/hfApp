@@ -51,6 +51,8 @@ export class TransferFundsInfoPage {
 
   list: TransferFundsDetail[];
   itemShow:TransferFundsDetail;
+  callback :any;
+  isBackRefrash=false;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -67,10 +69,13 @@ export class TransferFundsInfoPage {
         this.isShow = true;
     }
   	this.translateCode = this.navParams.get(BillNumberCode);
+    this.callback    = this.navParams.get('callback');
+    this.isBackRefrash=false;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TransferFundsInfoPage');
+    this.isBackRefrash=false;
     this.itemShow = new TransferFundsDetail();
     this.getShowItem();
   }
@@ -139,7 +144,7 @@ export class TransferFundsInfoPage {
           .subscribe(object => {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
-
+              this.isBackRefrash=true;
             } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
@@ -162,7 +167,7 @@ export class TransferFundsInfoPage {
           .subscribe(object => {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
-
+              this.isBackRefrash=true;
             } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
@@ -177,6 +182,15 @@ export class TransferFundsInfoPage {
       }
     });
     prompt.present();
+  }
+
+  goBack(){
+    console.log('back');
+    if(this.isBackRefrash){
+      this.callback(this.isBackRefrash).then(()=>{ this.navCtrl.pop() });
+    }else{
+      this.navCtrl.pop();
+    }
   }
 
 }

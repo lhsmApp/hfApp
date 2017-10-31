@@ -119,7 +119,19 @@ export class AcceptApprovalListPage {
   }
 
     toDetail(billNumber: string) {
-        this.navCtrl.push(Page_AcceptApplyInfoPage, {BillNumberCode: billNumber,Oper:Oper_Approval,Title:'验收审批'});
+        this.navCtrl.push(Page_AcceptApplyInfoPage, {callback:this.checkRefresh,BillNumberCode: billNumber,Oper:Oper_Approval,Title:'验收审批'});
     }
+
+  //回调
+  checkRefresh = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+        this.getList();
+      }
+      resolve();
+    });
+  };
 
 }

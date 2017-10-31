@@ -84,6 +84,8 @@ export class AssetDetailsItemPage {
   list: AcceptAssetDetail[];
   itemShow:AcceptAssetDetail;
   assetFrom:any;
+  callback :any;
+  isBackRefrash=false;
 
   //assetsType: string;//资产类型"
     dicAssetsCodeType: string;//资产类别"
@@ -113,6 +115,8 @@ export class AssetDetailsItemPage {
     this.contractCode = this.navParams.get(BillContractCode);
     this.keyCode = this.navParams.get(BillKeyCode);
     this.itemTranfer = this.navParams.get(ItemTranfer);//从添加界面传回
+    this.callback    = this.navParams.get('callback');
+    this.isBackRefrash=false;
     
     this.assetFrom = this.formBuilder.group({
       assetsCode: [, [Validators.required]],
@@ -146,8 +150,42 @@ export class AssetDetailsItemPage {
     });
   }
 
+  FromPatchValue(){
+    this.assetFrom.patchValue({
+      assetsCode: this.itemShow.assetsCode,
+      assetsName: this.itemShow.assetsName,
+      assetsStandard: this.itemShow.assetsStandard,
+      originalValue: this.itemShow.originalValue,
+      xh: this.itemShow.xh,
+      assetsType: this.itemShow.assetsType,
+      assetsCodeType: this.itemShow.assetsCodeType,
+      departCode: this.itemShow.departCode,
+      entityCode: this.itemShow.entityCode,
+      licenceNumber: this.itemShow.licenceNumber,
+      unitCode: this.itemShow.unitCode,
+      makeFactory: this.itemShow.makeFactory,
+      factoryNumber: this.itemShow.factoryNumber,
+      productDate: this.itemShow.productDate,
+      operateDate: this.itemShow.operateDate,
+      usedAspect: this.itemShow.usedAspect,
+      contractCode: this.itemShow.contractCode,
+      applyCode: this.itemShow.applyCode,
+      guaDate: this.itemShow.guaDate,
+      depreciateYear: this.itemShow.depreciateYear,
+      usedState: this.itemShow.usedState,
+      storePlace: this.itemShow.storePlace,
+      userPerson: this.itemShow.userPerson,
+      specialLine: this.itemShow.specialLine,
+      nowValue: this.itemShow.nowValue,
+      addDepreciate: this.itemShow.addDepreciate,
+      devalueValue: this.itemShow.devalueValue,
+      keyCode: this.itemShow.keyCode,
+    });
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad AssetDetailsItemPage');
+    this.isBackRefrash=false;
     this.itemShow = new AcceptAssetDetail();
     this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
       this.DicDepartCode=inDepart;
@@ -210,39 +248,6 @@ export class AssetDetailsItemPage {
     }
   }
 
-  FromPatchValue(){
-    this.assetFrom.patchValue({
-      assetsCode: this.itemShow.assetsCode,
-      assetsName: this.itemShow.assetsName,
-      assetsStandard: this.itemShow.assetsStandard,
-      originalValue: this.itemShow.originalValue,
-      xh: this.itemShow.xh,
-      assetsType: this.itemShow.assetsType,
-      assetsCodeType: this.itemShow.assetsCodeType,
-      departCode: this.itemShow.departCode,
-      entityCode: this.itemShow.entityCode,
-      licenceNumber: this.itemShow.licenceNumber,
-      unitCode: this.itemShow.unitCode,
-      makeFactory: this.itemShow.makeFactory,
-      factoryNumber: this.itemShow.factoryNumber,
-      productDate: this.itemShow.productDate,
-      operateDate: this.itemShow.operateDate,
-      usedAspect: this.itemShow.usedAspect,
-      contractCode: this.itemShow.contractCode,
-      applyCode: this.itemShow.applyCode,
-      guaDate: this.itemShow.guaDate,
-      depreciateYear: this.itemShow.depreciateYear,
-      usedState: this.itemShow.usedState,
-      storePlace: this.itemShow.storePlace,
-      userPerson: this.itemShow.userPerson,
-      specialLine: this.itemShow.specialLine,
-      nowValue: this.itemShow.nowValue,
-      addDepreciate: this.itemShow.addDepreciate,
-      devalueValue: this.itemShow.devalueValue,
-      keyCode: this.itemShow.keyCode,
-    });
-  }
-
   //保存
   save(){
     let transferInfo=new Array<AcceptAssetDetail>();
@@ -254,6 +259,7 @@ export class AssetDetailsItemPage {
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
+              this.isBackRefrash=true;
           this.oper = Oper_Edit;
           console.log(object[1][0]);
           this.itemShow = object[1][0] as AcceptAssetDetail;
@@ -270,6 +276,15 @@ export class AssetDetailsItemPage {
       }, () => {
         
       });
+  }
+
+  goBack(){
+    console.log('back');
+    if(this.isBackRefrash){
+      this.callback(this.isBackRefrash).then(()=>{ this.navCtrl.pop() });
+    }else{
+      this.navCtrl.pop();
+    }
   }
 
 }

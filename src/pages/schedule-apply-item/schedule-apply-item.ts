@@ -58,6 +58,8 @@ export class ScheduleApplyItemPage {
     applyFrom:any;
     list: ProjectUnitDetail[];
     itemShow:ProjectUnitDetail;
+  callback :any;
+  isBackRefrash=false;
   //dicElementType: DicComplex[];//项目单元类别"          
   dicSgsx: Array<{code: string, name: string}>;//施工属性"" 
  
@@ -72,6 +74,8 @@ export class ScheduleApplyItemPage {
     this.itemShow = new ProjectUnitDetail();
   	this.oper = this.navParams.get(Oper);
   	this.billElementCode = this.navParams.get(BillElementCode);
+    this.callback    = this.navParams.get('callback');
+    this.isBackRefrash=false;
 
     this.applyFrom = this.formBuilder.group({
             projectCode: [,[]], 
@@ -104,8 +108,40 @@ export class ScheduleApplyItemPage {
     });
   }
 
+  FromPatchValue(){
+    this.applyFrom.patchValue({
+            projectCode: this.itemShow.projectCode, 
+            projectName: this.itemShow.projectName, 
+        projectProgress: this.itemShow.projectProgress, 
+        elementCode: this.itemShow.elementCode, 
+        elementName: this.itemShow.elementName, 
+        elementType: this.itemShow.elementType, 
+        sgsx: this.itemShow.sgsx, 
+            planMoney: this.itemShow.planMoney, 
+            planMoney_current: this.itemShow.planMoney_current, 
+            payMoney: this.itemShow.payMoney, 
+        completionProgress: this.itemShow.completionProgress, 
+        designFinishTime: this.itemShow.designFinishTime, 
+        drawingFinishTime: this.itemShow.drawingFinishTime, 
+        planBeginTime: this.itemShow.planBeginTime, 
+        planEndTime: this.itemShow.planEndTime, 
+        realBeginTime: this.itemShow.realBeginTime, 
+        realEndTime: this.itemShow.realEndTime, 
+        realFinishTime: this.itemShow.realFinishTime, 
+        certainDate: this.itemShow.certainDate, 
+        auditReportTime: this.itemShow.auditReportTime, 
+        requireDate: this.itemShow.requireDate, 
+        requireUser: this.itemShow.requireUser, 
+        checkOpinion: this.itemShow.checkOpinion,
+        
+        elementTypeName: this.itemShow.elementTypeName, 
+        sgsxName:  this.itemShow.sgsxName, 
+    });
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad ScheduleApplyItemPage');
+    this.isBackRefrash=false;
     this.itemShow = new ProjectUnitDetail();
     this.dicSgsx = Sgsx;
     //this.storage.get().then((dicList: DicComplex[]) => {
@@ -150,37 +186,6 @@ export class ScheduleApplyItemPage {
     }
   }
 
-  FromPatchValue(){
-    this.applyFrom.patchValue({
-            projectCode: this.itemShow.projectCode, 
-            projectName: this.itemShow.projectName, 
-        projectProgress: this.itemShow.projectProgress, 
-        elementCode: this.itemShow.elementCode, 
-        elementName: this.itemShow.elementName, 
-        elementType: this.itemShow.elementType, 
-        sgsx: this.itemShow.sgsx, 
-            planMoney: this.itemShow.planMoney, 
-            planMoney_current: this.itemShow.planMoney_current, 
-            payMoney: this.itemShow.payMoney, 
-        completionProgress: this.itemShow.completionProgress, 
-        designFinishTime: this.itemShow.designFinishTime, 
-        drawingFinishTime: this.itemShow.drawingFinishTime, 
-        planBeginTime: this.itemShow.planBeginTime, 
-        planEndTime: this.itemShow.planEndTime, 
-        realBeginTime: this.itemShow.realBeginTime, 
-        realEndTime: this.itemShow.realEndTime, 
-        realFinishTime: this.itemShow.realFinishTime, 
-        certainDate: this.itemShow.certainDate, 
-        auditReportTime: this.itemShow.auditReportTime, 
-        requireDate: this.itemShow.requireDate, 
-        requireUser: this.itemShow.requireUser, 
-        checkOpinion: this.itemShow.checkOpinion,
-        
-        elementTypeName: this.itemShow.elementTypeName, 
-        sgsxName:  this.itemShow.sgsxName, 
-    });
-  }
-
   //保存
   save(){
     let transferInfo=new Array<ProjectUnitDetail>();
@@ -192,6 +197,7 @@ export class ScheduleApplyItemPage {
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
+              this.isBackRefrash=true;
           this.oper = Oper_Edit;
           console.log(object[1][0]);
           this.itemShow = object[1][0] as ProjectUnitDetail;
@@ -208,6 +214,15 @@ export class ScheduleApplyItemPage {
       }, () => {
         
       });
+  }
+
+  goBack(){
+    console.log('back');
+    if(this.isBackRefrash){
+      this.callback(this.isBackRefrash).then(()=>{ this.navCtrl.pop() });
+    }else{
+      this.navCtrl.pop();
+    }
   }
 
 //送审
