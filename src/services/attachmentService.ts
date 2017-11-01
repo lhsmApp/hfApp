@@ -18,7 +18,7 @@ export class AttachmentService {
      'sessionid':this.globalData.sessionId,
      'type': type,//1.合同 2.发票 
      'billNumber' :billNumber,//”单号”（如果是合同页contractCode，如果是发票页sequence）
-     'fileFlag ' :1,//(模块标记1,基建 2，租赁 目前始终传1)
+     'fileFlag' :1,//(模块标记1,基建 2，租赁 目前始终传1)
      'contractCode' :contractCode,//如果是发票页必须传，contractCode合同页传空
      };
      return this.httpService.get('phoneBasicUpFile.do', param).map((res: Response) => res.json());
