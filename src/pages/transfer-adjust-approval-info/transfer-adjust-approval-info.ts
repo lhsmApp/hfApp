@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,ToastController } from 'ionic-angular';
 import {TransferFundsMain} from '../../model/transfer-funds-main';
 import {TransferFundsDetail} from '../../model/transfer-funds-detail';
 import {AcceptService} from '../../services/acceptService';
@@ -64,6 +64,7 @@ export class TransferAdjustApprovalInfoPage {
               private formBuilder: FormBuilder,
               private dictUtil:DictUtil,
               public alertCtrl: AlertController,
+              public toastCtrl:ToastController,
               public acceptService:AcceptService,
               public approvalService:ApprovalService) {
     this.itemShow = new TransferFundsDetail();
@@ -93,7 +94,7 @@ export class TransferAdjustApprovalInfoPage {
 
   getShowItem(){
     this.itemShow = new TransferFundsDetail();
-    this.acceptService.getTranslateVoucherDetailItem(this.translateCode).subscribe(
+    this.acceptService.getTranslateVoucherDetailItem(this.itemTranfer.translateCode).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -121,7 +122,7 @@ export class TransferAdjustApprovalInfoPage {
   
   //资产明细
   toAssetDetail(){
-        this.navCtrl.push(Page_TransferAdjustAssetListPage, {callback:this.checkRefresh,ItemTranfer: this.itemTranfer, Oper:Oper_Approval,Title:'转资调整审批'});
+        this.navCtrl.push(Page_TransferAdjustAssetListPage, {ItemTranfer: this.itemTranfer, Oper:Oper_Approval,Title:'转资调整审批'});
   }
 
   check(){
@@ -134,7 +135,6 @@ export class TransferAdjustApprovalInfoPage {
           placeholder: '请输入审批意见'
         },
       ],
-      
     });
 
     prompt.addButton({
@@ -156,6 +156,11 @@ export class TransferAdjustApprovalInfoPage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
               this.isBackRefrash=true;
+              let toast = this.toastCtrl.create({
+                message: resultBase.message,
+                duration: 3000
+              });
+              toast.present();
             } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
@@ -179,6 +184,11 @@ export class TransferAdjustApprovalInfoPage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
               this.isBackRefrash=true;
+              let toast = this.toastCtrl.create({
+                message: resultBase.message,
+                duration: 3000
+              });
+              toast.present();
             } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
@@ -206,7 +216,7 @@ export class TransferAdjustApprovalInfoPage {
 
   //审批进度
   approvalProgress(){
-    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.translateCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]});
+    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.itemShow.translateCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_ADJUST]});
   }
 
 }

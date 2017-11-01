@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,ToastController } from 'ionic-angular';
 import {Storage} from "@ionic/storage";
 import {AcceptApplyDetail} from '../../model/accept-apply-detail';
 import {AcceptService} from '../../services/acceptService';
@@ -59,6 +59,7 @@ export class AcceptApplyInfoPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController,
               private storage: Storage,
+              public toastCtrl:ToastController,
               private dictUtil:DictUtil,
               public acceptService:AcceptService,
               public approvalService:ApprovalService) {
@@ -156,15 +157,19 @@ export class AcceptApplyInfoPage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
               this.isBackRefrash=true;
+              let toast = this.toastCtrl.create({
+                message: resultBase.message,
+                duration: 3000
+              });
+              toast.present();
             } else {
-              
-            }
-            let alert = this.alertCtrl.create({
+              let alert = this.alertCtrl.create({
                 title: '提示!',
                 subTitle: resultBase.message,
                 buttons: ['确定']
-            });
-            alert.present();
+              });
+              alert.present();
+            }
           }, () => {
         
           });
@@ -180,15 +185,19 @@ export class AcceptApplyInfoPage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
               this.isBackRefrash=true;
+              let toast = this.toastCtrl.create({
+                message: resultBase.message,
+                duration: 3000
+              });
+              toast.present();
             } else {
-
-            }
-            let alert = this.alertCtrl.create({
+              let alert = this.alertCtrl.create({
                 title: '提示!',
                 subTitle: resultBase.message,
                 buttons: ['确定']
-            });
-            alert.present();
+              });
+              alert.present();
+            }
           }, () => {
         
           });

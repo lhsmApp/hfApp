@@ -10,6 +10,7 @@ import {DictUtil} from '../../providers/dict-util';
 
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
+import {BillAddTime} from '../../providers/TransferFeildName';
 import {TypeView,TypeView_AcceptApply,TypeView_TransferFunds,TypeView_TransferAdjust} from '../../providers/TransferFeildName';
 
 import {Page_AssetDetailsInfoPage,Page_AssetDetailsItemPage} from '../../providers/TransferFeildName';
@@ -18,6 +19,7 @@ import {Oper,Oper_Look,Oper_Add,Oper_Edit} from '../../providers/TransferFeildNa
 //import {BillContractCode} from '../../providers/TransferFeildName';
 import {BillKeyCode} from '../../providers/TransferFeildName';
 import {ItemTranfer} from '../../providers/TransferFeildName';
+//import {BillAddTime} from '../../providers/TransferFeildName';
 //import {TypeView,TypeView_AcceptApply} from '../../providers/TransferFeildName';
 
 /**
@@ -42,6 +44,7 @@ export class AssetDetailsListPage {
   billNumber:string;
   contractCode:string;
   TypeView:string;
+  addTime:string;
 
   listAll:AcceptAssetMain[];
 	list:AcceptAssetMain[];
@@ -58,6 +61,8 @@ export class AssetDetailsListPage {
     this.billNumber = this.navParams.get(BillNumberCode);
     this.contractCode = this.navParams.get(BillContractCode);
     this.TypeView = this.navParams.get(TypeView);
+    this.addTime = this.navParams.get('BillAddTime');
+    console.log(this.addTime);
   }
 
   ionViewDidLoad() {
@@ -158,7 +163,7 @@ export class AssetDetailsListPage {
   //	this.navCtrl.push(Page_AssetDetailsAddPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, TypeView:TypeView_AcceptApply});
   //}
   edit(item: AcceptAssetMain){
-    this.navCtrl.push(Page_AssetDetailsItemPage, {callback:this.checkRefresh,BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode,ItemTranfer:[],Oper:Oper_Edit});
+    this.navCtrl.push(Page_AssetDetailsItemPage, {callback:this.checkRefresh,BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode, 'BillAddTime':this.addTime,ItemTranfer:[],Oper:Oper_Edit});
   }
 
   //回调

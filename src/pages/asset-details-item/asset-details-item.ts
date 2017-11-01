@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,ToastController } from 'ionic-angular';
 import {AcceptAssetDetail} from '../../model/accept-asset-detail';
 import {Depart} from '../../model/depart';
 import {ContractService} from '../../services/contractService';
@@ -24,6 +24,7 @@ import {Oper,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
 import {BillKeyCode} from '../../providers/TransferFeildName';
+import {BillAddTime} from '../../providers/TransferFeildName';
 import {ItemTranfer} from '../../providers/TransferFeildName';//从添加界面传回
 
 /**
@@ -79,6 +80,7 @@ export class AssetDetailsItemPage {
   billNumber:string;
   contractCode:string;
   keyCode:string;
+  addTime:string;
   itemTranfer:AcceptAssetDetail;//从添加界面传回
 
   list: AcceptAssetDetail[];
@@ -99,13 +101,12 @@ export class AssetDetailsItemPage {
     dicUserPerson: string;//保管人"
   dicSpecialLine: DicComplex[];//技术鉴定部门"
 
-//2.其中出厂日期早于投产日期，投产日期早于增加日期；
-
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams,
   	          public formBuilder: FormBuilder,
               public alertCtrl: AlertController,
               private storage: Storage,
+              public toastCtrl:ToastController,
               private dictUtil:DictUtil,
               public contractService:ContractService, 
               public acceptService:AcceptService) {
@@ -114,6 +115,8 @@ export class AssetDetailsItemPage {
     this.billNumber = this.navParams.get(BillNumberCode);
     this.contractCode = this.navParams.get(BillContractCode);
     this.keyCode = this.navParams.get(BillKeyCode);
+    this.addTime = this.navParams.get('BillAddTime');
+    console.log(this.addTime);
     this.itemTranfer = this.navParams.get(ItemTranfer);//从添加界面传回
     this.callback    = this.navParams.get('callback');
     this.isBackRefrash=false;
@@ -147,6 +150,8 @@ export class AssetDetailsItemPage {
       addDepreciate: [, []],
       devalueValue: [, []],
       keyCode: [, []],
+
+      assetsTypeName: [, []],
     });
   }
 
@@ -180,6 +185,8 @@ export class AssetDetailsItemPage {
       addDepreciate: this.itemShow.addDepreciate,
       devalueValue: this.itemShow.devalueValue,
       keyCode: this.itemShow.keyCode,
+
+      assetsTypeName: this.itemShow.assetsTypeName,
     });
   }
 
@@ -228,6 +235,7 @@ export class AssetDetailsItemPage {
             this.list = object[1] as AcceptAssetDetail[];
             if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
+              //this.itemShow.assetsTypeName = this.dictUtil.(this.,);//资产类型"
               this.FromPatchValue();
             }
           } else {
@@ -252,7 +260,29 @@ export class AssetDetailsItemPage {
   save(){
     let transferInfo=new Array<AcceptAssetDetail>();
     let detail=this.assetFrom.value as AcceptAssetDetail;
-    
+    //2.其中出厂日期早于投产日期，投产日期早于增加日期；
+    //detail.productDate detail.operateDate this.addTime
+    console.log(detail.productDate);
+    console.log(detail.operateDate);
+    console.log(this.addTime);
+    if(detail.operateDate>this.addTime){
+        let alert = this.alertCtrl.create({
+          title: '提示!',
+          subTitle: '投产日期要早于增加日期(' + this.addTime + ')!',
+          buttons: ['确定']
+        });
+        alert.present();
+        return;
+    }
+    if(detail.productDate>detail.operateDate){
+        let alert = this.alertCtrl.create({
+          title: '提示!',
+          subTitle: '出厂日期要早于投产日期!',
+          buttons: ['确定']
+        });
+        alert.present();
+        return;
+    }
     transferInfo.push(detail);
 
     this.acceptService.saveAcceptApplyDetail(this.billNumber, this.contractCode, JSON.stringify(transferInfo))
@@ -265,6 +295,11 @@ export class AssetDetailsItemPage {
           this.itemShow = object[1][0] as AcceptAssetDetail;
           this.keyCode = this.itemShow.keyCode;
           this.FromPatchValue();
+              let toast = this.toastCtrl.create({
+                message: resultBase.message,
+                duration: 3000
+              });
+              toast.present();
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,ToastController } from 'ionic-angular';
 import {TransferFundsDetail} from '../../model/transfer-funds-detail';
 import {AcceptService} from '../../services/acceptService';
 import {ApprovalService} from '../../services/approvalService';
@@ -62,6 +62,7 @@ export class TransferFundsInfoPage {
               private formBuilder: FormBuilder,
               private dictUtil:DictUtil,
               public alertCtrl: AlertController,
+              public toastCtrl:ToastController,
               public acceptService:AcceptService,
               public approvalService:ApprovalService) {
     this.itemShow = new TransferFundsDetail();
@@ -132,7 +133,6 @@ export class TransferFundsInfoPage {
           placeholder: '请输入审批意见'
         },
       ],
-      
     });
 
     prompt.addButton({
@@ -154,6 +154,11 @@ export class TransferFundsInfoPage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
               this.isBackRefrash=true;
+              let toast = this.toastCtrl.create({
+                message: resultBase.message,
+                duration: 3000
+              });
+              toast.present();
             } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
@@ -177,6 +182,11 @@ export class TransferFundsInfoPage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
               this.isBackRefrash=true;
+              let toast = this.toastCtrl.create({
+                message: resultBase.message,
+                duration: 3000
+              });
+              toast.present();
             } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
@@ -204,7 +214,7 @@ export class TransferFundsInfoPage {
 
   //审批进度
   approvalProgress(){
-    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.translateCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]});
+    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.translateCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_VOUCHER]});
   }
 
 }

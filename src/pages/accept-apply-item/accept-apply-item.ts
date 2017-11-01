@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Storage} from '@ionic/storage';
 import {DictUtil} from '../../providers/dict-util';
-import {IonicPage, NavController, NavParams, ViewController,ModalController,AlertController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ViewController,ModalController,AlertController,ToastController} from 'ionic-angular';
 import {AcceptApplyDetail} from '../../model/accept-apply-detail';
 import {Depart} from '../../model/depart';
 import {GlobalData} from "../../providers/GlobalData";
@@ -21,6 +21,7 @@ import {Page_ContractChoiceListPage,Page_AssetDetailsListPage} from '../../provi
 import {Page_ChoiceApproversPage} from '../../providers/TransferFeildName';
 import {TypeView,TypeView_AcceptApply} from '../../providers/TransferFeildName';
 import {BillReviewType} from '../../providers/TransferFeildName';
+import {BillAddTime} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AcceptApplyItemPage page.
@@ -59,6 +60,7 @@ export class AcceptApplyItemPage {
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController,
               private storage: Storage,
+              public toastCtrl:ToastController,
               private dictUtil:DictUtil,
               private modalCtrl: ModalController,
               private viewCtrl: ViewController,
@@ -175,6 +177,11 @@ export class AcceptApplyItemPage {
           this.itemShow = object[1][0] as AcceptApplyDetail;
           this.billNumber = this.itemShow.billNumber;
           this.FromPatchValue();
+          let toast = this.toastCtrl.create({
+              message: resultBase.message,
+              duration: 3000
+          });
+          toast.present();
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
@@ -226,7 +233,8 @@ export class AcceptApplyItemPage {
         alert.present();
         return;
       }
-      this.navCtrl.push(Page_AssetDetailsListPage,  {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, TypeView:TypeView_AcceptApply});
+      console.log(this.itemShow.requireDate);
+      this.navCtrl.push(Page_AssetDetailsListPage,  {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, 'BillAddTime':this.itemShow.requireDate, TypeView:TypeView_AcceptApply});
   }
 
   //选择合同
