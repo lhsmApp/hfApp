@@ -24,7 +24,7 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillKeyCode} from '../../providers/TransferFeildName';
 
 /**
- * Generated class for the TransferAdjustInfoPage page.
+ * Generated class for the TransferAdjustAssetInfoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -66,11 +66,10 @@ tzDepreciateValue: 4,//调整累计折旧',(double)
 
 @IonicPage()
 @Component({
-  selector: 'page-transfer-adjust-info',
-  templateUrl: 'transfer-adjust-info.html',
+  selector: 'page-transfer-adjust-asset-info',
+  templateUrl: 'transfer-adjust-asset-info.html',
 })
-export class TransferAdjustInfoPage {
-  isShow:boolean;
+export class TransferAdjustAssetInfoPage {
   title:string;
   oper:string;
   billNumber:string;
@@ -78,8 +77,6 @@ export class TransferAdjustInfoPage {
 
   list:TransferAdjustDetail[];
   itemShow:TransferAdjustDetail;
-  callback :any;
-  isBackRefrash=false;
 
     dicAssetsCodeType: string;//资产类别"
   DicDepartCode: DicInDepart[];//所属单位"
@@ -99,21 +96,14 @@ export class TransferAdjustInfoPage {
               public acceptService:AcceptService,
               public approvalService:ApprovalService) {
     this.itemShow = new TransferAdjustDetail();
-    this.isShow = false;
     this.title = this.navParams.get(Title);
   	this.oper = this.navParams.get(Oper);
-    if(this.oper === Oper_Approval){
-        this.isShow = true;
-    }
   	this.billNumber = this.navParams.get(BillNumberCode);
     this.billKeyCode = this.navParams.get(BillKeyCode);
-    this.callback = this.navParams.get('callback');
-    this.isBackRefrash=false;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TransferAdjustInfoPage');
-    this.isBackRefrash=false;
+    console.log('ionViewDidLoad TransferAdjustAssetInfoPage');
     this.itemShow = new TransferAdjustDetail();
     this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
       this.DicDepartCode=inDepart;
@@ -167,85 +157,6 @@ export class TransferAdjustInfoPage {
     
       });
     //this.itemShow = item;
-  }
-
-  check(){
-    let prompt = this.alertCtrl.create({
-      title: '审批',
-      message: "请输入审批意见",
-      inputs: [
-        {
-          name: 'title',
-          placeholder: '请输入审批意见'
-        },
-      ],
-      
-    });
-
-    prompt.addButton({
-        text: '取消',
-        cssClass:'alertButtionCancel',
-        role: 'cancel',
-        handler: data => {
-          console.log('Cancel clicked');
-        }
-      });
-    prompt.addButton({
-        text: '不通过',
-        cssClass:'alertButtionNo',
-        handler: data => {
-        //billNumber:string,reviewType:string,vetoReason:string
-        /*this.approvalService.vetoReview(this.itemShow.billNumber, ReviewType[ReviewType.BASICACCEPTANCE_APPLY], data)
-          .subscribe(object => {
-            let resultBase:ResultBase=object[0] as ResultBase;
-            if(resultBase.result=='true'){
-              this.isBackRefrash=true;
-            } else {
-            let alert = this.alertCtrl.create({
-              title: '提示!',
-              subTitle: resultBase.message,
-              buttons: ['确定']
-            });
-            alert.present();
-        }
-          }, () => {
-        
-          });*/
-        }
-      });
-    prompt.addButton({
-      text: '通过',
-      cssClass:'alertButtionYes',
-      handler: data => {
-        //billNumber:string,reviewType:string,vetoReason:string
-        /*this.approvalService.auditReview(this.itemShow.billNumber, ReviewType[ReviewType.BASICACCEPTANCE_APPLY], data)
-          .subscribe(object => {
-            let resultBase:ResultBase=object[0] as ResultBase;
-            if(resultBase.result=='true'){
-              this.isBackRefrash=true;
-            } else {
-            let alert = this.alertCtrl.create({
-              title: '提示!',
-              subTitle: resultBase.message,
-              buttons: ['确定']
-            });
-            alert.present();
-        }
-          }, () => {
-        
-          });*/
-      }
-    });
-    prompt.present();
-  }
-
-  goBack(){
-    console.log('back');
-    if(this.isBackRefrash){
-      this.callback(this.isBackRefrash).then(()=>{ this.navCtrl.pop() });
-    }else{
-      this.navCtrl.pop();
-    }
   }
 
 }

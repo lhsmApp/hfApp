@@ -20,7 +20,7 @@ export class NoticeService {
        'sessionid': this.globalData.sessionId,
        'size': size,//0是传全部，x是查询x数量
      };
-     return this.httpService.get('phoneAcceptanceApply.do', param).map((res: Response) => res.json());
+     return this.httpService.get('phoneMyInfo.do', param).map((res: Response) => res.json());
   }
 
   /*//查看通告（获取系统中已经发布的公告信息）
