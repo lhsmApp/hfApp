@@ -24,3 +24,6 @@ export const TransferFundsType= [{code: '1', name: '固定资产'}, {code: '2', 
 
 //合同成本属性 直接成本/间接费用
 export const ContractCostProperty= [{code:'1',name:'直接成本'}, {code:'2',name:'间接费用'}];
+
+//转资类型：1、固定资产 2、无形资产3、长期待摊费用4、长期股权投资
+export const ASSETS_TYPE= [{code: '1', name: '实物资产'}, {code: '2', name: '无形资产'}, {code: '3', name: '长期待摊费用'}, {code: '4', name: '长期股权投资'},{code: '5', name: '固定资产'}]

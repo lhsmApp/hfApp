@@ -22,3 +22,7 @@ export const OUT_DEPART="outDepart";//外部单位
 export const BASIC_ENTITY="basicEntity";//资产组
 
 export const ASSETS="assets";//资产目录
+
+export const CONTRACT_TYPE="contractType";//合同类别字典
+
+export const PROJECT_ELEMENT="projectElement";//项目单元字典

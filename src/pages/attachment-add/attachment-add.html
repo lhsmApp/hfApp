@@ -7,7 +7,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      添加发票
+      {{title}}
     </ion-title>
     <ion-buttons end>
       <button ion-button (click)="dismiss()">关闭</button>
@@ -16,7 +16,7 @@
 </ion-header>
 
 <ion-content padding text-center>
-  <img [src]="invoicePath" width="100%">
+  <img [src]="attachmentPath" width="100%">
   <div padding-top>
     <button ion-button block color="light" (click)="getPicture(0)">从相册选一张</button>
   </div>
@@ -24,6 +24,6 @@
     <button ion-button block color="light" (click)="getPicture(1)">拍一张照片</button>
   </div>
   <div padding-top>
-    <button type="button" ion-button block (click)="saveAvatar()">保 存</button>
+    <button type="button" ion-button block (click)="saveAttachment()">保 存</button>
   </div>
 </ion-content>

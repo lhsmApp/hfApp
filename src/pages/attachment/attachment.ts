@@ -25,6 +25,7 @@ import {ResultBase} from "../../model/result-base";
 export class AttachmentPage {
 
   title:string;
+  thumbPath=DEFAULT_INVOICE;
   attachmentList:Attachment[];
   billNumber:string;
   contractCode :string;
@@ -71,9 +72,9 @@ export class AttachmentPage {
   }
 
   //打开详情页
-  openPage(id: string) {
+  openPage(item: Attachment) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("AttachmentViewPage",{id:id});
+  	this.navCtrl.push("AttachmentViewPage",{attachment:item});
   }
 
   //上拉刷新
@@ -94,16 +95,16 @@ export class AttachmentPage {
 
   //增加
   add(){
-    let modal = this.modalCtrl.create('AttachmentAddPage', {invoiceCode: '001'});
+    let modal = this.modalCtrl.create('AttachmentAddPage', {title:this.title,billNumber:this.billNumber,contractCode:this.contractCode,type:this.type});
     modal.present();
     /*modal.onDidDismiss(data => {
       data && (this.invoiceCode = data.invoiceCode)
     });*/
   }
 
-  //上传
+  /*//上传
   upload(){
 
-  }
+  }*/
 
 }

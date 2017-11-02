@@ -24,7 +24,7 @@ export class FileService {
    */
   getFileInfoById(id: string): Observable<FileObj> {
     if (!id) {
-      return Observable.of({});
+      return Observable.of(<FileObj>{});
     }
     return this.httpService.get(FILE_SERVE_URL + '/getById', {id: id}).map((res: Response) => {
       let result = res.json();

@@ -9,7 +9,8 @@ import {DicOutDepart} from '../model/dic-out-depart';
 import {DicBasicEntity} from '../model/dic-basic-entity';
 import {DicAsset} from '../model/dic-asset';
 import {PAYMENT_CATEGORY} from '../enums/enums';
-
+import {ASSETS_TYPE} from '../enums/enums';
+import {DicBase} from '../model/dic-base';
 /**
  * 字典工具类
  * @description
@@ -159,6 +160,37 @@ export class DictUtil {
       if(enu.code==code)
         return enu.name;
     }
+    }
+    return code;
+  }
+
+  //翻译资产类型
+  getAssetsTypeName(code:string):string{
+    for(let assetsType of ASSETS_TYPE){
+      if(assetsType.code==code)
+        return assetsType.name;
+    }
+    return code;
+  }
+
+  //翻译合同类别字典
+  getContractTypeName(dictInfo:DicBase[],code:string):string{
+    if(dictInfo&&dictInfo.length>0){
+      for(let contractType of dictInfo){
+        if(contractType.code==code)
+          return contractType.name;
+      }
+    }
+    return code;
+  }
+
+  //翻译项目单元字典
+  getProjectElementName(dictInfo:DicBase[],code:string):string{
+    if(dictInfo&&dictInfo.length>0){
+      for(let projectElement of dictInfo){
+        if(projectElement.code==code)
+          return projectElement.name;
+      }
     }
     return code;
   }

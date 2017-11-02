@@ -63,6 +63,26 @@ export class SystemService {
      return this.httpService.get('phoneMyInfo.do', param).map((res: Response) => res.json());
   }
 
+  //合同类别字典
+  getContractTypeDict(): Observable<(Object)> {
+    let param = {
+     //必传
+     'action': 'compactTypeList',
+     'sessionid':this.globalData.sessionId,
+     };
+     return this.httpService.get('phoneMyInfo.do', param).map((res: Response) => res.json());
+  }
+
+  //项目单元字典
+  getProjectElementDict(): Observable<(Object)> {
+    let param = {
+     //必传
+     'action': 'projectElementList',
+     'sessionid':this.globalData.sessionId,
+     };
+     return this.httpService.get('phoneMyInfo.do', param).map((res: Response) => res.json());
+  }
+
   //切换单位
   changeDepart(departCode:string): Observable<(Object)> {
     let param = {

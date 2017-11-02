@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,ViewController} from 'ionic-angular';
 import {DEFAULT_INVOICE} from "../../providers/Constants";
-
+import { Attachment} from '../../model/attachment';
 /**
  * Generated class for the AttachmentViewPage page.
  *
@@ -16,8 +16,11 @@ import {DEFAULT_INVOICE} from "../../providers/Constants";
 })
 export class AttachmentViewPage {
 
-  invoicePath: string=DEFAULT_INVOICE;
+  attachmentPath: string=DEFAULT_INVOICE;
+  attachment:Attachment;
   constructor(public navCtrl: NavController, public navParams: NavParams,private viewCtrl: ViewController) {
+    this.attachment=this.navParams.get('attachment');
+    this.attachmentPath=this.attachment.filePath;
   }
 
   ionViewDidLoad() {

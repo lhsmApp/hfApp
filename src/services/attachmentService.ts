@@ -51,7 +51,7 @@ export class AttachmentService {
   }
 
   //附件上传-----basic_up_file 附件表
-  uploadAttachment(payCode:string,type:string,billNumber:string,contractCode:string,sequence:string):Observable<(Object)> {
+  uploadAttachment(base64String:string,type:string,billNumber:string,contractCode:string):Observable<(Object)> {
     /*let param = {
      //必传
      'action': 'deletePhoneBasicChalan',
@@ -69,9 +69,9 @@ export class AttachmentService {
      };
      let formData: FormData = new FormData(); 
      //必传
-     formData.append('action', '');
+     formData.append('action', 'getUploadFile');
      formData.append('sessionid', this.globalData.sessionId);
-     //formData.append('type', type);//1.合同 2.发票 
+     formData.append('base64String', JSON.stringify(base64String));//文件流
      formData.append('data', JSON.stringify(data));//”单号”（如果是合同页contractCode，如果是发票页sequence）
      
      console.log('data:'+data);

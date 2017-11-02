@@ -64,10 +64,10 @@ export class HttpService {
     return this.request(url, new RequestOptions({
       method: RequestMethod.Post,
       body: body,
-      /*headers: new Headers({
+      headers: new Headers({
         //'Content-Type': 'application/json; charset=UTF-8'
         'enctype': 'multipart/form-data'
-      })*/
+      })
     }));
   }
 

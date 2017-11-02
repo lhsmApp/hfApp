@@ -28,6 +28,9 @@ import {OUT_DEPART} from "../../enums/storage-type";
 import {BASIC_ENTITY} from "../../enums/storage-type";
 import {ASSETS} from "../../enums/storage-type";
 import {DictUtil} from "../../providers/dict-util";
+import {PROJECT_ELEMENT} from "../../enums/storage-type";
+import {CONTRACT_TYPE} from "../../enums/storage-type";
+import {DicBase} from '../../model/dic-base';
 
 import {GlobalData} from "../../providers/GlobalData";
 
@@ -184,6 +187,43 @@ export class MinePage {
       if(resultBase.result=='true'){
         let aeests = object[1] as DicAsset[];
         this.storage.set(ASSETS, aeests);
+      }
+    }, () => {
+      
+    });
+
+    //获取合同类别字典
+    this.systemService.getContractTypeDict()
+    .subscribe(object => {
+      let contractTypeList = object as Array<Object>;
+      let tarContractTypeList=new Array<DicBase>();
+      if(contractTypeList){
+        for(let item of contractTypeList){
+          let dicBase=new DicBase();
+          dicBase.code=item[0];
+          dicBase.name=item[1];
+          tarContractTypeList.push(dicBase);
+        }
+        this.storage.set(CONTRACT_TYPE, tarContractTypeList);
+      }
+    }, () => {
+      
+    });
+
+    //获取项目单元字典
+    this.systemService.getProjectElementDict()
+    .subscribe(object => {
+
+      let projectElementList = object as Array<Object>;
+      let tarProjectElementList=new Array<DicBase>();
+      if(projectElementList){
+        for(let item of projectElementList){
+          let dicBase=new DicBase();
+          dicBase.code=item[0];
+          dicBase.name=item[1];
+          tarProjectElementList.push(dicBase);
+        }
+        this.storage.set(PROJECT_ELEMENT, tarProjectElementList);
       }
     }, () => {
       
