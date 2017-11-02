@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { IonicPage, NavController, NavParams,AlertController,ToastController } from 'ionic-angular';
+import {TransferFundsMain} from '../../model/transfer-funds-main';
 import {TransferFundsDetail} from '../../model/transfer-funds-detail';
 import {AcceptService} from '../../services/acceptService';
 import {ApprovalService} from '../../services/approvalService';
@@ -12,14 +13,15 @@ import {TransferFundsType} from '../../enums/enums';
 
 import {Oper,Oper_Look,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
-import {BillNumberCode} from '../../providers/TransferFeildName';
-import {BillApprovalState} from '../../providers/TransferFeildName';
+import {ItemTranfer} from '../../providers/TransferFeildName';
 
-import {Page_AssetDetailsListInfoPage} from '../../providers/TransferFeildName';
-import {TypeView,TypeView_TransferFunds} from '../../providers/TransferFeildName';
+import {Page_TransferAdjustAssetListPage} from '../../providers/TransferFeildName';
+//import {Oper,Oper_Approval} from '../../providers/TransferFeildName';
+//import {Title} from '../../providers/TransferFeildName';
+//import {ItemTranfer} from '../../providers/TransferFeildName';
 
 /**
- * Generated class for the TransferFundsInfoPage page.
+ * Generated class for the TransferAdjustApprovalInfoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -41,14 +43,14 @@ import {TypeView,TypeView_TransferFunds} from '../../providers/TransferFeildName
 
 @IonicPage()
 @Component({
-  selector: 'page-transfer-funds-info',
-  templateUrl: 'transfer-funds-info.html',
+  selector: 'page-transfer-adjust-approval-info',
+  templateUrl: 'transfer-adjust-approval-info.html',
 })
-export class TransferFundsInfoPage {
+export class TransferAdjustApprovalInfoPage {
   isShow:boolean;
   title:string;
   oper:string;
-  translateCode:string;
+  itemTranfer:TransferFundsMain;
 
   list: TransferFundsDetail[];
   itemShow:TransferFundsDetail;
@@ -72,7 +74,7 @@ export class TransferFundsInfoPage {
     if(this.oper === Oper_Approval){
         this.isShow = true;
     }
-  	this.translateCode = this.navParams.get(BillNumberCode);
+  	this.itemTranfer = this.navParams.get(ItemTranfer);
     this.callback    = this.navParams.get('callback');
     this.isBackRefrash=false;
     this.approvalState=this.navParams.get('approvalState');
@@ -82,9 +84,9 @@ export class TransferFundsInfoPage {
       this.hasApprovalProgress=false;
     }
   }
-
+  
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TransferFundsInfoPage');
+    console.log('ionViewDidLoad TransferAdjustApprovalInfoPage');
     this.isBackRefrash=false;
     this.itemShow = new TransferFundsDetail();
     this.getShowItem();
@@ -92,7 +94,7 @@ export class TransferFundsInfoPage {
 
   getShowItem(){
     this.itemShow = new TransferFundsDetail();
-    this.acceptService.getTranslateVoucherDetailItem(this.translateCode).subscribe(
+    this.acceptService.getTranslateVoucherDetailItem(this.itemTranfer.translateCode).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
@@ -120,7 +122,7 @@ export class TransferFundsInfoPage {
   
   //资产明细
   toAssetDetail(){
-    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.translateCode, BillContractCode:'', TypeView:TypeView_TransferFunds});
+        this.navCtrl.push(Page_TransferAdjustAssetListPage, {ItemTranfer: this.itemTranfer, Oper:Oper_Approval,Title:'转资调整审批'});
   }
 
   check(){
@@ -149,7 +151,7 @@ export class TransferFundsInfoPage {
         handler: data => {
           console.log(data);
         //billNumber:string,reviewType:string,vetoReason:string
-        this.approvalService.vetoReview(this.itemShow.translateCode, ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_VOUCHER], data)
+        this.approvalService.vetoReview(this.itemShow.translateCode, ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_ADJUST], data)
           .subscribe(object => {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
@@ -177,7 +179,7 @@ export class TransferFundsInfoPage {
       cssClass:'alertButtionYes',
       handler: data => {
         //billNumber:string,reviewType:string,vetoReason:string
-        this.approvalService.auditReview(this.itemShow.translateCode, ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_VOUCHER], data)
+        this.approvalService.auditReview(this.itemShow.translateCode, ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_ADJUST], data)
           .subscribe(object => {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
@@ -214,7 +216,7 @@ export class TransferFundsInfoPage {
 
   //审批进度
   approvalProgress(){
-    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.translateCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_VOUCHER]});
+    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.itemShow.translateCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_ADJUST]});
   }
 
 }

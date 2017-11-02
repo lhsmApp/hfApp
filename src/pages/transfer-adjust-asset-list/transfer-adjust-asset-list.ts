@@ -14,7 +14,7 @@ import {Oper,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
 import {ItemTranfer} from '../../providers/TransferFeildName';
 
-import {Page_TransferAdjustInfoPage} from '../../providers/TransferFeildName';
+import {Page_TransferAdjustAssetInfoPage} from '../../providers/TransferFeildName';
 //import {Oper,Oper_Approval} from '../../providers/TransferFeildName';
 //import {Title} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
@@ -22,7 +22,7 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
 
 
 /**
- * Generated class for the TransferAdjustDetailListPage page.
+ * Generated class for the TransferAdjustAssetListPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -30,18 +30,16 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
 
 @IonicPage()
 @Component({
-  selector: 'page-transfer-adjust-detail-list',
-  templateUrl: 'transfer-adjust-detail-list.html',
+  selector: 'page-transfer-adjust-asset-list',
+  templateUrl: 'transfer-adjust-asset-list.html',
 })
-export class TransferAdjustDetailListPage {
+export class TransferAdjustAssetListPage {
     title:string;
     oper:string;
     itemTranfer:TransferFundsMain;
     
     listAll:TransferAdjustMain[];
     listDept: DicInDepart[];
-  callback :any;
-  isBackRefrash=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController,
@@ -51,14 +49,11 @@ export class TransferAdjustDetailListPage {
     this.title = this.navParams.get(Title);
     this.oper = this.navParams.get(Oper);
     this.itemTranfer = this.navParams.get(ItemTranfer);
-    this.callback = this.navParams.get('callback');
-    this.isBackRefrash=false;
     //this.listAll = [];
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TransferAdjustDetailListPage');
-    this.isBackRefrash=false;
+    console.log('ionViewDidLoad TransferAdjustAssetListPage');
     //this.listAll = [];
     this.storage.get(IN_DEPART).then((inDepart: DicInDepart[]) => {
       this.listDept=inDepart;
@@ -125,29 +120,7 @@ export class TransferAdjustDetailListPage {
   }
 
     toDetail(item: TransferAdjustMain) {
-        this.navCtrl.push(Page_TransferAdjustInfoPage, {callback:this.checkRefresh,BillNumberCode: item.translateCode, BillKeyCode: item.keyCode, Oper:Oper_Approval,Title:'转资调整审批'});
+        this.navCtrl.push(Page_TransferAdjustAssetInfoPage, {BillNumberCode: item.translateCode, BillKeyCode: item.keyCode, Oper:Oper_Approval,Title:'转资调整审批'});
     }
-
-  //回调
-  checkRefresh = (data) =>
-  {
-    return new Promise((resolve, reject) => {
-      console.log(data);
-      if(data){
-        this.isBackRefrash=true;
-        this.getList();
-      }
-      resolve();
-    });
-  };
-
-  goBack(){
-    console.log('back');
-    if(this.isBackRefrash){
-      this.callback(this.isBackRefrash).then(()=>{ this.navCtrl.pop() });
-    }else{
-      this.navCtrl.pop();
-    }
-  }
 
 }

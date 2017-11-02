@@ -19,6 +19,8 @@ export const Title = 'Title';
 export const BillNumberCode = 'BillNumberCode';
 //合同号
 export const BillContractCode = 'BillContractCode';
+//查询的审批状态
+export const BillAddTime = 'AddTime';
 //资产键码
 export const BillKeyCode = 'BillKeyCode';
 //
@@ -27,7 +29,7 @@ export const ItemTranfer = 'ItemTranfer';
 export const BillElementCode = 'BillElementCode';
 //送审类型
 export const BillReviewType = 'reviewType';
-//
+//查询的审批状态
 export const BillApprovalState = 'approvalState';
 
 //页面
@@ -66,10 +68,12 @@ export const Page_ScheduleApplyInfoPage = 'ScheduleApplyInfoPage';
 //进度管理申请 BillElementCode oper:Oper_Add、Oper_Edit
 export const Page_ScheduleApplyItemPage = 'ScheduleApplyItemPage';
 
-//转资调整审批 BillNumberCode BillKeyCode oper:Oper_Approval Title
-export const Page_TransferAdjustInfoPage = 'TransferAdjustInfoPage';
+//转资调整审批 ItemTranfer oper:Oper_Approval Title
+export const Page_TransferAdjustApprovalInfoPage = 'TransferAdjustApprovalInfoPage';
 //转资调整审批 oper:Oper_Approval Title ItemTranfer
-export const Page_TransferAdjustDetailListPage = 'TransferAdjustDetailListPage';
+export const Page_TransferAdjustAssetListPage = 'TransferAdjustAssetListPage';
+//转资调整审批 BillNumberCode BillKeyCode oper:Oper_Approval Title
+export const Page_TransferAdjustAssetInfoPage = 'TransferAdjustAssetInfoPage';
 
 //选择审批人 BillNumberCode BillReviewType
 export const Page_ChoiceApproversPage = 'ChoiceApproversPage';

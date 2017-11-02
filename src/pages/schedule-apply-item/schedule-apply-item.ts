@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,ToastController } from 'ionic-angular';
 import {ProjectUnitDetail} from '../../model/project-unit-detail'
 import {GlobalData} from "../../providers/GlobalData";
 import {Utils} from "../../providers/Utils";
@@ -58,6 +58,7 @@ export class ScheduleApplyItemPage {
     applyFrom:any;
     list: ProjectUnitDetail[];
     itemShow:ProjectUnitDetail;
+    maxYear:string;
   callback :any;
   isBackRefrash=false;
   //dicElementType: DicComplex[];//项目单元类别"          
@@ -68,10 +69,12 @@ export class ScheduleApplyItemPage {
   	          public navParams: NavParams,
               public formBuilder: FormBuilder, 
               private globalData: GlobalData,
+              public toastCtrl:ToastController,
               private storage: Storage,
               private dictUtil:DictUtil,
               public projectElementService: ProjectElementService) {
     this.itemShow = new ProjectUnitDetail();
+    this.maxYear = ((new Date()).getFullYear() + 10).toString();
   	this.oper = this.navParams.get(Oper);
   	this.billElementCode = this.navParams.get(BillElementCode);
     this.callback    = this.navParams.get('callback');
@@ -203,6 +206,11 @@ export class ScheduleApplyItemPage {
           this.itemShow = object[1][0] as ProjectUnitDetail;
           this.billElementCode = this.itemShow.elementCode;
           this.FromPatchValue();
+              let toast = this.toastCtrl.create({
+                message: resultBase.message,
+                duration: 3000
+              });
+              toast.present();
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',

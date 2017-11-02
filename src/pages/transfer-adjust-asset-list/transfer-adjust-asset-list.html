@@ -1,18 +1,12 @@
 <!--
-  Generated template for the TransferAdjustDetailListPage page.
+  Generated template for the TransferAdjustAssetListPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
-  <ion-navbar color="dark" hideBackButton="true">
-    
-    <ion-buttons left>
-      <button ion-button icon-only (click)="goBack()">
-          <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
-      </button>
-    </ion-buttons>
+  <ion-navbar color="dark">
     <ion-title>{{title}}</ion-title>
   </ion-navbar>
 
@@ -30,7 +24,7 @@
         <p>所属单位：{{item.departName}}</p>
         <p>资产键码：{{item.keyCode}}</p>
         <p>是否分摊费用：{{item.feeFlagName}}</p>
-        <p>转资单号：{{item.translateCode}}</p>
+        <p>单据编号：{{item.translateCode}}</p>
   </ion-item>
 </ion-list>
   <!--<ion-infinite-scroll (ionInfinite)="doInfinite($event)">

@@ -21,12 +21,10 @@ export class ApprovalService {
         action = 'queryUserReviewPay';
         reviewType = "付款审批";
         getDo = "phonePaymentRequest.do";
-    } else {
-      if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
+    } else if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
         action = 'queryUserReviewAcceptance';
         reviewType = "验收申请审批";
         getDo = "phoneAcceptanceApply.do";
-      }
     }
     console.log('action: ' + action);
     console.log('reviewType: ' + reviewType);
@@ -46,10 +44,8 @@ export class ApprovalService {
     let reviewType = "";
     if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]){
         reviewType = "付款审批";
-    } else {
-      if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
+    } else if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
         reviewType = "验收申请审批";
-      }
     }
     let action = "sendReview";
     let formData: FormData = new FormData(); 
@@ -71,10 +67,12 @@ export class ApprovalService {
     let reviewType = "";
     if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]){
         reviewType = "付款审批";
-    } else {
-      if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
+    } else if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
         reviewType = "验收申请审批";
-      }
+    } else if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_VOUCHER]){
+        reviewType = "转资单审批";
+    } else if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_ADJUST]){
+        reviewType = "转资单调整审批";
     }
     let action = "auditReview";
     let formData: FormData = new FormData(); 
@@ -96,10 +94,12 @@ export class ApprovalService {
     let reviewType = "";
     if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]){
         reviewType = "付款审批";
-    } else {
-      if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
+    } else if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
         reviewType = "验收申请审批";
-      }
+    } else if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_VOUCHER]){
+        reviewType = "转资单审批";
+    } else if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_ADJUST]){
+        reviewType = "转资单调整审批";
     }
     let action = "vetoReview";
     let formData: FormData = new FormData(); 

@@ -7,7 +7,7 @@ import {Storage} from "@ionic/storage";
 import {DictUtil} from '../../providers/dict-util';
 import {FeeFlag} from '../../enums/enums';
 
-import {Page_TransferAdjustDetailListPage} from '../../providers/TransferFeildName';
+import {Page_TransferAdjustApprovalInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
 import {ItemTranfer} from '../../providers/TransferFeildName';
@@ -129,7 +129,7 @@ export class TransferAdjustApprovalListPage {
   }
 
     toDetail(item: TransferFundsMain) {
-        this.navCtrl.push(Page_TransferAdjustDetailListPage, {callback:this.checkRefresh,ItemTranfer: item, Oper:Oper_Approval,Title:'转资调整审批'});
+        this.navCtrl.push(Page_TransferAdjustApprovalInfoPage, {callback:this.checkRefresh,ItemTranfer: item, Oper:Oper_Approval,Title:'转资调整审批'});
     }
 
   //回调
