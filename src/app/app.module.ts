@@ -62,6 +62,17 @@ import {NoticeService} from '../services/noticeService';
 //指令
 import { TabDirective } from "../directive/";
 
+import * as fundebug from "fundebug-javascript";
+fundebug.apikey = '23cca085684576f006bfec289b92bc0cb7830a4e44c052266a23b0fc154f7b13';
+
+// 定义FundebugErrorHandler
+class FundebugErrorHandler implements ErrorHandler {
+   handleError(err:any) : void {
+     fundebug.notifyError(err);
+   }
+}
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -113,7 +124,7 @@ import { TabDirective } from "../directive/";
     AppMinimize,
     Diagnostic,
     AppVersion,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: ErrorHandler, useClass: FundebugErrorHandler },
     //Native Part
     JPush,
 

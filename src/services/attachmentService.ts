@@ -4,10 +4,11 @@ import {Observable} from "rxjs";
 import {LoginInfo} from "../model/UserInfo";
 import {HttpService} from "../providers/HttpService";
 import {GlobalData} from "../providers/GlobalData";
+import {NativeService} from '../providers/NativeService';
 
 @Injectable()
 export class AttachmentService {
-  constructor(public httpService: HttpService, private globalData: GlobalData) {
+  constructor(public httpService: HttpService, private globalData: GlobalData,private nativeService: NativeService) {
   }
 
   //查询附件上传列表-----basic_up_file 附件表
@@ -51,7 +52,7 @@ export class AttachmentService {
   }
 
   //附件上传-----basic_up_file 附件表
-  uploadAttachment(base64String:string,type:string,billNumber:string,contractCode:string):Observable<(Object)> {
+  uploadAttachment64(base64String:string,type:string,billNumber:string,contractCode:string):Observable<(Object)> {
     /*let param = {
      //必传
      'action': 'deletePhoneBasicChalan',
@@ -69,9 +70,32 @@ export class AttachmentService {
      };
      let formData: FormData = new FormData(); 
      //必传
-     formData.append('action', 'getUploadFile');
+     formData.append('action', 'uploadFile');
      formData.append('sessionid', this.globalData.sessionId);
      formData.append('base64String', JSON.stringify(base64String));//文件流
+     formData.append('data', JSON.stringify(data));//”单号”（如果是合同页contractCode，如果是发票页sequence）
+     
+     console.log('data:'+data);
+     return this.httpService.postMultiFormData('phoneBasicUpFile.do', formData).map((res: Response) => res.json());
+  }
+
+  //附件上传-----basic_up_file 附件表
+  uploadAttachment(blob:Blob,type:string,billNumber:string,contractCode:string):Observable<(Object)> {
+     //let fileInfo=new Blob([arrayBuffer], { type: "image/jpeg" } );
+     this.nativeService.alert('fileInfo',blob.size.toString());
+     this.nativeService.alert('fileName',(<any>blob).name);
+     let data={
+         'type' :type,//（1,2） 1.合同 2.发票
+         'billNumber' :billNumber,//”单号”（如果是合同页contractCode，如果是发票页sequence）
+        'fileFlag ' :1,//(模块标记1,基建 2，租赁 目前始终传1)
+        'contractCode' :contractCode,//如果是发票页必须传，contractCode合同页传空
+        'depiction':''//文件信息
+     };
+     let formData: FormData = new FormData(); 
+     //必传
+     formData.append('action', 'getUploadFile');
+     formData.append('sessionid', this.globalData.sessionId);
+     formData.append('fileName', blob,(<any>blob).name);//文件流
      formData.append('data', JSON.stringify(data));//”单号”（如果是合同页contractCode，如果是发票页sequence）
      
      console.log('data:'+data);
