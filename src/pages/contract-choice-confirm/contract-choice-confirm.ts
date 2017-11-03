@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import {Component } from '@angular/core';
+import {IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {ContractDetail} from '../../model/contract-detail';
 import {ContractService} from '../../services/contractService';
 import {ResultBase} from "../../model/result-base";
