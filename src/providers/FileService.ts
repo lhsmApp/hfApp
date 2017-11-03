@@ -124,13 +124,16 @@ export class FileService {
       this.nativeService.showLoading();
       let fileObjs = [];
       for (let fileObj of fileObjList) {
+        //this.nativeService.alert('sss',JSON.stringify(fileObj));
         this.nativeService.convertImgToBase64(fileObj.origPath).subscribe(base64 => {
+          this.nativeService.alert('suc','cccc');
           fileObjs.push({
             'base64': base64,
             'type': FileService.getFileType(fileObj.origPath),
             'parameter': fileObj.parameter
           });
           if (fileObjs.length === fileObjList.length) {
+
             this.uploadMultiByBase64(fileObjs).subscribe(res => {
               observer.next(res);
               this.nativeService.hideLoading();

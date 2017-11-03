@@ -8,7 +8,7 @@ import {SplashScreen} from "@ionic-native/splash-screen";
 import {AppVersion} from "@ionic-native/app-version";
 import {Camera, CameraOptions} from "@ionic-native/camera";
 import {Toast} from "@ionic-native/toast";
-import {File, FileEntry} from "@ionic-native/file";
+import {File,FileReader,FileEntry} from "@ionic-native/file";
 import {FileTransfer, FileTransferObject} from "@ionic-native/file-transfer";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {ImagePicker} from "@ionic-native/image-picker";
@@ -24,6 +24,8 @@ import {Diagnostic} from "@ionic-native/diagnostic";
 
 declare var LocationPlugin;
 declare var AMapNavigation;
+declare var fundebug;
+//declare var FileReader
 
 @Injectable()
 export class NativeService {
@@ -303,6 +305,31 @@ export class NativeService {
   };
 
   /**
+   * 通过拍照获取照片(返回路径)
+   * @param options
+   */
+  getPictureByCameraOfPath(options: CameraOptions = {}): Observable<string> {
+    let ops: CameraOptions = Object.assign({
+      sourceType: this.camera.PictureSourceType.CAMERA,
+      saveToPhotoAlbum:true,
+      destinationType: this.camera.DestinationType.NATIVE_URI//DATA_URL: 0 base64字符串, FILE_URI: 1图片路径
+    }, options);
+    return this.getPicture(ops);
+  };
+
+  /**
+   * 通过图库获取照片(返回路径)
+   * @param options
+   */
+  getPictureByPhotoLibraryOfPath(options: CameraOptions = {}): Observable<string> {
+    let ops: CameraOptions = Object.assign({
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.NATIVE_URI//DATA_URL: 0 base64字符串, FILE_URI: 1图片路径
+    }, options);
+    return this.getPicture(ops);
+  };
+
+  /**
    * 通过图库选择多图
    * @param options
    */
@@ -345,14 +372,103 @@ export class NativeService {
     return Observable.create(observer => {
       this.file.resolveLocalFilesystemUrl(path).then((fileEnter: FileEntry) => {
         fileEnter.file(file => {
-          let reader = new FileReader();
+          fundebug.notify('fileSize',file.size);
+          this.alert('fileSize',file.size.toString());
+          try{
+            let a=1;
+          }catch(err){
+            this.alert('err1',JSON.stringify(err));
+          }
+
+          var reader;
+          try{
+            this.alert('FileReader','sdfsfsf');
+            reader = new FileReader();
+            this.alert('FileReader',JSON.stringify(reader));
+          }catch(err){
+            this.alert('err',JSON.stringify(err));
+          }
+          let blob: Blob = <Blob>file;
           reader.onloadend = function (e) {
+            //fundebug.notify('success','success!!!');
             observer.next(this.result);
           };
+          reader.onerror = function (e) {
+            fundebug.notify('err','err!!!');
+            observer.next(this.result);
+          };
+          reader.onloadstart = function (e) {
+            fundebug.notify('onloadstart','onloadstart!!!');
+            observer.next(this.result);
+          };
+          this.alert('ok','sdfs');
           reader.readAsDataURL(file);
+          
+          //fundebug.notify('dddd','sfds');
+          //fundebug.notify('readyState',reader.readyState);
+          //this.alert('readyState',reader.readyState.toString());
+          this.alert('wan','sdfsdf');
         });
       }).catch(err => {
         //this.logger.log(err, '根据图片绝对路径转化为base64字符串失败');
+        //fundebug.notify('err',JSON.stringify(err));
+        this.alert('err',JSON.stringify(err))
+      });
+    });
+  }
+
+  /**
+   * 根据图片绝对路径转化为ArrayBuffer
+   * @param path 绝对路径
+   */
+  convertImgToArrayBuffer(path: string): Observable<any> {
+    /*let blob: Blob = <Blob>file;
+          let reader = new FileReader();
+          reader.onloadend = () => {
+            const imgBlob = new Blob([reader.result], {type: blob.type});
+            observer.next(imgBlob);
+          };
+          reader.readAsArrayBuffer(blob);*/
+
+    return Observable.create(observer => {
+      /*this.file.resolveLocalFilesystemUrl(path).then((fileEnter: FileEntry) => {
+        fileEnter.file(file => {
+          this.alert('fileSize',file.size.toString());
+          
+
+          let reader = new FileReader();
+          reader.onload=function(){
+            observer.next(this.result);
+          }
+          reader.onloadend = function (e) {
+            observer.next('this.result');
+          };
+          reader.readAsArrayBuffer(file);
+        });
+      }).catch(err => {
+        //this.logger.log(err, '根据图片绝对路径转化为base64字符串失败');
+        this.alert('err',err);
+      });*/
+
+      /*let filePath=path.substring(0,path.lastIndexOf('/'));
+      let fileName=path.substring(path.lastIndexOf('/')+1);
+      let info:Promise<ArrayBuffer> =this.file.readAsArrayBuffer(filePath,fileName);
+      this.alert('info',JSON.stringify(info));
+
+      info.then(fileData=>{
+        this.alert('sd',fileData.byteLength.toString());
+        observer.next(fileData);
+      }).catch(err=>{this.alert('err',JSON.stringify(err))});*/
+
+
+      this.file.resolveLocalFilesystemUrl(path).then((fileEnter: FileEntry) => {
+        fileEnter.file(file => {
+          let blob: Blob = <Blob>file;
+          observer.next(blob);
+        });
+      }).catch(err => {
+        //this.logger.log(err, '根据图片绝对路径转化为base64字符串失败');
+        this.alert('err',err);
       });
     });
   }

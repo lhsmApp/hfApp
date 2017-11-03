@@ -8,7 +8,6 @@ import {AttachmentService} from '../../services/attachmentService';
 import {ResultBase} from "../../model/result-base";
 import {GlobalData} from "../../providers/GlobalData";
 
-
 /**
  * Generated class for the AttachmentAddPage page.
  *
@@ -50,37 +49,28 @@ export class AttachmentAddPage {
 
   getPicture(type) {//1拍照,0从图库选择
     let options = {
-      targetWidth: 400,
+      /*targetWidth: 400,
       targetHeight: 400,
-      quality: 100
+      quality: 100*/
     };
     if (type == 1) {
-      this.nativeService.getPictureByCamera(options).subscribe(imageBase64 => {
+      this.nativeService.getPictureByCameraOfPath(options).subscribe(imageBase64 => {
+        //this.attachmentPath=imageBase64.substring(0,imageBase64.lastIndexOf('?'));
         this.attachmentPath=imageBase64;
-        console.log(this.attachmentPath);
         //this.getPictureSuccess(imageBase64);
       });
     } else {
-      this.nativeService.getPictureByPhotoLibrary(options).subscribe(imageBase64 => {
+      this.nativeService.getPictureByPhotoLibraryOfPath(options).subscribe(imageBase64 => {
+        //this.attachmentPath=imageBase64.substring(0,imageBase64.lastIndexOf('?'));
         this.attachmentPath=imageBase64;
         //this.getPictureSuccess(imageBase64);
-        console.log(this.attachmentPath);
-        let data={
-         'type' :type,//（1,2） 1.合同 2.发票
-         'billNumber' :this.billNumber,//”单号”（如果是合同页contractCode，如果是发票页sequence）
-        'fileFlag ' :1,//(模块标记1,基建 2，租赁 目前始终传1)
-        'contractCode' :this.contractCode,//如果是发票页必须传，contractCode合同页传空
-        'depiction':''//文件信息
-       };
-        console.log(JSON.stringify(data));
-        console.log(this.globalData.sessionId);
       });
     }
   }
 
   //保存附件
   saveAttachment() {
-    this.attachmentService.uploadAttachment(this.attachmentPath,this.type,this.billNumber,this.contractCode).subscribe(object => {//保存avatar字段到用户表
+    /*this.attachmentService.uploadAttachment(this.attachmentPath,this.type,this.billNumber,this.contractCode).subscribe(object => {//保存avatar字段到用户表
       
       let resultBase:ResultBase=object[0] as ResultBase;
       if(resultBase.result=='true'){
@@ -93,7 +83,45 @@ export class AttachmentAddPage {
         });
         alert.present();
       }
-    });
+    });*/
+
+
+    /*this.nativeService.alert('path',this.attachmentPath);
+    this.nativeService.convertImgToArrayBuffer(this.attachmentPath).subscribe(arrayBuffer => {
+      this.nativeService.alert('adsf','succ');
+      this.attachmentService.uploadAttachment(arrayBuffer,this.type,this.billNumber,this.contractCode).subscribe(object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.viewCtrl.dismiss({'reflesh': true});
+        }else{
+          let alert = this.alertCtrl.create({
+            title: '提示!',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
+        }
+      });
+    })*/
+
+
+    //this.nativeService.alert('path',this.attachmentPath);
+    this.nativeService.convertImgToArrayBuffer(this.attachmentPath).subscribe(fileInfo => {
+      //this.nativeService.alert('adsf','succ');
+      this.attachmentService.uploadAttachment(fileInfo,this.type,this.billNumber,this.contractCode).subscribe(object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.viewCtrl.dismiss({'reflesh': true});
+        }else{
+          let alert = this.alertCtrl.create({
+            title: '提示!',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
+        }
+      });
+    })
   }
 
   dismiss() {

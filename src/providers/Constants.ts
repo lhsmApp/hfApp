@@ -1,7 +1,8 @@
 /*----------------------------------------后台Api地址----------------------------------------*/
 //export const APP_SERVE_URL = 'http://88.128.18.144:8081/api/';
-//export const APP_SERVE_URL = 'http://192.168.2.108:9080/assets/cellphone/';
-export const APP_SERVE_URL = 'http://localhost:8100/assets/cellphone/';
+export const APP_SERVE_URL = 'http://192.168.2.108:9080/assets/cellphone/';
+//export const APP_SERVE_URL = 'http://localhost:8100/assets/cellphone/';
+//export const APP_SERVE_URL = 'http://localhost:8002/assets/cellphone/';
 
 /*----------------------------------------文件服务器地址----------------------------------------*/
 export const FILE_SERVE_URL = 'http://172.16.19.86/kit_file_server/';//文件服务:测试环境

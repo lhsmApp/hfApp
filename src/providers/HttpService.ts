@@ -66,7 +66,7 @@ export class HttpService {
       body: body,
       headers: new Headers({
         //'Content-Type': 'application/json; charset=UTF-8'
-        'enctype': 'multipart/form-data'
+        //'enctype': 'multipart/form-data'
       })
     }));
   }
