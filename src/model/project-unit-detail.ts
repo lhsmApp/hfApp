@@ -23,7 +23,7 @@ export class ProjectUnitDetail{
  				requireDate: string;//操作日期"              
  				checkOpinion: string;//复核意见"          
 
-                            //没字典
+
 				elementTypeName: string;//项目单元类别" 
  				sgsxName: string;//施工属性""                      		  
 }

@@ -30,7 +30,6 @@ export class AcceptAssetDetail {
 
 
 
-    //没字典
     assetsTypeName: string;//资产类型"
     //没字典
     assetsCodeTypeName: string;//资产类别"

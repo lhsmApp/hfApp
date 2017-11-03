@@ -235,7 +235,7 @@ export class AssetDetailsItemPage {
             this.list = object[1] as AcceptAssetDetail[];
             if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
-              //this.itemShow.assetsTypeName = this.dictUtil.(this.,);//资产类型"
+              this.itemShow.assetsTypeName = this.dictUtil.getAssetsTypeName(this.itemShow.assetsType);//资产类型"
               this.FromPatchValue();
             }
           } else {

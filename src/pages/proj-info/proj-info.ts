@@ -7,6 +7,8 @@ import {ResultBase} from "../../model/result-base";
 import {DictUtil} from '../../providers/dict-util';
 import {Storage} from "@ionic/storage";
 import {Sgsx} from '../../enums/enums';
+import {PROJECT_ELEMENT} from "../../enums/storage-type";
+import {DicBase} from '../../model/dic-base';
 
 import {BillElementCode} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
@@ -50,7 +52,7 @@ export class ProjInfoPage {
 
   list: ProjectUnitDetail[];
   itemShow:ProjectUnitDetail;
-  //dicElementType: DicComplex[];//项目单元类别"        
+  dicElementType: DicBase[];//项目单元类别"       
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController,
@@ -65,9 +67,9 @@ export class ProjInfoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProjInfoPage');
     this.itemShow = new ProjectUnitDetail();
-    //this.storage.get().then((dicList: DicComplex[]) => {
-    //  this.dicElementType=dicList;
-    //});
+    this.storage.get(PROJECT_ELEMENT).then((dicList: DicBase[]) => {
+      this.dicElementType=dicList;
+    });
     this.getShowItem();
   }
 
@@ -80,7 +82,7 @@ export class ProjInfoPage {
             this.list = object[1] as ProjectUnitDetail[];
             if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
-              //this.itemShow.elementTypeName = this.dictUtil.(this.dicElementType,this.itemShow.elementType);//项目单元类别"          
+              this.itemShow.elementTypeName = this.dictUtil.getProjectElementName(this.dicElementType,this.itemShow.elementType);//项目单元类别"          
               this.itemShow.sgsxName = this.dictUtil.getEnumsName(Sgsx,this.itemShow.sgsx);//施工属性"" 
             }
           } else {

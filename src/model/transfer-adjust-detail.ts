@@ -34,14 +34,10 @@ export class TransferAdjustDetail {
 
 
 
-    ////没字典
-    //assetsTypeName: string;//资产类型"
-    //没字典
-    assetsCodeTypeName: string;//资产类别"
+
+    assetsTypeName: string;//资产类型"
     departCodeName: string;//所属单位"
-    //entityCodeName: string;//所属资产组"
     unitCodeName: string;//计量单位"
-    //usedAspectName: string;//使用方向"
     applyCodeName: string;//取得方式"
     usedStateName: string;//使用状况"
     storePlaceName: string;//存放地点""

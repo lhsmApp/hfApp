@@ -22,7 +22,6 @@ export class ContractDetail{
 	checkOpinion:string;//审批意见
 
 
-    //没字典
 	compactTypeName:string;//合同类别
 	relativePersonName:string;//合同相对人 外部单位字典
     //没字典

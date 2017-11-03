@@ -133,7 +133,7 @@ export class AssetDetailsInfoPage {
           this.list = object[1] as AcceptAssetDetail[];
           if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
-              //this.itemShow.assetsTypeName = this.dictUtil.(this.,);//资产类型"
+              this.itemShow.assetsTypeName = this.dictUtil.getAssetsTypeName(this.itemShow.assetsType);//资产类型"
               //this.itemShow.assetsCodeTypeName = this.dictUtil.(this.,);//资产类别"
               this.itemShow.departCodeName = this.dictUtil.getInDepartName(this.DicDepartCode,this.itemShow.departCode);//所属单位"
               this.itemShow.entityCodeName = this.dictUtil.getBasicEntityName(this.dicEntityCode,this.itemShow.entityCode);//所属资产组"

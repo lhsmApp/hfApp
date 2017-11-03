@@ -9,6 +9,8 @@ import {ResultBase} from "../../model/result-base";
 import {DictUtil} from '../../providers/dict-util';
 import {Storage} from "@ionic/storage";
 import {Sgsx} from '../../enums/enums';
+import {PROJECT_ELEMENT} from "../../enums/storage-type";
+import {DicBase} from '../../model/dic-base';
 
 import {Oper,Oper_Edit,Oper_Add} from '../../providers/TransferFeildName';
 import {BillElementCode} from '../../providers/TransferFeildName';
@@ -61,7 +63,7 @@ export class ScheduleApplyItemPage {
     maxYear:string;
   callback :any;
   isBackRefrash=false;
-  //dicElementType: DicComplex[];//项目单元类别"          
+  dicElementType: DicBase[];//项目单元类别"      
   dicSgsx: Array<{code: string, name: string}>;//施工属性"" 
  
   constructor(public navCtrl: NavController, 
@@ -147,9 +149,9 @@ export class ScheduleApplyItemPage {
     this.isBackRefrash=false;
     this.itemShow = new ProjectUnitDetail();
     this.dicSgsx = Sgsx;
-    //this.storage.get().then((dicList: DicComplex[]) => {
-    //  this.dicElementType=dicList;
-    //});
+    this.storage.get(PROJECT_ELEMENT).then((dicList: DicBase[]) => {
+      this.dicElementType=dicList;
+    });
     this.getShowItem();
   }
 
@@ -163,7 +165,7 @@ export class ScheduleApplyItemPage {
             this.list = object[1] as ProjectUnitDetail[];
             if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
-              //this.itemShow.elementTypeName = this.dictUtil.(this.dicElementType,this.itemShow.elementType);//项目单元类别"          
+              this.itemShow.elementTypeName = this.dictUtil.getProjectElementName(this.dicElementType,this.itemShow.elementType);//项目单元类别"
               this.itemShow.sgsxName = this.dictUtil.getEnumsName(this.dicSgsx,this.itemShow.sgsx);//施工属性"" 
               this.FromPatchValue();
             }

@@ -136,7 +136,7 @@ export class TransferAdjustAssetInfoPage {
           this.list = object[1] as TransferAdjustDetail[];
           if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
-              //this.itemShow.assetsCodeTypeName = this.dictUtil.(this.,);//资产类别"
+              this.itemShow.assetsTypeName = this.dictUtil.getAssetsTypeName(this.itemShow.assetsType);//资产类型"
               this.itemShow.departCodeName = this.dictUtil.getInDepartName(this.DicDepartCode,this.itemShow.departCode);//所属单位"
               this.itemShow.unitCodeName = this.dictUtil.getUnitName(this.dicUnitCode,this.itemShow.unitCode);//计量单位"
               this.itemShow.applyCodeName = this.dictUtil.getApplyCodeName(this.dicApplyCode,this.itemShow.applyCode);//取得方式"
