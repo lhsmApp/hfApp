@@ -39,6 +39,7 @@ export class AttachmentPage {
   	//this.attachmentList=ATTACHMENT_LIST;
     this.billNumber=this.navParams.get('billNumber');
     this.contractCode=this.navParams.get('contractCode');
+    console.log('attachment'+this.contractCode);
     this.type=this.navParams.get('type');
     if(this.type=='1'){
       this.title='合同附件';

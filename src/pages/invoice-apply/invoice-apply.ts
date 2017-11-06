@@ -32,6 +32,7 @@ export class InvoiceApplyPage {
     this.invoiceMain=this.navParams.get("invoiceItem");  	
     this.paymentMain=this.navParams.get("paymentItem");
     this.contractCode=this.navParams.get('contractCode');
+    console.log('invoice-apply'+this.contractCode);
     this.invoiceForm = this.formBuilder.group({
       chalanNumber: [,[Validators.required]],//发票编号，手工录入
       sequence: '',//序号，自动生成，判断是否为空，空为增加，有则修改

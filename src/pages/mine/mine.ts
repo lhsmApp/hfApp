@@ -30,6 +30,7 @@ import {ASSETS} from "../../enums/storage-type";
 import {DictUtil} from "../../providers/dict-util";
 import {PROJECT_ELEMENT} from "../../enums/storage-type";
 import {CONTRACT_TYPE} from "../../enums/storage-type";
+import {ADDITIONAL_PERSON} from "../../enums/storage-type";
 import {DicBase} from '../../model/dic-base';
 
 import {GlobalData} from "../../providers/GlobalData";
@@ -120,7 +121,6 @@ export class MinePage {
 
   //数据字典刷新
   dictReflesh() {
-    console.log('cccccccccccc');
     //this.navCtrl.push(WorkMapPage);
     //获取综合字典
     this.systemService.getSystemDict()
@@ -133,6 +133,8 @@ export class MinePage {
           //usedAspect:使用方向
           //applyCode:取得方式
           //usedState:使用状态
+          //specialLine:技术部门
+          //depositary:存放地点
           //specialLine:技术部门
           //console.log(complexDict.CodeProperty);
           //console.log(complexDict.codeDetail);

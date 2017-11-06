@@ -8,7 +8,7 @@ import {SplashScreen} from "@ionic-native/splash-screen";
 import {AppVersion} from "@ionic-native/app-version";
 import {Camera, CameraOptions} from "@ionic-native/camera";
 import {Toast} from "@ionic-native/toast";
-import {File,FileReader,FileEntry} from "@ionic-native/file";
+import {File,FileEntry} from "@ionic-native/file";
 import {FileTransfer, FileTransferObject} from "@ionic-native/file-transfer";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {ImagePicker} from "@ionic-native/image-picker";
@@ -24,8 +24,6 @@ import {Diagnostic} from "@ionic-native/diagnostic";
 
 declare var LocationPlugin;
 declare var AMapNavigation;
-declare var fundebug;
-//declare var FileReader
 
 @Injectable()
 export class NativeService {
@@ -372,47 +370,14 @@ export class NativeService {
     return Observable.create(observer => {
       this.file.resolveLocalFilesystemUrl(path).then((fileEnter: FileEntry) => {
         fileEnter.file(file => {
-          fundebug.notify('fileSize',file.size);
-          this.alert('fileSize',file.size.toString());
-          try{
-            let a=1;
-          }catch(err){
-            this.alert('err1',JSON.stringify(err));
-          }
-
-          var reader;
-          try{
-            this.alert('FileReader','sdfsfsf');
-            reader = new FileReader();
-            this.alert('FileReader',JSON.stringify(reader));
-          }catch(err){
-            this.alert('err',JSON.stringify(err));
-          }
-          let blob: Blob = <Blob>file;
+          let reader = new FileReader();
           reader.onloadend = function (e) {
-            //fundebug.notify('success','success!!!');
             observer.next(this.result);
           };
-          reader.onerror = function (e) {
-            fundebug.notify('err','err!!!');
-            observer.next(this.result);
-          };
-          reader.onloadstart = function (e) {
-            fundebug.notify('onloadstart','onloadstart!!!');
-            observer.next(this.result);
-          };
-          this.alert('ok','sdfs');
           reader.readAsDataURL(file);
-          
-          //fundebug.notify('dddd','sfds');
-          //fundebug.notify('readyState',reader.readyState);
-          //this.alert('readyState',reader.readyState.toString());
-          this.alert('wan','sdfsdf');
         });
       }).catch(err => {
         //this.logger.log(err, '根据图片绝对路径转化为base64字符串失败');
-        //fundebug.notify('err',JSON.stringify(err));
-        this.alert('err',JSON.stringify(err))
       });
     });
   }
@@ -422,33 +387,21 @@ export class NativeService {
    * @param path 绝对路径
    */
   convertImgToArrayBuffer(path: string): Observable<any> {
-    /*let blob: Blob = <Blob>file;
+    return Observable.create(observer => {
+      this.file.resolveLocalFilesystemUrl(path).then((fileEnter: FileEntry) => {
+        fileEnter.file(file => {
+          let blob: Blob = <Blob>file;
           let reader = new FileReader();
           reader.onloadend = () => {
             const imgBlob = new Blob([reader.result], {type: blob.type});
-            observer.next(imgBlob);
+            let blobInfo={fileName:(<any>blob).name,blob:imgBlob}
+            observer.next(blobInfo);
           };
-          reader.readAsArrayBuffer(blob);*/
-
-    return Observable.create(observer => {
-      /*this.file.resolveLocalFilesystemUrl(path).then((fileEnter: FileEntry) => {
-        fileEnter.file(file => {
-          this.alert('fileSize',file.size.toString());
-          
-
-          let reader = new FileReader();
-          reader.onload=function(){
-            observer.next(this.result);
-          }
-          reader.onloadend = function (e) {
-            observer.next('this.result');
-          };
-          reader.readAsArrayBuffer(file);
+          reader.readAsArrayBuffer(blob);
         });
       }).catch(err => {
         //this.logger.log(err, '根据图片绝对路径转化为base64字符串失败');
-        this.alert('err',err);
-      });*/
+      });
 
       /*let filePath=path.substring(0,path.lastIndexOf('/'));
       let fileName=path.substring(path.lastIndexOf('/')+1);
@@ -461,7 +414,7 @@ export class NativeService {
       }).catch(err=>{this.alert('err',JSON.stringify(err))});*/
 
 
-      this.file.resolveLocalFilesystemUrl(path).then((fileEnter: FileEntry) => {
+      /*this.file.resolveLocalFilesystemUrl(path).then((fileEnter: FileEntry) => {
         fileEnter.file(file => {
           let blob: Blob = <Blob>file;
           observer.next(blob);
@@ -469,7 +422,7 @@ export class NativeService {
       }).catch(err => {
         //this.logger.log(err, '根据图片绝对路径转化为base64字符串失败');
         this.alert('err',err);
-      });
+      });*/
     });
   }
 
