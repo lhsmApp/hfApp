@@ -24,7 +24,7 @@
   <ion-item *ngFor="let item of list;trackBy:item?.userCode" (click)="toDetail(item)">
         <p>通知：{{item.messageContent}}</p>
         <p>发布日期：{{item.publishDate}}</p>
-        <p>发布人：{{item.username}}</p>
+        <p>发布人：{{item.userName}}</p>
   </ion-item>
 </ion-list>
   <!--<ion-infinite-scroll (ionInfinite)="doInfinite($event)">

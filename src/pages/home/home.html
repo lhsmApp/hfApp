@@ -14,7 +14,9 @@
       </button>  -->
       <ion-item *ngFor="let item of notices" (click)="itemSelected(item)">
           <ion-icon item-start name="notifications" color='danger'></ion-icon>
-              通知公告：{{item.messageContent}}
+          <p>{{item.messageContent}}</p>
+          <p>{{item.publishDate}}</p>
+          <h3 item-end>{{item.userName}}</h3>
       </ion-item> 
       <ion-item-divider color="light"></ion-item-divider>
     </ion-list>

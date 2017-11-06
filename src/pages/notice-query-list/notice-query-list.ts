@@ -104,7 +104,7 @@ export class NoticeQueryListPage {
         return (item.messageContent.toString().indexOf(val.toLowerCase()) > -1 
           || item.publishDate.toLowerCase().indexOf(val.toLowerCase()) > -1 
           || item.userCode.toLowerCase().indexOf(val.toLowerCase()) > -1 
-          || item.username.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          || item.userName.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     } else {
       this.list = this.listAll;
