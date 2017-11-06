@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ItemSliding } from 'ionic-angular';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {ProjectUnitMain} from '../../model/project-unit-main'
 import {ProjectElementService} from '../../services/projectElementService';
@@ -149,7 +150,8 @@ export class ScheduleApplyListPage {
     /*add(){
         this.navCtrl.push(Page_ScheduleApplyItemPage, {BillElementCode: [],Oper:Oper_Add});
     }*/
-    edit(elementCode: string){
+    edit(elementCode: string, slidingItem: ItemSliding){
+        slidingItem.close();
         this.navCtrl.push(Page_ScheduleApplyItemPage, {callback:this.checkRefresh,BillElementCode: elementCode,Oper:Oper_Edit});
     }
 
