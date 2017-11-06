@@ -40,6 +40,7 @@ export class AttachmentAddPage {
     this.title=this.params.get('title');
     this.billNumber=this.params.get('billNumber');
     this.contractCode=this.params.get('contractCode');
+    console.log('attachment-add'+this.contractCode);
     this.type=this.params.get('type');
   }
 
@@ -85,30 +86,9 @@ export class AttachmentAddPage {
       }
     });*/
 
-
-    /*this.nativeService.alert('path',this.attachmentPath);
-    this.nativeService.convertImgToArrayBuffer(this.attachmentPath).subscribe(arrayBuffer => {
-      this.nativeService.alert('adsf','succ');
-      this.attachmentService.uploadAttachment(arrayBuffer,this.type,this.billNumber,this.contractCode).subscribe(object => {
-        let resultBase:ResultBase=object[0] as ResultBase;
-        if(resultBase.result=='true'){
-          this.viewCtrl.dismiss({'reflesh': true});
-        }else{
-          let alert = this.alertCtrl.create({
-            title: '提示!',
-            subTitle: resultBase.message,
-            buttons: ['确定']
-          });
-          alert.present();
-        }
-      });
-    })*/
-
-
-    //this.nativeService.alert('path',this.attachmentPath);
+    console.log(this.contractCode);
     this.nativeService.convertImgToArrayBuffer(this.attachmentPath).subscribe(fileInfo => {
-      //this.nativeService.alert('adsf','succ');
-      this.attachmentService.uploadAttachment(fileInfo,this.type,this.billNumber,this.contractCode).subscribe(object => {
+      this.attachmentService.uploadAttachment(fileInfo.blob,fileInfo.fileName,this.type,this.billNumber,this.contractCode).subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.viewCtrl.dismiss({'reflesh': true});

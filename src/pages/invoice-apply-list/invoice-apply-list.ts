@@ -34,6 +34,7 @@ export class InvoiceApplyListPage {
   	//this.invoiceList=INVOICE_LIST;
     this.paymentMain=this.navParams.get("paymentItem");
     this.contractCode=this.navParams.get('contractCode');
+    console.log('invoice-apply-list'+this.contractCode);
   }
 
   ionViewDidLoad() {
@@ -82,7 +83,7 @@ export class InvoiceApplyListPage {
 
   //编辑
   edit(item: InvoiceMain){
-	this.navCtrl.push("InvoiceApplyPage",{"invoiceItem":item,'paymentItem':this.paymentMain});
+	this.navCtrl.push("InvoiceApplyPage",{"invoiceItem":item,'paymentItem':this.paymentMain,contractCode:this.contractCode});
   }
 
   //删除

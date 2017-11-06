@@ -100,6 +100,17 @@ export class DictUtil {
     return code;
   }
 
+  //翻译附加相对人
+  getAdditionalPersonName(dictInfo:DicComplex[],code:string):string{
+    if(dictInfo&&dictInfo.length>0){
+      for(let depositary of dictInfo){
+        if(depositary.complexCode==code)
+          return depositary.complexName;
+      }
+    }
+    return code;
+  }
+
   //翻译内部单位
   getInDepartName(dictInfo:DicInDepart[],code:string):string{
     if(dictInfo&&dictInfo.length>0){
