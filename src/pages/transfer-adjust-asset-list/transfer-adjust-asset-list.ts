@@ -39,6 +39,7 @@ export class TransferAdjustAssetListPage {
     itemTranfer:TransferFundsMain;
     
     listAll:TransferAdjustMain[];
+    list:TransferAdjustMain[];
     listDept: DicInDepart[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -80,6 +81,7 @@ export class TransferAdjustAssetListPage {
               item.departName = this.dictUtil.getInDepartName(this.listDept,item.departCode);
             }
           }
+          this.list = this.listAll;
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
