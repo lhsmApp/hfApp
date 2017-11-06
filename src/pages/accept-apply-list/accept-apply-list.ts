@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { ItemSliding } from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {NavController, NavParams, ViewController,IonicPage,AlertController} from 'ionic-angular';
 import {AcceptApplyMain} from '../../model/accept-apply-main';
@@ -129,8 +130,9 @@ export class AcceptApplyListPage {
     }
 
   //编辑
-  edit(billNumber: string){
-        this.navCtrl.push(Page_AcceptApplyItemPage, {callback:this.checkRefresh,BillNumberCode: billNumber,Oper:Oper_Edit});
+  edit(billNumber: string, slidingItem: ItemSliding){
+    slidingItem.close();
+    this.navCtrl.push(Page_AcceptApplyItemPage, {callback:this.checkRefresh,BillNumberCode: billNumber,Oper:Oper_Edit});
   }
 
   //回调

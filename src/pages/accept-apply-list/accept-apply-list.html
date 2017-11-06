@@ -23,7 +23,7 @@
     </ion-refresher-content>
   </ion-refresher>
 <ion-list>
-  <ion-item-sliding *ngFor="let item of list;trackBy:item?.billNumber">
+  <ion-item-sliding *ngFor="let item of list;trackBy:item?.billNumber" #slidingItem>
     <ion-item (click)="toDetail(item.billNumber)">
         <h2>验收单号：{{item.billNumber}}</h2><!---->
         <p>申请日期：{{item.requireDate}}</p><!---->
@@ -31,7 +31,7 @@
         <h3 item-end><span item-end [tab]="item"></span></h3><!--单据状态：reviewStatus-->
     </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary" (click)="edit(item.billNumber)">
+        <button ion-button color="primary" (click)="edit(item.billNumber, slidingItem)">
           <ion-icon name="create"></ion-icon>
           编辑
         </button>

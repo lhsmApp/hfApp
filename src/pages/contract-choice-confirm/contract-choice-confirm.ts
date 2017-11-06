@@ -11,7 +11,9 @@ import {OUT_DEPART} from "../../enums/storage-type";
 import {DicOutDepart} from '../../model/dic-out-depart';
 import {ContractCostProperty} from '../../enums/enums';
 import {CONTRACT_TYPE} from "../../enums/storage-type";
+import {ADDITIONAL_PERSON} from "../../enums/storage-type";
 import {DicBase} from '../../model/dic-base';
+import {DicComplex} from '../../model/dic-complex';
 
 import {BillContractCode} from '../../providers/TransferFeildName';
 
@@ -56,6 +58,7 @@ export class ContractChoiceConfirmPage {
   dicInDept: DicInDepart[];
   dicOutDept: DicOutDepart[];
   dicContractType: DicBase[];
+  dicAdditionalPerson: DicComplex[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private storage: Storage,
@@ -78,6 +81,9 @@ export class ContractChoiceConfirmPage {
     this.storage.get(CONTRACT_TYPE).then((list: DicBase[]) => {
       this.dicContractType=list;
     });
+    this.storage.get(ADDITIONAL_PERSON).then((list: DicComplex[]) => {
+      this.dicAdditionalPerson=list;
+    });
     this.getShowItem();
   }
 
@@ -97,7 +103,7 @@ export class ContractChoiceConfirmPage {
               //合同相对人
               this.itemShow.relativePersonName = this.dictUtil.getOutDepartName(this.dicOutDept,this.itemShow.relativePerson);
               //附加相对人
-              //this.itemShow.additionalPersonName = this.dictUtil.(this.,this.itemShow.additionalPerson);
+              this.itemShow.additionalPersonName = this.dictUtil.getAdditionalPersonName(this.dicAdditionalPerson,this.itemShow.additionalPerson);
               //甲方签约单位
               this.itemShow.ownDepartName = this.dictUtil.getInDepartName(this.dicInDept,this.itemShow.ownDepart);
               //成本属性
