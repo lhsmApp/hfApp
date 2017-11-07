@@ -75,17 +75,7 @@ export class AttachmentInfoPage {
 
   //上拉刷新
   doRefresh(refresher) {
-  	/*this.params.page = 1;
-  	setTimeout(() => {
-  		this.topicService.getTopics(this.params).subscribe(
-  			data => {
-  				this.advancePaymentList = data.data;
-  				refresher.complete();
-  			}
-  			);
-  	}, 2000);*/
-
-  	this.attachmentList = ATTACHMENT_LIST;
+  	this.getList();
   	refresher.complete();
   }
 }

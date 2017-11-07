@@ -71,22 +71,6 @@ export class AttachmentAddPage {
 
   //保存附件
   saveAttachment() {
-    /*this.attachmentService.uploadAttachment(this.attachmentPath,this.type,this.billNumber,this.contractCode).subscribe(object => {//保存avatar字段到用户表
-      
-      let resultBase:ResultBase=object[0] as ResultBase;
-      if(resultBase.result=='true'){
-        this.viewCtrl.dismiss({'reflesh': true});
-      }else{
-        let alert = this.alertCtrl.create({
-          title: '提示!',
-          subTitle: resultBase.message,
-          buttons: ['确定']
-        });
-        alert.present();
-      }
-    });*/
-
-    console.log(this.contractCode);
     this.nativeService.convertImgToArrayBuffer(this.attachmentPath).subscribe(fileInfo => {
       this.attachmentService.uploadAttachment(fileInfo.blob,fileInfo.fileName,this.type,this.billNumber,this.contractCode).subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;

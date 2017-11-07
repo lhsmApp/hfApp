@@ -5,11 +5,9 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar color='dark'>
     <ion-title>工程量清单</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
@@ -20,10 +18,12 @@
   </ion-refresher>
   <ion-list class="list-avatar-page">
     <ion-item *ngFor="let item of workList;trackBy:item?.sequence" (click)="openPage(item)">
-      <h2>序号：{{item.sequence}}</h2>
-      <h3 item-end>{{item.payCode}}</h3>
-      <p> {{item.listNumber}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.listName}}</p>
-      
+        <p>序号：{{item.sequence}}</p>
+        <p>付款单号：{{item.payCode}}</p>
+        <p>清单项目编号：{{item.listNumber}}</p>
+        <p>清单项目名称：{{item.listName}}</p>
+        <p>合价：{{item.moneyTotal}}</p>
+        <ion-icon name="arrow-dropright" item-end></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>

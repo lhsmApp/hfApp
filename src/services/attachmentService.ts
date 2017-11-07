@@ -37,7 +37,7 @@ export class AttachmentService {
   }
 
   //附件删除-----basic_up_file 附件表
-  deleteAttachment(billNumber:string,contractCode:string,type:string):Observable<(Object)> {
+  deleteAttachment(billNumber:string,contractCode:string,type:string,sequence:number):Observable<(Object)> {
     /*let param = {
      //必传
      'action': 'deletePhoneBasicChalan',
@@ -54,11 +54,11 @@ export class AttachmentService {
      formData.append('billNumber', billNumber);//”单号”（如果是合同页contractCode，如果是发票页sequence）
      formData.append('fileFlag', '1');//“1”(模块标记1,基建 2，租赁 目前始终传1)
      formData.append('contractCode', contractCode);//如果是发票页必须传，contractCode合同页传空”
-     //formData.append('sequence', sequence);//序号(int型)
+     formData.append('sequence', sequence.toString());//序号(int型)
 
      console.log('billNumber:'+billNumber);
      console.log('contractCode:'+contractCode);
-     //console.log('sequence:'+sequence);
+     console.log('sequence:'+sequence);
      return this.httpService.postMultiFormData('phoneBasicUpFile.do', formData).map((res: Response) => res.json());
   }
 

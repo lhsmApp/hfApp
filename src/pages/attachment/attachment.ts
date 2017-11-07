@@ -79,17 +79,7 @@ export class AttachmentPage {
 
   //上拉刷新
   doRefresh(refresher) {
-  	/*this.params.page = 1;
-  	setTimeout(() => {
-  		this.topicService.getTopics(this.params).subscribe(
-  			data => {
-  				this.advancePaymentList = data.data;
-  				refresher.complete();
-  			}
-  			);
-  	}, 2000);*/
-
-  	this.attachmentList = ATTACHMENT_LIST;
+  	this.getList();
   	refresher.complete();
   }
 
@@ -97,9 +87,9 @@ export class AttachmentPage {
   add(){
     let modal = this.modalCtrl.create('AttachmentAddPage', {title:this.title,billNumber:this.billNumber,contractCode:this.contractCode,type:this.type});
     modal.present();
-    /*modal.onDidDismiss(data => {
-      data && (this.invoiceCode = data.invoiceCode)
-    });*/
+    modal.onDidDismiss(data => {
+      data && this.getList();
+    });
   }
 
   //删除
@@ -117,7 +107,7 @@ export class AttachmentPage {
         {
           text: '确认',
           handler: () => {
-            this.attachmentService.deleteAttachment(this.billNumber,this.contractCode,this.type)
+            this.attachmentService.deleteAttachment(this.billNumber,this.contractCode,this.type,item.sequence)
             .subscribe(object => {
               let resultBase:ResultBase=object[0] as ResultBase;
               if(resultBase.result=='true'){
