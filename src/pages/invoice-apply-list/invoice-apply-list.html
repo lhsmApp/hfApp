@@ -24,7 +24,7 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-list class="list-avatar-page">
-  	<ion-item-sliding *ngFor="let item of invoiceList" >
+  	<ion-item-sliding *ngFor="let item of invoiceList" #slidingItem>
 	    <ion-item (click)="openPage(item)">
 	      <h2>发票编号：{{item.chalanNumber}}</h2>
         <button ion-button color="danger" outline item-end>发票金额：{{item.chalanMoney|number}}</button>
@@ -33,11 +33,11 @@
 	      <p >发票日期：{{item.chalanDate}}</p>
 	    </ion-item>
 	    <ion-item-options side="right">
-	      <button ion-button color="primary" (click)="edit(item);$event.stopPropagation()">
+	      <button ion-button color="primary" (click)="edit(item,slidingItem);$event.stopPropagation()">
 	        <ion-icon name="create"></ion-icon>
 	        编辑
 	      </button>
-	      <button ion-button color="danger" (click)="delete(item.payCode);$event.stopPropagation()">
+	      <button ion-button color="danger" (click)="delete(item.payCode,slidingItem);$event.stopPropagation()">
 	        <ion-icon name="close"></ion-icon>
 	        删除
 	      </button>

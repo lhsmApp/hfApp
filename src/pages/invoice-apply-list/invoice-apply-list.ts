@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,ItemSliding } from 'ionic-angular';
 import { InvoiceMain} from '../../model/invoice-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
@@ -34,7 +34,6 @@ export class InvoiceApplyListPage {
   	//this.invoiceList=INVOICE_LIST;
     this.paymentMain=this.navParams.get("paymentItem");
     this.contractCode=this.navParams.get('contractCode');
-    console.log('invoice-apply-list'+this.contractCode);
   }
 
   ionViewDidLoad() {
@@ -82,13 +81,49 @@ export class InvoiceApplyListPage {
   }
 
   //编辑
-  edit(item: InvoiceMain){
-	this.navCtrl.push("InvoiceApplyPage",{"invoiceItem":item,'paymentItem':this.paymentMain,contractCode:this.contractCode});
+  edit(item: InvoiceMain, slidingItem: ItemSliding){
+    slidingItem.close();
+	  this.navCtrl.push("InvoiceApplyPage",{"invoiceItem":item,'paymentItem':this.paymentMain,contractCode:this.contractCode});
   }
 
   //删除
-  delete(invoiceCode:string){
-
+  delete(item: InvoiceMain, slidingItem: ItemSliding){
+    slidingItem.close();
+    let confirm = this.alertCtrl.create({
+      title: '删除提示?',
+      message: '确认要删除当前发票吗?',
+      buttons: [
+        {
+          text: '取消',
+          handler: () => {
+            console.log('cancel');
+          }
+        },
+        {
+          text: '确认',
+          handler: () => {
+            this.paymentService.deleteInvoiceMain(this.paymentMain.payCode,item.chalanNumber)
+            .subscribe(object => {
+              let resultBase:ResultBase=object[0] as ResultBase;
+              if(resultBase.result=='true'){
+                //this.listAll.unshift(item);
+                //this.advancePaymentList.unshift(item);
+                this.invoiceList = this.invoiceList.filter(h => h !== item);
+              }else{
+                let alert = this.alertCtrl.create({
+                title: '提示!',
+                subTitle: resultBase.message,
+                buttons: ['确定']
+              });
+              alert.present();
+              }
+            }, () => {
+              
+            });
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
-
 }

@@ -214,6 +214,7 @@ export class AdvancePaymentApplyPage {
   save(){
     //if(!this.paymentForm.valid) return;
 
+    
     if(this.paymentForm.get('clauseType')._value=='2'||this.paymentForm.get('clauseType')._value=='4'){
       if(this.gclListInfo==null||this.gclListInfo.length==0){
         let alert = this.alertCtrl.create({
