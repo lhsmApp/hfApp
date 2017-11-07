@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,ItemSliding } from 'ionic-angular';
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
@@ -125,7 +125,8 @@ export class AdvancePaymentApplyListPage {
   }
 
   //编辑
-  edit(item: AdvancePaymentMain){
+  edit(item: AdvancePaymentMain, slidingItem: ItemSliding){
+    slidingItem.close();
 	  this.navCtrl.push("AdvancePaymentApplyPage",{callback:this.saveSend,"paymentItem":item});
   }
 
@@ -142,7 +143,8 @@ export class AdvancePaymentApplyListPage {
   };
 
   //删除
-  delete(item:AdvancePaymentMain){
+  delete(item:AdvancePaymentMain, slidingItem: ItemSliding){
+    slidingItem.close();
     let confirm = this.alertCtrl.create({
       title: '删除提示?',
       message: '确认要删除当前付款单吗?',

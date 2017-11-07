@@ -39,7 +39,6 @@ export class AttachmentPage {
   	//this.attachmentList=ATTACHMENT_LIST;
     this.billNumber=this.navParams.get('billNumber');
     this.contractCode=this.navParams.get('contractCode');
-    console.log('attachment'+this.contractCode);
     this.type=this.navParams.get('type');
     if(this.type=='1'){
       this.title='合同附件';
@@ -103,9 +102,41 @@ export class AttachmentPage {
     });*/
   }
 
-  /*//上传
-  upload(){
-
-  }*/
-
+  //删除
+  delete(item:Attachment){
+    let confirm = this.alertCtrl.create({
+      title: '删除提示?',
+      message: '确认要删除当前付款单吗?',
+      buttons: [
+        {
+          text: '取消',
+          handler: () => {
+            console.log('cancel');
+          }
+        },
+        {
+          text: '确认',
+          handler: () => {
+            this.attachmentService.deleteAttachment(this.billNumber,this.contractCode,this.type)
+            .subscribe(object => {
+              let resultBase:ResultBase=object[0] as ResultBase;
+              if(resultBase.result=='true'){
+                this.attachmentList = this.attachmentList.filter(h => h !== item);
+              }else{
+                let alert = this.alertCtrl.create({
+                title: '提示!',
+                subTitle: resultBase.message,
+                buttons: ['确定']
+              });
+              alert.present();
+              }
+            }, () => {
+              
+            });
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 }
