@@ -22,8 +22,8 @@
   </ion-refresher>
 	<ion-list>
 	    <ion-item *ngFor="let item of list" (click)="toDetail(item)">
-            <h2>资产编码：{{item.assetsCode}}</h2><!---->
-            <h3>资产名称：{{item.assetsName}}</h3><!---->
+            <p>资产编码：{{item.assetsCode}}</p><!---->
+            <p>资产名称：{{item.assetsName}}</p><!---->
             <p>所属单位：{{item.departName}}</p><!---->
             <p color="green">键码：{{item.keyCode}}</p><!--资产-->
 		</ion-item>
