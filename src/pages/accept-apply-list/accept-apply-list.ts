@@ -5,6 +5,7 @@ import {NavController, NavParams, ViewController,IonicPage,AlertController} from
 import {AcceptApplyMain} from '../../model/accept-apply-main';
 import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 import {Page_AcceptApplyInfoPage,Page_AcceptApplyItemPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
@@ -34,6 +35,8 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
 export class AcceptApplyListPage {
     listAll:AcceptApplyMain[];
     list:AcceptApplyMain[];
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
 
   constructor(public navCtrl: NavController,
               public alertCtrl: AlertController,
@@ -51,6 +54,7 @@ export class AcceptApplyListPage {
 
   //获取列表信息
   getList() {
+    this.isEmpty=false;
     //this.listAll = [];
     //this.list = [];
     //1.申请 2.查询 3.审批
@@ -63,6 +67,9 @@ export class AcceptApplyListPage {
         if(resultBase.result=='true'){
           this.listAll = object[1] as AcceptApplyMain[];
           this.list = this.listAll;
+          if(!(this.listAll!=null&&this.listAll.length>0)){
+            this.isEmpty=true;
+          }
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',

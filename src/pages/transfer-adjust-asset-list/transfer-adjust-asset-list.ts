@@ -9,6 +9,7 @@ import {IN_DEPART} from "../../enums/storage-type";
 import {DicInDepart} from '../../model/dic-in-depart';
 import {DictUtil} from '../../providers/dict-util';
 import {FeeFlag} from '../../enums/enums';
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 import {Oper,Oper_Approval} from '../../providers/TransferFeildName';
 import {Title} from '../../providers/TransferFeildName';
@@ -40,6 +41,8 @@ export class TransferAdjustAssetListPage {
     
     listAll:TransferAdjustMain[];
     list:TransferAdjustMain[];
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
     listDept: DicInDepart[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -64,6 +67,7 @@ export class TransferAdjustAssetListPage {
 
   //获取列表信息
   getList() {
+    this.isEmpty=false;
     //this.listAll = [];
     
     //type,//  1.申请明细(没有) 2.查询明细 3.审批明细
@@ -82,6 +86,9 @@ export class TransferAdjustAssetListPage {
             }
           }
           this.list = this.listAll;
+          if(!(this.listAll!=null&&this.listAll.length>0)){
+            this.isEmpty=true;
+          }
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',

@@ -10,6 +10,7 @@ import {DictUtil} from '../../providers/dict-util';
 import {Sgsx} from '../../enums/enums';
 import {PROJECT_ELEMENT} from "../../enums/storage-type";
 import {DicBase} from '../../model/dic-base';
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 import {Page_ProjInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
@@ -23,10 +24,10 @@ import {BillElementCode} from '../../providers/TransferFeildName';
  */
 
   /*const listGet:ProjectUnitMain[] = [
-        { elementCode: 'HT201800001', elementName: 'XXXXXXXX', elementType: '项目单元类别', sgsx: '施工属性'},
-        { elementCode: 'HT201800002', elementName: 'XXXXXXXX', elementType: '项目单元类别', sgsx: '施工属性'},
-        { elementCode: 'HT201800003', elementName: 'XXXXXXXX', elementType: '项目单元类别', sgsx: '施工属性'},
-        { elementCode: 'HT201800004', elementName: 'XXXXXXXX', elementType: '项目单元类别', sgsx: '施工属性'},
+        { elementCode: 'HT201800001', elementName: 'XXXXXXXX', elementFlag: '项目单元类别', sgsx: '施工属性'},
+        { elementCode: 'HT201800002', elementName: 'XXXXXXXX', elementFlag: '项目单元类别', sgsx: '施工属性'},
+        { elementCode: 'HT201800003', elementName: 'XXXXXXXX', elementFlag: '项目单元类别', sgsx: '施工属性'},
+        { elementCode: 'HT201800004', elementName: 'XXXXXXXX', elementFlag: '项目单元类别', sgsx: '施工属性'},
     ];*/
 
 @IonicPage()
@@ -38,7 +39,9 @@ export class ProjQueryListPage {
   
   listAll:ProjectUnitMain[];
     list:ProjectUnitMain[];
-  dicElementType: DicBase[];//项目单元类别"       
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
+  dicelementFlag: DicBase[];//项目单元类别"       
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController,
@@ -54,13 +57,14 @@ export class ProjQueryListPage {
     //this.listAll = [];
     //this.list = [];
     this.storage.get(PROJECT_ELEMENT).then((dicList: DicBase[]) => {
-      this.dicElementType=dicList;
+      this.dicelementFlag=dicList;
     });
     this.getList();
   }
 
   //获取列表信息
   getList() {
+    this.isEmpty=false;
     //this.listAll = [];
     //this.list = [];
     //type 1.申请 2.查询 3.审批
@@ -81,11 +85,14 @@ export class ProjQueryListPage {
           this.listAll = object[1] as ProjectUnitMain[];
           if(this.listAll){
             for(let item of this.listAll){
-              item.elementTypeName = this.dictUtil.getProjectElementName(this.dicElementType,item.elementType);//项目单元类别"          
+              item.elementFlagName = this.dictUtil.getProjectElementName(this.dicelementFlag,item.elementFlag);//项目单元类别"          
               item.sgsxName = this.dictUtil.getEnumsName(Sgsx,item.sgsx);//施工属性"" 
             }
           }
           this.list = this.listAll;
+          if(!(this.listAll!=null&&this.listAll.length>0)){
+            this.isEmpty=true;
+          }
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',

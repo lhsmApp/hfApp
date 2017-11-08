@@ -6,6 +6,7 @@ import {ResultBase} from "../../model/result-base";
 import { QueryCondition } from '../../model/query-condition';
 import {DictUtil} from '../../providers/dict-util';
 import {FeeFlag} from '../../enums/enums';
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 import {Page_TransferFundsInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
@@ -37,6 +38,8 @@ export class TransferFundsQueryListPage {
   
   listAll:TransferFundsMain[];
     list:TransferFundsMain[];
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController,
@@ -56,6 +59,7 @@ export class TransferFundsQueryListPage {
 
   //获取列表信息
   getList() {
+    this.isEmpty=false;
     //this.listAll = [];
     //this.list = [];
       let state;
@@ -89,6 +93,9 @@ export class TransferFundsQueryListPage {
               item.feeFlagName = this.dictUtil.getEnumsName(FeeFlag,item.feeFlag);
             }
           this.list = this.listAll;
+          if(!(this.listAll!=null&&this.listAll.length>0)){
+            this.isEmpty=true;
+          }
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',

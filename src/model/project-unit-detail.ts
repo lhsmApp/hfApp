@@ -4,7 +4,7 @@ export class ProjectUnitDetail{
               	projectProgress: string;//项目进展概述"      
               	elementCode: string;//项目单元编码"          
  				elementName: string;//项目单元名称"          
-				elementType: string;//项目单元类别"          
+				elementFlag: string;//项目单元类别"          
  				sgsx: string;//施工属性""                     
 				planMoney: number;//初始计划金额" ,传double型 
 				planMoney_current: number;//当前计划金额",传double型    
@@ -24,6 +24,6 @@ export class ProjectUnitDetail{
  				checkOpinion: string;//复核意见"          
 
 
-				elementTypeName: string;//项目单元类别" 
+				elementFlagName: string;//项目单元类别" 
  				sgsxName: string;//施工属性""                      		  
 }

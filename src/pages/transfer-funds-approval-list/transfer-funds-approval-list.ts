@@ -5,6 +5,7 @@ import {AcceptService} from '../../services/acceptService';
 import {ResultBase} from "../../model/result-base";
 import {DictUtil} from '../../providers/dict-util';
 import {FeeFlag} from '../../enums/enums';
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 import {Page_TransferFundsInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Approval} from '../../providers/TransferFeildName';
@@ -33,6 +34,8 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
 export class TransferFundsApprovalListPage {
   listAll:TransferFundsMain[];
     list:TransferFundsMain[];
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController,
@@ -51,6 +54,7 @@ export class TransferFundsApprovalListPage {
 
   //获取列表信息
   getList() {
+    this.isEmpty=false;
     //this.listAll = [];
     //this.list = [];
     //1.转资申请单据 2. 转资查询3.审批的转资单查询 4.审批的转资调整单查询
@@ -66,6 +70,9 @@ export class TransferFundsApprovalListPage {
               item.feeFlagName = this.dictUtil.getEnumsName(FeeFlag,item.feeFlag);
             }
           this.list = this.listAll;
+          if(!(this.listAll!=null&&this.listAll.length>0)){
+            this.isEmpty=true;
+          }
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',

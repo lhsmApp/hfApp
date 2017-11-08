@@ -4,6 +4,7 @@ import {Notice} from '../../model/notice';
 import {NoticeService} from '../../services/noticeService';
 import {ResultBase} from "../../model/result-base";
 import { QueryCondition } from '../../model/query-condition';
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 import {Page_NoticeInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
@@ -31,6 +32,8 @@ export class NoticeQueryListPage {
   
     listAll:Notice[];
     list:Notice[];
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController,
@@ -49,6 +52,7 @@ export class NoticeQueryListPage {
 
   //获取列表信息
   getList() {
+    this.isEmpty=false;
     //this.listAll = [];
     //this.list = [];
       /*let state;
@@ -75,6 +79,9 @@ export class NoticeQueryListPage {
         if(resultBase.result=='true'){
           this.listAll = object[1] as Notice[];
           this.list = this.listAll;
+          if(!(this.listAll!=null&&this.listAll.length>0)){
+            this.isEmpty=true;
+          }
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
