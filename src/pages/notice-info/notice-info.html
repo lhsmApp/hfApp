@@ -14,18 +14,19 @@
 
 
 <ion-content padding>
-        <ion-row row-2 text-center>
+        <!--<ion-row row-2 text-center>
             <ion-col><span text-center><h2>通知公告</h2></span></ion-col>
-        </ion-row>
+        </ion-row>-->
+        <!--<ion-item>
+          <span class='color-label'>发布人：{{itemShow.userName}}</span>
+          <span class='color-label' item-end>发布时间：{{itemShow.publishDate}}</span>
+        </ion-item>-->
         <ion-row row-1>
         	<ion-col col-5 text-left>
-            <span class='color-label' text-left> 发布人：{{itemShow.userName}}</span>
-        	  <!--发布人：-->
+            <span class='color-label' text-left>发布人：{{itemShow.userName}}</span>
           </ion-col>
         	<ion-col col-7 text-right>
             <span  class='color-label' text-right>发布时间：{{itemShow.publishDate}}</span>
-              <!--发布时间：-->
-              
           </ion-col>
         </ion-row>
         <p>{{itemShow.messageContent}}</p>

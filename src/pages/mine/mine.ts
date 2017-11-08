@@ -103,7 +103,8 @@ export class MinePage {
         {
           text: '确定',
           handler: () => {
-            let modal = this.modalCtrl.create(LoginPage);
+            this.navCtrl.push(LoginPage);
+            /*let modal = this.modalCtrl.create(LoginPage);
             modal.present();
             modal.onDidDismiss(userInfo => {
               if (userInfo) {
@@ -112,7 +113,7 @@ export class MinePage {
                   this.avatarPath = avatarPath
                 });
               }
-            });
+            });*/
           }
         }
       ]
