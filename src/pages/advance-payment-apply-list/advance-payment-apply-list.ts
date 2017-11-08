@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,AlertController,ItemSliding } from 
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 /**
  * Generated class for the AdvancePaymentApplyListPage page.
@@ -22,7 +23,8 @@ import {ResultBase} from "../../model/result-base";
   templateUrl: 'advance-payment-apply-list.html',
 })
 export class AdvancePaymentApplyListPage {
-
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
   advancePaymentList:AdvancePaymentMain[];
   listAll:AdvancePaymentMain[];
   constructor(public navCtrl: NavController, 
@@ -45,8 +47,12 @@ export class AdvancePaymentApplyListPage {
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
-          this.listAll = object[1] as AdvancePaymentMain[];
-          this.advancePaymentList = object[1] as AdvancePaymentMain[];
+          if(object[1]!=null&&object[1].length>0){
+            this.listAll = object[1] as AdvancePaymentMain[];
+            this.advancePaymentList = object[1] as AdvancePaymentMain[];
+          }else{
+            this.isEmpty=true;
+          }
         }else{
           let alert = this.alertCtrl.create({
             title: '提示!',

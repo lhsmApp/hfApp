@@ -4,7 +4,7 @@ import { BillOfWorkMain} from '../../model/billof-work-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
-
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 /**
  * Generated class for the BillGclPage page.
  *
@@ -29,7 +29,8 @@ import { AdvancePaymentMain} from '../../model/advance-payment-main';
   templateUrl: 'bill-gcl.html',
 })
 export class BillGclPage {
-
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
   workList:BillOfWorkMain[];
   paymentMain:AdvancePaymentMain;
   contractCode:string;
@@ -60,7 +61,11 @@ export class BillGclPage {
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
-          this.workList = object[1] as BillOfWorkMain[];
+          if(object[1]!=null&&object[1].length>0){
+            this.workList = object[1] as BillOfWorkMain[];
+          }else{
+            this.isEmpty=true;
+          }
         }else{
           let alert = this.alertCtrl.create({
             title: '提示!',

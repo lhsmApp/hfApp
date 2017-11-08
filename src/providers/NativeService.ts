@@ -2,7 +2,7 @@
  * Created by jiachao on 2017-09-27.
  */
 import {Injectable} from "@angular/core";
-import {ToastController, LoadingController, Platform, Loading, AlertController} from "ionic-angular";
+import {ToastController, LoadingController, Platform, Loading, AlertController,Events } from "ionic-angular";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
 import {AppVersion} from "@ionic-native/app-version";
@@ -31,6 +31,7 @@ export class NativeService {
   private loadingIsOpen: boolean = false;
 
   constructor(private platform: Platform,
+              private events: Events,
               private toastCtrl: ToastController,
               private alertCtrl: AlertController,
               private statusBar: StatusBar,
@@ -554,6 +555,21 @@ export class NativeService {
         this.alert('非手机环境不能导航');
       }
     });
+  }
+
+  //长时间未操作超时提示，跳转到登录页面
+  alertReLogin(title: string, subTitle: string = "",): void {
+    this.alertCtrl.create({
+      title: title,
+      subTitle: subTitle,
+      buttons: [{
+        text: '确定',
+        handler: () => {
+            //this.navCtrl.popToRoot();
+           this.events.publish('system:timeout');
+        }
+      }]
+    }).present();
   }
 
 }

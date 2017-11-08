@@ -63,6 +63,13 @@ export class LoginPage {
     });
   }
 
+  ionViewDidLoad(){
+    this.events.subscribe('system:timeout', () => {
+      console.log('aaaccc');
+      this.navCtrl.popToRoot();
+    });
+  }
+
   login(user) {
     this.submitted = true;
     this.loginService.login(user)

@@ -14,7 +14,6 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
@@ -23,25 +22,31 @@
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
     </ion-refresher-content>
   </ion-refresher>
-  <ion-list class="list-avatar-page">
-  	<ion-item-sliding *ngFor="let item of invoiceList" #slidingItem>
-	    <ion-item (click)="openPage(item)">
-	      <h2>发票编号：{{item.chalanNumber}}</h2>
-        <button ion-button color="danger" outline item-end>发票金额：{{item.chalanMoney|number}}</button>
-	      <!-- <h3 item-end>{{item.chalanMoney}}</h3> -->
-	      <p>发票内容：{{item.chalanContent}} </p>
-	      <p >发票日期：{{item.chalanDate}}</p>
-	    </ion-item>
-	    <ion-item-options side="right">
-	      <button ion-button color="primary" (click)="edit(item,slidingItem);$event.stopPropagation()">
-	        <ion-icon name="create"></ion-icon>
-	        编辑
-	      </button>
-	      <button ion-button color="danger" (click)="delete(item.payCode,slidingItem);$event.stopPropagation()">
-	        <ion-icon name="close"></ion-icon>
-	        删除
-	      </button>
-	    </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+  <div *ngIf="!isEmpty">
+    <ion-list class="list-avatar-page">
+    	<ion-item-sliding *ngFor="let item of invoiceList" #slidingItem>
+  	    <ion-item (click)="openPage(item)">
+  	      <h2>发票编号：{{item.chalanNumber}}</h2>
+          <button ion-button color="danger" outline item-end>发票金额：{{item.chalanMoney|number}}</button>
+  	      <!-- <h3 item-end>{{item.chalanMoney}}</h3> -->
+  	      <p>发票内容：{{item.chalanContent}} </p>
+  	      <p >发票日期：{{item.chalanDate}}</p>
+  	    </ion-item>
+  	    <ion-item-options side="right">
+  	      <button ion-button color="primary" (click)="edit(item,slidingItem);$event.stopPropagation()">
+  	        <ion-icon name="create"></ion-icon>
+  	        编辑
+  	      </button>
+  	      <button ion-button color="danger" (click)="delete(item.payCode,slidingItem);$event.stopPropagation()">
+  	        <ion-icon name="close"></ion-icon>
+  	        删除
+  	      </button>
+  	    </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+  <div *ngIf="isEmpty" text-center padding-top margin-top>
+    <img [src]="emptyPath" width="50%" height="50%"  margin-top>
+    <h3>目前还没有申请记录哦~</h3>
+  </div>
 </ion-content>

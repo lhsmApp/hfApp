@@ -4,7 +4,7 @@ import { Attachment} from '../../model/attachment';
 import {DEFAULT_INVOICE} from "../../providers/Constants";
 import { AttachmentService} from '../../services/attachmentService';
 import {ResultBase} from "../../model/result-base";
-
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 /**
  * Generated class for the AttachmentInfoPage page.
  *
@@ -23,7 +23,8 @@ import {ResultBase} from "../../model/result-base";
   templateUrl: 'attachment-info.html',
 })
 export class AttachmentInfoPage {
-
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
   title:string;
   thumbPath=DEFAULT_INVOICE;
   attachmentList:Attachment[];
@@ -53,7 +54,11 @@ export class AttachmentInfoPage {
     .subscribe(object => {
       let resultBase:ResultBase=object[0] as ResultBase;
       if(resultBase.result=='true'){
-        this.attachmentList = object[1] as Attachment[];
+        if(object[1]!=null&&object[1].length>0){
+          this.attachmentList = object[1] as Attachment[];
+        }else{
+          this.isEmpty=true;
+        }
       }else{
         let alert = this.alertCtrl.create({
           title: '提示!',

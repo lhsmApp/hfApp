@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler,Config } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler,Config} from 'ionic-angular';
 import {IonicStorageModule} from "@ionic/storage";
 
 //Modules

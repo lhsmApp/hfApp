@@ -4,7 +4,7 @@ import { ContractMain} from '../../model/contract-main';
 import {ContractService} from '../../services/contractService';
 import {ResultBase} from "../../model/result-base";
 import { QueryCondition } from '../../model/query-condition';
-
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 /**
  * Generated class for the ContractQueryPage page.
  *
@@ -25,7 +25,8 @@ const  CONTRACT_LIST: ContractMain []= [
   templateUrl: 'contract-query.html',
 })
 export class ContractQueryPage {
-
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
   contractList:ContractMain[];
   queryCondition:QueryCondition;
 
@@ -73,7 +74,11 @@ export class ContractQueryPage {
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
-          this.contractList = object[1] as ContractMain[];
+          if(object[1]!=null&&object[1].length>0){
+            this.contractList = object[1] as ContractMain[];
+          }else{
+            this.isEmpty=true;
+          }
         }else{
           let alert = this.alertCtrl.create({
             title: '提示!',

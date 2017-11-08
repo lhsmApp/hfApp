@@ -4,7 +4,7 @@ import { Depart} from '../../model/depart';
 import {LoginService} from '../../services/LoginService';
 import {ResultBase} from "../../model/result-base";
 import {GlobalData} from "../../providers/GlobalData";
-
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 /**
  * Generated class for the DepartSelectPage page.
  *
@@ -25,7 +25,8 @@ const  DEPART_LIST: Depart []= [
   templateUrl: 'depart-select.html',
 })
 export class DepartSelectPage {
-
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
   departList:Depart[];
   selectDepart:string;
 
@@ -51,7 +52,11 @@ export class DepartSelectPage {
         if(resultBase.result=='true'){
           let userInfo=object[1];
           this.globalData.sessionId=userInfo.sessionId;
-          this.departList = object[2] as Depart[];
+          if(object[2]!=null&&object[2].length>0){
+            this.departList = object[2] as Depart[];
+          }else{
+            this.isEmpty=true;
+          }
         }else{
           let alert = this.alertCtrl.create({
             title: '提示!',

@@ -18,20 +18,26 @@
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="正在刷新...">
     </ion-refresher-content>
   </ion-refresher>
-  <ion-list class="list-avatar-page">
-    <ion-item *ngFor="let item of workList;trackBy:item?.sequence">
-      <ion-label>
-	      <p>序号：{{item.sequence}}</p>
-	      <p>付款单号：{{item.payCode}}</p>
-	      <p>清单项目编号：{{item.listNumber}}</p>
-        <p>清单项目名称：{{item.listName}}</p>
-        <p>合价：{{item.moneyTotal}}</p>
-        <!-- <ion-icon item-end name="arrow-dropright"></ion-icon> -->
-      </ion-label>
-  	  <ion-checkbox color="dark" checked="{{item.checked}}" [(ngModel)]="item.checked"></ion-checkbox>
-  	  <button ion-button color="secondary" clear item-end (click)='viewDetail(item)'>查看明细</button>
-    </ion-item>
-  </ion-list>
+  <div *ngIf="!isEmpty">
+    <ion-list class="list-avatar-page">
+      <ion-item *ngFor="let item of workList;trackBy:item?.sequence">
+        <ion-label>
+  	      <p>序号：{{item.sequence}}</p>
+  	      <p>付款单号：{{item.payCode}}</p>
+  	      <p>清单项目编号：{{item.listNumber}}</p>
+          <p>清单项目名称：{{item.listName}}</p>
+          <p>合价：{{item.moneyTotal}}</p>
+          <!-- <ion-icon item-end name="arrow-dropright"></ion-icon> -->
+        </ion-label>
+    	  <ion-checkbox color="dark" checked="{{item.checked}}" [(ngModel)]="item.checked"></ion-checkbox>
+    	  <button ion-button color="secondary" clear item-end (click)='viewDetail(item)'>查看明细</button>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="isEmpty" text-center padding-top margin-top>
+    <img [src]="emptyPath" width="50%" height="50%"  margin-top>
+    <h3>目前还没有任何记录哦~</h3>
+  </div>
 </ion-content>
 <ion-footer>
   <ion-toolbar>

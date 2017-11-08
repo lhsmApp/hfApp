@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angul
 import { ContractMain} from '../../model/contract-main';
 import {ContractService} from '../../services/contractService';
 import {ResultBase} from "../../model/result-base";
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 /**
  * Generated class for the ContractApprovalPage page.
@@ -25,6 +26,8 @@ const  CONTRACT_LIST: ContractMain []= [
 })
 export class ContractApprovalPage {
 
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
   contractList:ContractMain[];
   listAll:ContractMain[];
 
@@ -55,8 +58,12 @@ export class ContractApprovalPage {
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
-          this.listAll = object[1] as ContractMain[];
-          this.contractList = object[1] as ContractMain[];
+          if(object[1]!=null&&object[1].length>0){
+            this.listAll = object[1] as ContractMain[];
+            this.contractList = object[1] as ContractMain[];
+          }else{
+            this.isEmpty=true;
+          }
         }else{
           let alert = this.alertCtrl.create({
             title: '提示!',

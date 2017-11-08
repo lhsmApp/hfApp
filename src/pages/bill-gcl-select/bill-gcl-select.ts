@@ -4,7 +4,7 @@ import { BillOfWorkMain} from '../../model/billof-work-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
-
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 /**
  * Generated class for the BillGclSelectPage page.
  *
@@ -29,7 +29,8 @@ import { AdvancePaymentMain} from '../../model/advance-payment-main';
   templateUrl: 'bill-gcl-select.html',
 })
 export class BillGclSelectPage {
-
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
   workList:BillOfWorkMain[];
   callback :any;
   paymentMain:AdvancePaymentMain;
@@ -57,17 +58,20 @@ export class BillGclSelectPage {
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
-          this.workList = object[1] as BillOfWorkMain[];
-          for(let workItem of this.workList){
-            for(let gclItem of this.gclList){
-              if(workItem.payCode==gclItem.payCode){
-                workItem.checked=true;
-              }else{
-                workItem.checked=false;
+          if(object[1]!=null&&object[1].length>0){
+            this.workList = object[1] as BillOfWorkMain[];
+            for(let workItem of this.workList){
+              for(let gclItem of this.gclList){
+                if(workItem.payCode==gclItem.payCode){
+                  workItem.checked=true;
+                }else{
+                  workItem.checked=false;
+                }
               }
             }
+          }else{
+            this.isEmpty=true;
           }
-          console.log(this.workList);
         }else{
           let alert = this.alertCtrl.create({
             title: '提示!',

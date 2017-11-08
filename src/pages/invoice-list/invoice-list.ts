@@ -4,7 +4,7 @@ import { InvoiceMain} from '../../model/invoice-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
-
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 /**
  * Generated class for the InvoiceListPage page.
  *
@@ -25,7 +25,8 @@ import { AdvancePaymentMain} from '../../model/advance-payment-main';
   templateUrl: 'invoice-list.html',
 })
 export class InvoiceListPage {
-
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
   invoiceList:InvoiceMain[];
   paymentMain:AdvancePaymentMain;
   contractCode:string;
@@ -46,7 +47,11 @@ export class InvoiceListPage {
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
-          this.invoiceList = object[1] as InvoiceMain[];
+          if(object[1]!=null&&object[1].length>0){
+            this.invoiceList = object[1] as InvoiceMain[];
+          }else{
+            this.isEmpty=true;
+          }
         }else{
           let alert = this.alertCtrl.create({
             title: '提示!',

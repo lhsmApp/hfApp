@@ -33,6 +33,8 @@ export class HttpService {
         console.log('%c 请求成功 %c', 'color:green', '', 'url', url, 'options', options, 'res', res);
         if (res['_body'] == '') {
           res['_body'] = null;
+        }else if(res['_body'].indexOf('您还没有登录或者很久没有操作了,请登录')>0){
+          this.nativeService.alertReLogin("提示",'您还没有登录或者很久没有操作了,请重新登录！');
         }
         observer.next(res);
       }, err => {
@@ -188,10 +190,8 @@ export class HttpService {
     let token = this.globalData.sessionId;
     console.log(token);
     if (options.headers) {
-      console.log('aaaaaa');
       options.headers.append('Authorization', token);
     } else {
-      console.log('ccccc');
       options.headers = new Headers({
         'Authorization': token
       });
