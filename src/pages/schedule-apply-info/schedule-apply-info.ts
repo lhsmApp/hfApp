@@ -28,7 +28,7 @@ import {Page_ChoiceApproversPage} from '../../providers/TransferFeildName';
         projectProgress: '项目进展概述',
         elementCode: '项目单元编码',
         elementName: '项目单元名称',
-        elementType: '项目单元类别',
+        elementFlag: '项目单元类别',
         sgsx: '施工属性',
         planMoney: 47.00,//初始计划金额" ,传double型 
         planMoney_current: 28.00,//当前计划金额",传double型    
@@ -62,7 +62,7 @@ export class ScheduleApplyInfoPage {
 
   list: ProjectUnitDetail[];
   itemShow:ProjectUnitDetail;
-  dicElementType: DicBase[];//项目单元类别"   
+  dicelementFlag: DicBase[];//项目单元类别"   
   dicSgsx: Array<{code: string, name: string}>;//施工属性"" 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -89,7 +89,7 @@ export class ScheduleApplyInfoPage {
     this.itemShow = new ProjectUnitDetail();
     this.dicSgsx = Sgsx;
     this.storage.get(PROJECT_ELEMENT).then((dicList: DicBase[]) => {
-      this.dicElementType=dicList;
+      this.dicelementFlag=dicList;
     });
     this.getShowItem();
   }
@@ -103,7 +103,7 @@ export class ScheduleApplyInfoPage {
             this.list = object[1] as ProjectUnitDetail[];
             if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
-              this.itemShow.elementTypeName = this.dictUtil.getProjectElementName(this.dicElementType,this.itemShow.elementType);//项目单元类别"
+              this.itemShow.elementFlagName = this.dictUtil.getProjectElementName(this.dicelementFlag,this.itemShow.elementFlag);//项目单元类别"
               this.itemShow.sgsxName = this.dictUtil.getEnumsName(this.dicSgsx,this.itemShow.sgsx);//施工属性"" 
             }
           } else {

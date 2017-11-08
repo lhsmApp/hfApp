@@ -25,9 +25,9 @@ import {BillElementCode} from '../../providers/TransferFeildName';
  */
 
  /*const listGet:ProjectUnitMain[]=[
-     {elementCode: 'XMDY00001', elementName: '名称1', elementType: '性质1', sgsx: '施工属性1'},
-     {elementCode: 'XMDY00002', elementName: '名称2', elementType: '性质2', sgsx: '施工属性2'},
-     {elementCode: 'XMDY00003', elementName: '名称3', elementType: '性质3', sgsx: '施工属性3'},
+     {elementCode: 'XMDY00001', elementName: '名称1', elementFlag: '性质1', sgsx: '施工属性1'},
+     {elementCode: 'XMDY00002', elementName: '名称2', elementFlag: '性质2', sgsx: '施工属性2'},
+     {elementCode: 'XMDY00003', elementName: '名称3', elementFlag: '性质3', sgsx: '施工属性3'},
  ];*/
 
 @IonicPage()
@@ -42,7 +42,7 @@ export class ScheduleQueryListPage {
   list:ProjectUnitMain[];
   emptyPath=DEFAULT_INVOICE_EMPTY;
   isEmpty:boolean=false;
-  dicElementType: DicBase[];//项目单元类别"   
+  dicelementFlag: DicBase[];//项目单元类别"   
 
   constructor(public navCtrl: NavController, 
               public alertCtrl: AlertController,
@@ -60,7 +60,7 @@ export class ScheduleQueryListPage {
     //this.list = [];
      this.queryCondition=this.navParams.get("queryCondition");
     this.storage.get(PROJECT_ELEMENT).then((dicList: DicBase[]) => {
-      this.dicElementType=dicList;
+      this.dicelementFlag=dicList;
     });
     this.getList();
   }
@@ -70,9 +70,6 @@ export class ScheduleQueryListPage {
     this.isEmpty=false;
     //this.listAll = [];
     //this.list = [];
-    //this.storage.get().then((dicList: DicComplex[]) => {
-    //  this.dicElementType=dicList;
-    //});
       let state;
       if(this.queryCondition){
         if(this.queryCondition.state=='1'){
@@ -107,7 +104,7 @@ export class ScheduleQueryListPage {
         if(resultBase.result=='true'){
           this.listAll = object[1] as ProjectUnitMain[];
             for(let item of this.listAll){
-              item.elementTypeName = this.dictUtil.getProjectElementName(this.dicElementType,item.elementType);//项目单元类别"
+              item.elementFlagName = this.dictUtil.getProjectElementName(this.dicelementFlag,item.elementFlag);//项目单元类别"
               item.sgsxName = this.dictUtil.getEnumsName(Sgsx,item.sgsx);//施工属性"" 
             }
           this.list = this.listAll;

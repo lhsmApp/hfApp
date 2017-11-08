@@ -29,7 +29,7 @@ import {Page_ChoiceApproversPage} from '../../providers/TransferFeildName';
         projectProgress: '项目进展概述',
         elementCode: '项目单元编码',
         elementName: '项目单元名称',
-        elementType: '项目单元类别',
+        elementFlag: '项目单元类别',
         sgsx: '施工属性',
         planMoney: 47.00,//初始计划金额" ,传double型 
         planMoney_current: 28.00,//当前计划金额",传double型    
@@ -63,7 +63,7 @@ export class ScheduleApplyItemPage {
     maxYear:string;
   callback :any;
   isBackRefrash=false;
-  dicElementType: DicBase[];//项目单元类别"      
+  dicelementFlag: DicBase[];//项目单元类别"      
   dicSgsx: Array<{code: string, name: string}>;//施工属性"" 
  
   constructor(public navCtrl: NavController, 
@@ -89,7 +89,7 @@ export class ScheduleApplyItemPage {
         projectProgress: [,[]], 
         elementCode: [,[]], 
         elementName: [,[]], 
-        elementType: [,[]], 
+        elementFlag: [,[]], 
         sgsx: [,[]], 
             planMoney: [,[]], 
             planMoney_current: [,[]], 
@@ -108,7 +108,7 @@ export class ScheduleApplyItemPage {
         requireUser: [,[]], 
         checkOpinion: [,[]], 
 
-        elementTypeName: [,[]], 
+        elementFlagName: [,[]], 
         sgsxName: [,[]], 
     });
   }
@@ -120,7 +120,7 @@ export class ScheduleApplyItemPage {
         projectProgress: this.itemShow.projectProgress, 
         elementCode: this.itemShow.elementCode, 
         elementName: this.itemShow.elementName, 
-        elementType: this.itemShow.elementType, 
+        elementFlag: this.itemShow.elementFlag, 
         sgsx: this.itemShow.sgsx, 
             planMoney: this.itemShow.planMoney, 
             planMoney_current: this.itemShow.planMoney_current, 
@@ -139,7 +139,7 @@ export class ScheduleApplyItemPage {
         requireUser: this.itemShow.requireUser, 
         checkOpinion: this.itemShow.checkOpinion,
         
-        elementTypeName: this.itemShow.elementTypeName, 
+        elementFlagName: this.itemShow.elementFlagName, 
         sgsxName:  this.itemShow.sgsxName, 
     });
   }
@@ -150,7 +150,7 @@ export class ScheduleApplyItemPage {
     this.itemShow = new ProjectUnitDetail();
     this.dicSgsx = Sgsx;
     this.storage.get(PROJECT_ELEMENT).then((dicList: DicBase[]) => {
-      this.dicElementType=dicList;
+      this.dicelementFlag=dicList;
     });
     this.getShowItem();
   }
@@ -165,7 +165,7 @@ export class ScheduleApplyItemPage {
             this.list = object[1] as ProjectUnitDetail[];
             if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
-              this.itemShow.elementTypeName = this.dictUtil.getProjectElementName(this.dicElementType,this.itemShow.elementType);//项目单元类别"
+              this.itemShow.elementFlagName = this.dictUtil.getProjectElementName(this.dicelementFlag,this.itemShow.elementFlag);//项目单元类别"
               this.itemShow.sgsxName = this.dictUtil.getEnumsName(this.dicSgsx,this.itemShow.sgsx);//施工属性"" 
               this.FromPatchValue();
             }

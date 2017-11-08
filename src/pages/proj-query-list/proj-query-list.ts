@@ -24,10 +24,10 @@ import {BillElementCode} from '../../providers/TransferFeildName';
  */
 
   /*const listGet:ProjectUnitMain[] = [
-        { elementCode: 'HT201800001', elementName: 'XXXXXXXX', elementType: '项目单元类别', sgsx: '施工属性'},
-        { elementCode: 'HT201800002', elementName: 'XXXXXXXX', elementType: '项目单元类别', sgsx: '施工属性'},
-        { elementCode: 'HT201800003', elementName: 'XXXXXXXX', elementType: '项目单元类别', sgsx: '施工属性'},
-        { elementCode: 'HT201800004', elementName: 'XXXXXXXX', elementType: '项目单元类别', sgsx: '施工属性'},
+        { elementCode: 'HT201800001', elementName: 'XXXXXXXX', elementFlag: '项目单元类别', sgsx: '施工属性'},
+        { elementCode: 'HT201800002', elementName: 'XXXXXXXX', elementFlag: '项目单元类别', sgsx: '施工属性'},
+        { elementCode: 'HT201800003', elementName: 'XXXXXXXX', elementFlag: '项目单元类别', sgsx: '施工属性'},
+        { elementCode: 'HT201800004', elementName: 'XXXXXXXX', elementFlag: '项目单元类别', sgsx: '施工属性'},
     ];*/
 
 @IonicPage()
@@ -41,7 +41,7 @@ export class ProjQueryListPage {
     list:ProjectUnitMain[];
   emptyPath=DEFAULT_INVOICE_EMPTY;
   isEmpty:boolean=false;
-  dicElementType: DicBase[];//项目单元类别"       
+  dicelementFlag: DicBase[];//项目单元类别"       
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController,
@@ -57,7 +57,7 @@ export class ProjQueryListPage {
     //this.listAll = [];
     //this.list = [];
     this.storage.get(PROJECT_ELEMENT).then((dicList: DicBase[]) => {
-      this.dicElementType=dicList;
+      this.dicelementFlag=dicList;
     });
     this.getList();
   }
@@ -85,7 +85,7 @@ export class ProjQueryListPage {
           this.listAll = object[1] as ProjectUnitMain[];
           if(this.listAll){
             for(let item of this.listAll){
-              item.elementTypeName = this.dictUtil.getProjectElementName(this.dicElementType,item.elementType);//项目单元类别"          
+              item.elementFlagName = this.dictUtil.getProjectElementName(this.dicelementFlag,item.elementFlag);//项目单元类别"          
               item.sgsxName = this.dictUtil.getEnumsName(Sgsx,item.sgsx);//施工属性"" 
             }
           }
