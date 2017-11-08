@@ -5,6 +5,7 @@ import {ReviewProcessDetail} from '../../model/review-process-detail';
 import {ApprovalService} from '../../services/approvalService';
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {ResultBase} from "../../model/result-base";
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 
 /**
@@ -35,6 +36,8 @@ export class ChoiceApproversPage {
   list: ReviewProcessMain[];
   reviewType:string;
   callback :any;
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -55,6 +58,7 @@ export class ChoiceApproversPage {
 
   //获取付款单列表信息
   getList(){
+    this.isEmpty=false;
       //console.log(ReviewType.REVIEW_TYPE_BASIC_PAYMENT);
       console.log('reviewType：' + this.reviewType);
       this.approvalService.queryUserReviewPay(this.billNumber,this.reviewType)
@@ -62,6 +66,9 @@ export class ChoiceApproversPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.list = object[1] as ReviewProcessMain[];
+          if(!(this.list!=null&&this.list.length>0)){
+            this.isEmpty=true;
+          }
         } else {
             this.navCtrl.pop();
             let alert = this.alertCtrl.create({

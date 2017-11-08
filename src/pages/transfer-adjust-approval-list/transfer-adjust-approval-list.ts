@@ -6,6 +6,7 @@ import {ResultBase} from "../../model/result-base";
 import {Storage} from "@ionic/storage";
 import {DictUtil} from '../../providers/dict-util';
 import {FeeFlag} from '../../enums/enums';
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 import {Page_TransferAdjustApprovalInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Approval} from '../../providers/TransferFeildName';
@@ -34,6 +35,8 @@ import {ItemTranfer} from '../../providers/TransferFeildName';
 export class TransferAdjustApprovalListPage {
     listAll:TransferFundsMain[];
     list:TransferFundsMain[];
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController,
@@ -53,6 +56,7 @@ export class TransferAdjustApprovalListPage {
 
   //获取列表信息
   getList() {
+    this.isEmpty=false;
     //this.listAll = [];
     //this.list = [];
     
@@ -71,6 +75,9 @@ export class TransferAdjustApprovalListPage {
             }
           }
           this.list = this.listAll;
+          if(!(this.listAll!=null&&this.listAll.length>0)){
+            this.isEmpty=true;
+          }
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',

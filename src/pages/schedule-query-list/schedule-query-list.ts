@@ -10,6 +10,7 @@ import {DictUtil} from '../../providers/dict-util';
 import {Sgsx} from '../../enums/enums';
 import {PROJECT_ELEMENT} from "../../enums/storage-type";
 import {DicBase} from '../../model/dic-base';
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 import {Page_ScheduleApplyInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
@@ -39,6 +40,8 @@ export class ScheduleQueryListPage {
   
   listAll:ProjectUnitMain[];
   list:ProjectUnitMain[];
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
   dicElementType: DicBase[];//项目单元类别"   
 
   constructor(public navCtrl: NavController, 
@@ -64,6 +67,7 @@ export class ScheduleQueryListPage {
 
   //获取列表信息
   getList() {
+    this.isEmpty=false;
     //this.listAll = [];
     //this.list = [];
     //this.storage.get().then((dicList: DicComplex[]) => {
@@ -107,6 +111,9 @@ export class ScheduleQueryListPage {
               item.sgsxName = this.dictUtil.getEnumsName(Sgsx,item.sgsx);//施工属性"" 
             }
           this.list = this.listAll;
+          if(!(this.listAll!=null&&this.listAll.length>0)){
+            this.isEmpty=true;
+          }
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',

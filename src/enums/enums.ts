@@ -17,7 +17,7 @@ export const TransferFundsReviewStatus= [{code: '0', name: '新增'}, {code: '1'
 export const FeeFlag= [{code: '0', name: '否'}, {code: '1', name: '是'}]
 
 //施工属性 施工类/非施工类
-export const Sgsx= [{code: '0', name: '非施工类'}, {code: '1', name: '施工类'}]
+export const Sgsx= [{code: '0', name: '施工类'}, {code: '1', name: '非施工类'}]
 
 //转资类型：1、固定资产 2、无形资产3、长期待摊费用4、长期股权投资
 export const TransferFundsType= [{code: '1', name: '固定资产'}, {code: '2', name: '无形资产'}, {code: '3', name: '长期待摊费用'}, {code: '4', name: '长期股权投资'}]

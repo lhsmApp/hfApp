@@ -7,6 +7,7 @@ import {Storage} from "@ionic/storage";
 import {IN_DEPART} from "../../enums/storage-type";
 import {DicInDepart} from '../../model/dic-in-depart';
 import {DictUtil} from '../../providers/dict-util';
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
@@ -49,6 +50,8 @@ export class AssetDetailsListPage {
   listAll:AcceptAssetMain[];
 	list:AcceptAssetMain[];
   listDept: DicInDepart[];
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
 
   constructor(public navCtrl: NavController, 
   	          public navParams: NavParams,
@@ -78,6 +81,7 @@ export class AssetDetailsListPage {
 
   //获取列表信息
   getList() {
+    this.isEmpty=false;
     //this.listAll = [];
     //this.list = [];
     //是否已验收0为未验收1为验收 0未验收 1已复核 2已验收未复核（如果是验收单据查询，则需要查询未验收的0，如果是转资单据查询，则需要传验收1，如果是合同查询则不用传参）
@@ -101,6 +105,9 @@ export class AssetDetailsListPage {
             }
           }
           this.list = this.listAll;
+          if(!(this.listAll!=null&&this.listAll.length>0)){
+            this.isEmpty=true;
+          }
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',

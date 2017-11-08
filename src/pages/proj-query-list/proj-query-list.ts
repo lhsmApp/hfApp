@@ -10,6 +10,7 @@ import {DictUtil} from '../../providers/dict-util';
 import {Sgsx} from '../../enums/enums';
 import {PROJECT_ELEMENT} from "../../enums/storage-type";
 import {DicBase} from '../../model/dic-base';
+import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 import {Page_ProjInfoPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look} from '../../providers/TransferFeildName';
@@ -38,6 +39,8 @@ export class ProjQueryListPage {
   
   listAll:ProjectUnitMain[];
     list:ProjectUnitMain[];
+  emptyPath=DEFAULT_INVOICE_EMPTY;
+  isEmpty:boolean=false;
   dicElementType: DicBase[];//项目单元类别"       
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -61,6 +64,7 @@ export class ProjQueryListPage {
 
   //获取列表信息
   getList() {
+    this.isEmpty=false;
     //this.listAll = [];
     //this.list = [];
     //type 1.申请 2.查询 3.审批
@@ -86,6 +90,9 @@ export class ProjQueryListPage {
             }
           }
           this.list = this.listAll;
+          if(!(this.listAll!=null&&this.listAll.length>0)){
+            this.isEmpty=true;
+          }
         } else {
             let alert = this.alertCtrl.create({
               title: '提示!',
