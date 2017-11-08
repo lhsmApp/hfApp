@@ -213,8 +213,6 @@ export class AdvancePaymentApplyPage {
   //保存
   save(){
     //if(!this.paymentForm.valid) return;
-
-    
     if(this.paymentForm.get('clauseType')._value=='2'||this.paymentForm.get('clauseType')._value=='4'){
       if(this.gclListInfo==null||this.gclListInfo.length==0){
         let alert = this.alertCtrl.create({
@@ -263,6 +261,7 @@ export class AdvancePaymentApplyPage {
         if(resultBase.result=='true'){
           console.log(object[1][0]);
           this.paymentDetail = object[1][0] as AdvancePaymentDetail;
+          this.sendSuccess=true;
           this.paymentForm.patchValue({
             payCode:this.paymentDetail.payCode,
             clauseType:this.paymentDetail.clauseType,
@@ -332,8 +331,6 @@ export class AdvancePaymentApplyPage {
   	//let contractCode=paymentDetail.contractCode;
     this.navCtrl.push("InvoiceApplyListPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode});
   }
-
-  
 
   //工程量清单
   billOfGcl(paymentDetail:AdvancePaymentDetail){

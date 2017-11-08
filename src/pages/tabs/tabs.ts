@@ -1,4 +1,4 @@
-import { Component ,OnInit } from '@angular/core';
+import { Component ,OnInit ,ViewChild} from '@angular/core';
 import {GlobalData} from "../../providers/GlobalData";
 import {Helper} from "../../providers/Helper";
 import {LoginInfo} from "../../model/UserInfo";
@@ -16,7 +16,7 @@ import {AlertController, ModalController,NavParams} from 'ionic-angular';
   templateUrl: 'tabs.html'
 })
 export class TabsPage implements OnInit {
-
+  @ViewChild('mainTabs') tabs: Tabs;
   tab1Root = HomePage;
   tab2Root = ApplyPage;
   tab3Root = QueryPage;

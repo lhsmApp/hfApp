@@ -7,7 +7,7 @@
 <ion-content>
     <ion-list>
       <ion-list-header text-center>
-      <h2>通知公告</h2><ion-icon name="list" item-end (click)="toNoticeList()"></ion-icon>
+      <h2>通知公告</h2><ion-icon ios="ios-list" md="ios-list" item-end (click)="toNoticeList()"></ion-icon>
      </ion-list-header>
       <!-- <button ion-item *ngFor="let item of notices" (click)="itemSelected(item)">
         {{ item.name }}
@@ -15,8 +15,8 @@
       <ion-item *ngFor="let item of notices" (click)="itemSelected(item)">
           <ion-icon item-start name="notifications" color='danger'></ion-icon>
           <p>{{item.messageContent}}</p>
-          <p>{{item.publishDate}}</p>
-          <h3 item-end>{{item.userName}}</h3>
+          <!-- <p>{{item.publishDate}}</p>
+          <h3 item-end>{{item.userName}}</h3> -->
       </ion-item> 
       <ion-item-divider color="light"></ion-item-divider>
     </ion-list>
