@@ -103,7 +103,9 @@ export class MinePage {
         {
           text: '确定',
           handler: () => {
-            this.navCtrl.push(LoginPage);
+            this.navCtrl.setRoot(LoginPage);
+            this.navCtrl.popToRoot();
+            //this.navCtrl.push(LoginPage);
             /*let modal = this.modalCtrl.create(LoginPage);
             modal.present();
             modal.onDidDismiss(userInfo => {
