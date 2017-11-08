@@ -95,7 +95,7 @@ export class ContractQueryPage {
   //打开详情页
   openPage(item: ContractMain) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("ContractInfoPage",{'contractMain':item});
+  	this.navCtrl.push("ContractInfoPage",{'contractMain':item,'approvalState':this.queryCondition.state});
   }
 
   //上拉刷新

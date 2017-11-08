@@ -66,6 +66,12 @@ export class LoginPage {
   ionViewDidLoad(){
     this.events.subscribe('system:timeout', () => {
       console.log('aaaccc');
+      /*if(this.navCtrl.canGoBack()){
+              this.navCtrl.popAll();
+            }
+            let tabs:Tabs=this.navCtrl.parent;
+            let parent:NavController=tabs.parent;
+            parent.setRoot(LoginPage);*/
       this.navCtrl.popToRoot();
     });
   }

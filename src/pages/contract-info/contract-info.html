@@ -6,7 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar color='dark'>
+  <ion-navbar color='dark' hideBackButton="true">
+  	<ion-buttons left>
+      <button ion-button icon-only (click)="goBack()">
+          <ion-icon ios="ios-arrow-back" md="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>合同明细</ion-title>
     <ion-buttons end *ngIf="isapproval">
       <button ion-button icon-only (click)="approval()">
@@ -81,7 +86,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>{{contractDetailInfo?.compactType}}</span>
+	       			<span text-left>{{contractDetailInfo?.compactTypeName}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -92,7 +97,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>{{contractDetailInfo?.relativePerson}}</span>
+	       			<span text-left>{{contractDetailInfo?.relativePersonName}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -103,7 +108,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>{{contractDetailInfo?.additionalPerson}}</span>
+	       			<span text-left>{{contractDetailInfo?.additionalPersonName}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -114,7 +119,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>{{contractDetailInfo?.ownDepart}}</span>
+	       			<span text-left>{{contractDetailInfo?.ownDepartName}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -136,7 +141,7 @@
 	       		
 	       		</ion-col>
 	       		<ion-col col-8>
-	       			<span text-left>{{contractDetailInfo?.costProperty}}</span>
+	       			<span text-left>{{contractDetailInfo?.costPropertyName}}</span>
 	       		</ion-col>
        		</ion-row>
 	    </ion-item>
@@ -187,8 +192,10 @@
 	    <ion-item-divider color="light"></ion-item-divider>
 	    <ion-item (click)='attachment()'>附件 <ion-icon name="more" item-end></ion-icon></ion-item>
 	    <ion-item-divider color="light"></ion-item-divider>
-	    <ion-item (click)='contractDetail()'>合同明细信息 <ion-icon name="more" item-end></ion-icon></ion-item>
+	    <ion-item (click)='contractDetail()'>资产明细 <ion-icon name="more" item-end></ion-icon></ion-item>
 	    <ion-item-divider color="light"></ion-item-divider>
 	    <ion-item (click)='billOfGcl()'>工程量清单<ion-icon name="more" item-end></ion-icon></ion-item>
+	    <ion-item-divider *ngIf="hasApprovalProgress" color="light"></ion-item-divider>
+	    <ion-item *ngIf="hasApprovalProgress" (click)='approvalProgress()'>审批进度 <ion-icon name="more" item-end></ion-icon></ion-item>
     </ion-item-group>
 </ion-content>
