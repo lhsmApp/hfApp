@@ -80,7 +80,7 @@ export class TransferAdjustApprovalListPage {
           }
         } else {
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });
@@ -136,7 +136,7 @@ export class TransferAdjustApprovalListPage {
   }
 
     toDetail(item: TransferFundsMain) {
-        this.navCtrl.push(Page_TransferAdjustApprovalInfoPage, {callback:this.checkRefresh,ItemTranfer: item, Oper:Oper_Approval,Title:'转资调整审批'});
+        this.navCtrl.push(Page_TransferAdjustApprovalInfoPage, {callback:this.checkRefresh,ItemTranfer: item, Oper:Oper_Approval,Title:'转资调整审批','approvalState':'2'});
     }
 
   //回调

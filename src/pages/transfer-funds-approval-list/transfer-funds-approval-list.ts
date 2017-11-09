@@ -75,7 +75,7 @@ export class TransferFundsApprovalListPage {
           }
         } else {
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });
@@ -131,7 +131,7 @@ export class TransferFundsApprovalListPage {
   }
 
     toDetail(translateCode: string) {
-        this.navCtrl.push(Page_TransferFundsInfoPage, {callback:this.checkRefresh,Oper:Oper_Approval,Title:'转资审批',BillNumberCode: translateCode});
+        this.navCtrl.push(Page_TransferFundsInfoPage, {callback:this.checkRefresh,Oper:Oper_Approval,Title:'转资审批',BillNumberCode: translateCode,'approvalState':'2'});
     }
 
   //回调

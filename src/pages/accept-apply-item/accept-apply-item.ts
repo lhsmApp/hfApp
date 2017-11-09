@@ -131,7 +131,7 @@ export class AcceptApplyItemPage {
               this.FromPatchValue();
             } else {
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });
@@ -184,7 +184,7 @@ export class AcceptApplyItemPage {
           toast.present();
         } else {
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });
@@ -199,8 +199,8 @@ export class AcceptApplyItemPage {
   send(){
       if(!(this.billNumber!=null&&this.billNumber.trim()!="")){
         let alert = this.alertCtrl.create({
-          title: '提示!',
-          subTitle: '请保存后再进行送审!',
+          title: '提示',
+          subTitle: '请保存后再进行送审！',
           buttons: ['确定']
         });
         alert.present();
@@ -226,8 +226,8 @@ export class AcceptApplyItemPage {
   toAssetDetail(){
       if(!(this.billNumber!=null&&this.billNumber.trim()!="")){
         let alert = this.alertCtrl.create({
-          title: '提示!',
-          subTitle: '请保存后再查看资产明细!',
+          title: '提示',
+          subTitle: '请保存后再查看资产明细！',
           buttons: ['确定']
         });
         alert.present();

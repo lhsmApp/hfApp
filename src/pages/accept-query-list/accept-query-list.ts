@@ -90,7 +90,7 @@ export class AcceptQueryListPage {
           }
         } else {
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });

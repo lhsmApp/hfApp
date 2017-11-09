@@ -110,7 +110,7 @@ export class AcceptApplyInfoPage {
           }
         } else {
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });
@@ -164,7 +164,7 @@ export class AcceptApplyInfoPage {
               toast.present();
             } else {
               let alert = this.alertCtrl.create({
-                title: '提示!',
+                title: '提示',
                 subTitle: resultBase.message,
                 buttons: ['确定']
               });
@@ -192,7 +192,7 @@ export class AcceptApplyInfoPage {
               toast.present();
             } else {
               let alert = this.alertCtrl.create({
-                title: '提示!',
+                title: '提示',
                 subTitle: resultBase.message,
                 buttons: ['确定']
               });

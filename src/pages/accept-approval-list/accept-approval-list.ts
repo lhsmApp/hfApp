@@ -70,7 +70,7 @@ export class AcceptApprovalListPage {
           }
         } else {
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });
@@ -126,7 +126,7 @@ export class AcceptApprovalListPage {
   }
 
     toDetail(billNumber: string) {
-        this.navCtrl.push(Page_AcceptApplyInfoPage, {callback:this.checkRefresh,BillNumberCode: billNumber,Oper:Oper_Approval,Title:'验收审批'});
+        this.navCtrl.push(Page_AcceptApplyInfoPage, {callback:this.checkRefresh,BillNumberCode: billNumber,Oper:Oper_Approval,Title:'验收审批','approvalState':'2'});
     }
 
   //回调

@@ -72,7 +72,7 @@ export class ChoiceApproversPage {
         } else {
             this.navCtrl.pop();
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });
@@ -91,7 +91,7 @@ export class ChoiceApproversPage {
       for(let each of this.list){
         if(!(each.userId!=null && each.userId!="")){
           let alert = this.alertCtrl.create({
-            title: '提示!',
+            title: '提示',
             subTitle: "请勾选审批序号:" + each.sequence + "记录！",
             buttons: ['确定']
           });
@@ -122,7 +122,7 @@ export class ChoiceApproversPage {
 
       if(!(itemAdd.userId!=null && itemAdd.userId!="")){
         let alert = this.alertCtrl.create({
-          title: '提示!',
+          title: '提示',
           subTitle: "请勾选记录！",
           buttons: ['确定']
         });
@@ -138,7 +138,7 @@ export class ChoiceApproversPage {
             this.callback(true).then(()=>{ this.navCtrl.pop() });
         } else {
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });

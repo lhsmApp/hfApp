@@ -240,7 +240,7 @@ export class AssetDetailsItemPage {
             }
           } else {
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });
@@ -267,8 +267,8 @@ export class AssetDetailsItemPage {
     console.log(this.addTime);
     if(detail.operateDate>this.addTime){
         let alert = this.alertCtrl.create({
-          title: '提示!',
-          subTitle: '投产日期要早于增加日期(' + this.addTime + ')!',
+          title: '提示',
+          subTitle: '投产日期要早于增加日期(' + this.addTime + ')！',
           buttons: ['确定']
         });
         alert.present();
@@ -276,8 +276,8 @@ export class AssetDetailsItemPage {
     }
     if(detail.productDate>detail.operateDate){
         let alert = this.alertCtrl.create({
-          title: '提示!',
-          subTitle: '出厂日期要早于投产日期!',
+          title: '提示',
+          subTitle: '出厂日期要早于投产日期！',
           buttons: ['确定']
         });
         alert.present();
@@ -302,7 +302,7 @@ export class AssetDetailsItemPage {
               toast.present();
         } else {
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });
