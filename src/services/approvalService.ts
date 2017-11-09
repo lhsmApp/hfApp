@@ -25,6 +25,10 @@ export class ApprovalService {
         action = 'queryUserReviewAcceptance';
         reviewType = "验收申请审批";
         getDo = "phoneAcceptanceApply.do";
+    }else if(type == ReviewType[ReviewType.REVIEW_TYPE_CONTRACT_MAIN]){
+        action = 'queryUserReviewAcceptance';
+        reviewType = "合同单据审批";
+        getDo = "phoneAcceptanceApply.do";
     }
     console.log('action: ' + action);
     console.log('reviewType: ' + reviewType);
@@ -46,6 +50,8 @@ export class ApprovalService {
         reviewType = "付款审批";
     } else if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
         reviewType = "验收申请审批";
+    } else if(type == ReviewType[ReviewType.REVIEW_TYPE_CONTRACT_MAIN]){
+        reviewType = "合同单据审批";
     }
     let action = "sendReview";
     let formData: FormData = new FormData(); 
@@ -73,6 +79,8 @@ export class ApprovalService {
         reviewType = "转资单审批";
     } else if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_ADJUST]){
         reviewType = "转资单调整审批";
+    }else if(type == ReviewType[ReviewType.REVIEW_TYPE_CONTRACT_MAIN]){
+        reviewType = "合同单据审批";
     }
     let action = "auditReview";
     let formData: FormData = new FormData(); 
@@ -100,6 +108,8 @@ export class ApprovalService {
         reviewType = "转资单审批";
     } else if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_ADJUST]){
         reviewType = "转资单调整审批";
+    }else if(type == ReviewType[ReviewType.REVIEW_TYPE_CONTRACT_MAIN]){
+        reviewType = "合同单据审批";
     }
     let action = "vetoReview";
     let formData: FormData = new FormData(); 

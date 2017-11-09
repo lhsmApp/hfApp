@@ -98,8 +98,20 @@ export class ContractApprovalPage {
   //打开详情页
   openPage(item: ContractMain) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("ContractInfoPage",{'contractMain':item,approval:true});
+  	this.navCtrl.push("ContractInfoPage",{callback:this.saveSend,'contractMain':item,approval:true});
   }
+
+  //回调
+  saveSend = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+          this.getList();
+      }
+      resolve();
+    });
+  };
 
   //上拉刷新
   doRefresh(refresher) {

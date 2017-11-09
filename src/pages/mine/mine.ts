@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {Storage} from "@ionic/storage";
-import {Platform, NavController, ModalController, AlertController} from "ionic-angular";
+import {Platform, NavController, ModalController, AlertController,Tabs} from "ionic-angular";
 import {MineEditPage} from "./mine-edit/mine-edit";
 import {MineEditAvatarModalPage} from "./mine-edit-avatar-modal/mine-edit-avatar-modal";
 import {UserInfo} from "../../model/UserInfo";
@@ -103,8 +103,13 @@ export class MinePage {
         {
           text: '确定',
           handler: () => {
-            this.navCtrl.setRoot(LoginPage);
-            this.navCtrl.popToRoot();
+            if(this.navCtrl.canGoBack()){
+              this.navCtrl.popAll();
+            }
+            let tabs:Tabs=this.navCtrl.parent;
+            let parent:NavController=tabs.parent;
+            parent.setRoot(LoginPage);
+            
             //this.navCtrl.push(LoginPage);
             /*let modal = this.modalCtrl.create(LoginPage);
             modal.present();
