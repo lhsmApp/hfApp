@@ -25,10 +25,6 @@ export class ApprovalService {
         action = 'queryUserReviewAcceptance';
         reviewType = "验收申请审批";
         getDo = "phoneAcceptanceApply.do";
-    }else if(type == ReviewType[ReviewType.REVIEW_TYPE_CONTRACT_MAIN]){
-        action = 'queryUserReviewAcceptance';
-        reviewType = "合同单据审批";
-        getDo = "phoneAcceptanceApply.do";
     }
     console.log('action: ' + action);
     console.log('reviewType: ' + reviewType);
@@ -41,6 +37,26 @@ export class ApprovalService {
      'reviewType':reviewType//审批使用常量名
      };
      return this.httpService.get(getDo, param).map((res: Response) => res.json());
+  }
+
+  //审批进度获取 review_process 审批流程表
+  queryApprovalProgress(billNumber:string, type:string): Observable<(Object)> {
+    let reviewType = "";
+    if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]){
+        reviewType = "付款审批";
+    } else if(type == ReviewType[ReviewType.BASICACCEPTANCE_APPLY]){
+        reviewType = "验收申请审批";
+    }else if(type == ReviewType[ReviewType.REVIEW_TYPE_CONTRACT_MAIN]){
+        reviewType = "合同单据审批";
+    }
+    let param = {
+     //必传
+     'action': 'getAuditList',
+     'sessionid':this.globalData.sessionId,
+     'billNumber': billNumber,
+     'reviewType':reviewType//审批使用常量名
+     };
+     return this.httpService.get('phoneCommon.do', param).map((res: Response) => res.json());
   }
 
   //单据送审确认接口- review_process 审批流程表

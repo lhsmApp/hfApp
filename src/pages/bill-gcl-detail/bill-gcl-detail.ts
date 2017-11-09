@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import {Storage} from "@ionic/storage";
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
 import { BillOfWorkMain} from '../../model/billof-work-main';
 import { BillOfWorkDetail} from '../../model/billof-work-detail';
 import { AdvancePaymentMain} from '../../model/advance-payment-main';
+import {DicComplex} from '../../model/dic-complex';
+import {DictUtil} from '../../providers/dict-util';
+import {UNIT} from "../../enums/storage-type";
 
 /**
  * Generated class for the BillGclDetailPage page.
@@ -25,13 +29,23 @@ export class BillGclDetailPage {
   paymentMain:AdvancePaymentMain;
   contractCode:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl:AlertController,private paymentService:PaymentService) {
+  dicUnit: DicComplex[];
+
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public alertCtrl:AlertController,
+    private storage: Storage,
+    private dictUtil:DictUtil,
+    private paymentService:PaymentService) {
   	this.billOfWorkMain=this.navParams.get("gclItem");
     this.paymentMain=this.navParams.get("paymentItem");
     this.contractCode=this.navParams.get('contractCode');
   }
 
   ionViewDidLoad() {
+    this.storage.get(UNIT).then((unit: DicComplex[]) => {
+      this.dicUnit=unit;
+    });
     this.initData();
   }
 
@@ -43,6 +57,8 @@ export class BillGclDetailPage {
         if(resultBase.result=='true'){
           console.log(object[1][0]);
           this.billOfWorkDetail = object[1][0] as BillOfWorkDetail;
+          //计量单位
+          this.billOfWorkDetail.unitCodeName = this.dictUtil.getUnitName(this.dicUnit,this.billOfWorkDetail.unitCode);
         }else{
           let alert = this.alertCtrl.create({
             title: '提示!',

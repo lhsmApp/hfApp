@@ -35,9 +35,14 @@
         <p item-end>{{item.dutyName}}</p>
     </ion-item-divider>
     <ion-item>
-      <p>审批结果： {{item.result==0?'未审批':item.result}}</p>
+      <p>审批结果：
+        <span *ngIf='item.result==0' class="primary" >未审批</span> 
+        <span *ngIf='item.result==1' class="secondary" >通过</span>
+        <span *ngIf='item.result==2' class="danger" >退回</span>
+      </p>
+        
       <p>审批人： {{item.userName}}</p>
-      <p>所属单位： {{item.departCode}}</p>
+      <!-- <p>所属单位： {{item.departCode}}</p> -->
       <p>审批日期： {{item.date}}</p>
       <p>审批意见： {{item.option}}</p>
     </ion-item>

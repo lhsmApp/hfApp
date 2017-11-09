@@ -89,7 +89,7 @@ export class AdvancePaymentApprovalPage {
 
   //打开详情页
   openPage(item: AdvancePaymentMain) {
-    this.navCtrl.push("AdvancePaymentInfoPage",{callback:this.saveSend,"paymentItem":item,approval:true});
+    this.navCtrl.push("AdvancePaymentInfoPage",{callback:this.saveSend,"paymentItem":item,approval:true,'approvalState':'2'});
   }
 
   //回调

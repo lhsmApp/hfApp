@@ -11,6 +11,17 @@ import {DicAsset} from '../model/dic-asset';
 import {PAYMENT_CATEGORY} from '../enums/enums';
 import {ASSETS_TYPE} from '../enums/enums';
 import {DicBase} from '../model/dic-base';
+import {SystemService} from '../services/systemService';
+import {ResultBase} from "../model/result-base";
+import {IN_DEPART} from "../enums/storage-type";
+import {OUT_DEPART} from "../enums/storage-type";
+import {BASIC_ENTITY} from "../enums/storage-type";
+import {ASSETS} from "../enums/storage-type";
+import {PROJECT_ELEMENT} from "../enums/storage-type";
+import {CONTRACT_TYPE} from "../enums/storage-type";
+import {ADDITIONAL_PERSON} from "../enums/storage-type";
+import {IS_DIC_LOAD} from "../providers/Constants";
+
 /**
  * 字典工具类
  * @description
@@ -18,21 +29,122 @@ import {DicBase} from '../model/dic-base';
 @Injectable()
 export class DictUtil {
 
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage,private systemService:SystemService,) {
   }
 
-  /**
-   * 返回字符串长度，汉子计数为2
-   * @param str
-   * @returns {number}
-   */
-  /*static getstrLength(str: string): number {
-    let len = 0;
-    for (let i = 0, length = str.length; i < length; i++) {
-      str.charCodeAt(i) > 255 ? len += 2 : len++;
-    }
-    return len;
-  }*/
+  //数据字典刷新
+  dictReflesh() {
+    //this.navCtrl.push(WorkMapPage);
+    //获取综合字典
+    this.systemService.getSystemDict()
+    .subscribe(object => {
+      let resultBase:ResultBase=object[0] as ResultBase;
+      if(resultBase.result=='true'){
+        let complexDicts = object[1];
+        for(let complexDict of complexDicts){
+          //unit:计量单位
+          //usedAspect:使用方向
+          //applyCode:取得方式
+          //usedState:使用状态
+          //specialLine:技术部门
+          //depositary:存放地点
+          //additionalPerson:合同附加人
+          //console.log(complexDict.CodeProperty);
+          //console.log(complexDict.codeDetail);
+          this.storage.set(complexDict.CodeProperty, complexDict.codeDetail);
+          this.storage.set(IS_DIC_LOAD,true);
+        }
+        
+      }
+    }, () => {
+      
+    });
+
+    //获取内部单位字典
+    this.systemService.getDepartDict()
+    .subscribe(object => {
+      let resultBase:ResultBase=object[0] as ResultBase;
+      if(resultBase.result=='true'){
+        let inDepart = object[1] as DicInDepart[];
+        this.storage.set(IN_DEPART, inDepart);
+      }
+    }, () => {
+      
+    });
+
+    //获取外部单位字典
+    this.systemService.getOutDepartDict()
+    .subscribe(object => {
+      let resultBase:ResultBase=object[0] as ResultBase;
+      if(resultBase.result=='true'){
+        let outDepart = object[1] as DicOutDepart[];
+        this.storage.set(OUT_DEPART, outDepart);
+      }
+    }, () => {
+      
+    });
+
+    //获取资产组字典
+    this.systemService.getBasicEntityManagerDict()
+    .subscribe(object => {
+      let resultBase:ResultBase=object[0] as ResultBase;
+      if(resultBase.result=='true'){
+        let basicEntity = object[1] as DicBasicEntity[];
+        this.storage.set(BASIC_ENTITY, basicEntity);
+      }
+    }, () => {
+      
+    });
+
+    //获取资产目录字典
+    this.systemService.getAssetsDict()
+    .subscribe(object => {
+      let resultBase:ResultBase=object[0] as ResultBase;
+      if(resultBase.result=='true'){
+        let aeests = object[1] as DicAsset[];
+        this.storage.set(ASSETS, aeests);
+      }
+    }, () => {
+      
+    });
+
+    //获取合同类别字典
+    this.systemService.getContractTypeDict()
+    .subscribe(object => {
+      let contractTypeList = object as Array<Object>;
+      let tarContractTypeList=new Array<DicBase>();
+      if(contractTypeList){
+        for(let item of contractTypeList){
+          let dicBase=new DicBase();
+          dicBase.code=item[0];
+          dicBase.name=item[1];
+          tarContractTypeList.push(dicBase);
+        }
+        this.storage.set(CONTRACT_TYPE, tarContractTypeList);
+      }
+    }, () => {
+      
+    });
+
+    //获取项目单元字典
+    this.systemService.getProjectElementDict()
+    .subscribe(object => {
+
+      let projectElementList = object as Array<Object>;
+      let tarProjectElementList=new Array<DicBase>();
+      if(projectElementList){
+        for(let item of projectElementList){
+          let dicBase=new DicBase();
+          dicBase.code=item[0];
+          dicBase.name=item[1];
+          tarProjectElementList.push(dicBase);
+        }
+        this.storage.set(PROJECT_ELEMENT, tarProjectElementList);
+      }
+    }, () => {
+      
+    });
+  }
 
   //翻译计量单位
   getUnitName(dictInfo:DicComplex[],code:string):string{

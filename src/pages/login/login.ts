@@ -41,9 +41,12 @@ export class LoginPage {
               private loginService: LoginService) {
     this.loginForm = this.formBuilder.group({
       /*gdliyh 78005250*/
-      usercode: ['gdliyh', [Validators.required, Validators.minLength(4)]],// 第一个参数是默认值
-      password: ['78005250', [Validators.required, Validators.minLength(4)]],
-      departCode:['',[Validators.required]]
+      /*usercode: ['gdliyh', [Validators.required, Validators.minLength(4)]],// 第一个参数是默认值
+      password: ['78005250', [Validators.required, Validators.minLength(4)]],*/
+      usercode: ['', [Validators.required]],// 第一个参数是默认值
+      password: ['', [Validators.required]],
+      departCode:['',[Validators.required]],
+      ischeck:[false]
     });
   }
 
@@ -54,24 +57,21 @@ export class LoginPage {
       //this.userInfo = loginInfo && loginInfo.user ? loginInfo.user : null;
       this.loginInfo = login ? login : null;
       if(this.loginInfo){
-        this.loginForm.patchValue({
-          usercode:this.loginInfo.usercode,
-          password:this.loginInfo.password,
-          //departCode:this.userInfo.departCode    
-      });
+        if(this.loginInfo.ischeck){
+          this.loginForm.patchValue({
+            usercode:this.loginInfo.usercode,
+            password:this.loginInfo.password,
+            //departCode:this.loginInfo.departname,
+            ischeck:this.loginInfo.ischeck    
+          });
+          //this.globalData.departCode=this.loginInfo.departcode;
+        }
       }
     });
   }
 
   ionViewDidLoad(){
     this.events.subscribe('system:timeout', () => {
-      console.log('aaaccc');
-      /*if(this.navCtrl.canGoBack()){
-              this.navCtrl.popAll();
-            }
-            let tabs:Tabs=this.navCtrl.parent;
-            let parent:NavController=tabs.parent;
-            parent.setRoot(LoginPage);*/
       this.navCtrl.popToRoot();
     });
   }
@@ -89,6 +89,8 @@ export class LoginPage {
           //this.globalData.token = loginInfo.access_token;
           //this.globalData.sessionId = loginInfo.access_token;
           this.submitted = false;
+          user.departname=user.departCode;
+          user.departcode=this.globalData.departCode;
           this.storage.set('loginInfo', user);
           this.globalData.userId=user.usercode;
           this.globalData.passWord=user.password;

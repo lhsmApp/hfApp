@@ -140,7 +140,7 @@ export class AdvancePaymentApplyPage {
             });
           }else{
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });
@@ -216,8 +216,8 @@ export class AdvancePaymentApplyPage {
     if(this.paymentForm.get('clauseType')._value=='2'||this.paymentForm.get('clauseType')._value=='4'){
       if(this.gclListInfo==null||this.gclListInfo.length==0){
         let alert = this.alertCtrl.create({
-          title: '提示!',
-          subTitle: '请选择工程量信息后再进行保存!',
+          title: '提示',
+          subTitle: '请选择工程量信息后再进行保存！',
           buttons: ['确定']
         });
         alert.present();
@@ -281,7 +281,7 @@ export class AdvancePaymentApplyPage {
           });
         }else{
           let alert = this.alertCtrl.create({
-            title: '提示!',
+            title: '提示',
             subTitle: resultBase.message,
             buttons: ['确定']
           });
@@ -327,26 +327,40 @@ export class AdvancePaymentApplyPage {
 
   //发票
   invoice(paymentDetail:AdvancePaymentDetail){
-  	//let payCode=paymentDetail.payCode;
-  	//let contractCode=paymentDetail.contractCode;
+  	let payCode=this.paymentForm.get('payCode')._value;
+    if(!(payCode!=null&&payCode.trim()!="")){
+      let alert = this.alertCtrl.create({
+        title: '提示',
+        subTitle: '请先保存付款信息，再进行维护发票信息！',
+        buttons: ['确定']
+      });
+      alert.present();
+      return;
+    }
     this.navCtrl.push("InvoiceApplyListPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode});
   }
 
   //工程量清单
   billOfGcl(paymentDetail:AdvancePaymentDetail){
-	  //let payCode=paymentDetail.payCode;
-  	//let contractCode=paymentDetail.contractCode;
+    if(this.paymentForm.get('contractCode')._value==null||this.paymentForm.get('contractCode')._value==""){
+      let alert = this.alertCtrl.create({
+        title: '提示',
+        subTitle: '请先选择合同流水号，再选择工程量信息！',
+        buttons: ['确定']
+      });
+      alert.present();
+      return;
+    }
     this.navCtrl.push("BillGclSelectPage",{'paymentItem':this.paymentMain,callback:this.getData,'contractCode':this.paymentDetail.contractCode,'gclList':this.gclListInfo});
   }
 
   //送审
   send(){
-    console.log('reviewType：' + ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]);
     let payCode=this.paymentForm.get('payCode')._value;
     if(!(payCode!=null&&payCode.trim()!="")){
         let alert = this.alertCtrl.create({
-          title: '提示!',
-          subTitle: '请先保存付款信息，再进行送审!',
+          title: '提示',
+          subTitle: '请先保存付款信息，再进行送审！',
           buttons: ['确定']
         });
         alert.present();

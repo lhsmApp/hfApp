@@ -98,7 +98,7 @@ export class ContractApprovalPage {
   //打开详情页
   openPage(item: ContractMain) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("ContractInfoPage",{callback:this.saveSend,'contractMain':item,approval:true});
+  	this.navCtrl.push("ContractInfoPage",{callback:this.saveSend,'contractMain':item,approval:true,'approvalState':'2'});
   }
 
   //回调
