@@ -101,7 +101,7 @@ export class ContractInfoPage {
           this.contractDetailInfo.costPropertyName = this.dictUtil.getEnumsName(ContractCostProperty,this.contractDetailInfo.costProperty);
         }else{
           let alert = this.alertCtrl.create({
-            title: '提示!',
+            title: '提示',
             subTitle: resultBase.message,
             buttons: ['确定']
           });
@@ -199,7 +199,7 @@ export class ContractInfoPage {
 
   //工程量清单
   billOfGcl(){
-	this.navCtrl.push("BillGclPage",{'contractCode':this.contractDetailInfo.contractCode,'type':'ht','sequence':this.contractDetailInfo.sequence});
+	  this.navCtrl.push("BillGclPage",{'contractCode':this.contractDetailInfo.contractCode,'type':'ht','sequence':this.contractDetailInfo.sequence});
   }
 
   //附件

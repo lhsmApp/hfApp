@@ -14,6 +14,8 @@ export class BillOfWorkDetail{
 
 	unitCode :string;//计量单位
 
+	unitCodeName:string;//计量单位
+
 	projectLoad:string;//工程量
 
 	complexPrice:number;//综合单价,传double型

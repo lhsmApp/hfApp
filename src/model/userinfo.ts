@@ -29,4 +29,5 @@ export interface LoginInfo {
   usercode:string;
   password:string;
   departcode:string;
+  departname:string;
 }

@@ -32,16 +32,22 @@ export class ApprovalProgressPage {
     this.getList();
   }
 
+  //上拉刷新
+  doRefresh(refresher) {
+    this.getList();
+    refresher.complete();
+  }
+
   //获取付款单列表信息
   getList(){
-      this.approvalService.queryUserReviewPay(this.billNumber,this.reviewType)
+      this.approvalService.queryApprovalProgress(this.billNumber,this.reviewType)
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           this.list = object[1] as ReviewProcessMain[];
         } else {
             let alert = this.alertCtrl.create({
-              title: '提示!',
+              title: '提示',
               subTitle: resultBase.message,
               buttons: ['确定']
             });
