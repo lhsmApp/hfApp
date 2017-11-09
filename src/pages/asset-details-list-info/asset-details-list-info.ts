@@ -11,7 +11,7 @@ import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
-import {TypeView,TypeView_AcceptApply,TypeView_TransferFunds,TypeView_TransferAdjust} from '../../providers/TransferFeildName';
+import {TypeView,TypeView_AcceptApply,TypeView_TransferFunds} from '../../providers/TransferFeildName';
 
 import {Page_AssetDetailsInfoPage} from '../../providers/TransferFeildName';
 //import {BillNumberCode} from '../../providers/TransferFeildName';

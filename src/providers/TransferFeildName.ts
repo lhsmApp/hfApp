@@ -3,9 +3,7 @@
 //验收的转界面类型
 export const TypeView = 'TypeView';
 export const TypeView_AcceptApply = '0';
-export const TypeView_AcceptOther = '1';
 export const TypeView_TransferFunds = '2';
-export const TypeView_TransferAdjust = '3';
 
 export const Oper = 'Oper';
 export const Oper_Look = '查看';

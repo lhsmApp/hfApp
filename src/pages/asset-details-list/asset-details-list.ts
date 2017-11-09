@@ -12,7 +12,7 @@ import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
 import {BillAddTime} from '../../providers/TransferFeildName';
-import {TypeView,TypeView_AcceptApply,TypeView_TransferFunds,TypeView_TransferAdjust} from '../../providers/TransferFeildName';
+import {TypeView,TypeView_AcceptApply,TypeView_TransferFunds} from '../../providers/TransferFeildName';
 
 import {Page_AssetDetailsInfoPage,Page_AssetDetailsItemPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
@@ -90,9 +90,6 @@ export class AssetDetailsListPage {
     let acceptanceFlag = "";
     if(this.TypeView === TypeView_TransferFunds){
       translateCode = this.billNumber;
-    }
-    if(this.TypeView === TypeView_AcceptApply){
-      //acceptanceFlag = '0';
     }
     this.contractService.getAssetDetailList(this.contractCode, translateCode, acceptanceFlag).subscribe(
       object => {
