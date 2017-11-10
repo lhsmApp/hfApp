@@ -216,7 +216,7 @@ export class TransferAdjustApprovalInfoPage {
 
   //审批进度
   approvalProgress(){
-    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.itemShow.translateCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_ADJUST]});
+    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.itemShow.translateCode,'approvalState':this.approvalState,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_ADJUST]});
   }
 
 }

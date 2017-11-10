@@ -51,6 +51,22 @@ export class HomePage {
 
   //初始化View
   ionViewDidLoad() {
+    this.noticeService.getNoticeMainList(2).subscribe(
+      object => {
+        let resultBase:ResultBase=object[0] as ResultBase;
+        if(resultBase.result=='true'){
+          this.notices = object[1] as Notice[];
+        } else {
+            let alert = this.alertCtrl.create({
+              title: '提示!',
+              subTitle: resultBase.message,
+              buttons: ['确定']
+            });
+            alert.present();
+        }
+      }, () => {
+    
+      });
     this.getList();
   }
 
@@ -83,23 +99,6 @@ export class HomePage {
         }
       }, () => {
         
-      });
-
-    this.noticeService.getNoticeMainList(2).subscribe(
-      object => {
-        let resultBase:ResultBase=object[0] as ResultBase;
-        if(resultBase.result=='true'){
-          this.notices = object[1] as Notice[];
-        } else {
-            let alert = this.alertCtrl.create({
-              title: '提示!',
-              subTitle: resultBase.message,
-              buttons: ['确定']
-            });
-            alert.present();
-        }
-      }, () => {
-    
       });
   }
 

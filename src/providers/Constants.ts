@@ -1,7 +1,7 @@
 /*----------------------------------------后台Api地址----------------------------------------*/
 //export const APP_SERVE_URL = 'http://88.128.18.144:8081/api/';
 export const APP_SERVE_FILE_URL = 'http://192.168.1.105:9080/assets/';
-//export const APP_SERVE_URL = 'http://192.168.1.105:9080/assets/cellphone/';
+//export const APP_SERVE_URL = 'http://192.168.1.103:9080/assets/cellphone/';
 export const APP_SERVE_URL = 'http://localhost:8100/assets/cellphone/';
 //export const APP_SERVE_URL = 'http://localhost:8002/assets/cellphone/';
 
