@@ -25,6 +25,7 @@ import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
   templateUrl: 'invoice-list.html',
 })
 export class InvoiceListPage {
+  apply:boolean=false;
   emptyPath=DEFAULT_INVOICE_EMPTY;
   isEmpty:boolean=false;
   invoiceList:InvoiceMain[];
@@ -33,6 +34,7 @@ export class InvoiceListPage {
 
  	constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl:AlertController,private paymentService:PaymentService) {
  		//this.invoiceList=INVOICE_LIST;
+     this.apply=this.navParams.get('apply');
      this.paymentMain=this.navParams.get("paymentItem");
      this.contractCode=this.navParams.get('contractCode');
  	}
@@ -69,7 +71,7 @@ export class InvoiceListPage {
   //打开详情页
   openPage(item: InvoiceMain) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-    this.navCtrl.push("InvoiceInfoPage",{"invoiceItem":item,'paymentItem':this.paymentMain,'contractCode':this.contractCode});
+    this.navCtrl.push("InvoiceInfoPage",{"invoiceItem":item,'paymentItem':this.paymentMain,'contractCode':this.contractCode,'apply':this.apply});
   }
 
   //上拉刷新

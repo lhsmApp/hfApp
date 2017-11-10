@@ -10,6 +10,7 @@ import {Page_ContractChoiceListPage} from '../../providers/TransferFeildName';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
 import {DicBase} from "../../model/dic-base";
+import {CONTRACT_TYPE} from "../../enums/storage-type";
 
 import {IN_DEPART} from "../../enums/storage-type";
 import {OUT_DEPART} from "../../enums/storage-type";
@@ -22,6 +23,7 @@ import {BillNumberCode} from '../../providers/TransferFeildName';
 import { ReviewType} from '../../enums/review-type';
 import { Utils } from '../../providers/Utils';
 import {GlobalData} from "../../providers/GlobalData";
+import {DictUtil} from "../../providers/dict-util";
 
 /**
  * Generated class for the AdvancePaymentApplyPage page.
@@ -57,6 +59,7 @@ export class AdvancePaymentApplyPage {
   paymentCategory=PAYMENT_CATEGORY;
   listPayDept : DicInDepart;
   listIntercourse : DicOutDepart;
+  listContractType : DicBase[];
   gclListInfo:BillOfWorkMain[]=[];
   callback :any;
   sendSuccess=false;
@@ -68,7 +71,8 @@ export class AdvancePaymentApplyPage {
               private modalCtrl: ModalController,
               private paymentService:PaymentService,
               private alertCtrl: AlertController,
-              private globalData: GlobalData) {
+              private globalData: GlobalData,
+              private dicUtil:DictUtil) {
   	/*this.paymentForm = this.formBuilder.group({
       username: [, [Validators.required, Validators.pattern('[(\u4e00-\u9fa5)0-9a-zA-Z\_\s@]+')]],
       verificationCode: [, [Validators.required, Validators.minLength(6), Validators.pattern('1[0-9]{6}')]],
@@ -86,9 +90,10 @@ export class AdvancePaymentApplyPage {
       //elementType: [, [Validators.required]],//项目性质，自动带出
       elementName: [,[Validators.required]],//项目单元名称，自动带出
       planType: [,[Validators.required]],//项目核算类别，自动带出
+      planTypeName: [,[Validators.required]],//项目核算类别，自动带出
       payDigest: [,[Validators.required]],//付款原因，手工录入
       costMoney: [,[Validators.required]],//合同标的（审计）额，自动带出
-      taxMoney: [,[Validators.required]],//已付款额度，自动带出
+      taxMoney: '',//已付款额度，自动带出
       payMoney: [,[Validators.required]],//本次申请金额，手工录入
       paymentCode: [,[Validators.required]],//付款单位编号，选择
       //payDepart: [, [Validators.required]],//付款单位名称，选择
@@ -118,6 +123,7 @@ export class AdvancePaymentApplyPage {
               //elementType:this.paymentDetail.elementType,
               elementName:this.paymentDetail.elementName,
               planType:this.paymentDetail.planType,
+              planTypeName:this.dicUtil.getContractTypeName(this.listContractType,this.paymentDetail.planType),
               payDigest:this.paymentDetail.payDigest,
               costMoney:this.paymentDetail.costMoney,
               taxMoney:this.paymentDetail.taxMoney,
@@ -150,6 +156,7 @@ export class AdvancePaymentApplyPage {
           
         });
       }else{
+        this.paymentMain=new AdvancePaymentMain();
         this.paymentForm.patchValue({
           requireDate:Utils.dateFormat(new Date()),
           requireUser:this.globalData.userName
@@ -166,7 +173,9 @@ export class AdvancePaymentApplyPage {
     this.storage.get(OUT_DEPART).then((outDepart: DicOutDepart) => {
       this.listIntercourse=outDepart;
     });
-
+    this.storage.get(CONTRACT_TYPE).then((contractType: DicBase[]) => {
+      this.listContractType=contractType;
+    });
     this.initData();
   }
 
@@ -203,6 +212,7 @@ export class AdvancePaymentApplyPage {
           //elementType:contractInfo.elementCode,
           elementName:contractInfo.elementName,
           planType:contractInfo.compactType,
+          planTypeName:this.dicUtil.getContractTypeName(this.listContractType,contractInfo.compactType),
           costMoney:contractInfo.contractMoney
         });
       }
@@ -227,6 +237,10 @@ export class AdvancePaymentApplyPage {
 
     let paymentInfo=new Array<AdvancePaymentDetail>();
     let detail=this.paymentForm.value as AdvancePaymentDetail;
+    if(detail.taxMoney==null||detail.taxMoney.toString()==""){
+      detail.taxMoney=0;
+    }
+    detail.payMoney=parseFloat(detail.payMoney.toString());
     //detail.requireUser='';
     paymentInfo.push(detail);
     console.log(this.gclListInfo);
@@ -262,6 +276,7 @@ export class AdvancePaymentApplyPage {
           console.log(object[1][0]);
           this.paymentDetail = object[1][0] as AdvancePaymentDetail;
           this.sendSuccess=true;
+          this.paymentMain.payCode=this.paymentForm.get('payCode')._value;
           this.paymentForm.patchValue({
             payCode:this.paymentDetail.payCode,
             clauseType:this.paymentDetail.clauseType,
@@ -270,6 +285,7 @@ export class AdvancePaymentApplyPage {
             //elementType:this.paymentDetail.elementType,
             elementName:this.paymentDetail.elementName,
             planType:this.paymentDetail.planType,
+            planTypeName:this.dicUtil.getContractTypeName(this.listContractType,this.paymentDetail.planType),
             payDigest:this.paymentDetail.payDigest,
             costMoney:this.paymentDetail.costMoney,
             taxMoney:this.paymentDetail.taxMoney,
@@ -351,7 +367,8 @@ export class AdvancePaymentApplyPage {
       alert.present();
       return;
     }
-    this.navCtrl.push("BillGclSelectPage",{'paymentItem':this.paymentMain,callback:this.getData,'contractCode':this.paymentDetail.contractCode,'gclList':this.gclListInfo});
+    this.paymentMain.payCode=this.paymentForm.get('payCode')._value;
+    this.navCtrl.push("BillGclSelectPage",{'paymentItem':this.paymentMain,callback:this.getData,'contractCode':this.paymentForm.get('contractCode')._value,'gclList':this.gclListInfo});
   }
 
   //送审

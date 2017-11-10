@@ -71,6 +71,10 @@ export class MinePage {
             let resultBase:ResultBase=object[0] as ResultBase;
             if(resultBase.result=='true'){
               this.globalData.departCode = departCodeAndName[0];
+              this.globalData.departName=departCodeAndName[1];
+              this.userInfo.departCode=departCodeAndName[0];
+              this.userInfo.departName=departCodeAndName[1];
+
             }
           }, () => {
             

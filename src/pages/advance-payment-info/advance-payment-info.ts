@@ -6,6 +6,7 @@ import { AdvancePaymentMain} from '../../model/advance-payment-main';
 import { PaymentService} from '../../services/paymentService';
 import {ResultBase} from "../../model/result-base";
 import {DicBase} from "../../model/dic-base";
+import {CONTRACT_TYPE} from "../../enums/storage-type";
 import {IN_DEPART} from "../../enums/storage-type";
 import {OUT_DEPART} from "../../enums/storage-type";
 import {DicInDepart} from '../../model/dic-in-depart';
@@ -45,11 +46,13 @@ import {ApprovalService} from '../../services/approvalService';
 export class AdvancePaymentInfoPage {
   payCode:string;
   isapproval:boolean;
+  apply:boolean=false;
   paymentDetail:AdvancePaymentDetail;
   paymentMain:AdvancePaymentMain;
   paymentCategory=PAYMENT_CATEGORY;
   listPayDept : DicInDepart[];
   listIntercourse : DicOutDepart[];
+  listContractType : DicBase[];
   callback :any;
   sendSuccess=false;
   approvalState:string;
@@ -63,6 +66,7 @@ export class AdvancePaymentInfoPage {
     private paymentService:PaymentService,
     private approvalService:ApprovalService,
     private dictUtil:DictUtil) {
+    this.apply=this.navParams.get('apply');
     this.paymentMain=this.navParams.get("paymentItem");
     this.callback    = this.navParams.get('callback');
     this.approvalState=this.navParams.get('approvalState');
@@ -84,6 +88,9 @@ export class AdvancePaymentInfoPage {
     this.storage.get(OUT_DEPART).then((outDepart: DicOutDepart[]) => {
       this.listIntercourse=outDepart;
     });
+    this.storage.get(CONTRACT_TYPE).then((contractType: DicBase[]) => {
+      this.listContractType=contractType;
+    });
     this.initData();
   }
 
@@ -98,6 +105,7 @@ export class AdvancePaymentInfoPage {
           this.paymentDetail.clauseTypeName=this.dictUtil.getClauseTypeName(this.paymentDetail.clauseType);
           this.paymentDetail.payDepart=this.dictUtil.getInDepartName(this.listPayDept,this.paymentDetail.paymentCode);
           this.paymentDetail.intercourseName=this.dictUtil.getOutDepartName(this.listIntercourse,this.paymentDetail.intercourseCode);
+          this.paymentDetail.planTypeName=this.dictUtil.getContractTypeName(this.listContractType,this.paymentDetail.planType);
         }else{
           let alert = this.alertCtrl.create({
             title: '提示!',
@@ -193,12 +201,16 @@ export class AdvancePaymentInfoPage {
 
   //发票
   invoice(){
-  	this.navCtrl.push("InvoiceListPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode});
+    if(this.apply){
+      this.navCtrl.push("InvoiceApplyListPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode});
+    }else{
+  	  this.navCtrl.push("InvoiceListPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode,'apply':this.apply});
+    }
   }
 
   //工程量清单
   billOfGcl(){
-	this.navCtrl.push("BillGclPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode,'type':'fk'});
+	  this.navCtrl.push("BillGclPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode,'type':'fk'});
   }
 
   //送审
@@ -230,6 +242,6 @@ export class AdvancePaymentInfoPage {
 
   //审批进度
   approvalProgress(){
-    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.paymentDetail.payCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]});
+    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.paymentDetail.payCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT],'approvalState':this.approvalState});
   }
 }

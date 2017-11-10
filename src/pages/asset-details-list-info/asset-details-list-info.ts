@@ -40,6 +40,7 @@ export class AssetDetailsListInfoPage {
   billNumber:string;
   contractCode:string;
   TypeView:string;
+  checkResult:string="";
 
   listAll:AcceptAssetMain[];
 	list:AcceptAssetMain[];
@@ -57,6 +58,7 @@ export class AssetDetailsListInfoPage {
     this.billNumber = this.navParams.get(BillNumberCode);
     this.contractCode = this.navParams.get(BillContractCode);
     this.TypeView = this.navParams.get(TypeView);
+    this.checkResult=this.navParams.get("checkResult");
   }
 
   ionViewDidLoad() {
@@ -81,7 +83,6 @@ export class AssetDetailsListInfoPage {
     //contractCode:string, translateCode:string, acceptanceFlag:string checkResult
     let translateCode = "";
     let acceptanceFlag = "";
-    let checkResult = "";
     let contractCode = "";
     if(this.TypeView === TypeView_AcceptApply){
       acceptanceFlag = "1";
@@ -91,7 +92,7 @@ export class AssetDetailsListInfoPage {
       acceptanceFlag = "1";
       translateCode = this.billNumber;
     }
-    this.contractService.getAssetDetailList(contractCode, translateCode, acceptanceFlag, checkResult).subscribe(
+    this.contractService.getAssetDetailList(contractCode, translateCode, acceptanceFlag, this.checkResult).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){

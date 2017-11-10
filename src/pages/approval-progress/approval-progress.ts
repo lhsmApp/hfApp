@@ -22,10 +22,12 @@ export class ApprovalProgressPage {
   billNumber:string;
   list: ReviewProcessMain[];
   reviewType:string;
+  approvalState:string='2';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,private approvalService:ApprovalService) {
   	this.billNumber = this.navParams.get(BillNumberCode);
     this.reviewType=this.navParams.get('reviewType');
+    this.approvalState=this.navParams.get('approvalState');
   }
 
   ionViewDidLoad() {
@@ -40,21 +42,27 @@ export class ApprovalProgressPage {
 
   //获取付款单列表信息
   getList(){
-      this.approvalService.queryApprovalProgress(this.billNumber,this.reviewType)
-      .subscribe(object => {
-        let resultBase:ResultBase=object[0] as ResultBase;
-        if(resultBase.result=='true'){
-          this.list = object[1] as ReviewProcessMain[];
-        } else {
-            let alert = this.alertCtrl.create({
-              title: '提示',
-              subTitle: resultBase.message,
-              buttons: ['确定']
-            });
-            alert.present();
-        }
-      }, () => {
-        
-      });
+    let isHistory:string='0';
+    if(this.approvalState=='3'){
+      isHistory='1';
+    }else{
+      isHistory='0';
+    }
+    this.approvalService.queryApprovalProgress(this.billNumber,this.reviewType,isHistory)
+    .subscribe(object => {
+      let resultBase:ResultBase=object[0] as ResultBase;
+      if(resultBase.result=='true'){
+        this.list = object[1] as ReviewProcessMain[];
+      } else {
+          let alert = this.alertCtrl.create({
+            title: '提示',
+            subTitle: resultBase.message,
+            buttons: ['确定']
+          });
+          alert.present();
+      }
+    }, () => {
+      
+    });
   }
 }
