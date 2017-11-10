@@ -50,14 +50,18 @@ export class ContractService {
   }
 
   //资产明细列表-----basic_contract_detail 合同明细表
-  getAssetDetailList(contractCode:string, translateCode:string, acceptanceFlag:string):Observable<(object)>{
+  getAssetDetailList(contractCode:string, translateCode:string, acceptanceFlag:string, checkResult:string):Observable<(object)>{
     console.log('资产明细列表'+this.globalData.sessionId);
     let param = {
         'action': "queryListPhoneContractDetail",
         'sessionid': this.globalData.sessionId,
         'contractCode': contractCode,//合同流水号
         'translateCode': translateCode,//”转资单号”
-        'acceptanceFlag': acceptanceFlag,//是否已验收0为未验收1为验收 0未验收 1已复核 2已验收未复核（如果是验收单据查询，则需要查询未验收的0，如果是转资单据查询，则需要传验收1，如果是合同查询则不用传参）
+        'checkResult': checkResult,
+        'acceptanceFlag': acceptanceFlag,
+        //1.合同调用,acceptanceFlag="",contractCode必传，checkResult必传
+        //2.验收调用 acceptanceFlag=1，contractCode必传，translateCode传""或者不传都行
+        //3.转资单调用acceptanceFlag=1，translateCode必传
     };
     return this.httpService.get('phoneContactMain.do', param).map((res:Response) => res.json());
   }
