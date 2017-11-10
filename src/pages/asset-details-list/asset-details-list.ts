@@ -91,10 +91,16 @@ export class AssetDetailsListPage {
     let translateCode = "";
     let acceptanceFlag = "";
     let checkResult = "";
+    let contractCode = "";
+    if(this.TypeView === TypeView_AcceptApply){
+      acceptanceFlag = "1";
+      contractCode = this.contractCode;
+    }
     if(this.TypeView === TypeView_TransferFunds){
+      acceptanceFlag = "1";
       translateCode = this.billNumber;
     }
-    this.contractService.getAssetDetailList(this.contractCode, translateCode, acceptanceFlag, checkResult).subscribe(
+    this.contractService.getAssetDetailList(contractCode, translateCode, acceptanceFlag, checkResult).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
