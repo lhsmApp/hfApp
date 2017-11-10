@@ -11,6 +11,7 @@ export class AdvancePaymentDetail{
 	elementType:string;//项目性质
 	elementName:string;//项目单元名称
 	planType:string;//项目核算类别
+	planTypeName:string;//项目核算类别
 	payDigest:string;//付款原因
 	costMoney:number;//合同标的（审计）额,传double型
 	taxMoney:number;//已付款额度,传double型

@@ -194,7 +194,8 @@ export class ContractInfoPage {
 
   //合同明细
   contractDetail(){
-  	this.navCtrl.push("AssetDetailsListInfoPage",{BillContractCode:this.contractDetailInfo.contractCode});
+    console.log(this.contractDetailInfo.checkResult);
+  	this.navCtrl.push("AssetDetailsListInfoPage",{BillContractCode:this.contractDetailInfo.contractCode,'checkResult':this.contractDetailInfo.checkResult});
   }
 
   //工程量清单
@@ -209,7 +210,7 @@ export class ContractInfoPage {
 
   //审批进度
   approvalProgress(){
-    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.contractDetailInfo.contractCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_CONTRACT_MAIN]});
+    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.contractDetailInfo.contractCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_CONTRACT_MAIN],'approvalState':this.approvalState});
   }
 
   goBack(){

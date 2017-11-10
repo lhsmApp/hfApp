@@ -40,7 +40,7 @@ export class ApprovalService {
   }
 
   //审批进度获取 review_process 审批流程表
-  queryApprovalProgress(billNumber:string, type:string): Observable<(Object)> {
+  queryApprovalProgress(billNumber:string, type:string,isHistory:string): Observable<(Object)> {
     let reviewType = "";
     if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_PAYMENT]){
         reviewType = "付款审批";
@@ -54,7 +54,8 @@ export class ApprovalService {
      'action': 'getAuditList',
      'sessionid':this.globalData.sessionId,
      'billNumber': billNumber,
-     'reviewType':reviewType//审批使用常量名
+     'reviewType':reviewType,//审批使用常量名
+     'isHistory':isHistory
      };
      return this.httpService.get('phoneCommon.do', param).map((res: Response) => res.json());
   }

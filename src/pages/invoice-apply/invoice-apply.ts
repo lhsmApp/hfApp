@@ -100,7 +100,7 @@ export class InvoiceApplyPage {
     let invoiceInfo=new Array<InvoiceDetail>();
     let detail=<InvoiceDetail>this.invoiceForm.value;
     detail.price=parseFloat(detail.price.toString());
-    detail.chalanMoney =parseFloat(detail.chalanMoney .toString());
+    detail.chalanMoney =parseFloat(detail.chalanMoney.toString());
     detail.noTaxMoney =parseFloat(detail.noTaxMoney.toString());
     console.log(detail);
     invoiceInfo.push(detail);

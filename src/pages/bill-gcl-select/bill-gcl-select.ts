@@ -51,7 +51,6 @@ export class BillGclSelectPage {
 
   //获取工程量列表信息
   getList() {
-    console.log('cccc');
     console.log(this.gclList);
     //getGclMainList(contractCode:string,type:string,payCode:string,sequence :string)
     this.paymentService.getGclMainList(this.contractCode,'fk',this.paymentMain.payCode,'0')
