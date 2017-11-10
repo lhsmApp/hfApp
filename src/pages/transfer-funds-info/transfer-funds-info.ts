@@ -214,7 +214,7 @@ export class TransferFundsInfoPage {
 
   //审批进度
   approvalProgress(){
-    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.translateCode,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_VOUCHER]});
+    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.translateCode,'approvalState':this.approvalState,'reviewType':ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_VOUCHER]});
   }
 
 }

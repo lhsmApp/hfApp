@@ -235,7 +235,7 @@ export class AcceptApplyInfoPage {
 
   //审批进度
   approvalProgress(){
-    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.billNumber,'reviewType':ReviewType[ReviewType.BASICACCEPTANCE_APPLY]});
+    this.navCtrl.push('ApprovalProgressPage',{BillNumberCode:this.billNumber,'approvalState':this.approvalState,'reviewType':ReviewType[ReviewType.BASICACCEPTANCE_APPLY]});
   }
 
 }
