@@ -98,7 +98,6 @@ export class ContractChoiceConfirmPage {
           this.list = object[1] as ContractDetail[];
           if(this.list && this.list.length > 0){
               this.itemShow = this.list[0];
-              console.log(this.dicContractType);
               //合同类别
               this.itemShow.compactTypeName = this.dictUtil.getContractTypeName(this.dicContractType,this.itemShow.compactType);
               //合同相对人
