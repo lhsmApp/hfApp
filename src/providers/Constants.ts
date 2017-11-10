@@ -14,6 +14,7 @@ export const APP_VERSION_SERVE_URL = 'http://172.16.19.86:8111/api/';//app版本
 export const IS_DEBUG = true;//是否开发(调试)模式
 
 export const IS_DIC_LOAD = 'isDicLoad';//是否已经加载过字典
+export const DEFAULT_LOGO= './assets/icon/drawable-hdpi-icon.png';//默认logo
 export const DEFAULT_AVATAR = './assets/img/avatar.png';//用户默认头像
 export const DEFAULT_INVOICE = './assets/img/数据字典.png';//默认发票
 export const DEFAULT_INVOICE_EMPTY = './assets/img/空页.png';//默认空发票

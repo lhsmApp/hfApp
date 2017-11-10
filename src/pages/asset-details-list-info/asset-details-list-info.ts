@@ -38,7 +38,7 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
 })
 export class AssetDetailsListInfoPage {
   billNumber:string;
-  contractCode:string;
+  contractCode:string="";
   TypeView:string;
   checkResult:string="";
 
@@ -83,16 +83,16 @@ export class AssetDetailsListInfoPage {
     //contractCode:string, translateCode:string, acceptanceFlag:string checkResult
     let translateCode = "";
     let acceptanceFlag = "";
-    let contractCode = "";
+    //let contractCode = "";
     if(this.TypeView === TypeView_AcceptApply){
       acceptanceFlag = "1";
-      contractCode = this.contractCode;
+      //contractCode = this.contractCode;
     }
     if(this.TypeView === TypeView_TransferFunds){
       acceptanceFlag = "1";
       translateCode = this.billNumber;
     }
-    this.contractService.getAssetDetailList(contractCode, translateCode, acceptanceFlag, this.checkResult).subscribe(
+    this.contractService.getAssetDetailList(this.contractCode, translateCode, acceptanceFlag, this.checkResult).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){

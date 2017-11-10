@@ -194,7 +194,7 @@ export class ContractInfoPage {
 
   //合同明细
   contractDetail(){
-    console.log(this.contractDetailInfo.checkResult);
+    console.log(this.contractDetailInfo.contractCode);
   	this.navCtrl.push("AssetDetailsListInfoPage",{BillContractCode:this.contractDetailInfo.contractCode,'checkResult':this.contractDetailInfo.checkResult});
   }
 

@@ -5,6 +5,7 @@ import {UpdateLogPage} from "../update-log/update-log";
 import {FeedBackPage} from "../feed-back/feed-back";
 import {Helper} from "../../../providers/Helper";
 import {GlobalData} from "../../../providers/GlobalData";
+import {DEFAULT_LOGO} from "../../../providers/Constants";
 
 @Component({
   selector: 'page-about',
@@ -12,6 +13,7 @@ import {GlobalData} from "../../../providers/GlobalData";
 })
 export class AboutPage {
   versionNo: string = '0.0.1';
+  logo:string=DEFAULT_LOGO;
 
   constructor(private navCtrl: NavController,
               private alertCtrl: AlertController,
