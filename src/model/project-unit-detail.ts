@@ -7,7 +7,7 @@ export class ProjectUnitDetail{
 				elementFlag: string;//项目单元类别"          
  				sgsx: string;//施工属性""                     
 				planMoney: number;//初始计划金额" ,传double型 
-				planMoney_current: number;//当前计划金额",传double型    
+				planMoneyCurrent: number;//当前计划金额",传double型    
 				payMoney: number;//已付款金额",传double型               
               	completionProgress: string;//完工百分比"     
               	designFinishTime: string;//设计完成时间"    
