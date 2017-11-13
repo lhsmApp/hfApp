@@ -120,7 +120,13 @@ export class TransferFundsInfoPage {
   
   //资产明细
   toAssetDetail(){
-    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.translateCode, BillContractCode:'', TypeView:TypeView_TransferFunds});
+  //资产明细详情-----basic_contract_detail 合同明细表
+  //1.合同/验收调用 contractCode + keyCode(合同流水号+转资键码) checkResult(合同调用必传)
+  //2.转资调用 translateCode+elementCode(转资单号+项目单元编码) translateType转资类型
+  // reqTyle: ht/ ys /zz(合同/验收/转资)
+    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.translateCode, BillContractCode:'', BillElementCode: this.itemShow.elementCode,
+                                                        BillCheckResult:'', BillTranslateType: this.itemShow.translateType, 
+                                                        TypeView:TypeView_TransferFunds});
   }
 
   check(){

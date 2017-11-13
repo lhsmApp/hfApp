@@ -2,8 +2,9 @@
 
 //验收的转界面类型
 export const TypeView = 'TypeView';
-export const TypeView_AcceptApply = '0';
-export const TypeView_TransferFunds = '2';
+export const TypeView_AcceptApply = 'ys';
+export const TypeView_TransferFunds = 'zz';
+export const TypeView_Contract = 'ht';
 
 export const Oper = 'Oper';
 export const Oper_Look = '查看';
@@ -29,6 +30,10 @@ export const BillElementCode = 'BillElementCode';
 export const BillReviewType = 'reviewType';
 //查询的审批状态
 export const BillApprovalState = 'approvalState';
+//合同调用必传
+export const BillCheckResult = 'BillCheckResult';
+//转资类型
+export const BillTranslateType = 'BillTranslateType';
 
 //页面
 //验收申请：查看、审批 BillNumberCode title oper:Oper_Look、Oper_Add、Oper_Edit、Oper_Approval BillApprovalState
@@ -41,15 +46,19 @@ export const Page_ContractChoiceListPage = 'ContractChoiceListPage';
 //合同选择确认 BillContractCode
 export const Page_ContractChoiceConfirmPage = 'ContractChoiceConfirmPage';
 
-//资产列表查看： BillNumberCode BillContractCode TypeView:TypeView_AcceptApply
+//资产列表查看：BillNumberCode BillContractCode BillElementCode 
+//              TypeView:TypeView_AcceptApply、TypeView_TransferFunds、TypeView_Contract
+//              BillCheckResult(合同调用必传) BillTranslateType转资类型
 export const Page_AssetDetailsListInfoPage = 'AssetDetailsListInfoPage';
 //资产列表操作： BillNumberCode BillContractCode TypeView:TypeView_AcceptApply
 export const Page_AssetDetailsListPage = 'AssetDetailsListPage';
-//资产详情查看： BillNumberCode BillContractCode BillKeyCode
+//资产详情查看： BillNumberCode BillContractCode BillElementCode BillKeyCode 
+//              TypeView:TypeView_AcceptApply、TypeView_TransferFunds、TypeView_Contract
+//              BillCheckResult(合同调用必传) BillTranslateType转资类型
 export const Page_AssetDetailsInfoPage = 'AssetDetailsInfoPage';
 //资产详情添加： BillNumberCode BillContractCode TypeView
 //export const Page_AssetDetailsAddPage = 'AssetDetailsAddPage';
-//资产详情编辑： BillNumberCode BillContractCode BillKeyCode Oper:Oper_Add、Oper_Edit ItemTranfer//从添加界面传入
+//资产详情编辑： BillNumberCode BillContractCode BillKeyCode Oper:Oper_Add、Oper_Edit TypeView ItemTranfer//从添加界面传入
 export const Page_AssetDetailsItemPage = 'AssetDetailsItemPage';
 
 //项目单元详情查看： BillElementCode Oper:Oper_Look

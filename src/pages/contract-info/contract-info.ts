@@ -19,6 +19,8 @@ import {DicBase} from '../../model/dic-base';
 import {DicComplex} from '../../model/dic-complex';
 import {ApprovalService} from '../../services/approvalService';
 
+import {TypeView,TypeView_Contract} from '../../providers/TransferFeildName';
+
 /**
  * Generated class for the ContractInfoPage page.
  *
@@ -194,8 +196,10 @@ export class ContractInfoPage {
 
   //合同明细
   contractDetail(){
+    console.log(this.contractDetailInfo.checkResult);
     console.log(this.contractDetailInfo.contractCode);
-  	this.navCtrl.push("AssetDetailsListInfoPage",{BillContractCode:this.contractDetailInfo.contractCode,'checkResult':this.contractDetailInfo.checkResult});
+  	this.navCtrl.push("AssetDetailsListInfoPage",{BillContractCode:this.contractDetailInfo.contractCode,'checkResult':this.contractDetailInfo.checkResult, 
+                                                        TypeView:TypeView_Contract});
   }
 
   //工程量清单

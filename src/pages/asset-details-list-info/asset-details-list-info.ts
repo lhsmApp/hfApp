@@ -11,7 +11,10 @@ import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
 
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
-import {TypeView,TypeView_AcceptApply,TypeView_TransferFunds} from '../../providers/TransferFeildName';
+import {BillElementCode} from '../../providers/TransferFeildName';
+import {BillCheckResult} from '../../providers/TransferFeildName';
+import {BillTranslateType} from '../../providers/TransferFeildName';
+import {TypeView,TypeView_AcceptApply,TypeView_TransferFunds,TypeView_Contract} from '../../providers/TransferFeildName';
 
 import {Page_AssetDetailsInfoPage} from '../../providers/TransferFeildName';
 //import {BillNumberCode} from '../../providers/TransferFeildName';
@@ -38,8 +41,10 @@ import {BillKeyCode} from '../../providers/TransferFeildName';
 })
 export class AssetDetailsListInfoPage {
   billNumber:string;
+  elementCode:string;
   contractCode:string="";
   TypeView:string;
+  translateType:string;
   checkResult:string="";
 
   listAll:AcceptAssetMain[];
@@ -57,6 +62,10 @@ export class AssetDetailsListInfoPage {
     //this.list = [];
     this.billNumber = this.navParams.get(BillNumberCode);
     this.contractCode = this.navParams.get(BillContractCode);
+    this.elementCode = this.navParams.get(BillElementCode);
+
+    this.translateType = this.navParams.get(BillTranslateType);
+
     this.TypeView = this.navParams.get(TypeView);
     this.checkResult=this.navParams.get("checkResult");
   }
@@ -165,7 +174,13 @@ export class AssetDetailsListInfoPage {
   }
   
   toDetail(item: AcceptAssetMain){
-  	this.navCtrl.push(Page_AssetDetailsInfoPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode});
+      //资产明细详情-----basic_contract_detail 合同明细表
+      //1.合同/验收调用 contractCode + keyCode(合同流水号+转资键码) checkResult(合同调用必传)
+      //2.转资调用 translateCode+elementCode(转资单号+项目单元编码) translateType转资类型
+      // reqTyle: ht/ ys /zz(合同/验收/转资)
+  	this.navCtrl.push(Page_AssetDetailsInfoPage, {BillNumberCode:this.billNumber, BillContractCode:this.contractCode, BillElementCode:this.elementCode, BillKeyCode:item.keyCode,
+                                                  BillCheckResult:this.checkResult, BillTranslateType:this.translateType, 
+                                                  TypeView:this.TypeView});
   }
 
 }

@@ -227,7 +227,7 @@ export class AcceptApplyItemPage {
       if(!(this.billNumber!=null&&this.billNumber.trim()!="")){
         let alert = this.alertCtrl.create({
           title: '提示',
-          subTitle: '请保存后再查看资产明细！',
+          subTitle: '请先保存验收信息，再进行维护资产明细信息！',
           buttons: ['确定']
         });
         alert.present();

@@ -67,13 +67,25 @@ export class ContractService {
   }
 
   //资产明细详情-----basic_contract_detail 合同明细表
-  getAssetDetailItem(contractCode:string, keyCode:string):Observable<(object)>{
+  //1.合同/验收调用 contractCode + keyCode(合同流水号+转资键码) checkResult(合同调用必传)
+  //2.转资调用 translateCode+elementCode(转资单号+项目单元编码) translateType转资类型
+  // reqTyle: ht/ ys /zz(合同/验收/转资)
+  getAssetDetailItem(contractCode:string, keyCode:string, checkResult:string,
+        translateCode:string, elementCode:string, translateType:string,
+        reqTyle:string):Observable<(object)>{
     console.log('资产明细详情'+this.globalData.sessionId);
     let param = {
         'action': "queryPhoneContractDetailMain",
         'sessionid': this.globalData.sessionId,
         'contractCode': contractCode,//合同流水号
+        'checkResult': checkResult,//合同调用必传
         'keyCode': keyCode,//资产键码
+
+        'translateCode': translateCode,//转资单号
+        'elementCode': elementCode,//项目单元编码
+        'translateType': translateType,//转资类型
+        
+        'reqTyle': reqTyle,//ht/ ys /zz(合同/验收/转资)
     };
     return this.httpService.get('phoneContactMain.do', param).map((res:Response) => res.json());
   }
