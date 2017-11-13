@@ -25,7 +25,7 @@ import {Oper,Oper_Look} from '../../providers/TransferFeildName';
         elementCode: '项目单元编码', elementName: '项目单元名称',
         elementFlag: '项目单元类别', sgsx: '施工属性',
         planMoney: 47.00,//初始计划金额" ,传double型 
-        planMoney_current: 28.00,//当前计划金额",传double型    
+        planMoneyCurrent: 28.00,//当前计划金额",传double型    
         payMoney: 6.00,//已付款金额",传double型               
         completionProgress: '57',//完工百分比
         designFinishTime: '2017-12-14 15:16',//设计完成时间"
