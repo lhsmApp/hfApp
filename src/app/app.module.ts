@@ -93,6 +93,7 @@ class FundebugErrorHandler implements ErrorHandler {
     IonicModule.forRoot(MyApp,{
       backButtonText: '',
       backButtonIcon: 'ios-arrow-back',
+      
       pageTransition: 'ios-transition'
     }),
     IonicStorageModule.forRoot(),
