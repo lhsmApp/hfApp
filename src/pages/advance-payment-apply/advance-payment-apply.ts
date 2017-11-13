@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController,ModalController,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController,ModalController,AlertController,ToastController } from 'ionic-angular';
 import {Storage} from "@ionic/storage";
 
 import {FormBuilder, Validators} from '@angular/forms';
@@ -64,7 +64,9 @@ export class AdvancePaymentApplyPage {
   callback :any;
   sendSuccess=false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public toastCtrl:ToastController,
               private viewCtrl: ViewController,
               private storage: Storage,
               private formBuilder: FormBuilder,
@@ -273,7 +275,11 @@ export class AdvancePaymentApplyPage {
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
-          console.log(object[1][0]);
+          let toast = this.toastCtrl.create({
+            message: '保存成功！',
+            duration: 3000
+          });
+          toast.present();
           this.paymentDetail = object[1][0] as AdvancePaymentDetail;
           this.sendSuccess=true;
           this.paymentMain.payCode=this.paymentForm.get('payCode')._value;

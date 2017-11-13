@@ -59,6 +59,7 @@ export class InvoiceInfoPage {
 
   //附件
   attachment(){
+    console.log(this.apply);
     if(this.apply){
       this.navCtrl.push("AttachmentPage",{'billNumber':this.invoiceDetail.sequence,'contractCode':this.contractCode,'type':'2'});
     }else{

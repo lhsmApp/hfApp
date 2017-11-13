@@ -30,9 +30,11 @@ export class InvoiceApplyListPage {
   invoiceList:InvoiceMain[];
   paymentMain:AdvancePaymentMain;
   contractCode:string;
+  apply:boolean=false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl:AlertController,private paymentService:PaymentService) {
   	//this.invoiceList=INVOICE_LIST;
+    this.apply=this.navParams.get('apply');
     this.paymentMain=this.navParams.get("paymentItem");
     this.contractCode=this.navParams.get('contractCode');
   }
@@ -71,8 +73,20 @@ export class InvoiceApplyListPage {
   //打开详情页
   openPage(item: InvoiceMain) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("InvoiceInfoPage",{"invoiceItem":item,'paymentItem':this.paymentMain,'contractCode':this.contractCode});
+  	this.navCtrl.push("InvoiceInfoPage",{"invoiceItem":item,'paymentItem':this.paymentMain,'contractCode':this.contractCode,'apply':this.apply});
   }
+
+  //回调
+  saveSend = (data) =>
+  {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if(data){
+          this.getList();
+      }
+      resolve();
+    });
+  };
 
   //上拉刷新
   doRefresh(refresher) {
@@ -82,13 +96,13 @@ export class InvoiceApplyListPage {
 
   //增加
   add(){
-  	this.navCtrl.push("InvoiceApplyPage",{'paymentItem':this.paymentMain});
+  	this.navCtrl.push("InvoiceApplyPage",{callback:this.saveSend,'paymentItem':this.paymentMain});
   }
 
   //编辑
   edit(item: InvoiceMain, slidingItem: ItemSliding){
     slidingItem.close();
-	  this.navCtrl.push("InvoiceApplyPage",{"invoiceItem":item,'paymentItem':this.paymentMain,contractCode:this.contractCode});
+	  this.navCtrl.push("InvoiceApplyPage",{callback:this.saveSend,"invoiceItem":item,'paymentItem':this.paymentMain,contractCode:this.contractCode});
   }
 
   //删除
