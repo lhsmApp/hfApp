@@ -21,6 +21,10 @@ import {DicBasicEntity} from '../../model/dic-basic-entity';
 import {BillNumberCode} from '../../providers/TransferFeildName';
 import {BillContractCode} from '../../providers/TransferFeildName';
 import {BillKeyCode} from '../../providers/TransferFeildName';
+import {BillElementCode} from '../../providers/TransferFeildName';
+import {BillCheckResult} from '../../providers/TransferFeildName';
+import {BillTranslateType} from '../../providers/TransferFeildName';
+import {TypeView,TypeView_AcceptApply,TypeView_TransferFunds,TypeView_Contract} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AssetDetailsInfoPage page.
@@ -67,6 +71,10 @@ export class AssetDetailsInfoPage {
   billNumber:string;
   contractCode:string;
   keyCode:string;
+  elementCode:string;
+  TypeView:string;
+  translateType:string;
+  checkResult:string="";
 
   list: AcceptAssetDetail[];
   itemShow:AcceptAssetDetail;
@@ -91,6 +99,13 @@ export class AssetDetailsInfoPage {
     this.billNumber = this.navParams.get(BillNumberCode);
     this.contractCode = this.navParams.get(BillContractCode);
     this.keyCode = this.navParams.get(BillKeyCode);
+
+    this.elementCode = this.navParams.get(BillElementCode);
+
+    this.translateType = this.navParams.get(BillTranslateType);
+
+    this.TypeView = this.navParams.get(TypeView);
+    this.checkResult=this.navParams.get(BillCheckResult);
   }
 
   ionViewDidLoad() {
@@ -126,7 +141,35 @@ export class AssetDetailsInfoPage {
 
   getShowItem(){
     this.itemShow = new AcceptAssetDetail();
-    this.contractService.getAssetDetailItem(this.contractCode, this.keyCode).subscribe(
+  //资产明细详情-----basic_contract_detail 合同明细表
+  //1.合同/验收调用 contractCode + keyCode(合同流水号+转资键码) checkResult(合同调用必传)
+  //2.转资调用 translateCode+elementCode(转资单号+项目单元编码) translateType转资类型
+  // reqTyle: ht/ ys /zz(合同/验收/转资)
+  //contractCode:string, keyCode:string, checkResult:string,
+  //translateCode:string, elementCode:string, translateType:string,
+  //reqTyle:string
+    let contractCode:string = '';
+    let translateCode:string = '';
+    let elementCode:string = '';
+    let translateType:string = '';
+    let keyCode:string = '';
+    let checkResult:string = '';
+    let reqTyle:string = this.TypeView;
+    if(reqTyle == TypeView_Contract){
+      contractCode = this.contractCode;
+      keyCode = this.keyCode;
+      checkResult = this.checkResult;
+    } else if(reqTyle == TypeView_AcceptApply){
+      contractCode = this.contractCode;
+      keyCode = this.keyCode;
+    } else if(reqTyle == TypeView_TransferFunds){
+      translateCode = this.billNumber;
+      elementCode = this.elementCode;
+      translateType = this.translateType;
+    }
+
+    this.contractService.getAssetDetailItem(contractCode, keyCode, checkResult,
+            translateCode, elementCode, translateType, reqTyle).subscribe(
       object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){

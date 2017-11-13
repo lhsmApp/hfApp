@@ -48,6 +48,10 @@ export class ApprovalService {
         reviewType = "验收申请审批";
     }else if(type == ReviewType[ReviewType.REVIEW_TYPE_CONTRACT_MAIN]){
         reviewType = "合同单据审批";
+    } else if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_VOUCHER]){
+        reviewType = "转资单审批";
+    } else if(type == ReviewType[ReviewType.REVIEW_TYPE_BASIC_TRANSLATE_ADJUST]){
+        reviewType = "转资单调整审批";
     }
     let param = {
      //必传

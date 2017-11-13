@@ -128,7 +128,7 @@ export class AcceptApplyListPage {
   }
 
     toDetail(billNumber: string) {
-        this.navCtrl.push(Page_AcceptApplyInfoPage, {callback:this.checkRefresh,BillNumberCode: billNumber,Oper:Oper_Edit,Title:'验收申请'});
+      this.navCtrl.push(Page_AcceptApplyInfoPage, {callback:this.checkRefresh,BillNumberCode: billNumber,Oper:Oper_Edit,Title:'验收申请'});
     }
 
   //增加

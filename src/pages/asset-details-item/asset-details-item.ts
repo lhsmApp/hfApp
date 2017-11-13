@@ -26,6 +26,7 @@ import {BillContractCode} from '../../providers/TransferFeildName';
 import {BillKeyCode} from '../../providers/TransferFeildName';
 import {BillAddTime} from '../../providers/TransferFeildName';
 import {ItemTranfer} from '../../providers/TransferFeildName';//从添加界面传回
+import {TypeView} from '../../providers/TransferFeildName';
 
 /**
  * Generated class for the AssetDetailsItemPage page.
@@ -81,6 +82,7 @@ export class AssetDetailsItemPage {
   contractCode:string;
   keyCode:string;
   addTime:string;
+  TypeView:string;
   itemTranfer:AcceptAssetDetail;//从添加界面传回
 
   list: AcceptAssetDetail[];
@@ -116,8 +118,8 @@ export class AssetDetailsItemPage {
     this.contractCode = this.navParams.get(BillContractCode);
     this.keyCode = this.navParams.get(BillKeyCode);
     this.addTime = this.navParams.get('BillAddTime');
-    console.log(this.addTime);
     this.itemTranfer = this.navParams.get(ItemTranfer);//从添加界面传回
+    this.TypeView = this.navParams.get(TypeView);
     this.callback    = this.navParams.get('callback');
     this.isBackRefrash=false;
     
@@ -228,7 +230,8 @@ export class AssetDetailsItemPage {
     if(this.oper === Oper_Add){
         
     } else if(this.oper === Oper_Edit){
-      this.contractService.getAssetDetailItem(this.contractCode, this.keyCode).subscribe(
+      this.contractService.getAssetDetailItem(this.contractCode, this.keyCode, '',
+            '', '', '', this.TypeView).subscribe(
         object => {
           let resultBase:ResultBase=object[0] as ResultBase;
           if(resultBase.result=='true'){

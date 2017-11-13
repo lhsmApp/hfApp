@@ -14,7 +14,7 @@ import {BillContractCode} from '../../providers/TransferFeildName';
 import {BillAddTime} from '../../providers/TransferFeildName';
 import {TypeView,TypeView_AcceptApply,TypeView_TransferFunds} from '../../providers/TransferFeildName';
 
-import {Page_AssetDetailsInfoPage,Page_AssetDetailsItemPage} from '../../providers/TransferFeildName';
+import {Page_AssetDetailsItemPage} from '../../providers/TransferFeildName';
 import {Oper,Oper_Look,Oper_Add,Oper_Edit} from '../../providers/TransferFeildName';
 //import {BillNumberCode} from '../../providers/TransferFeildName';
 //import {BillContractCode} from '../../providers/TransferFeildName';
@@ -176,7 +176,8 @@ export class AssetDetailsListPage {
   //	this.navCtrl.push(Page_AssetDetailsAddPage, {BillNumberCode: this.billNumber, BillContractCode:this.contractCode, TypeView:TypeView_AcceptApply});
   //}
   edit(item: AcceptAssetMain){
-    this.navCtrl.push(Page_AssetDetailsItemPage, {callback:this.checkRefresh,BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode, 'BillAddTime':this.addTime,ItemTranfer:[],Oper:Oper_Edit});
+    this.navCtrl.push(Page_AssetDetailsItemPage, {callback:this.checkRefresh,BillNumberCode: this.billNumber, BillContractCode:this.contractCode, BillKeyCode: item.keyCode, 
+                                                  'BillAddTime':this.addTime,ItemTranfer:[],Oper:Oper_Edit,TypeView:this.TypeView});
   }
 
   //回调

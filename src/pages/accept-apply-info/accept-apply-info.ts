@@ -14,7 +14,7 @@ import {Oper,Oper_Look,Oper_Edit,Oper_Add,Oper_Approval} from '../../providers/T
 import {Title} from '../../providers/TransferFeildName';
 import {BillNumberCode} from '../../providers/TransferFeildName';
 
-import {Page_AssetDetailsListInfoPage,Page_ChoiceApproversPage } from '../../providers/TransferFeildName';
+import {Page_AssetDetailsListInfoPage,Page_AssetDetailsListPage,Page_ChoiceApproversPage } from '../../providers/TransferFeildName';
 import {TypeView,TypeView_AcceptApply} from '../../providers/TransferFeildName';
 import {BillReviewType} from '../../providers/TransferFeildName';
 import {BillApprovalState} from '../../providers/TransferFeildName';
@@ -124,7 +124,17 @@ export class AcceptApplyInfoPage {
   
   //资产明细
   toAssetDetail(){
-    this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, TypeView:TypeView_AcceptApply});
+    if(this.oper === Oper_Edit || this.oper === Oper_Add){
+      this.navCtrl.push(Page_AssetDetailsListPage,  {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, 'BillAddTime':this.itemShow.requireDate, TypeView:TypeView_AcceptApply});
+    } else {
+      //资产明细详情-----basic_contract_detail 合同明细表
+      //1.合同/验收调用 contractCode + keyCode(合同流水号+转资键码) checkResult(合同调用必传)
+      //2.转资调用 translateCode+elementCode(转资单号+项目单元编码) translateType转资类型
+      // reqTyle: ht/ ys /zz(合同/验收/转资)
+      this.navCtrl.push(Page_AssetDetailsListInfoPage, {BillNumberCode: this.billNumber, BillContractCode:this.itemShow.contractCode, BillElementCode: '',
+                                                        BillCheckResult:'', BillTranslateType: '', 
+                                                        TypeView:TypeView_AcceptApply});
+    }
   }
 
   check(){
