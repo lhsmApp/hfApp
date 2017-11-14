@@ -61,6 +61,7 @@ export class ScheduleApplyItemPage {
     list: ProjectUnitDetail[];
     itemShow:ProjectUnitDetail;
     maxYear:string;
+  YearValues:string;
   callback :any;
   isBackRefrash=false;
   dicelementFlag: DicBase[];//项目单元类别"      
@@ -81,6 +82,13 @@ export class ScheduleApplyItemPage {
   	this.billElementCode = this.navParams.get(BillElementCode);
     this.callback    = this.navParams.get('callback');
     this.isBackRefrash=false;
+
+    let minyear = (new Date()).getFullYear() - 100;
+    let maxyear = (new Date()).getFullYear() + 100;
+    for(let i=maxyear;i>=minyear;i--){
+      this.YearValues += i + ",";
+    }
+    //yearValues ="{{YearValues}}"
 
     this.applyFrom = this.formBuilder.group({
             projectCode: [,[]], 
