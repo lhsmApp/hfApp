@@ -157,7 +157,7 @@ export class TransferAdjustApprovalInfoPage {
             if(resultBase.result=='true'){
               this.isBackRefrash=true;
               let toast = this.toastCtrl.create({
-                message: resultBase.message,
+                message: '审批成功',
                 duration: 3000
               });
               toast.present();
@@ -185,7 +185,7 @@ export class TransferAdjustApprovalInfoPage {
             if(resultBase.result=='true'){
               this.isBackRefrash=true;
               let toast = this.toastCtrl.create({
-                message: resultBase.message,
+                message: '审批成功',
                 duration: 3000
               });
               toast.present();

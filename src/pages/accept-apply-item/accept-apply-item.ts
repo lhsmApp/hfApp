@@ -178,7 +178,7 @@ export class AcceptApplyItemPage {
           this.billNumber = this.itemShow.billNumber;
           this.FromPatchValue();
           let toast = this.toastCtrl.create({
-              message: resultBase.message,
+              message: '保存成功',
               duration: 3000
           });
           toast.present();
