@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ModalController,AlertController } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Attachment} from '../../model/attachment';
 import {DEFAULT_INVOICE} from "../../providers/Constants";
 import { AttachmentService} from '../../services/attachmentService';
 import {ResultBase} from "../../model/result-base";
 import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
+import {APP_SERVE_FILE_URL} from "../../providers/Constants";
+import {NativeService} from '../../providers/NativeService';
+
 /**
  * Generated class for the AttachmentPage page.
  *
@@ -36,7 +40,8 @@ export class AttachmentPage {
     public navParams: NavParams,
     private modalCtrl: ModalController,
     private alertCtrl:AlertController,
-    private attachmentService:AttachmentService) {
+    private inAppBrowser:InAppBrowser,
+    private attachmentService:AttachmentService,private nativeService: NativeService) {
   	//this.attachmentList=ATTACHMENT_LIST;
     this.billNumber=this.navParams.get('billNumber');
     this.contractCode=this.navParams.get('contractCode');
@@ -54,6 +59,7 @@ export class AttachmentPage {
 
   //获取附件列表信息
   getList(){
+    this.nativeService.alert('get');
     this.attachmentService.getAttachmentList(this.billNumber,this.contractCode,this.type)
     .subscribe(object => {
       let resultBase:ResultBase=object[0] as ResultBase;
@@ -78,8 +84,24 @@ export class AttachmentPage {
 
   //打开详情页
   openPage(item: Attachment) {
-  	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("AttachmentViewPage",{attachment:item});
+    let fileType=item.filePath.substring(item.filePath.lastIndexOf('.')+1);
+    if(fileType.toLowerCase()=="jpg"||fileType.toLowerCase()=="jpeg"
+      ||fileType.toLowerCase()=="png"||fileType.toLowerCase()=="gif"
+      ||fileType.toLowerCase()=="bmp"||fileType.toLowerCase()=="eps"
+      ||fileType.toLowerCase()=="tga"||fileType.toLowerCase()=="lic"
+      ||fileType.toLowerCase()=="emf"||fileType.toLowerCase()=='wmf'
+      ||fileType.toLowerCase()=="dxf"||fileType.toLowerCase()=="pcx"
+      ||fileType.toLowerCase()=="svg"||fileType.toLowerCase()=="swf"
+      ||fileType.toLowerCase()=="psd"||fileType.toLowerCase()=="tiff"
+      ||fileType.toLowerCase()=="jpeg2000"||fileType.toLowerCase()=="exif"
+      ||fileType.toLowerCase()=="cdr"||fileType.toLowerCase()=="hdri"
+      ||fileType.toLowerCase()=="raw"||fileType.toLowerCase()=="ufo"
+      ||fileType.toLowerCase()=="ai"){
+      this.navCtrl.push("AttachmentViewPage",{attachment:item});
+    }else{
+      //this.inAppBrowser.create(APP_SERVE_FILE_URL +item.filePath);
+      window.open(APP_SERVE_FILE_URL +item.filePath,'_system');
+    }
   }
 
   //上拉刷新
@@ -93,7 +115,9 @@ export class AttachmentPage {
     let modal = this.modalCtrl.create('AttachmentAddPage', {title:this.title,billNumber:this.billNumber,contractCode:this.contractCode,type:this.type});
     modal.present();
     modal.onDidDismiss(data => {
-      data && this.getList();
+      this.nativeService.alert(JSON.stringify(data));
+      data.reflesh && this.getList();
+      this.nativeService.alert('ffff');
     });
   }
 
