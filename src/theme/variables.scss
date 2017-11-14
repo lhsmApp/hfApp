@@ -59,7 +59,8 @@ $colors: (
   main_green:#40AA53,
   main_gray:#9A9A9A,
   main_black:#333,
-  main_purple:#576B95
+  main_purple:#576B95,
+  line:#DEDEDE
   );
   
 
@@ -105,7 +106,7 @@ $item-ios-detail-push-show:false;
 //$hairlines-width: 1px;
 //$list-border-color: #e0dfe4;
 
-//$text-input-highlight-color-valid:#000000;
+$text-input-highlight-color-valid:none;
 
 @import "ionic.theme.default";
 
