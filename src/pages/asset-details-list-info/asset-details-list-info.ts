@@ -67,7 +67,7 @@ export class AssetDetailsListInfoPage {
     this.translateType = this.navParams.get(BillTranslateType);
 
     this.TypeView = this.navParams.get(TypeView);
-    this.checkResult=this.navParams.get("checkResult");
+    this.checkResult=this.navParams.get(BillCheckResult);
   }
 
   ionViewDidLoad() {
@@ -178,9 +178,22 @@ export class AssetDetailsListInfoPage {
       //1.合同/验收调用 contractCode + keyCode(合同流水号+转资键码) checkResult(合同调用必传)
       //2.转资调用 translateCode+elementCode(转资单号+项目单元编码) translateType转资类型
       // reqTyle: ht/ ys /zz(合同/验收/转资)
-  	this.navCtrl.push(Page_AssetDetailsInfoPage, {BillNumberCode:this.billNumber, BillContractCode:this.contractCode, BillElementCode:this.elementCode, BillKeyCode:item.keyCode,
+
+    //当资产明细为：合同入口并审批状态为新增、待审批、退回状态时获取的明细信息字段比正常的明细信息字段要少很多,当为已审批时正常。
+    if(this.TypeView == TypeView_Contract){
+      if(this.checkResult=='1'){
+        this.navCtrl.push(Page_AssetDetailsInfoPage, {BillNumberCode:this.billNumber, BillContractCode:this.contractCode, BillElementCode:this.elementCode, BillKeyCode:item.keyCode,
                                                   BillCheckResult:this.checkResult, BillTranslateType:this.translateType, 
                                                   TypeView:this.TypeView});
+      }else{
+        this.navCtrl.push('AssetDetailsInfoContractPage', {BillContractCode:this.contractCode, BillKeyCode:item.keyCode,
+                                                  BillCheckResult:this.checkResult, TypeView:this.TypeView});
+      }
+    } else {
+      this.navCtrl.push(Page_AssetDetailsInfoPage, {BillNumberCode:this.billNumber, BillContractCode:this.contractCode, BillElementCode:this.elementCode, BillKeyCode:item.keyCode,
+                                                  BillCheckResult:this.checkResult, BillTranslateType:this.translateType, 
+                                                  TypeView:this.TypeView});
+    }
   }
 
 }

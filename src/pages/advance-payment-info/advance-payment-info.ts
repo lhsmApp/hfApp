@@ -202,7 +202,7 @@ export class AdvancePaymentInfoPage {
   //发票
   invoice(){
     if(this.apply){
-      this.navCtrl.push("InvoiceApplyListPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode});
+      this.navCtrl.push("InvoiceApplyListPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode,'apply':this.apply});
     }else{
   	  this.navCtrl.push("InvoiceListPage",{'paymentItem':this.paymentMain,'contractCode':this.paymentDetail.contractCode,'apply':this.apply});
     }

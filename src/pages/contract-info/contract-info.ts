@@ -18,6 +18,7 @@ import {ADDITIONAL_PERSON} from "../../enums/storage-type";
 import {DicBase} from '../../model/dic-base';
 import {DicComplex} from '../../model/dic-complex';
 import {ApprovalService} from '../../services/approvalService';
+import {BillCheckResult} from '../../providers/TransferFeildName';
 
 import {TypeView,TypeView_Contract} from '../../providers/TransferFeildName';
 
@@ -198,7 +199,7 @@ export class ContractInfoPage {
   contractDetail(){
     console.log(this.contractDetailInfo.checkResult);
     console.log(this.contractDetailInfo.contractCode);
-  	this.navCtrl.push("AssetDetailsListInfoPage",{BillContractCode:this.contractDetailInfo.contractCode,'checkResult':this.contractDetailInfo.checkResult, 
+  	this.navCtrl.push("AssetDetailsListInfoPage",{BillContractCode:this.contractDetailInfo.contractCode,BillCheckResult:this.contractDetailInfo.checkResult, 
                                                         TypeView:TypeView_Contract});
   }
 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 import { Attachment} from '../../model/attachment';
 import {DEFAULT_INVOICE} from "../../providers/Constants";
 import { AttachmentService} from '../../services/attachmentService';
@@ -32,7 +34,11 @@ export class AttachmentInfoPage {
   contractCode :string;
   type:string;//1.合同 2.发票 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl:AlertController, private attachmentService:AttachmentService) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    private alertCtrl:AlertController, 
+    private attachmentService:AttachmentService,
+    private inAppBrowser:InAppBrowser) {
   	//this.attachmentList=ATTACHMENT_LIST;
     this.billNumber=this.navParams.get('billNumber');
     this.contractCode=this.navParams.get('contractCode');
@@ -75,7 +81,23 @@ export class AttachmentInfoPage {
   //打开详情页
   openPage(item: Attachment) {
   	//this.appCtrl.getRootNav().push(HomeDetailPage, { id: id });
-  	this.navCtrl.push("AttachmentViewPage",{attachment:item});
+    let fileType=item.filePath.substring(item.filePath.lastIndexOf('.')+1);
+    if(fileType.toLowerCase()=="jpg"||fileType.toLowerCase()=="jpeg"
+      ||fileType.toLowerCase()=="png"||fileType.toLowerCase()=="gif"
+      ||fileType.toLowerCase()=="bmp"||fileType.toLowerCase()=="eps"
+      ||fileType.toLowerCase()=="tga"||fileType.toLowerCase()=="lic"
+      ||fileType.toLowerCase()=="emf"||fileType.toLowerCase()=='wmf'
+      ||fileType.toLowerCase()=="dxf"||fileType.toLowerCase()=="pcx"
+      ||fileType.toLowerCase()=="svg"||fileType.toLowerCase()=="swf"
+      ||fileType.toLowerCase()=="psd"||fileType.toLowerCase()=="tiff"
+      ||fileType.toLowerCase()=="jpeg2000"||fileType.toLowerCase()=="exif"
+      ||fileType.toLowerCase()=="cdr"||fileType.toLowerCase()=="hdri"
+      ||fileType.toLowerCase()=="raw"||fileType.toLowerCase()=="ufo"
+      ||fileType.toLowerCase()=="ai"){
+    	this.navCtrl.push("AttachmentViewPage",{attachment:item});
+    }else{
+      this.inAppBrowser.create(item.filePath);
+    }
   }
 
   //上拉刷新

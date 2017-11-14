@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,ToastController } from 'ionic-angular';
 import {FormBuilder, Validators} from '@angular/forms';
 import { InvoiceDetail} from '../../model/invoice-detail';
 import { PaymentService} from '../../services/paymentService';
@@ -27,12 +27,18 @@ export class InvoiceApplyPage {
   invoiceMain:InvoiceMain;
   paymentMain:AdvancePaymentMain;
   contractCode:string;
+  callback :any;
+  saveSuccess=false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl:AlertController,private formBuilder: FormBuilder,private paymentService:PaymentService) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public alertCtrl:AlertController,
+    public toastCtrl:ToastController,
+    private formBuilder: FormBuilder,private paymentService:PaymentService) {
     this.invoiceMain=this.navParams.get("invoiceItem");  	
     this.paymentMain=this.navParams.get("paymentItem");
     this.contractCode=this.navParams.get('contractCode');
-    console.log('invoice-apply'+this.contractCode);
+    this.callback= this.navParams.get('callback');
     this.invoiceForm = this.formBuilder.group({
       chalanNumber: [,[Validators.required]],//发票编号，手工录入
       sequence: '',//序号，自动生成，判断是否为空，空为增加，有则修改
@@ -50,6 +56,7 @@ export class InvoiceApplyPage {
   }
 
   ionViewDidLoad() {
+    this.saveSuccess=false;
     this.initData();
   }
 
@@ -92,6 +99,16 @@ export class InvoiceApplyPage {
 
   //附件列表
   attachment(item){
+    let sequence=this.invoiceForm.get('sequence')._value;
+    if(!(sequence!=null&&sequence.trim()!="")){
+      let alert = this.alertCtrl.create({
+        title: '提示',
+        subTitle: '请先保存发票信息，再进行维护附件信息！',
+        buttons: ['确定']
+      });
+      alert.present();
+      return;
+    }
     this.navCtrl.push("AttachmentPage",{'billNumber':this.invoiceDetail.sequence,'contractCode':this.contractCode,'type':'2'});
   }
 
@@ -109,7 +126,12 @@ export class InvoiceApplyPage {
       .subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
-          console.log(object[1][0]);
+          let toast = this.toastCtrl.create({
+            message: '保存成功！',
+            duration: 3000
+          });
+          toast.present();
+          this.saveSuccess=true;
           this.invoiceDetail = object[1][0] as InvoiceDetail;
           this.invoiceForm.patchValue({
             chalanNumber:this.invoiceDetail.chalanNumber,
@@ -136,5 +158,14 @@ export class InvoiceApplyPage {
       }, () => {
         
       });
+  }
+
+  goBack(){
+    console.log('back');
+    if(this.saveSuccess){
+      this.callback(true).then(()=>{ this.navCtrl.pop() });
+    }else{
+      this.navCtrl.pop();
+    }
   }
 }
