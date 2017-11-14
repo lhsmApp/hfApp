@@ -75,6 +75,7 @@ export class AttachmentAddPage {
       this.attachmentService.uploadAttachment(fileInfo.blob,fileInfo.fileName,this.type,this.billNumber,this.contractCode).subscribe(object => {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
+          this.nativeService.alert('reflesh');
           this.viewCtrl.dismiss({'reflesh': true});
         }else{
           let alert = this.alertCtrl.create({

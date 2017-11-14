@@ -96,7 +96,7 @@ export class InvoiceApplyListPage {
 
   //增加
   add(){
-  	this.navCtrl.push("InvoiceApplyPage",{callback:this.saveSend,'paymentItem':this.paymentMain});
+  	this.navCtrl.push("InvoiceApplyPage",{callback:this.saveSend,'paymentItem':this.paymentMain,contractCode:this.contractCode});
   }
 
   //编辑
