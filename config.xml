@@ -80,6 +80,7 @@
         <icon height="1024" src="resources/ios/icon/icon-1024.png" width="1024" />
     </platform>
     <allow-navigation href="http://10.201.2.71:8100" />
+    <engine name="android" spec="~6.2.3" />
     <engine name="browser" spec="^4.1.0" />
     <engine name="ios" spec="~4.5.3" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
@@ -100,6 +101,4 @@
     </plugin>
     <plugin name="cordova-sqlite-storage" spec="^2.0.4" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
-    <engine name="android" spec="~6.2.3" />
-    <engine name="ios" spec="~4.5.3" />
 </widget>
