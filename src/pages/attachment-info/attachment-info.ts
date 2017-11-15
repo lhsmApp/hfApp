@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import {FileTransfer,FileTransferObject} from "@ionic-native/file-transfer";
-import {FileOpener } from "@ionic-native/file-opener";
+//import {FileOpener } from "@ionic-native/file-opener";
 import {File,FileEntry} from "@ionic-native/file";
 
 import { Attachment} from '../../model/attachment';
@@ -43,7 +43,7 @@ export class AttachmentInfoPage {
     public navParams: NavParams,
     private alertCtrl:AlertController, 
     private attachmentService:AttachmentService,
-    private fileOpener: FileOpener,
+    //private fileOpener: FileOpener,
     private fileTransfer: FileTransfer,
     private file:File) {
   	//this.attachmentList=ATTACHMENT_LIST;
@@ -68,6 +68,7 @@ export class AttachmentInfoPage {
       let resultBase:ResultBase=object[0] as ResultBase;
       if(resultBase.result=='true'){
         if(object[1]!=null&&object[1].length>0){
+          this.isEmpty=false;
           this.attachmentList = object[1] as Attachment[];
         }else{
           this.isEmpty=true;
@@ -102,7 +103,7 @@ export class AttachmentInfoPage {
       ||fileType.toLowerCase()=="raw"||fileType.toLowerCase()=="ufo"
       ||fileType.toLowerCase()=="ai"){
     	this.navCtrl.push("AttachmentViewPage",{attachment:item});
-    }else if(fileType.toLowerCase()=="txt"||fileType.toLowerCase()=="docx"
+    }/*else if(fileType.toLowerCase()=="txt"||fileType.toLowerCase()=="docx"
       ||fileType.toLowerCase()=="doc"||fileType.toLowerCase()=="pptx"
       ||fileType.toLowerCase()=="ppt"||fileType.toLowerCase()=="xlsx"
       ||fileType.toLowerCase()=="xls"||fileType.toLowerCase()=="zip"
@@ -124,7 +125,7 @@ export class AttachmentInfoPage {
       }, err => {
         window.open(APP_SERVE_FILE_URL +item.filePath,'_system');
       });
-    }else{
+    }*/else{
       //this.inAppBrowser.create(APP_SERVE_FILE_URL +item.filePath);
       window.open(APP_SERVE_FILE_URL +item.filePath,'_system');
     }

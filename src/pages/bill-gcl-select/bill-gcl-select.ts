@@ -58,6 +58,7 @@ export class BillGclSelectPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           if(object[1]!=null&&object[1].length>0){
+            this.isEmpty=false;
             this.workList = object[1] as BillOfWorkMain[];
             for(let workItem of this.workList){
               for(let gclItem of this.gclList){

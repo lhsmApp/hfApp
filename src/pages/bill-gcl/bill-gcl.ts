@@ -62,6 +62,7 @@ export class BillGclPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           if(object[1]!=null&&object[1].length>0){
+            this.isEmpty=false;
             this.workList = object[1] as BillOfWorkMain[];
           }else{
             this.isEmpty=true;

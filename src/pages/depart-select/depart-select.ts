@@ -53,6 +53,7 @@ export class DepartSelectPage {
           let userInfo=object[1];
           this.globalData.sessionId=userInfo.sessionId;
           if(object[2]!=null&&object[2].length>0){
+            this.isEmpty=false;
             this.departList = object[2] as Depart[];
           }else{
             this.isEmpty=true;
