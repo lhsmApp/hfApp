@@ -88,8 +88,7 @@
             "com.synconset.imagepicker": {
                 "PHOTO_LIBRARY_USAGE_DESCRIPTION": "your usage message"
             },
-            "cordova-sqlite-storage": {},
-            "cordova-plugin-file-opener2": {}
+            "cordova-sqlite-storage": {}
         },
         "platforms": [
             "android",
