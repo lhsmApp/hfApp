@@ -50,6 +50,7 @@ export class AdvancePaymentApprovalPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           if(object[1]!=null&&object[1].length>0){
+            this.isEmpty=false;
             this.listAll = object[1] as AdvancePaymentMain[];
             this.advancePaymentList = object[1] as AdvancePaymentMain[];
           }else{

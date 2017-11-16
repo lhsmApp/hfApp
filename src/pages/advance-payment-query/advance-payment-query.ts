@@ -69,6 +69,7 @@ import {DEFAULT_INVOICE_EMPTY} from "../../providers/Constants";
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           if(object[1]!=null&&object[1].length>0){
+            this.isEmpty=false;
             this.advancePaymentList = object[1] as AdvancePaymentMain[];
           }else{
             this.isEmpty=true;

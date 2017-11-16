@@ -59,6 +59,7 @@ export class ContractApprovalPage {
         let resultBase:ResultBase=object[0] as ResultBase;
         if(resultBase.result=='true'){
           if(object[1]!=null&&object[1].length>0){
+            this.isEmpty=false;
             this.listAll = object[1] as ContractMain[];
             this.contractList = object[1] as ContractMain[];
           }else{

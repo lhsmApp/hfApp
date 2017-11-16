@@ -25,7 +25,7 @@ import {AppVersion} from "@ionic-native/app-version";
 import {Toast} from "@ionic-native/toast";
 import {File} from "@ionic-native/file";
 import {FileTransfer} from "@ionic-native/file-transfer";
-import {FileOpener } from "@ionic-native/file-opener";
+//import {FileOpener } from "@ionic-native/file-opener";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {ImagePicker} from "@ionic-native/image-picker";
 import {Network} from "@ionic-native/network";
@@ -120,7 +120,7 @@ class FundebugErrorHandler implements ErrorHandler {
     Toast,
     File,
     FileTransfer,
-    FileOpener,
+    //FileOpener,
     InAppBrowser,
     ImagePicker,
     Network,
